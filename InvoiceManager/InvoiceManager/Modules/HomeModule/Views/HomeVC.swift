@@ -11,12 +11,20 @@ import UIKit
 class HomeVC: UIViewController {
     //MARK: - Properties
     var presenter: IHomePresenter?
+    private var homeView: HomeView? {
+        guard isViewLoaded else { return nil }
+        return (self.view as! HomeView)
+    }
     
     //MARK: - Init
     //MARK: - Func
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orange
+    }
+    
+    override func loadView() {
+        self.view = HomeView(frame: UIScreen.main.bounds)
     }
 }
 

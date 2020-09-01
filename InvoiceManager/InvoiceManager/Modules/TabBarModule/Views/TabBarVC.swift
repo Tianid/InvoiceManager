@@ -28,10 +28,24 @@ extension TabBarVC: ITabBarVC {
         let chartController = assembler.createChartModule(router: router)
         let profileController = assembler.createProfileModule(router: router)
         
-        let homeItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage:  UIImage(systemName: "house.fill"))
-        let categoryItem = UITabBarItem(title: "Category", image: UIImage(systemName: "tray.2"), selectedImage:  UIImage(systemName: "tray.2.fill"))
-        let chartItem = UITabBarItem(title: "Chart", image: UIImage(systemName: "chart.pie"), selectedImage:  UIImage(systemName: "chart.pie.fill"))
-        let profileItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), selectedImage:  UIImage(systemName: "person.fill"))
+        var homeItem: UITabBarItem!
+        var categoryItem: UITabBarItem!
+        var chartItem: UITabBarItem!
+        var profileItem: UITabBarItem!
+        
+        if #available(iOS 13, *) {
+            
+            homeItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage:  UIImage(systemName: "house.fill"))
+            categoryItem = UITabBarItem(title: "Category", image: UIImage(systemName: "tray.2"), selectedImage:  UIImage(systemName: "tray.2.fill"))
+            chartItem = UITabBarItem(title: "Chart", image: UIImage(systemName: "chart.pie"), selectedImage:  UIImage(systemName: "chart.pie.fill"))
+            profileItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), selectedImage:  UIImage(systemName: "person.fill"))
+        } else {
+            
+            homeItem = UITabBarItem(title: "Home", image: UIImage(named: "house"), selectedImage:  UIImage(named: "house.fill"))
+            categoryItem = UITabBarItem(title: "Category", image: UIImage(named: "tray.2"), selectedImage:  UIImage(named: "tray.2.fill"))
+            chartItem = UITabBarItem(title: "Chart", image: UIImage(named: "chart.pie"), selectedImage:  UIImage(named: "chart.pie.fill"))
+            profileItem = UITabBarItem(title: "Profile", image: UIImage(named: "person"), selectedImage:  UIImage(named: "person.fill"))
+        }
         
         homeController.tabBarItem = homeItem
         categoryController.tabBarItem = categoryItem

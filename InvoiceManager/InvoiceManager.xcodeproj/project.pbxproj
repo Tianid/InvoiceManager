@@ -16,6 +16,7 @@
 		12AB7B9424FD4F2D00E2986D /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AB7B9324FD4F2D00E2986D /* Bill.swift */; };
 		12AB7B9624FD50BD00E2986D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AB7B9524FD50BD00E2986D /* Category.swift */; };
 		12AB7B9824FD541800E2986D /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AB7B9724FD541800E2986D /* Currency.swift */; };
+		12C3740224FE780F005262F6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C3740124FE780F005262F6 /* HomeView.swift */; };
 		12D1D59B24FD1B4D0077FEF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D59A24FD1B4D0077FEF6 /* AppDelegate.swift */; };
 		12D1D59F24FD1B4D0077FEF6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D59E24FD1B4D0077FEF6 /* ViewController.swift */; };
 		12D1D5A224FD1B4D0077FEF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12D1D5A024FD1B4D0077FEF6 /* Main.storyboard */; };
@@ -68,6 +69,7 @@
 		12AB7B9324FD4F2D00E2986D /* Bill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bill.swift; sourceTree = "<group>"; };
 		12AB7B9524FD50BD00E2986D /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		12AB7B9724FD541800E2986D /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		12C3740124FE780F005262F6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		12D1D59724FD1B4D0077FEF6 /* InvoiceManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvoiceManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12D1D59A24FD1B4D0077FEF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12D1D59E24FD1B4D0077FEF6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				12D1D5E124FD25B60077FEF6 /* HomeVC.swift */,
+				12C3740124FE780F005262F6 /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				12D1D5E424FD26D80077FEF6 /* CategoryVC.swift in Sources */,
 				12D1D5FE24FD29EF0077FEF6 /* IProfilePresenter.swift in Sources */,
 				129F48C824FD5A6000D9172C /* Section.swift in Sources */,
+				12C3740224FE780F005262F6 /* HomeView.swift in Sources */,
 				12D1D59F24FD1B4D0077FEF6 /* ViewController.swift in Sources */,
 				12D1D5CA24FD1EF80077FEF6 /* TabBarPresenter.swift in Sources */,
 				12AB7B9424FD4F2D00E2986D /* Bill.swift in Sources */,
@@ -725,6 +729,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GY259TWT8G;
 				INFOPLIST_FILE = InvoiceManager/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -743,6 +748,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GY259TWT8G;
 				INFOPLIST_FILE = InvoiceManager/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

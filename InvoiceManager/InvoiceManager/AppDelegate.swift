@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func setupRoot() {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
         let tabBar = initiate()
         window?.rootViewController = tabBar
         window?.makeKeyAndVisible()
