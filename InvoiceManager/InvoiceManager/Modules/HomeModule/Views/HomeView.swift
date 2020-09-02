@@ -11,6 +11,8 @@ import UIKit
 class HomeView: UIView {
     //MARK: - Properties
     private let identifier = "collectionViewIdentifier"
+    
+    private var curentPage: CGFloat = 0
     private let headerViewHeightConst = 200
     private let invoiceNameLabelYShift: CGFloat = -75
     
@@ -94,6 +96,7 @@ class HomeView: UIView {
     private var collectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
         
         let collection = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
         collection.isPagingEnabled = true
@@ -188,30 +191,46 @@ class HomeView: UIView {
                               leading: leadingAnchor,
                               bottom: safeAreaLayoutGuide.bottomAnchor,
                               trailing: trailingAnchor,
-                              padding: UIEdgeInsets(top: -30, left: 8, bottom: 0, right: 8))
+                              padding: UIEdgeInsets(top: -30, left: 0, bottom: 0, right: 0))
     }
     
     private func configureCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: identifier)
+        collectionView.register(HomeViewCollectionViewCell.self, forCellWithReuseIdentifier: identifier)
+    }
+    override func layoutSubviews() {
+        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+        flowLayout.invalidateLayout()
+        super.layoutSubviews()
+
     }
 }
-
+//MARK: - UICollectionViewDataSource
 extension HomeView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
-        cell.backgroundColor = .green
-        return cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? HomeViewCollectionViewCell
+        return cell!
     }
 }
 
+//MARK: - UICollectionViewDelegateFlowLayout
 extension HomeView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width, height: 300)
+        return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
+    }
+}
+
+//MARK: - UIScrollViewDelegate
+extension HomeView: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pageWidth = collectionView.frame.size.width
+        curentPage = collectionView.contentOffset.x / pageWidth
     }
 }

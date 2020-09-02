@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		129BC17A24FFD4D9004BD17A /* HomeViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BC17924FFD4D9004BD17A /* HomeViewCollectionViewCell.swift */; };
+		129BC17D24FFE648004BD17A /* HomeViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BC17B24FFE648004BD17A /* HomeViewTableViewCell.swift */; };
+		129BC17E24FFE648004BD17A /* HomeViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 129BC17C24FFE648004BD17A /* HomeViewTableViewCell.xib */; };
+		129BC18024FFE76E004BD17A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BC17F24FFE76E004BD17A /* CardView.swift */; };
 		129F48C824FD5A6000D9172C /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F48C724FD5A6000D9172C /* Section.swift */; };
 		12AB7B8824FD3FC800E2986D /* ChartVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AB7B8724FD3FC800E2986D /* ChartVCTest.swift */; };
 		12AB7B8A24FD3FDB00E2986D /* CategoryVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AB7B8924FD3FDB00E2986D /* CategoryVCTest.swift */; };
@@ -60,6 +64,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		129BC17924FFD4D9004BD17A /* HomeViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCollectionViewCell.swift; sourceTree = "<group>"; };
+		129BC17B24FFE648004BD17A /* HomeViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewTableViewCell.swift; sourceTree = "<group>"; };
+		129BC17C24FFE648004BD17A /* HomeViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewTableViewCell.xib; sourceTree = "<group>"; };
+		129BC17F24FFE76E004BD17A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		129F48C724FD5A6000D9172C /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		12AB7B8724FD3FC800E2986D /* ChartVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartVCTest.swift; sourceTree = "<group>"; };
 		12AB7B8924FD3FDB00E2986D /* CategoryVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVCTest.swift; sourceTree = "<group>"; };
@@ -302,6 +310,10 @@
 			children = (
 				12D1D5E124FD25B60077FEF6 /* HomeVC.swift */,
 				12C3740124FE780F005262F6 /* HomeView.swift */,
+				129BC17924FFD4D9004BD17A /* HomeViewCollectionViewCell.swift */,
+				129BC17B24FFE648004BD17A /* HomeViewTableViewCell.swift */,
+				129BC17C24FFE648004BD17A /* HomeViewTableViewCell.xib */,
+				129BC17F24FFE76E004BD17A /* CardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -512,6 +524,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12D1D5A724FD1B4E0077FEF6 /* LaunchScreen.storyboard in Resources */,
+				129BC17E24FFE648004BD17A /* HomeViewTableViewCell.xib in Resources */,
 				12D1D5A424FD1B4E0077FEF6 /* Assets.xcassets in Resources */,
 				12D1D5A224FD1B4D0077FEF6 /* Main.storyboard in Resources */,
 			);
@@ -543,6 +556,7 @@
 				12D1D5CE24FD1F220077FEF6 /* TabBarVC.swift in Sources */,
 				12D1D5F024FD29110077FEF6 /* ICategoryVC.swift in Sources */,
 				12D1D5CC24FD1F150077FEF6 /* ITabBarPresenter.swift in Sources */,
+				129BC17A24FFD4D9004BD17A /* HomeViewCollectionViewCell.swift in Sources */,
 				12D1D5E824FD27260077FEF6 /* ProfleVC.swift in Sources */,
 				12D1D5E424FD26D80077FEF6 /* CategoryVC.swift in Sources */,
 				12D1D5FE24FD29EF0077FEF6 /* IProfilePresenter.swift in Sources */,
@@ -559,8 +573,10 @@
 				12D1D59B24FD1B4D0077FEF6 /* AppDelegate.swift in Sources */,
 				12D1D5EA24FD28A50077FEF6 /* IHomeVC.swift in Sources */,
 				12D1D5C424FD1D2A0077FEF6 /* AssemblerModuleBuilder.swift in Sources */,
+				129BC17D24FFE648004BD17A /* HomeViewTableViewCell.swift in Sources */,
 				12D1D5BE24FD1C9E0077FEF6 /* UIView+anchorConstraints.swift in Sources */,
 				12D1D5EE24FD28BE0077FEF6 /* HomePresenter.swift in Sources */,
+				129BC18024FFE76E004BD17A /* CardView.swift in Sources */,
 				12AB7B9624FD50BD00E2986D /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
