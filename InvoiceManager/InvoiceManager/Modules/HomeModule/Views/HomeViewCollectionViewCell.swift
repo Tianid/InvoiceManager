@@ -20,6 +20,8 @@ class HomeViewCollectionViewCell: UICollectionViewCell {
         return table
     }()
     
+    var testData: [Bill]?
+    
     //MARK: - Init
     
     override init(frame: CGRect = CGRect()) {
@@ -55,15 +57,18 @@ class HomeViewCollectionViewCell: UICollectionViewCell {
 //MARK: - UITableViewDataSource
 extension HomeViewCollectionViewCell: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Int.random(in: 5..<20)
+        return testData?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableIdentifier, for: indexPath) as? HomeViewTableViewCell
-        cell?.billNameLabel.text = "SOME NAME"
-        cell?.billDateLabel.text = "1 may 2945 at 23:00"
-        cell?.billCategoryLabel.text = "SOME CATEGORY"
-        cell?.billValueLabel.text = "10000000009$"
+        guard let data = testData?[indexPath.row] else { return UITableViewCell() }
+        cell?.billNameLabel.text = data.billDescription
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMM yyyy HH:mm"
+        cell?.billDateLabel.text = dateFormatter.string(from: data.modifiedDate)
+        cell?.billCategoryLabel.text = data.category.name
+        cell?.billValueLabel.text = String(data.value)
         //        cell.textLabel?.text = String(indexPath.row)
         return cell!
     }

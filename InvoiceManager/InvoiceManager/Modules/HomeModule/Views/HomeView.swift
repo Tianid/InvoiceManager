@@ -12,7 +12,11 @@ class HomeView: UIView {
     //MARK: - Properties
     private let identifier = "collectionViewIdentifier"
     
-    private var curentPage: CGFloat = 0
+    private var curentPage: CGFloat = 0 {
+        didSet {
+            setupInvoiceData()
+        }
+    }
     private let headerViewHeightConst = 200
     private let invoiceNameLabelYShift: CGFloat = -75
     
@@ -97,11 +101,12 @@ class HomeView: UIView {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         let collection = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
         collection.isPagingEnabled = true
-        collection.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         collection.backgroundColor = .clear
+        //        collection.contentInsetAdjustmentBehavior = .always
         return collection
     }()
     
@@ -111,6 +116,7 @@ class HomeView: UIView {
         super.init(frame: frame)
         configureViewsConstraint()
         configureCollectionView()
+        setupInvoiceData()
     }
     
     required init?(coder: NSCoder) {
@@ -119,7 +125,14 @@ class HomeView: UIView {
     
     //MARK: - Func
     
-    func configureViewsConstraint() {
+    func viewWillTransition() {
+        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+        flowLayout.invalidateLayout()
+    }
+    
+    private func configureViewsConstraint() {
         self.addSubview(headerView)
         headerView.addSubview(invoiceNameLabel)
         headerView.addSubview(invoiceBalanceLabel)
@@ -141,8 +154,8 @@ class HomeView: UIView {
                           size: CGSize(width: 0, height: headerViewHeightConst))
         
         invoiceNameLabel.anchor(top: headerView.topAnchor,
-            padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0),
-            centerX: headerView.centerXAnchor
+                                padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0),
+                                centerX: headerView.centerXAnchor
         )
         
         invoiceBalanceLabel.anchor(top: invoiceNameLabel.bottomAnchor,
@@ -150,7 +163,8 @@ class HomeView: UIView {
         
         
         
-        incomeExpenseContainer.anchor(top: invoiceBalanceLabel.bottomAnchor, leading: headerView.leadingAnchor,
+        incomeExpenseContainer.anchor(top: invoiceBalanceLabel.bottomAnchor,
+                                      leading: headerView.leadingAnchor,
                                       trailing: headerView.trailingAnchor,
                                       padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8),
                                       size: CGSize(width: headerView.frame.size.width, height: 100))
@@ -187,11 +201,11 @@ class HomeView: UIView {
         
         //MARK: collectionView constraints
         
-        collectionView.anchor(top: headerView.bottomAnchor,
+        collectionView.anchor(top: incomeExpenseContainer.bottomAnchor,
                               leading: leadingAnchor,
                               bottom: safeAreaLayoutGuide.bottomAnchor,
                               trailing: trailingAnchor,
-                              padding: UIEdgeInsets(top: -30, left: 0, bottom: 0, right: 0))
+                              padding: UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0))
     }
     
     private func configureCollectionView() {
@@ -199,31 +213,61 @@ class HomeView: UIView {
         collectionView.dataSource = self
         collectionView.register(HomeViewCollectionViewCell.self, forCellWithReuseIdentifier: identifier)
     }
-    override func layoutSubviews() {
-        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
-            return
-        }
-        flowLayout.invalidateLayout()
-        super.layoutSubviews()
-
+    
+    private func setupInvoiceData() {
+        guard curentPage <= CGFloat(testInvoices.count) else { return }
+        let data = testInvoices[Int(curentPage)]
+        invoiceNameLabel.text = data.name
+        invoiceBalanceLabel.text = String(data.balance)
+        
     }
+    override func layoutSubviews() {
+        
+        super.layoutSubviews()
+    }
+    
+    
 }
 //MARK: - UICollectionViewDataSource
 extension HomeView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        return testInvoices.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? HomeViewCollectionViewCell
+        cell?.testData = testInvoices[indexPath.row].bills
         return cell!
     }
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
 extension HomeView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    //        return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
+    //    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //        var referenceHeight: CGFloat = 54.0 // Approximate height of the cell
+        // Cell width calculation
+        let sectionInset = (collectionViewLayout as! UICollectionViewFlowLayout).sectionInset
+        //        let contentSize = (collectionViewLayout as! UICollectionViewFlowLayout).collectionViewContentSize
+        
+        let referenceWidth = collectionView.safeAreaLayoutGuide.layoutFrame.width
+            - sectionInset.left
+            - sectionInset.right
+            - collectionView.contentInset.left
+            - collectionView.contentInset.right
+        
+        let referenceHeight = collectionView.safeAreaLayoutGuide.layoutFrame.height
+            - sectionInset.top
+            - sectionInset.bottom
+            - collectionView.contentInset.top
+            - collectionView.contentInset.bottom
+        
+        return CGSize(width: referenceWidth, height: referenceHeight)
     }
 }
 

@@ -21,11 +21,25 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orange
+        navigationController?.navigationBar.isHidden = true
+        
     }
     
     override func loadView() {
         self.view = HomeView(frame: UIScreen.main.bounds)
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        homeView?.viewWillTransition()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+//        myCollection.collectionViewLayout.invalidateLayout()
+        
+    }
+    
 }
 
 extension HomeVC: IHomeVC {

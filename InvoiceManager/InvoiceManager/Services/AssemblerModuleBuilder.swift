@@ -15,6 +15,7 @@ protocol IAssembleBuilder {
     func createCategoryModule(router: IRouter) -> UIViewController
     func createChartModule(router: IRouter) -> UIViewController
     func createProfileModule(router: IRouter) -> UIViewController
+    func createNewBillModule(router: IRouter) -> UIViewController
 }
 
 class AssemblerModuleBuilder: IAssembleBuilder {
@@ -53,4 +54,12 @@ class AssemblerModuleBuilder: IAssembleBuilder {
         view.presenter = presenter
         return view
     }
+    
+    func createNewBillModule(router: IRouter) -> UIViewController {
+        let view = NewBillVC()
+        let presenter = NewBillPresenter(view: view, router: router)
+        view.presenter = presenter
+        return view
+    }
+
 }

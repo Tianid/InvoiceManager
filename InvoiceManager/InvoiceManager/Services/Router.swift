@@ -28,6 +28,7 @@ class Router: IRouter {
     private var categoryNavigationController: UINavigationController?
     private var chartNavigationsController: UINavigationController?
     private var profileNavigationsController: UINavigationController?
+    private var newBillVC: UIViewController?
 
     //MARK: - Init
     init(tabBar: ITabBarVC, assembler: IAssembleBuilder) {
@@ -59,6 +60,11 @@ class Router: IRouter {
 
             if item.viewControllers[0] is ProfileVC {
                 self.profileNavigationsController = item
+                continue
+            }
+            
+            if item.viewControllers[0] is NewBillVC {
+                self.newBillVC = item
                 continue
             }
         }

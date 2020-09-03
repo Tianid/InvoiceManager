@@ -25,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBar = TabBarVC()
         let router = Router(tabBar: tabBar, assembler: assembler)
         
+        let presenter = TabBarPresenter(view: tabBar, router: router)
+        tabBar.presenter = presenter
+
         router.initiateTabBar()
         return tabBar
     }

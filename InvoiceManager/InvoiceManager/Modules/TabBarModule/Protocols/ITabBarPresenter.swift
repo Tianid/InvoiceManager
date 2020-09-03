@@ -7,5 +7,5 @@
 //
 
 protocol ITabBarPresenter {
-    
+    func newBillItemTapped()
 }
