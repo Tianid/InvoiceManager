@@ -27,14 +27,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let presenter = TabBarPresenter(view: tabBar, router: router)
         tabBar.presenter = presenter
-
+        
         router.initiateTabBar()
         return tabBar
     }
     
     private func setupRoot() {
         self.window = UIWindow(frame: UIScreen.main.bounds)
+        
         let tabBar = initiate()
+        let testView = ViewController()
+        testView.testData = testBills1
+        let tets = UITabBarController()
+        tets.viewControllers = [testView]
         window?.rootViewController = tabBar
         window?.makeKeyAndVisible()
     }

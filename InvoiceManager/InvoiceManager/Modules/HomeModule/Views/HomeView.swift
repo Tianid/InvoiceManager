@@ -106,7 +106,6 @@ class HomeView: UIView {
         let collection = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
         collection.isPagingEnabled = true
         collection.backgroundColor = .clear
-        //        collection.contentInsetAdjustmentBehavior = .always
         return collection
     }()
     
@@ -126,6 +125,8 @@ class HomeView: UIView {
     //MARK: - Func
     
     func viewWillTransition() {
+        collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
         }
@@ -201,17 +202,19 @@ class HomeView: UIView {
         
         //MARK: collectionView constraints
         
-        collectionView.anchor(top: incomeExpenseContainer.bottomAnchor,
-                              leading: leadingAnchor,
-                              bottom: safeAreaLayoutGuide.bottomAnchor,
-                              trailing: trailingAnchor,
-                              padding: UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0))
+        collectionView.anchor(top: incomeExpenseContainer.safeAreaLayoutGuide.bottomAnchor,
+                              leading: safeAreaLayoutGuide.leadingAnchor,
+                              bottom: bottomAnchor,
+                              trailing: safeAreaLayoutGuide.trailingAnchor,
+                              padding: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0))
     }
     
     private func configureCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(HomeViewCollectionViewCell.self, forCellWithReuseIdentifier: identifier)
+        
+        
     }
     
     private func setupInvoiceData() {
@@ -243,17 +246,11 @@ extension HomeView: UICollectionViewDataSource {
 
 //MARK: - UICollectionViewDelegateFlowLayout
 extension HomeView: UICollectionViewDelegateFlowLayout {
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    //        return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
-    //    }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //        var referenceHeight: CGFloat = 54.0 // Approximate height of the cell
-        // Cell width calculation
         let sectionInset = (collectionViewLayout as! UICollectionViewFlowLayout).sectionInset
-        //        let contentSize = (collectionViewLayout as! UICollectionViewFlowLayout).collectionViewContentSize
         
         let referenceWidth = collectionView.safeAreaLayoutGuide.layoutFrame.width
             - sectionInset.left
