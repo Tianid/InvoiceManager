@@ -29,7 +29,8 @@ class AssemblerModuleBuilder: IAssembleBuilder {
     
     func createHomeModule(router: IRouter) -> UIViewController {
         let view = HomeVC()
-        let presenter = HomePresenter(view: view, router: router)
+        let invoiceContainer = InvoiceContainer(model: testInvoices)
+        let presenter = HomePresenter(view: view, router: router, model: invoiceContainer)
         view.presenter = presenter
         return view
     }

@@ -64,10 +64,11 @@ extension TabBarVC: ITabBarVC {
         
         let homeNavigationController = UINavigationController(rootViewController: homeController)
         let categoryNavigationController = UINavigationController(rootViewController: categoryController)
-        let chartNavigationsController = UINavigationController(rootViewController: chartController)
-        let profileNavigationsController = UINavigationController(rootViewController: profileController)
+        let chartNavigationController = UINavigationController(rootViewController: chartController)
+        let profileNavigationController = UINavigationController(rootViewController: profileController)
+        let newBillNavigationController = UINavigationController(rootViewController: newBillController)
         
-        let controllers = [homeNavigationController, categoryNavigationController, newBillController, chartNavigationsController, profileNavigationsController]
+        let controllers = [homeNavigationController, categoryNavigationController, newBillNavigationController, chartNavigationController, profileNavigationController]
         
         self.viewControllers = controllers
     }
@@ -76,7 +77,8 @@ extension TabBarVC: ITabBarVC {
 //MARK: - UITabBarControllerDelegate
 extension TabBarVC: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if viewController.isKind(of: NewBillVC.self) {
+        let vc = viewController as! UINavigationController
+        if vc.viewControllers[0].isKind(of: NewBillVC.self) {
             presenter?.newBillItemTapped()
             return false
         }

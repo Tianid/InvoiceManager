@@ -11,24 +11,24 @@ import Foundation
 
 var testSingleCategory = Category(name: "TEST CATEGORY", iconImage: "NO IMAGE", section: .init(name: "TEST SECTION"))
 var testBills1 = [
-    Bill(value: 100, currency: .RUB, billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
-    Bill(value: -100, currency: .RUB, billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
-    Bill(value: 200, currency: .RUB, billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
-    Bill(value: -200, currency: .RUB, billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
-    Bill(value: 300, currency: .RUB, billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
-    Bill(value: -300, currency: .RUB, billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
-    Bill(value: 999, currency: .RUB, billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
-    Bill(value: -368, currency: .RUB, billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date())
+    Bill(value: 100, currency: .RUB, billName: "SOME NAME", billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
+    Bill(value: -100, currency: .RUB, billName: "SOME NAME", billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
+    Bill(value: 200, currency: .RUB, billName: "SOME NAME", billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
+    Bill(value: -200, currency: .RUB, billName: "SOME NAME", billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
+    Bill(value: 300, currency: .RUB, billName: "SOME NAME", billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
+    Bill(value: -300, currency: .RUB, billName: "SOME NAME", billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
+    Bill(value: 999, currency: .RUB, billName: "SOME NAME", billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
+    Bill(value: -368, currency: .RUB, billName: "SOME NAME", billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date())
 ]
 
 var testBills2 = [
-    Bill(value: -300, currency: .RUB, billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
-    Bill(value: 999, currency: .RUB, billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
-    Bill(value: -368, currency: .RUB, billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date())
+    Bill(value: -300, currency: .RUB, billName: "SOME NAME", billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
+    Bill(value: 999, currency: .RUB, billName: "SOME NAME", billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
+    Bill(value: -368, currency: .RUB, billName: "SOME NAME", billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date())
 ]
 
 var testBills3 = [
-    Bill(value: -368, currency: .RUB, billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date())
+    Bill(value: -368, currency: .RUB, billName: "SOME NAME", billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date())
 ]
 
 var testInvoices = [

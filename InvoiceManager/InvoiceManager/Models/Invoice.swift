@@ -17,6 +17,15 @@ struct Invoice {
     let currency: Currency
     
     //MARK: - Init
+    
+    internal init(name: String, balance: Double, bills: [Bill], income: Double, expense: Double, currency: Currency) {
+        self.name = name
+        self.balance = balance
+        self.bills = bills
+        self.income = income
+        self.expense = expense
+        self.currency = currency
+    }
     //MARK: - Func
     
     

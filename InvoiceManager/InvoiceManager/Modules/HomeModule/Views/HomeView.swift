@@ -10,6 +10,7 @@ import UIKit
 
 class HomeView: UIView {
     //MARK: - Properties
+    var presenter: ISPHomeView?
     private let identifier = "collectionViewIdentifier"
     
     private var curentPage: CGFloat = 0 {
@@ -123,6 +124,15 @@ class HomeView: UIView {
     }
     
     //MARK: - Func
+    func testReload() {
+        collectionView.reloadItems(at: [IndexPath(row: 2, section: 0)])
+    }
+    
+    func reloadData() {
+        guard let cell = collectionView.cellForItem(at: IndexPath(row: 2, section: 0)) as? HomeViewCollectionViewCell else { return }
+        cell.presenter?.model = presenter!.model.invoices[2].bills
+        cell.reloadData(index: (cell.presenter?.model.count)! - 1)
+    }
     
     func viewWillTransition() {
         collectionView.contentInsetAdjustmentBehavior = .never
@@ -234,14 +244,17 @@ class HomeView: UIView {
 //MARK: - UICollectionViewDataSource
 extension HomeView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return testInvoices.count
+        return presenter?.model.invoices.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? HomeViewCollectionViewCell
-        cell?.testData = testInvoices[indexPath.row].bills
+        cell?.presenter = presenter?.generateSPHomeViewCell(index: indexPath.row)
+//        cell?.testData = presenter?.model[indexPath.row].bills
         return cell!
     }
+    
+    
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout

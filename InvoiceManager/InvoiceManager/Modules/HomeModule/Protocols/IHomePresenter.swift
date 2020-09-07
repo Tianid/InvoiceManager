@@ -6,6 +6,8 @@
 //  Copyright © 2020 Tianid. All rights reserved.
 //
 
-protocol IHomePresenter {
-    
+protocol IHomePresenter: class {
+    var model: InvoiceContainer { get set }
+    func generateSPHomeView() -> ISPHomeView
+    func addNewBill()
 }

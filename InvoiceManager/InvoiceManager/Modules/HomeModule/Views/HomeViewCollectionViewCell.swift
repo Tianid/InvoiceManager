@@ -10,6 +10,11 @@ import UIKit
 
 class HomeViewCollectionViewCell: UICollectionViewCell {
     //MARK: - Properties
+    var presenter: ISPHomeViewCell? {
+        didSet {
+//            tableView.reloadData()
+        }
+    }
     private let tableIdentifier = "tableViewCell"
     private var tableView: UITableView = {
         let table = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .plain)
@@ -19,8 +24,6 @@ class HomeViewCollectionViewCell: UICollectionViewCell {
         table.showsVerticalScrollIndicator = false
         return table
     }()
-    
-    var testData: [Bill]?
     
     //MARK: - Init
     
@@ -35,6 +38,10 @@ class HomeViewCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Func
+    
+    func reloadData(index: Int) {
+        tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+    }
     
     private func configureConstraints() {
         contentView.addSubview(tableView)
@@ -57,13 +64,13 @@ class HomeViewCollectionViewCell: UICollectionViewCell {
 //MARK: - UITableViewDataSource
 extension HomeViewCollectionViewCell: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return testData?.count ?? 0
+        return presenter?.model.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableIdentifier, for: indexPath) as? HomeViewTableViewCell
-        guard let data = testData?[indexPath.row] else { return UITableViewCell() }
-        cell?.billNameLabel.text = data.billDescription
+        guard let data = presenter?.model[indexPath.row] else { return UITableViewCell() }
+        cell?.billNameLabel.text = data.billName
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d MMM yyyy HH:mm"
         cell?.billDateLabel.text = dateFormatter.string(from: data.modifiedDate)

@@ -11,6 +11,7 @@ struct Bill {
     //MARK: - Properties
     let value: Double
     let currency: Currency
+    let billName: String
     let billDescription: String
     let category: Category
     let modifiedDate: Date

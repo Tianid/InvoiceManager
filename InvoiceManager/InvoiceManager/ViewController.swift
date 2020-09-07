@@ -64,7 +64,7 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableIdentifier, for: indexPath) as? HomeViewTableViewCell
         guard let data = testData?[indexPath.row] else { return UITableViewCell() }
-        cell?.billNameLabel.text = data.billDescription
+        cell?.billNameLabel.text = data.billName
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d MMM yyyy HH:mm"
         cell?.billDateLabel.text = dateFormatter.string(from: data.modifiedDate)
