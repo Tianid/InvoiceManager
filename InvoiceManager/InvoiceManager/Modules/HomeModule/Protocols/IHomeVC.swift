@@ -7,5 +7,5 @@
 //
 
 protocol IHomeVC: class {
-    func reloadCollectioView()
+    
 }

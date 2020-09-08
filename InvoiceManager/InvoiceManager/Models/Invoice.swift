@@ -11,7 +11,7 @@ struct Invoice {
     //MARK: - Properties
     let name: String
     let balance: Double
-    let bills: [Bill]
+    var bills: [Bill]
     let income: Double
     let expense: Double
     let currency: Currency

@@ -8,6 +8,5 @@
 
 protocol IHomePresenter: class {
     var model: InvoiceContainer { get set }
-    func generateSPHomeView() -> ISPHomeView
-    func addNewBill()
+    func generateSPHomeView(view: IHomeView) -> ISPHomeView
 }

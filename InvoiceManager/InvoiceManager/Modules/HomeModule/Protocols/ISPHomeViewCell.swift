@@ -7,6 +7,6 @@
 //
 
 protocol ISPHomeViewCell {
-    var model: [Bill] { get set }
+    var model: [Bill]? { get set }
     var superPresenter: ISPHomeView? { get set }
 }

@@ -23,6 +23,7 @@ class HomeView: UIView {
     
     private var headerView: UIView = {
         let view = UIView()
+        view.layer.borderWidth = 1
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .brown
         
@@ -110,6 +111,28 @@ class HomeView: UIView {
         return collection
     }()
     
+    private var collectionPanel: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.borderWidth = 1
+        view.backgroundColor = .red
+        return view
+    }()
+    
+    private var addButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(addNewBill(_:)), for: .touchUpInside)
+        if #available(iOS 13.0, *) {
+            button.setImage(UIImage(systemName: "plus.app"), for: .normal)
+        } else {
+            // Fallback on earlier versions
+        }
+        button.backgroundColor = .green
+        return button
+    }()
+    
+    
     
     //MARK: - Init
     override init(frame: CGRect = CGRect()) {
@@ -124,19 +147,9 @@ class HomeView: UIView {
     }
     
     //MARK: - Func
-    func testReload() {
-        collectionView.reloadItems(at: [IndexPath(row: 2, section: 0)])
-    }
-    
-    func reloadData() {
-        guard let cell = collectionView.cellForItem(at: IndexPath(row: 2, section: 0)) as? HomeViewCollectionViewCell else { return }
-        cell.presenter?.model = presenter!.model.invoices[2].bills
-        cell.reloadData(index: (cell.presenter?.model.count)! - 1)
-    }
-    
     func viewWillTransition() {
         collectionView.contentInsetAdjustmentBehavior = .never
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
         }
@@ -148,7 +161,7 @@ class HomeView: UIView {
         headerView.addSubview(invoiceNameLabel)
         headerView.addSubview(invoiceBalanceLabel)
         headerView.addSubview(incomeExpenseContainer)
-        
+
         incomeExpenseContainer.addSubview(invoiceIncomeImageView)
         incomeExpenseContainer.addSubview(invoiceIncomeWordLabel)
         incomeExpenseContainer.addSubview(invoiceIncomeCounterLabel)
@@ -156,6 +169,8 @@ class HomeView: UIView {
         incomeExpenseContainer.addSubview(invoiceExpenseWordLabel)
         incomeExpenseContainer.addSubview(invoiceExpenseCounterLabel)
         self.addSubview(collectionView)
+        headerView.addSubview(collectionPanel)
+        collectionPanel.addSubview(addButton)
         
         
         
@@ -163,40 +178,40 @@ class HomeView: UIView {
                           leading: safeAreaLayoutGuide.leadingAnchor,
                           trailing: safeAreaLayoutGuide.trailingAnchor,
                           size: CGSize(width: 0, height: headerViewHeightConst))
-        
+
         invoiceNameLabel.anchor(top: headerView.topAnchor,
                                 padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0),
                                 centerX: headerView.centerXAnchor
         )
-        
+
         invoiceBalanceLabel.anchor(top: invoiceNameLabel.bottomAnchor,
                                    centerX: invoiceNameLabel.centerXAnchor)
-        
-        
-        
+
+
+
         incomeExpenseContainer.anchor(top: invoiceBalanceLabel.bottomAnchor,
                                       leading: headerView.leadingAnchor,
                                       trailing: headerView.trailingAnchor,
                                       padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8),
                                       size: CGSize(width: headerView.frame.size.width, height: 100))
-        
-        
-        
-        
+
+
+
+
         //MARK: 6 items in incomeExpenseContainer
         invoiceIncomeImageView.anchor(top: incomeExpenseContainer.topAnchor,
                                       leading: incomeExpenseContainer.leadingAnchor,
                                       padding: UIEdgeInsets(top: 4, left: 4, bottom: 0, right: 0),
                                       size: CGSize(width: 25, height: 25))
-        
+
         invoiceIncomeWordLabel.anchor(top: invoiceIncomeImageView.topAnchor,
                                       leading: invoiceIncomeImageView.trailingAnchor,
                                       padding: UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 0),
                                       centerY: invoiceIncomeImageView.centerYAnchor)
-        
+
         invoiceIncomeCounterLabel.anchor(top: invoiceIncomeWordLabel.bottomAnchor,
                                          leading: invoiceIncomeWordLabel.leadingAnchor)
-        
+
         invoiceExpenseImageView.anchor(top: invoiceIncomeImageView.topAnchor,
                                        leading: invoiceIncomeWordLabel.trailingAnchor,
                                        size: CGSize(width: 25, height: 25))
@@ -205,14 +220,24 @@ class HomeView: UIView {
                                        trailing: incomeExpenseContainer.trailingAnchor,
                                        padding: UIEdgeInsets(top: 4, left: 4, bottom: 0, right: 2),
                                        centerY: invoiceExpenseImageView.centerYAnchor)
-        
+
         invoiceExpenseCounterLabel.anchor(top: invoiceIncomeWordLabel.bottomAnchor,
                                           leading: invoiceExpenseWordLabel.leadingAnchor,
                                           trailing: incomeExpenseContainer.trailingAnchor)
+
+        collectionPanel.anchor(top: incomeExpenseContainer.bottomAnchor,
+                               leading: incomeExpenseContainer.leadingAnchor,
+                               bottom: headerView.bottomAnchor,
+                               trailing: incomeExpenseContainer.trailingAnchor
+                               )
+
+        addButton.anchor(top: collectionPanel.safeAreaLayoutGuide.topAnchor,
+                         leading: collectionPanel.leadingAnchor,
+                         trailing: collectionPanel.trailingAnchor)
         
         //MARK: collectionView constraints
         
-        collectionView.anchor(top: incomeExpenseContainer.safeAreaLayoutGuide.bottomAnchor,
+        collectionView.anchor(top: headerView.safeAreaLayoutGuide.bottomAnchor,
                               leading: safeAreaLayoutGuide.leadingAnchor,
                               bottom: bottomAnchor,
                               trailing: safeAreaLayoutGuide.trailingAnchor,
@@ -234,6 +259,12 @@ class HomeView: UIView {
         invoiceBalanceLabel.text = String(data.balance)
         
     }
+    
+    @objc private func addNewBill(_ sender: UIButton) {
+        presenter?.addNewBillButtonTapped(index: Int(curentPage))
+    }
+    
+    
     override func layoutSubviews() {
         
         super.layoutSubviews()
@@ -250,7 +281,7 @@ extension HomeView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? HomeViewCollectionViewCell
         cell?.presenter = presenter?.generateSPHomeViewCell(index: indexPath.row)
-//        cell?.testData = presenter?.model[indexPath.row].bills
+        //        cell?.testData = presenter?.model[indexPath.row].bills
         return cell!
     }
     
@@ -286,5 +317,13 @@ extension HomeView: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageWidth = collectionView.frame.size.width
         curentPage = collectionView.contentOffset.x / pageWidth
+    }
+}
+
+extension HomeView: IHomeView {
+    func insertNewBill(index: Int) {
+        guard let cell = collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? IHomeViewCollectionViewCell else { return }
+        cell.insertNewRow()
+        
     }
 }

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1212F6BD2507B6C00016693B /* IHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212F6BC2507B6C00016693B /* IHomeView.swift */; };
+		1212F6BF2507B9C10016693B /* IHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212F6BE2507B9C10016693B /* IHomeCollectionViewCell.swift */; };
+		1212F6C52507D0400016693B /* BillDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212F6C42507D0400016693B /* BillDetailsPresenter.swift */; };
+		1212F6C72507D0560016693B /* IBillDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212F6C62507D0560016693B /* IBillDetailsPresenter.swift */; };
+		1212F6C92507D0630016693B /* IBillDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212F6C82507D0620016693B /* IBillDetailsVC.swift */; };
+		1212F6CB2507D0810016693B /* BillDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212F6CA2507D0810016693B /* BillDetailsVC.swift */; };
+		1212F6CD2507D9FE0016693B /* BillDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212F6CC2507D9FE0016693B /* BillDetailsView.swift */; };
+		1212F6CF2507E3290016693B /* NumericKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212F6CE2507E3290016693B /* NumericKeyboard.swift */; };
 		1228B74525013AE9003822A4 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1228B74425013AE9003822A4 /* TestData.swift */; };
 		129BC17A24FFD4D9004BD17A /* HomeViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BC17924FFD4D9004BD17A /* HomeViewCollectionViewCell.swift */; };
 		129BC17D24FFE648004BD17A /* HomeViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BC17B24FFE648004BD17A /* HomeViewTableViewCell.swift */; };
@@ -75,6 +83,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1212F6BC2507B6C00016693B /* IHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IHomeView.swift; sourceTree = "<group>"; };
+		1212F6BE2507B9C10016693B /* IHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IHomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		1212F6C42507D0400016693B /* BillDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailsPresenter.swift; sourceTree = "<group>"; };
+		1212F6C62507D0560016693B /* IBillDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBillDetailsPresenter.swift; sourceTree = "<group>"; };
+		1212F6C82507D0620016693B /* IBillDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBillDetailsVC.swift; sourceTree = "<group>"; };
+		1212F6CA2507D0810016693B /* BillDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailsVC.swift; sourceTree = "<group>"; };
+		1212F6CC2507D9FE0016693B /* BillDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailsView.swift; sourceTree = "<group>"; };
+		1212F6CE2507E3290016693B /* NumericKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericKeyboard.swift; sourceTree = "<group>"; };
 		1228B74425013AE9003822A4 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		129BC17924FFD4D9004BD17A /* HomeViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		129BC17B24FFE648004BD17A /* HomeViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -154,6 +170,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1212F6C02507CF9E0016693B /* BillDetailsModule */ = {
+			isa = PBXGroup;
+			children = (
+				1212F6C32507D0250016693B /* Presenters */,
+				1212F6C22507D0160016693B /* Protocols */,
+				1212F6C12507D0100016693B /* VIews */,
+			);
+			path = BillDetailsModule;
+			sourceTree = "<group>";
+		};
+		1212F6C12507D0100016693B /* VIews */ = {
+			isa = PBXGroup;
+			children = (
+				1212F6CA2507D0810016693B /* BillDetailsVC.swift */,
+				1212F6CC2507D9FE0016693B /* BillDetailsView.swift */,
+			);
+			path = VIews;
+			sourceTree = "<group>";
+		};
+		1212F6C22507D0160016693B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1212F6C62507D0560016693B /* IBillDetailsPresenter.swift */,
+				1212F6C82507D0620016693B /* IBillDetailsVC.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		1212F6C32507D0250016693B /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				1212F6C42507D0400016693B /* BillDetailsPresenter.swift */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
 		12AB7B8D24FD40EF00E2986D /* TabBarModuleTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +332,7 @@
 		12D1D5BF24FD1CB90077FEF6 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				1212F6C02507CF9E0016693B /* BillDetailsModule */,
 				12C1C04E250117250016CFCA /* NewBillModule */,
 				12D1D5D424FD22A20077FEF6 /* ProfileModule */,
 				12D1D5D324FD22960077FEF6 /* ChartModule */,
@@ -295,6 +348,7 @@
 			children = (
 				12D1D5C124FD1CFD0077FEF6 /* Router.swift */,
 				12D1D5C324FD1D2A0077FEF6 /* AssemblerModuleBuilder.swift */,
+				1212F6CE2507E3290016693B /* NumericKeyboard.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -394,6 +448,8 @@
 				12D1D5EB24FD28B00077FEF6 /* IHomePresenter.swift */,
 				12F976A325066EE4008DD07C /* ISPHomeVIew.swift */,
 				12F976A52506728F008DD07C /* ISPHomeViewCell.swift */,
+				1212F6BC2507B6C00016693B /* IHomeView.swift */,
+				1212F6BE2507B9C10016693B /* IHomeCollectionViewCell.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -630,19 +686,26 @@
 				12C1C057250117F90016CFCA /* INewBillPresenter.swift in Sources */,
 				12D1D5CE24FD1F220077FEF6 /* TabBarVC.swift in Sources */,
 				12D1D5F024FD29110077FEF6 /* ICategoryVC.swift in Sources */,
+				1212F6CD2507D9FE0016693B /* BillDetailsView.swift in Sources */,
 				12D1D5CC24FD1F150077FEF6 /* ITabBarPresenter.swift in Sources */,
 				129BC17A24FFD4D9004BD17A /* HomeViewCollectionViewCell.swift in Sources */,
 				12F976A8250672AE008DD07C /* SPHomeViewCell.swift in Sources */,
+				1212F6C72507D0560016693B /* IBillDetailsPresenter.swift in Sources */,
 				12D1D5E824FD27260077FEF6 /* ProfleVC.swift in Sources */,
 				12D1D5E424FD26D80077FEF6 /* CategoryVC.swift in Sources */,
 				12D1D5FE24FD29EF0077FEF6 /* IProfilePresenter.swift in Sources */,
 				129F48C824FD5A6000D9172C /* Section.swift in Sources */,
 				12C3740224FE780F005262F6 /* HomeView.swift in Sources */,
+				1212F6C52507D0400016693B /* BillDetailsPresenter.swift in Sources */,
+				1212F6BF2507B9C10016693B /* IHomeCollectionViewCell.swift in Sources */,
 				12C1C055250117E30016CFCA /* INewBillVC.swift in Sources */,
 				12D1D59F24FD1B4D0077FEF6 /* ViewController.swift in Sources */,
+				1212F6C92507D0630016693B /* IBillDetailsVC.swift in Sources */,
 				12D1D5CA24FD1EF80077FEF6 /* TabBarPresenter.swift in Sources */,
 				12AB7B9424FD4F2D00E2986D /* Bill.swift in Sources */,
+				1212F6BD2507B6C00016693B /* IHomeView.swift in Sources */,
 				12D1D5F224FD29330077FEF6 /* ICategoryPresenter.swift in Sources */,
+				1212F6CF2507E3290016693B /* NumericKeyboard.swift in Sources */,
 				12D1D5F624FD297A0077FEF6 /* IChartVC.swift in Sources */,
 				12D1D5FA24FD29AD0077FEF6 /* ChartPresenter.swift in Sources */,
 				12D1D60024FD2A020077FEF6 /* ProfilePresenter.swift in Sources */,
@@ -656,6 +719,7 @@
 				12D1D5C424FD1D2A0077FEF6 /* AssemblerModuleBuilder.swift in Sources */,
 				12F976AA25069647008DD07C /* InvoiceContainer.swift in Sources */,
 				12F976A225066D5C008DD07C /* SPHomeView.swift in Sources */,
+				1212F6CB2507D0810016693B /* BillDetailsVC.swift in Sources */,
 				129BC17D24FFE648004BD17A /* HomeViewTableViewCell.swift in Sources */,
 				12D1D5BE24FD1C9E0077FEF6 /* UIView+anchorConstraints.swift in Sources */,
 				12D1D5EE24FD28BE0077FEF6 /* HomePresenter.swift in Sources */,

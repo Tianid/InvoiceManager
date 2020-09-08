@@ -9,13 +9,19 @@
 class SPHomeViewCell {
     
     //MARK: - Properties
-    var model: [Bill]
+    var model: [Bill]? {
+        get {
+            superPresenter?.model.invoices[invoiceIndex].bills
+        }
+        set {
+            superPresenter?.model.invoices[invoiceIndex].bills = newValue!
+        }
+    }
     weak var superPresenter: ISPHomeView?
     private var invoiceIndex: Int
     
     //MARK: - Init
-    init(model: [Bill], superPresenter: ISPHomeView, invoiceIndex: Int) {
-        self.model = model
+    init(superPresenter: ISPHomeView, invoiceIndex: Int) {
         self.superPresenter = superPresenter
         self.invoiceIndex = invoiceIndex
     }
@@ -24,5 +30,7 @@ class SPHomeViewCell {
 }
 
 extension SPHomeViewCell: ISPHomeViewCell {
+
+    
     
 }

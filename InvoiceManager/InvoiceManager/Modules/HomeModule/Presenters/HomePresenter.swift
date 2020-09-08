@@ -25,25 +25,9 @@ class HomePresenter {
 }
 
 extension HomePresenter: IHomePresenter {
-    func addNewBill() {
-        var bills = model.invoices[2].bills
-        let oldInvoice = model.invoices[2]
-        
-        bills.append(Bill(value: 993123, currency: .RUB, billName: "Added bill", billDescription: "", category: testSingleCategory, modifiedDate: Date()))
-        
-        let invoice = Invoice(name: oldInvoice.name,
-                              balance: oldInvoice.balance,
-                              bills: bills,
-                              income: oldInvoice.income,
-                              expense: oldInvoice.expense,
-                              currency: oldInvoice.currency)
-        
-        model.invoices[2] = invoice
-        view?.reloadCollectioView()
-    }
     
-    func generateSPHomeView() -> ISPHomeView {
-        let presener = SPHomeView(superPresenter: self, model: model)
+    func generateSPHomeView(view: IHomeView) -> ISPHomeView {
+        let presener = SPHomeView(superPresenter: self, model: model, view: view)
         return presener
     }
 }

@@ -16,7 +16,6 @@ protocol IRouterMain {
 
 protocol IRouter: IRouterMain {
     func initiateTabBar()
-    func getHomeNavigationControllerPresenter() -> IHomePresenter?
 }
 
 class Router: IRouter {
@@ -69,10 +68,5 @@ class Router: IRouter {
                 continue
             }
         }
-    }
-    
-    func getHomeNavigationControllerPresenter() -> IHomePresenter? {
-        guard let view = homeNavigationController?.viewControllers[0] as? HomeVC else { return nil }
-        return view.presenter
     }
 }
