@@ -6,6 +6,8 @@
 //  Copyright © 2020 Tianid. All rights reserved.
 //
 
-protocol IBillDetailsVC {
-    
+import UIKit
+
+protocol IBillDetailsVC: class {
+    func showCategoryActionSheet(view: UIViewController)
 }

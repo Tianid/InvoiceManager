@@ -10,6 +10,9 @@ import UIKit
 class BillDetailsView: UIView {
     //MARK: - Properties
     
+    var presenter: IBillDetailsPresenter?
+    private let transition = PanelTransition()
+    
     private let textViewMaxHeight: CGFloat = 200
     
     private var nameWordLabel: UILabel = {
@@ -60,9 +63,16 @@ class BillDetailsView: UIView {
         let text = UITextField()
         text.translatesAutoresizingMaskIntoConstraints = false
         text.placeholder = "Select category..."
-        text.isUserInteractionEnabled = false
-        text.addTarget(self, action: #selector(showCategoryActionSheet(_:)), for: .editingChanged)
+        text.isEnabled = true
+//        text.addTarget(self, action: #selector(showCategoryActionSheet(_:)), for: .touchDown)
         return text
+    }()
+    
+    private var testButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("push", for: .normal)
+        button.addTarget(self, action: #selector(showCategoryActionSheet(_:)), for: .touchUpInside)
+        return button
     }()
     
     private var descriptionWordLabel: UILabel = {
@@ -111,6 +121,7 @@ class BillDetailsView: UIView {
         viewContainer.addSubview(categoryTextField)
         viewContainer.addSubview(descriptionWordLabel)
         viewContainer.addSubview(descriptionTextField)
+        viewContainer.addSubview(testButton)
         
         
         
@@ -148,7 +159,11 @@ class BillDetailsView: UIView {
                                  leading: categoryWordLabel.leadingAnchor,
                                  trailing: categoryWordLabel.trailingAnchor)
         
-        descriptionWordLabel.anchor(top: categoryTextField.bottomAnchor,
+        testButton.anchor(top: categoryTextField.bottomAnchor,
+                          leading: categoryTextField.leadingAnchor,
+                          trailing: categoryTextField.trailingAnchor)
+        
+        descriptionWordLabel.anchor(top: testButton.bottomAnchor,
                                     leading: categoryTextField.leadingAnchor,
                                     trailing: categoryTextField.trailingAnchor)
         
@@ -192,8 +207,8 @@ class BillDetailsView: UIView {
         }
     }
     
-    @objc private func showCategoryActionSheet(_ sender: UITextField) {
-        
+    @objc private func showCategoryActionSheet(_ sender: UIButton) {
+        presenter?.categoryFieldTapped(transition: transition)
     }
     
 }

@@ -25,6 +25,11 @@ class HomePresenter {
 }
 
 extension HomePresenter: IHomePresenter {
+    func showBillDetail() {
+        guard let v = router.initBillDetailModule() else { return }
+        view?.showBillDetail(view: v)
+    }
+    
     
     func generateSPHomeView(view: IHomeView) -> ISPHomeView {
         let presener = SPHomeView(superPresenter: self, model: model, view: view)

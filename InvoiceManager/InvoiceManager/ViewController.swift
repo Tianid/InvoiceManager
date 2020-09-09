@@ -26,6 +26,13 @@ class ViewController: UIViewController {
         return view
     }()
     
+    private var dismissButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("dissmis", for: .normal)
+        button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+        return button
+    }()
+    
      var testData: [Bill]?
     
     override func viewDidLoad() {
@@ -33,19 +40,26 @@ class ViewController: UIViewController {
         self.view.backgroundColor = .orange
         view.addSubview(tableView)
         view.addSubview(someView)
+        someView.addSubview(dismissButton)
         
         someView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                         leading: view.safeAreaLayoutGuide.leadingAnchor,
                         trailing: view.safeAreaLayoutGuide.trailingAnchor,
                         size: CGSize(width: 0, height: 300))
-        
+
         tableView.anchor(top: someView.safeAreaLayoutGuide.bottomAnchor,
                          leading: view.safeAreaLayoutGuide.leadingAnchor,
                          bottom: view.safeAreaLayoutGuide.bottomAnchor,
                          trailing: view.safeAreaLayoutGuide.trailingAnchor,
                          padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8))
-        
+
+        dismissButton.anchor(top: someView.topAnchor,
+                             leading: someView.leadingAnchor,
+                             trailing: someView.trailingAnchor,
+                             size: CGSize(width: 0, height: 50))
+
         configureTableVIew()
+        
     }
     
     private func configureTableVIew() {
@@ -53,6 +67,10 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "\(HomeViewTableViewCell.self)", bundle: nil ), forCellReuseIdentifier: tableIdentifier)
         tableView.backgroundColor = .red
+    }
+    
+    @objc private func dismissView() {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

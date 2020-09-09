@@ -7,5 +7,5 @@
 //
 
 protocol IBillDetailsPresenter {
-    
+    func categoryFieldTapped(transition: PanelTransition)
 }

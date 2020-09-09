@@ -29,6 +29,14 @@
 		12AB7B9424FD4F2D00E2986D /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AB7B9324FD4F2D00E2986D /* Bill.swift */; };
 		12AB7B9624FD50BD00E2986D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AB7B9524FD50BD00E2986D /* Category.swift */; };
 		12AB7B9824FD541800E2986D /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AB7B9724FD541800E2986D /* Currency.swift */; };
+		12B0EB61250915C700A67B79 /* PanelTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB60250915C700A67B79 /* PanelTransition.swift */; };
+		12B0EB642509171800A67B79 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB632509171800A67B79 /* PresentationController.swift */; };
+		12B0EB6625091ACD00A67B79 /* DimmPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB6525091ACD00A67B79 /* DimmPresentationController.swift */; };
+		12B0EB6925091D8000A67B79 /* PresentAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB6825091D8000A67B79 /* PresentAnimation.swift */; };
+		12B0EB6B25091F4400A67B79 /* DismissAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB6A25091F4400A67B79 /* DismissAnimation.swift */; };
+		12B0EB6D25092D9800A67B79 /* TransitionDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB6C25092D9800A67B79 /* TransitionDriver.swift */; };
+		12B0EB6F2509323600A67B79 /* CGPoint+Velocity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB6E2509323600A67B79 /* CGPoint+Velocity.swift */; };
+		12B0EB712509341E00A67B79 /* TransitionDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB702509341E00A67B79 /* TransitionDirection.swift */; };
 		12C1C053250117850016CFCA /* NewBillVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C1C052250117850016CFCA /* NewBillVC.swift */; };
 		12C1C055250117E30016CFCA /* INewBillVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C1C054250117E30016CFCA /* INewBillVC.swift */; };
 		12C1C057250117F90016CFCA /* INewBillPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C1C056250117F90016CFCA /* INewBillPresenter.swift */; };
@@ -105,6 +113,14 @@
 		12AB7B9324FD4F2D00E2986D /* Bill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bill.swift; sourceTree = "<group>"; };
 		12AB7B9524FD50BD00E2986D /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		12AB7B9724FD541800E2986D /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		12B0EB60250915C700A67B79 /* PanelTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelTransition.swift; sourceTree = "<group>"; };
+		12B0EB632509171800A67B79 /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
+		12B0EB6525091ACD00A67B79 /* DimmPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmPresentationController.swift; sourceTree = "<group>"; };
+		12B0EB6825091D8000A67B79 /* PresentAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAnimation.swift; sourceTree = "<group>"; };
+		12B0EB6A25091F4400A67B79 /* DismissAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimation.swift; sourceTree = "<group>"; };
+		12B0EB6C25092D9800A67B79 /* TransitionDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionDriver.swift; sourceTree = "<group>"; };
+		12B0EB6E2509323600A67B79 /* CGPoint+Velocity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Velocity.swift"; sourceTree = "<group>"; };
+		12B0EB702509341E00A67B79 /* TransitionDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionDirection.swift; sourceTree = "<group>"; };
 		12C1C052250117850016CFCA /* NewBillVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillVC.swift; sourceTree = "<group>"; };
 		12C1C054250117E30016CFCA /* INewBillVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INewBillVC.swift; sourceTree = "<group>"; };
 		12C1C056250117F90016CFCA /* INewBillPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INewBillPresenter.swift; sourceTree = "<group>"; };
@@ -227,6 +243,37 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		12B0EB5F2509159200A67B79 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				12B0EB6725091D5800A67B79 /* Animations */,
+				12B0EB622509170700A67B79 /* PresentationController */,
+				12B0EB60250915C700A67B79 /* PanelTransition.swift */,
+				12B0EB6C25092D9800A67B79 /* TransitionDriver.swift */,
+				12B0EB6E2509323600A67B79 /* CGPoint+Velocity.swift */,
+				12B0EB702509341E00A67B79 /* TransitionDirection.swift */,
+			);
+			path = Transitions;
+			sourceTree = "<group>";
+		};
+		12B0EB622509170700A67B79 /* PresentationController */ = {
+			isa = PBXGroup;
+			children = (
+				12B0EB632509171800A67B79 /* PresentationController.swift */,
+				12B0EB6525091ACD00A67B79 /* DimmPresentationController.swift */,
+			);
+			path = PresentationController;
+			sourceTree = "<group>";
+		};
+		12B0EB6725091D5800A67B79 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				12B0EB6825091D8000A67B79 /* PresentAnimation.swift */,
+				12B0EB6A25091F4400A67B79 /* DismissAnimation.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		12C1C04E250117250016CFCA /* NewBillModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,6 +379,7 @@
 		12D1D5BF24FD1CB90077FEF6 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				12B0EB5F2509159200A67B79 /* Transitions */,
 				1212F6C02507CF9E0016693B /* BillDetailsModule */,
 				12C1C04E250117250016CFCA /* NewBillModule */,
 				12D1D5D424FD22A20077FEF6 /* ProfileModule */,
@@ -683,12 +731,15 @@
 				12D1D5FC24FD29D30077FEF6 /* IProfileVC.swift in Sources */,
 				12D1D5E624FD27060077FEF6 /* ChartVC.swift in Sources */,
 				12AB7B9224FD4E6700E2986D /* Invoice.swift in Sources */,
+				12B0EB6D25092D9800A67B79 /* TransitionDriver.swift in Sources */,
 				12C1C057250117F90016CFCA /* INewBillPresenter.swift in Sources */,
+				12B0EB61250915C700A67B79 /* PanelTransition.swift in Sources */,
 				12D1D5CE24FD1F220077FEF6 /* TabBarVC.swift in Sources */,
 				12D1D5F024FD29110077FEF6 /* ICategoryVC.swift in Sources */,
 				1212F6CD2507D9FE0016693B /* BillDetailsView.swift in Sources */,
 				12D1D5CC24FD1F150077FEF6 /* ITabBarPresenter.swift in Sources */,
 				129BC17A24FFD4D9004BD17A /* HomeViewCollectionViewCell.swift in Sources */,
+				12B0EB6B25091F4400A67B79 /* DismissAnimation.swift in Sources */,
 				12F976A8250672AE008DD07C /* SPHomeViewCell.swift in Sources */,
 				1212F6C72507D0560016693B /* IBillDetailsPresenter.swift in Sources */,
 				12D1D5E824FD27260077FEF6 /* ProfleVC.swift in Sources */,
@@ -698,12 +749,16 @@
 				12C3740224FE780F005262F6 /* HomeView.swift in Sources */,
 				1212F6C52507D0400016693B /* BillDetailsPresenter.swift in Sources */,
 				1212F6BF2507B9C10016693B /* IHomeCollectionViewCell.swift in Sources */,
+				12B0EB6F2509323600A67B79 /* CGPoint+Velocity.swift in Sources */,
 				12C1C055250117E30016CFCA /* INewBillVC.swift in Sources */,
 				12D1D59F24FD1B4D0077FEF6 /* ViewController.swift in Sources */,
 				1212F6C92507D0630016693B /* IBillDetailsVC.swift in Sources */,
+				12B0EB642509171800A67B79 /* PresentationController.swift in Sources */,
 				12D1D5CA24FD1EF80077FEF6 /* TabBarPresenter.swift in Sources */,
 				12AB7B9424FD4F2D00E2986D /* Bill.swift in Sources */,
+				12B0EB6625091ACD00A67B79 /* DimmPresentationController.swift in Sources */,
 				1212F6BD2507B6C00016693B /* IHomeView.swift in Sources */,
+				12B0EB6925091D8000A67B79 /* PresentAnimation.swift in Sources */,
 				12D1D5F224FD29330077FEF6 /* ICategoryPresenter.swift in Sources */,
 				1212F6CF2507E3290016693B /* NumericKeyboard.swift in Sources */,
 				12D1D5F624FD297A0077FEF6 /* IChartVC.swift in Sources */,
@@ -722,6 +777,7 @@
 				1212F6CB2507D0810016693B /* BillDetailsVC.swift in Sources */,
 				129BC17D24FFE648004BD17A /* HomeViewTableViewCell.swift in Sources */,
 				12D1D5BE24FD1C9E0077FEF6 /* UIView+anchorConstraints.swift in Sources */,
+				12B0EB712509341E00A67B79 /* TransitionDirection.swift in Sources */,
 				12D1D5EE24FD28BE0077FEF6 /* HomePresenter.swift in Sources */,
 				129BC18024FFE76E004BD17A /* CardView.swift in Sources */,
 				12AB7B9624FD50BD00E2986D /* Category.swift in Sources */,

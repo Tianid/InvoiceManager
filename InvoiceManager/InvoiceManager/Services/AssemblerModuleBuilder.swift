@@ -16,6 +16,8 @@ protocol IAssembleBuilder {
     func createChartModule(router: IRouter) -> UIViewController
     func createProfileModule(router: IRouter) -> UIViewController
     func createNewBillModule(router: IRouter) -> UIViewController
+    func createBillDetailsModule(router: IRouter) -> UIViewController
+    func createCategoryActionSheet(transition: PanelTransition) -> UIViewController
 }
 
 class AssemblerModuleBuilder: IAssembleBuilder {
@@ -62,5 +64,20 @@ class AssemblerModuleBuilder: IAssembleBuilder {
         view.presenter = presenter
         return view
     }
+    
+    func createBillDetailsModule(router: IRouter) -> UIViewController {
+        let view = BillDetailsVC()
+        let presenter = BillDetailsPresenter(view: view, router: router)
+        view.presenter = presenter
+        return view
+    }
+    
+    func createCategoryActionSheet(transition: PanelTransition) -> UIViewController {
+        let view = ViewController()
+        view.transitioningDelegate = transition
+        view.modalPresentationStyle = .custom
+        return view
+    }
+
 
 }

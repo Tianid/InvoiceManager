@@ -10,6 +10,7 @@ import UIKit
 
 class BillDetailsVC: UIViewController {
     //MARK: - Properties
+    var presenter: IBillDetailsPresenter?
     private var billDetailsView: BillDetailsView? {
         guard isViewLoaded else { return nil }
         return (self.view as! BillDetailsView)
@@ -24,11 +25,14 @@ class BillDetailsVC: UIViewController {
     
     override func loadView() {
         let view = BillDetailsView(frame: UIScreen.main.bounds)
+        view.presenter = presenter
         self.view = view
     }
     
 }
 
 extension BillDetailsVC: IBillDetailsVC {
-    
+    func showCategoryActionSheet(view: UIViewController) {
+        present(view, animated: true)
+    }
 }

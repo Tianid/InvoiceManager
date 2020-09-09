@@ -6,6 +6,8 @@
 //  Copyright © 2020 Tianid. All rights reserved.
 //
 
+import UIKit
+
 protocol IHomeVC: class {
-    
+    func showBillDetail(view: UIViewController)
 }

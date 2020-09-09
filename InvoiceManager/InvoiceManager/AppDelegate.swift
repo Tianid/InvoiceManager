@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         testView.testData = testBills1
         let tets = UITabBarController()
         tets.viewControllers = [testView]
-        window?.rootViewController = BillDetailsVC()
+        window?.rootViewController = tabBar
         window?.makeKeyAndVisible()
     }
 }

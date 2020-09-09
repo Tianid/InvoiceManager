@@ -31,9 +31,13 @@ extension SPHomeView: ISPHomeView {
     }
     
     func addNewBillButtonTapped(index: Int) {
-        let bill = Bill(value: 993123, currency: .RUB, billName: "Added bill", billDescription: "", category: testSingleCategory, modifiedDate: Date())
-        model.invoices[index].bills.append(bill)
-        view?.insertNewBill(index: index)
+        
+        superPresenter?.showBillDetail()
+        
+        
+//        let bill = Bill(value: 993123, currency: .RUB, billName: "Added bill", billDescription: "", category: testSingleCategory, modifiedDate: Date())
+//        model.invoices[index].bills.append(bill)
+//        view?.insertNewBill(index: index)
         
     }
     
