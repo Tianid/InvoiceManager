@@ -10,4 +10,5 @@ import UIKit
 
 protocol IHomeVC: class {
     func showBillDetail(view: UIViewController)
+    func insertNewData(index: Int)
 }

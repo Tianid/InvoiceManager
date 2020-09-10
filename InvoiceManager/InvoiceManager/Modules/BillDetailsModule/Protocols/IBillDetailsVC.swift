@@ -9,5 +9,7 @@
 import UIKit
 
 protocol IBillDetailsVC: class {
-    func showCategoryActionSheet(view: UIViewController)
+    func showBillCategoryModule(view: UIViewController)
+    func setCategory(name: String)
+    func dismissDetail()
 }

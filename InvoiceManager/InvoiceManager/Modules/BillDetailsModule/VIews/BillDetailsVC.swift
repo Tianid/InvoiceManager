@@ -32,7 +32,15 @@ class BillDetailsVC: UIViewController {
 }
 
 extension BillDetailsVC: IBillDetailsVC {
-    func showCategoryActionSheet(view: UIViewController) {
+    func dismissDetail() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func setCategory(name: String) {
+        billDetailsView?.setCategory(name: name)
+    }
+    
+    func showBillCategoryModule(view: UIViewController) {
         present(view, animated: true)
     }
 }

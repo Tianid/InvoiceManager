@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         return button
     }()
     
-     var testData: [Bill]?
+     var testData: [Bill]? = testBills1
     
     override func viewDidLoad() {
         super.viewDidLoad()

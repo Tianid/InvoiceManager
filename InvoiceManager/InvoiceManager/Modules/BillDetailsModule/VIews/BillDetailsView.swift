@@ -5,6 +5,12 @@
 //  Created by Tianid on 08.09.2020.
 //  Copyright © 2020 Tianid. All rights reserved.
 //
+
+enum BillState: Int {
+    case income
+    case expense
+}
+
 import UIKit
 
 class BillDetailsView: UIView {
@@ -75,6 +81,13 @@ class BillDetailsView: UIView {
         return button
     }()
     
+    private var saveButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("save", for: .normal)
+        button.addTarget(self, action: #selector(saveButtonTapped(_:)), for: .touchUpInside)
+        return button
+    }()
+    
     private var descriptionWordLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -109,6 +122,10 @@ class BillDetailsView: UIView {
     }
     //MARK: - Func
     
+    func setCategory(name: String) {
+        categoryTextField.text = name
+    }
+    
     private func configureConstraints() {
         self.addSubview(viewContainer)
         
@@ -122,6 +139,7 @@ class BillDetailsView: UIView {
         viewContainer.addSubview(descriptionWordLabel)
         viewContainer.addSubview(descriptionTextField)
         viewContainer.addSubview(testButton)
+        viewContainer.addSubview(saveButton)
         
         
         
@@ -163,7 +181,11 @@ class BillDetailsView: UIView {
                           leading: categoryTextField.leadingAnchor,
                           trailing: categoryTextField.trailingAnchor)
         
-        descriptionWordLabel.anchor(top: testButton.bottomAnchor,
+        saveButton.anchor(top: testButton.bottomAnchor,
+                          leading: testButton.leadingAnchor,
+                          trailing: testButton.trailingAnchor)
+        
+        descriptionWordLabel.anchor(top: saveButton.bottomAnchor,
                                     leading: categoryTextField.leadingAnchor,
                                     trailing: categoryTextField.trailingAnchor)
         
@@ -209,6 +231,18 @@ class BillDetailsView: UIView {
     
     @objc private func showCategoryActionSheet(_ sender: UIButton) {
         presenter?.categoryFieldTapped(transition: transition)
+    }
+    
+    
+    @objc private func saveButtonTapped(_ sender: UIButton) {
+        guard let name = nameTextField.text else { return }
+        guard let value = valueTextField.text else { return }
+        guard let dValue = Double(value) else { return }
+        let state = segmentedControl.selectedSegmentIndex
+        let description = descriptionTextField.text
+        let billState = state == BillState.income.rawValue ? BillState.income : BillState.expense
+        
+        presenter?.saveButtonTapped(name: name, value: dValue, billState: billState, description: description)
     }
     
 }

@@ -16,8 +16,8 @@ protocol IRouterMain {
 
 protocol IRouter: IRouterMain {
     func initiateTabBar()
-    func initCategoryActionSheet(transition: PanelTransition) -> UIViewController?
-    func initBillDetailModule() -> UIViewController?
+    func initBillCategoryModule(transition: PanelTransition, superPresenter: IBillDetailsPresenter) -> UIViewController?
+    func initBillDetailModule(superPresenter: IHomePresenter, model: Bill?, currency: Currency) -> UIViewController?
 }
 
 class Router: IRouter {
@@ -72,11 +72,12 @@ class Router: IRouter {
         }
     }
     
-    func initCategoryActionSheet(transition: PanelTransition) -> UIViewController? {
-        return assemblyBuilder?.createCategoryActionSheet(transition: transition)
+    func initBillCategoryModule(transition: PanelTransition, superPresenter: IBillDetailsPresenter) -> UIViewController? {
+        return assemblyBuilder?.createBillCategoryModule(router: self, transition: transition, superPresenter: superPresenter)
     }
     
-    func initBillDetailModule() -> UIViewController? {
-        return assemblyBuilder?.createBillDetailsModule(router: self)
+    func initBillDetailModule(superPresenter: IHomePresenter, model: Bill?, currency: Currency) -> UIViewController? {
+        return assemblyBuilder?.createBillDetailsModule(router: self, superPresenter: superPresenter, model: model, currency: currency)
+        
     }
 }

@@ -8,6 +8,15 @@
 import Foundation
 
 struct Bill {
+    internal init(value: Double, currency: Currency, billName: String, billDescription: String, category: Category, modifiedDate: Date = Date()) {
+        self.value = value
+        self.currency = currency
+        self.billName = billName
+        self.billDescription = billDescription
+        self.category = category
+        self.modifiedDate = modifiedDate
+    }
+    
     //MARK: - Properties
     let value: Double
     let currency: Currency
@@ -17,4 +26,14 @@ struct Bill {
     let modifiedDate: Date
     //MARK: - Init
     //MARK: - Func
+    
+    func initWith(category: Category) -> Bill {
+        let bill = Bill(value: self.value,
+                        currency: self.currency,
+                        billName: self.billName,
+                        billDescription: self.billDescription,
+                        category: category,
+                        modifiedDate: self.modifiedDate)
+        return bill
+    }
 }

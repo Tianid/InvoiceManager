@@ -13,6 +13,7 @@ class HomePresenter {
     var model: InvoiceContainer
     private weak var view: IHomeVC?
     private var router: IRouter
+    private var billInvoiceIndex = -1
     
     //MARK: - Init
     init(view: IHomeVC, router: IRouter, model: InvoiceContainer) {
@@ -25,8 +26,19 @@ class HomePresenter {
 }
 
 extension HomePresenter: IHomePresenter {
-    func showBillDetail() {
-        guard let v = router.initBillDetailModule() else { return }
+
+    
+    func transferNewBill(bill: Bill) {
+        guard billInvoiceIndex != -1 else { return }
+        model.invoices[billInvoiceIndex].bills.append(bill)
+        view?.insertNewData(index: billInvoiceIndex)
+        
+    }
+    
+    func showBillDetail(index: Int) {
+        billInvoiceIndex = index
+        let currency = model.invoices[index].currency
+        guard let v = router.initBillDetailModule(superPresenter: self, model: nil, currency: currency) else { return }
         view?.showBillDetail(view: v)
     }
     

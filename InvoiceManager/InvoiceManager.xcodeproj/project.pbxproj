@@ -15,6 +15,13 @@
 		1212F6CB2507D0810016693B /* BillDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212F6CA2507D0810016693B /* BillDetailsVC.swift */; };
 		1212F6CD2507D9FE0016693B /* BillDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212F6CC2507D9FE0016693B /* BillDetailsView.swift */; };
 		1212F6CF2507E3290016693B /* NumericKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212F6CE2507E3290016693B /* NumericKeyboard.swift */; };
+		121AC3DB250A5DA90099319D /* BillCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121AC3DA250A5DA90099319D /* BillCategoryVC.swift */; };
+		121AC3DD250A5E600099319D /* BillCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121AC3DC250A5E600099319D /* BillCategoryPresenter.swift */; };
+		121AC3DF250A5E710099319D /* IBillCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121AC3DE250A5E710099319D /* IBillCategoryPresenter.swift */; };
+		121AC3E1250A5E8B0099319D /* IBillCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121AC3E0250A5E8B0099319D /* IBillCategoryVC.swift */; };
+		121AC3E3250A611A0099319D /* BillCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121AC3E2250A611A0099319D /* BillCategoryView.swift */; };
+		121AC3EA250A77D10099319D /* BillCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121AC3E8250A77D10099319D /* BillCategoryTableViewCell.swift */; };
+		121AC3EB250A77D10099319D /* BillCategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 121AC3E9250A77D10099319D /* BillCategoryTableViewCell.xib */; };
 		1228B74525013AE9003822A4 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1228B74425013AE9003822A4 /* TestData.swift */; };
 		129BC17A24FFD4D9004BD17A /* HomeViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BC17924FFD4D9004BD17A /* HomeViewCollectionViewCell.swift */; };
 		129BC17D24FFE648004BD17A /* HomeViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BC17B24FFE648004BD17A /* HomeViewTableViewCell.swift */; };
@@ -99,6 +106,13 @@
 		1212F6CA2507D0810016693B /* BillDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailsVC.swift; sourceTree = "<group>"; };
 		1212F6CC2507D9FE0016693B /* BillDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailsView.swift; sourceTree = "<group>"; };
 		1212F6CE2507E3290016693B /* NumericKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericKeyboard.swift; sourceTree = "<group>"; };
+		121AC3DA250A5DA90099319D /* BillCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCategoryVC.swift; sourceTree = "<group>"; };
+		121AC3DC250A5E600099319D /* BillCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCategoryPresenter.swift; sourceTree = "<group>"; };
+		121AC3DE250A5E710099319D /* IBillCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBillCategoryPresenter.swift; sourceTree = "<group>"; };
+		121AC3E0250A5E8B0099319D /* IBillCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBillCategoryVC.swift; sourceTree = "<group>"; };
+		121AC3E2250A611A0099319D /* BillCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCategoryView.swift; sourceTree = "<group>"; };
+		121AC3E8250A77D10099319D /* BillCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		121AC3E9250A77D10099319D /* BillCategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillCategoryTableViewCell.xib; sourceTree = "<group>"; };
 		1228B74425013AE9003822A4 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		129BC17924FFD4D9004BD17A /* HomeViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		129BC17B24FFE648004BD17A /* HomeViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -250,7 +264,6 @@
 				12B0EB622509170700A67B79 /* PresentationController */,
 				12B0EB60250915C700A67B79 /* PanelTransition.swift */,
 				12B0EB6C25092D9800A67B79 /* TransitionDriver.swift */,
-				12B0EB6E2509323600A67B79 /* CGPoint+Velocity.swift */,
 				12B0EB702509341E00A67B79 /* TransitionDirection.swift */,
 			);
 			path = Transitions;
@@ -317,6 +330,44 @@
 			path = NewBillModuleTest;
 			sourceTree = "<group>";
 		};
+		12C674A1250A59B400D7FCA4 /* BillCategoryModule */ = {
+			isa = PBXGroup;
+			children = (
+				12C674A4250A5A9100D7FCA4 /* Presenters */,
+				12C674A3250A5A4A00D7FCA4 /* Protocols */,
+				12C674A2250A5A4600D7FCA4 /* VIews */,
+			);
+			path = BillCategoryModule;
+			sourceTree = "<group>";
+		};
+		12C674A2250A5A4600D7FCA4 /* VIews */ = {
+			isa = PBXGroup;
+			children = (
+				121AC3DA250A5DA90099319D /* BillCategoryVC.swift */,
+				121AC3E2250A611A0099319D /* BillCategoryView.swift */,
+				121AC3E8250A77D10099319D /* BillCategoryTableViewCell.swift */,
+				121AC3E9250A77D10099319D /* BillCategoryTableViewCell.xib */,
+			);
+			path = VIews;
+			sourceTree = "<group>";
+		};
+		12C674A3250A5A4A00D7FCA4 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				121AC3DE250A5E710099319D /* IBillCategoryPresenter.swift */,
+				121AC3E0250A5E8B0099319D /* IBillCategoryVC.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		12C674A4250A5A9100D7FCA4 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				121AC3DC250A5E600099319D /* BillCategoryPresenter.swift */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
 		12D1D58E24FD1B4D0077FEF6 = {
 			isa = PBXGroup;
 			children = (
@@ -341,6 +392,7 @@
 				12AB7B9024FD4E4800E2986D /* Models */,
 				12D1D5C024FD1CE70077FEF6 /* Services */,
 				12D1D5BC24FD1C8D0077FEF6 /* Extensions */,
+				12B0EB5F2509159200A67B79 /* Transitions */,
 				12D1D5BF24FD1CB90077FEF6 /* Modules */,
 				12D1D59A24FD1B4D0077FEF6 /* AppDelegate.swift */,
 				12D1D59E24FD1B4D0077FEF6 /* ViewController.swift */,
@@ -372,6 +424,7 @@
 			isa = PBXGroup;
 			children = (
 				12D1D5BD24FD1C9E0077FEF6 /* UIView+anchorConstraints.swift */,
+				12B0EB6E2509323600A67B79 /* CGPoint+Velocity.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -379,7 +432,7 @@
 		12D1D5BF24FD1CB90077FEF6 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				12B0EB5F2509159200A67B79 /* Transitions */,
+				12C674A1250A59B400D7FCA4 /* BillCategoryModule */,
 				1212F6C02507CF9E0016693B /* BillDetailsModule */,
 				12C1C04E250117250016CFCA /* NewBillModule */,
 				12D1D5D424FD22A20077FEF6 /* ProfileModule */,
@@ -702,6 +755,7 @@
 			files = (
 				12D1D5A724FD1B4E0077FEF6 /* LaunchScreen.storyboard in Resources */,
 				129BC17E24FFE648004BD17A /* HomeViewTableViewCell.xib in Resources */,
+				121AC3EB250A77D10099319D /* BillCategoryTableViewCell.xib in Resources */,
 				12D1D5A424FD1B4E0077FEF6 /* Assets.xcassets in Resources */,
 				12D1D5A224FD1B4D0077FEF6 /* Main.storyboard in Resources */,
 			);
@@ -722,12 +776,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				12D1D5C224FD1CFD0077FEF6 /* Router.swift in Sources */,
+				121AC3DF250A5E710099319D /* IBillCategoryPresenter.swift in Sources */,
 				12D1D5E224FD25B60077FEF6 /* HomeVC.swift in Sources */,
 				12C1C059250118140016CFCA /* NewBillPresenter.swift in Sources */,
 				12D1D5EC24FD28B00077FEF6 /* IHomePresenter.swift in Sources */,
 				12D1D5F824FD29980077FEF6 /* IChartPresenter.swift in Sources */,
 				12D1D5D024FD1F300077FEF6 /* ITabBarVC.swift in Sources */,
 				12AB7B9824FD541800E2986D /* Currency.swift in Sources */,
+				121AC3E3250A611A0099319D /* BillCategoryView.swift in Sources */,
 				12D1D5FC24FD29D30077FEF6 /* IProfileVC.swift in Sources */,
 				12D1D5E624FD27060077FEF6 /* ChartVC.swift in Sources */,
 				12AB7B9224FD4E6700E2986D /* Invoice.swift in Sources */,
@@ -738,11 +794,15 @@
 				12D1D5F024FD29110077FEF6 /* ICategoryVC.swift in Sources */,
 				1212F6CD2507D9FE0016693B /* BillDetailsView.swift in Sources */,
 				12D1D5CC24FD1F150077FEF6 /* ITabBarPresenter.swift in Sources */,
+				121AC3DB250A5DA90099319D /* BillCategoryVC.swift in Sources */,
+				121AC3E1250A5E8B0099319D /* IBillCategoryVC.swift in Sources */,
 				129BC17A24FFD4D9004BD17A /* HomeViewCollectionViewCell.swift in Sources */,
+				121AC3EA250A77D10099319D /* BillCategoryTableViewCell.swift in Sources */,
 				12B0EB6B25091F4400A67B79 /* DismissAnimation.swift in Sources */,
 				12F976A8250672AE008DD07C /* SPHomeViewCell.swift in Sources */,
 				1212F6C72507D0560016693B /* IBillDetailsPresenter.swift in Sources */,
 				12D1D5E824FD27260077FEF6 /* ProfleVC.swift in Sources */,
+				121AC3DD250A5E600099319D /* BillCategoryPresenter.swift in Sources */,
 				12D1D5E424FD26D80077FEF6 /* CategoryVC.swift in Sources */,
 				12D1D5FE24FD29EF0077FEF6 /* IProfilePresenter.swift in Sources */,
 				129F48C824FD5A6000D9172C /* Section.swift in Sources */,

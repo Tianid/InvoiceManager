@@ -147,6 +147,13 @@ class HomeView: UIView {
     }
     
     //MARK: - Func
+    
+    func insertNewDataInTable(index: Int) {
+        let cell = collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? HomeViewCollectionViewCell
+        cell?.insertNewRow()
+        
+    }
+    
     func viewWillTransition() {
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)

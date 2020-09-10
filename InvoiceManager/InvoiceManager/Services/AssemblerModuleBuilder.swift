@@ -16,8 +16,8 @@ protocol IAssembleBuilder {
     func createChartModule(router: IRouter) -> UIViewController
     func createProfileModule(router: IRouter) -> UIViewController
     func createNewBillModule(router: IRouter) -> UIViewController
-    func createBillDetailsModule(router: IRouter) -> UIViewController
-    func createCategoryActionSheet(transition: PanelTransition) -> UIViewController
+    func createBillDetailsModule(router: IRouter, superPresenter: IHomePresenter, model: Bill?, currency: Currency) -> UIViewController
+    func createBillCategoryModule(router: IRouter, transition: PanelTransition, superPresenter: IBillDetailsPresenter) -> UIViewController
 }
 
 class AssemblerModuleBuilder: IAssembleBuilder {
@@ -65,17 +65,22 @@ class AssemblerModuleBuilder: IAssembleBuilder {
         return view
     }
     
-    func createBillDetailsModule(router: IRouter) -> UIViewController {
+    func createBillDetailsModule(router: IRouter, superPresenter: IHomePresenter, model: Bill?, currency: Currency) -> UIViewController {
         let view = BillDetailsVC()
-        let presenter = BillDetailsPresenter(view: view, router: router)
+        let presenter = BillDetailsPresenter(view: view, router: router, model: model, superPresenter: superPresenter, currency: currency)
         view.presenter = presenter
         return view
     }
     
-    func createCategoryActionSheet(transition: PanelTransition) -> UIViewController {
-        let view = ViewController()
+    func createBillCategoryModule(router: IRouter, transition: PanelTransition, superPresenter: IBillDetailsPresenter) -> UIViewController {
+        let view = BillCategoryVC()
         view.transitioningDelegate = transition
         view.modalPresentationStyle = .custom
+        
+        let presenter = BillCategoryPresenter(view: view, router: router, model: [testSingleCategory], superPresenter: superPresenter)
+        view.presenter = presenter
+        
+//        let view2 = ViewController()
         return view
     }
 

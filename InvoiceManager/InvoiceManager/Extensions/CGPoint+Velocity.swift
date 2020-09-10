@@ -6,6 +6,7 @@
 //  Copyright © 2020 Tianid. All rights reserved.
 //
 
+//MARK: - Extensions for transitions
 import UIKit
 
 extension UIPanGestureRecognizer {

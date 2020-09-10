@@ -44,6 +44,10 @@ class HomeVC: UIViewController {
 }
 
 extension HomeVC: IHomeVC {
+    func insertNewData(index: Int) {
+        homeView?.insertNewDataInTable(index: index)
+    }
+    
     func showBillDetail(view: UIViewController) {
         self.present(view, animated: true)
     }
