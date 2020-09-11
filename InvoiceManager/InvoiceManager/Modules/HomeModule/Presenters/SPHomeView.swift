@@ -25,19 +25,28 @@ class SPHomeView {
 }
 
 extension SPHomeView: ISPHomeView {
+    func setInvoiceIndex(invoiceIndex: Int) {
+        superPresenter?.setInvoiceInex(invoiceIndex: invoiceIndex)
+    }
+    
+    func showBillDetail(bill: Bill?, billIndex: Int?) {
+        superPresenter?.showBillDetail(bill: bill, billIndex: billIndex)
+    }
+    
     func generateSPHomeViewCell(index: Int) -> ISPHomeViewCell {
         let presenter = SPHomeViewCell(superPresenter: self, invoiceIndex: index)
+        print("invoice index generated for cell - \(index)")
         return presenter
     }
     
-    func addNewBillButtonTapped(index: Int) {
-        superPresenter?.showBillDetail(index: index)
-        
-        
-//        let bill = Bill(value: 993123, currency: .RUB, billName: "Added bill", billDescription: "", category: testSingleCategory, modifiedDate: Date())
-//        model.invoices[index].bills.append(bill)
-//        view?.insertNewBill(index: index)
-        
-    }
+//    func showBillDetail(bill: Bill?, index: Int) {
+//        superPresenter?.showBillDetail(index: index)
+//
+//
+////        let bill = Bill(value: 993123, currency: .RUB, billName: "Added bill", billDescription: "", category: testSingleCategory, modifiedDate: Date())
+////        model.invoices[index].bills.append(bill)
+////        view?.insertNewBill(index: index)
+//
+//    }
     
 }

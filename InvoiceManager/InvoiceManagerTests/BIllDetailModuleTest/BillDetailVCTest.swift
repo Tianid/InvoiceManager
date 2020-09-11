@@ -1,15 +1,15 @@
 //
-//  NewBillVC.swift
+//  BillDetailVCTest.swift
 //  InvoiceManagerTests
 //
-//  Created by Tianid on 03.09.2020.
+//  Created by Tianid on 11.09.2020.
 //  Copyright © 2020 Tianid. All rights reserved.
 //
 
 import XCTest
 @testable import InvoiceManager
 
-class NewBillVC: XCTestCase {
+class BillDetailVCTest: XCTestCase {
 
     var assembly: AssemblerModuleBuilder!
     var router: IRouter!
@@ -27,8 +27,8 @@ class NewBillVC: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testHomeVC() {
-        let view = assembly.createNewBillModule(router: router)
+    func testDetailVC() {
+        let view = assembly.createBillDetailsModule(router: router, superPresenter: nil, model: nil, currency: .RUB)
         XCTAssertNotNil(view)
         
     }

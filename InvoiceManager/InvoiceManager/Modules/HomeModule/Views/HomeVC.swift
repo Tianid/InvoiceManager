@@ -44,6 +44,10 @@ class HomeVC: UIViewController {
 }
 
 extension HomeVC: IHomeVC {
+    func refreshTableViewRow(invoiceIndex: Int, billIndex: Int) {
+        homeView?.refreshTableViewByIndex(invoiceIndex: invoiceIndex, billIndex: billIndex)
+    }
+    
     func insertNewData(index: Int) {
         homeView?.insertNewDataInTable(index: index)
     }

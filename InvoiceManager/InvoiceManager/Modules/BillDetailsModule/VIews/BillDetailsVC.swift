@@ -21,6 +21,7 @@ class BillDetailsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        billDetailsView?.updateDetailFields()
     }
     
     override func loadView() {
@@ -32,8 +33,9 @@ class BillDetailsVC: UIViewController {
 }
 
 extension BillDetailsVC: IBillDetailsVC {
-    func dismissDetail() {
-        dismiss(animated: true, completion: nil)
+    
+    func dismissDetail(complition: (() -> ())?) {
+        dismiss(animated: true, completion: complition)
     }
     
     func setCategory(name: String) {

@@ -35,6 +35,10 @@ class HomeViewCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Func
     
+    func refreshTableViewByBillIndex(billIndex: Int) {
+        tableView.reloadRows(at: [IndexPath(row: billIndex, section: 0)], with: .automatic)
+    }
+    
     private func configureConstraints() {
         contentView.addSubview(tableView)
         
@@ -74,7 +78,10 @@ extension HomeViewCollectionViewCell: UITableViewDataSource {
 }
 //MARK: - UITableViewDelegate
 extension HomeViewCollectionViewCell: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.billTapped(billIndex: indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
 }
 
 extension HomeViewCollectionViewCell: IHomeViewCollectionViewCell {

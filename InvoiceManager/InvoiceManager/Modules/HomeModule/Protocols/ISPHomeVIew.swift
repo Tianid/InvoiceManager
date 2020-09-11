@@ -10,5 +10,6 @@ protocol ISPHomeView: class {
     var model: InvoiceContainer { get set }
     var superPresenter: IHomePresenter? { get set }
     func generateSPHomeViewCell(index: Int) -> ISPHomeViewCell
-    func addNewBillButtonTapped(index: Int)
+    func showBillDetail(bill: Bill?, billIndex: Int?)
+    func setInvoiceIndex(invoiceIndex: Int)
 }

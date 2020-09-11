@@ -9,4 +9,6 @@
 protocol ISPHomeViewCell {
     var model: [Bill]? { get set }
     var superPresenter: ISPHomeView? { get set }
+    func billTapped(billIndex: Int)
+    func setInvoiceInex(invoiceIndex: Int)
 }

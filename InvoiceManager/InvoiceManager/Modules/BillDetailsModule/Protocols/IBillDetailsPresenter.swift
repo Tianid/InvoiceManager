@@ -7,6 +7,8 @@
 //
 
 protocol IBillDetailsPresenter: class {
+    var billDetailsCreationState: BillDetailsCreationState { get set }
+    var model: Bill? { get set }
     func categoryFieldTapped(transition: PanelTransition)
     func categorySelectedWithData(category: Category)
     func saveButtonTapped(name: String, value: Double, billState: BillState, description: String?)

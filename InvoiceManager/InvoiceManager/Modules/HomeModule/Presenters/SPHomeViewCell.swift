@@ -30,7 +30,12 @@ class SPHomeViewCell {
 }
 
 extension SPHomeViewCell: ISPHomeViewCell {
+    func setInvoiceInex(invoiceIndex: Int) {
+        superPresenter?.setInvoiceIndex(invoiceIndex: invoiceIndex)
+    }
 
-    
-    
+    func billTapped(billIndex: Int) {
+        guard let bill = model?[billIndex] else { return }
+        superPresenter?.showBillDetail(bill: bill, billIndex: billIndex)
+    }
 }

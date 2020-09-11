@@ -18,6 +18,8 @@ protocol IRouter: IRouterMain {
     func initiateTabBar()
     func initBillCategoryModule(transition: PanelTransition, superPresenter: IBillDetailsPresenter) -> UIViewController?
     func initBillDetailModule(superPresenter: IHomePresenter, model: Bill?, currency: Currency) -> UIViewController?
+    func showBillDetailModule(superPresenter: IHomePresenter, model: Bill?, currency: Currency)
+    func showBillCategoryModule(transition: PanelTransition, superPresenter: IBillDetailsPresenter)
 }
 
 class Router: IRouter {
@@ -30,7 +32,6 @@ class Router: IRouter {
     private var categoryNavigationController: UINavigationController?
     private var chartNavigationsController: UINavigationController?
     private var profileNavigationsController: UINavigationController?
-    private var newBillVC: UIViewController?
 
     //MARK: - Init
     init(tabBar: ITabBarVC, assembler: IAssembleBuilder) {
@@ -64,11 +65,6 @@ class Router: IRouter {
                 self.profileNavigationsController = item
                 continue
             }
-            
-            if item.viewControllers[0] is NewBillVC {
-                self.newBillVC = item
-                continue
-            }
         }
     }
     
@@ -78,6 +74,18 @@ class Router: IRouter {
     
     func initBillDetailModule(superPresenter: IHomePresenter, model: Bill?, currency: Currency) -> UIViewController? {
         return assemblyBuilder?.createBillDetailsModule(router: self, superPresenter: superPresenter, model: model, currency: currency)
+        
+    }
+    
+    func showBillDetailModule(superPresenter: IHomePresenter, model: Bill?, currency: Currency) {
+        guard let view = assemblyBuilder?.createBillDetailsModule(router: self, superPresenter: superPresenter, model: model, currency: currency) else { return }
+        homeNavigationController?.view.layer.add(CATransition().segueFromBottom(), forKey: nil)
+        homeNavigationController?.pushViewController(view, animated: false)
+    }
+    
+    func showBillCategoryModule(transition: PanelTransition, superPresenter: IBillDetailsPresenter) {
+        guard let view = assemblyBuilder?.createBillCategoryModule(router: self, transition: transition, superPresenter: superPresenter) else { return }
+        homeNavigationController?.present(view, animated: true)
         
     }
 }

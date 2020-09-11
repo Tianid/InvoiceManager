@@ -9,6 +9,7 @@
 protocol IHomePresenter: class {
     var model: InvoiceContainer { get set }
     func generateSPHomeView(view: IHomeView) -> ISPHomeView
-    func showBillDetail(index: Int)
-    func transferNewBill(bill: Bill)
+    func showBillDetail(bill: Bill?, billIndex: Int?)
+    func transferNewBill(bill: Bill, billDetailsCreationState: BillDetailsCreationState)
+    func setInvoiceInex(invoiceIndex: Int)
 }

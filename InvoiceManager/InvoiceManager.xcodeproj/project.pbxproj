@@ -23,6 +23,9 @@
 		121AC3EA250A77D10099319D /* BillCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121AC3E8250A77D10099319D /* BillCategoryTableViewCell.swift */; };
 		121AC3EB250A77D10099319D /* BillCategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 121AC3E9250A77D10099319D /* BillCategoryTableViewCell.xib */; };
 		1228B74525013AE9003822A4 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1228B74425013AE9003822A4 /* TestData.swift */; };
+		123E7E70250BAF4B00C7284B /* BillDetailVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E6F250BAF4B00C7284B /* BillDetailVCTest.swift */; };
+		123E7E72250BB01600C7284B /* BillCategoryVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E71250BB01600C7284B /* BillCategoryVCTest.swift */; };
+		123E7E76250BE3F900C7284B /* CATransition+FromBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E75250BE3F900C7284B /* CATransition+FromBottom.swift */; };
 		129BC17A24FFD4D9004BD17A /* HomeViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BC17924FFD4D9004BD17A /* HomeViewCollectionViewCell.swift */; };
 		129BC17D24FFE648004BD17A /* HomeViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BC17B24FFE648004BD17A /* HomeViewTableViewCell.swift */; };
 		129BC17E24FFE648004BD17A /* HomeViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 129BC17C24FFE648004BD17A /* HomeViewTableViewCell.xib */; };
@@ -44,11 +47,6 @@
 		12B0EB6D25092D9800A67B79 /* TransitionDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB6C25092D9800A67B79 /* TransitionDriver.swift */; };
 		12B0EB6F2509323600A67B79 /* CGPoint+Velocity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB6E2509323600A67B79 /* CGPoint+Velocity.swift */; };
 		12B0EB712509341E00A67B79 /* TransitionDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB702509341E00A67B79 /* TransitionDirection.swift */; };
-		12C1C053250117850016CFCA /* NewBillVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C1C052250117850016CFCA /* NewBillVC.swift */; };
-		12C1C055250117E30016CFCA /* INewBillVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C1C054250117E30016CFCA /* INewBillVC.swift */; };
-		12C1C057250117F90016CFCA /* INewBillPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C1C056250117F90016CFCA /* INewBillPresenter.swift */; };
-		12C1C059250118140016CFCA /* NewBillPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C1C058250118140016CFCA /* NewBillPresenter.swift */; };
-		12C1C05B25011CE40016CFCA /* NewBillVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C1C05A25011CE40016CFCA /* NewBillVC.swift */; };
 		12C3740224FE780F005262F6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C3740124FE780F005262F6 /* HomeView.swift */; };
 		12D1D59B24FD1B4D0077FEF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D59A24FD1B4D0077FEF6 /* AppDelegate.swift */; };
 		12D1D59F24FD1B4D0077FEF6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D59E24FD1B4D0077FEF6 /* ViewController.swift */; };
@@ -114,6 +112,9 @@
 		121AC3E8250A77D10099319D /* BillCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		121AC3E9250A77D10099319D /* BillCategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillCategoryTableViewCell.xib; sourceTree = "<group>"; };
 		1228B74425013AE9003822A4 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		123E7E6F250BAF4B00C7284B /* BillDetailVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailVCTest.swift; sourceTree = "<group>"; };
+		123E7E71250BB01600C7284B /* BillCategoryVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCategoryVCTest.swift; sourceTree = "<group>"; };
+		123E7E75250BE3F900C7284B /* CATransition+FromBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransition+FromBottom.swift"; sourceTree = "<group>"; };
 		129BC17924FFD4D9004BD17A /* HomeViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		129BC17B24FFE648004BD17A /* HomeViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewTableViewCell.swift; sourceTree = "<group>"; };
 		129BC17C24FFE648004BD17A /* HomeViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewTableViewCell.xib; sourceTree = "<group>"; };
@@ -135,11 +136,6 @@
 		12B0EB6C25092D9800A67B79 /* TransitionDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionDriver.swift; sourceTree = "<group>"; };
 		12B0EB6E2509323600A67B79 /* CGPoint+Velocity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Velocity.swift"; sourceTree = "<group>"; };
 		12B0EB702509341E00A67B79 /* TransitionDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionDirection.swift; sourceTree = "<group>"; };
-		12C1C052250117850016CFCA /* NewBillVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillVC.swift; sourceTree = "<group>"; };
-		12C1C054250117E30016CFCA /* INewBillVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INewBillVC.swift; sourceTree = "<group>"; };
-		12C1C056250117F90016CFCA /* INewBillPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INewBillPresenter.swift; sourceTree = "<group>"; };
-		12C1C058250118140016CFCA /* NewBillPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillPresenter.swift; sourceTree = "<group>"; };
-		12C1C05A25011CE40016CFCA /* NewBillVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillVC.swift; sourceTree = "<group>"; };
 		12C3740124FE780F005262F6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		12D1D59724FD1B4D0077FEF6 /* InvoiceManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvoiceManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12D1D59A24FD1B4D0077FEF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -236,6 +232,22 @@
 			path = Presenters;
 			sourceTree = "<group>";
 		};
+		123E7E6D250BAF0400C7284B /* BIllDetailModuleTest */ = {
+			isa = PBXGroup;
+			children = (
+				123E7E6F250BAF4B00C7284B /* BillDetailVCTest.swift */,
+			);
+			path = BIllDetailModuleTest;
+			sourceTree = "<group>";
+		};
+		123E7E6E250BAF1700C7284B /* BillCategoryModuleTest */ = {
+			isa = PBXGroup;
+			children = (
+				123E7E71250BB01600C7284B /* BillCategoryVCTest.swift */,
+			);
+			path = BillCategoryModuleTest;
+			sourceTree = "<group>";
+		};
 		12AB7B8D24FD40EF00E2986D /* TabBarModuleTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,49 +297,6 @@
 				12B0EB6A25091F4400A67B79 /* DismissAnimation.swift */,
 			);
 			path = Animations;
-			sourceTree = "<group>";
-		};
-		12C1C04E250117250016CFCA /* NewBillModule */ = {
-			isa = PBXGroup;
-			children = (
-				12C1C0512501174F0016CFCA /* Presenters */,
-				12C1C050250117490016CFCA /* Protocols */,
-				12C1C04F250117440016CFCA /* Views */,
-			);
-			path = NewBillModule;
-			sourceTree = "<group>";
-		};
-		12C1C04F250117440016CFCA /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				12C1C052250117850016CFCA /* NewBillVC.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		12C1C050250117490016CFCA /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				12C1C054250117E30016CFCA /* INewBillVC.swift */,
-				12C1C056250117F90016CFCA /* INewBillPresenter.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		12C1C0512501174F0016CFCA /* Presenters */ = {
-			isa = PBXGroup;
-			children = (
-				12C1C058250118140016CFCA /* NewBillPresenter.swift */,
-			);
-			path = Presenters;
-			sourceTree = "<group>";
-		};
-		12C1C05C25011CEB0016CFCA /* NewBillModuleTest */ = {
-			isa = PBXGroup;
-			children = (
-				12C1C05A25011CE40016CFCA /* NewBillVC.swift */,
-			);
-			path = NewBillModuleTest;
 			sourceTree = "<group>";
 		};
 		12C674A1250A59B400D7FCA4 /* BillCategoryModule */ = {
@@ -408,7 +377,8 @@
 		12D1D5B024FD1B4E0077FEF6 /* InvoiceManagerTests */ = {
 			isa = PBXGroup;
 			children = (
-				12C1C05C25011CEB0016CFCA /* NewBillModuleTest */,
+				123E7E6E250BAF1700C7284B /* BillCategoryModuleTest */,
+				123E7E6D250BAF0400C7284B /* BIllDetailModuleTest */,
 				12D1D60424FD3CD80077FEF6 /* HomeModuleTest */,
 				12D1D60524FD3CE10077FEF6 /* CategoryModuleTest */,
 				12D1D60624FD3CED0077FEF6 /* ChartModuleProfile */,
@@ -425,6 +395,7 @@
 			children = (
 				12D1D5BD24FD1C9E0077FEF6 /* UIView+anchorConstraints.swift */,
 				12B0EB6E2509323600A67B79 /* CGPoint+Velocity.swift */,
+				123E7E75250BE3F900C7284B /* CATransition+FromBottom.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -434,7 +405,6 @@
 			children = (
 				12C674A1250A59B400D7FCA4 /* BillCategoryModule */,
 				1212F6C02507CF9E0016693B /* BillDetailsModule */,
-				12C1C04E250117250016CFCA /* NewBillModule */,
 				12D1D5D424FD22A20077FEF6 /* ProfileModule */,
 				12D1D5D324FD22960077FEF6 /* ChartModule */,
 				12D1D5D224FD22830077FEF6 /* CategoryModule */,
@@ -778,7 +748,6 @@
 				12D1D5C224FD1CFD0077FEF6 /* Router.swift in Sources */,
 				121AC3DF250A5E710099319D /* IBillCategoryPresenter.swift in Sources */,
 				12D1D5E224FD25B60077FEF6 /* HomeVC.swift in Sources */,
-				12C1C059250118140016CFCA /* NewBillPresenter.swift in Sources */,
 				12D1D5EC24FD28B00077FEF6 /* IHomePresenter.swift in Sources */,
 				12D1D5F824FD29980077FEF6 /* IChartPresenter.swift in Sources */,
 				12D1D5D024FD1F300077FEF6 /* ITabBarVC.swift in Sources */,
@@ -788,7 +757,6 @@
 				12D1D5E624FD27060077FEF6 /* ChartVC.swift in Sources */,
 				12AB7B9224FD4E6700E2986D /* Invoice.swift in Sources */,
 				12B0EB6D25092D9800A67B79 /* TransitionDriver.swift in Sources */,
-				12C1C057250117F90016CFCA /* INewBillPresenter.swift in Sources */,
 				12B0EB61250915C700A67B79 /* PanelTransition.swift in Sources */,
 				12D1D5CE24FD1F220077FEF6 /* TabBarVC.swift in Sources */,
 				12D1D5F024FD29110077FEF6 /* ICategoryVC.swift in Sources */,
@@ -804,13 +772,13 @@
 				12D1D5E824FD27260077FEF6 /* ProfleVC.swift in Sources */,
 				121AC3DD250A5E600099319D /* BillCategoryPresenter.swift in Sources */,
 				12D1D5E424FD26D80077FEF6 /* CategoryVC.swift in Sources */,
+				123E7E76250BE3F900C7284B /* CATransition+FromBottom.swift in Sources */,
 				12D1D5FE24FD29EF0077FEF6 /* IProfilePresenter.swift in Sources */,
 				129F48C824FD5A6000D9172C /* Section.swift in Sources */,
 				12C3740224FE780F005262F6 /* HomeView.swift in Sources */,
 				1212F6C52507D0400016693B /* BillDetailsPresenter.swift in Sources */,
 				1212F6BF2507B9C10016693B /* IHomeCollectionViewCell.swift in Sources */,
 				12B0EB6F2509323600A67B79 /* CGPoint+Velocity.swift in Sources */,
-				12C1C055250117E30016CFCA /* INewBillVC.swift in Sources */,
 				12D1D59F24FD1B4D0077FEF6 /* ViewController.swift in Sources */,
 				1212F6C92507D0630016693B /* IBillDetailsVC.swift in Sources */,
 				12B0EB642509171800A67B79 /* PresentationController.swift in Sources */,
@@ -825,7 +793,6 @@
 				12D1D5FA24FD29AD0077FEF6 /* ChartPresenter.swift in Sources */,
 				12D1D60024FD2A020077FEF6 /* ProfilePresenter.swift in Sources */,
 				12D1D5F424FD29430077FEF6 /* CategoryPresenter.swift in Sources */,
-				12C1C053250117850016CFCA /* NewBillVC.swift in Sources */,
 				1228B74525013AE9003822A4 /* TestData.swift in Sources */,
 				12D1D59B24FD1B4D0077FEF6 /* AppDelegate.swift in Sources */,
 				12D1D5EA24FD28A50077FEF6 /* IHomeVC.swift in Sources */,
@@ -848,8 +815,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				123E7E70250BAF4B00C7284B /* BillDetailVCTest.swift in Sources */,
+				123E7E72250BB01600C7284B /* BillCategoryVCTest.swift in Sources */,
 				12D1D60224FD3A390077FEF6 /* ProfileVCTest.swift in Sources */,
-				12C1C05B25011CE40016CFCA /* NewBillVC.swift in Sources */,
 				12AB7B8824FD3FC800E2986D /* ChartVCTest.swift in Sources */,
 				12AB7B8F24FD410600E2986D /* TabBarVCTest.swift in Sources */,
 				12AB7B8A24FD3FDB00E2986D /* CategoryVCTest.swift in Sources */,

@@ -7,5 +7,5 @@
 //
 
 protocol IBillCategoryVC: class {
-    func dismissBillCategory()
+    func dismissBillCategory(complition: (() -> ())?)
 }

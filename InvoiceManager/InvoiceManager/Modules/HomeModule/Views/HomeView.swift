@@ -148,10 +148,14 @@ class HomeView: UIView {
     
     //MARK: - Func
     
+    func refreshTableViewByIndex(invoiceIndex: Int, billIndex: Int) {
+        let cell = collectionView.cellForItem(at: IndexPath(row: invoiceIndex, section: 0)) as? HomeViewCollectionViewCell
+        cell?.refreshTableViewByBillIndex(billIndex: billIndex)
+    }
+    
     func insertNewDataInTable(index: Int) {
         let cell = collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? HomeViewCollectionViewCell
         cell?.insertNewRow()
-        
     }
     
     func viewWillTransition() {
@@ -268,7 +272,7 @@ class HomeView: UIView {
     }
     
     @objc private func addNewBill(_ sender: UIButton) {
-        presenter?.addNewBillButtonTapped(index: Int(curentPage))
+        presenter?.showBillDetail(bill: nil, billIndex: nil)
     }
     
     
@@ -324,6 +328,7 @@ extension HomeView: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageWidth = collectionView.frame.size.width
         curentPage = collectionView.contentOffset.x / pageWidth
+        presenter?.setInvoiceIndex(invoiceIndex: Int(curentPage))
     }
 }
 

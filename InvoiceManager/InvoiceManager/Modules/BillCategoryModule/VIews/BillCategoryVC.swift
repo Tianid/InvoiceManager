@@ -36,7 +36,7 @@ class BillCategoryVC: UIViewController {
 }
 
 extension BillCategoryVC: IBillCategoryVC {
-    func dismissBillCategory() {
-        self.dismiss(animated: true, completion: nil)
+    func dismissBillCategory(complition: (() -> ())?) {
+        self.dismiss(animated: true, completion: complition)
     }
 }

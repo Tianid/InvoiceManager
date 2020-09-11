@@ -11,6 +11,12 @@ enum BillState: Int {
     case expense
 }
 
+enum BillDetailsCreationState {
+    case editing
+    case creating
+    case defaultState
+}
+
 import UIKit
 
 class BillDetailsView: UIView {
@@ -121,6 +127,34 @@ class BillDetailsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     //MARK: - Func
+    
+    func updateDetailFields() {
+        guard let bill = presenter?.model else {
+            presenter?.billDetailsCreationState = .creating
+            return
+        }
+        presenter?.billDetailsCreationState = .editing
+
+        let name = bill.billName
+        var value = 0.0
+        
+        if bill.value < 0 {
+            value = bill.value * -1
+            segmentedControl.selectedSegmentIndex = 1
+        } else {
+            value = bill.value
+            segmentedControl.selectedSegmentIndex = 0
+        }
+        
+        let category = bill.category.name
+        let description = bill.billDescription
+        
+        nameTextField.text = name
+        valueTextField.text = String(value)
+        categoryTextField.text = category
+        descriptionTextField.text = description
+        
+    }
     
     func setCategory(name: String) {
         categoryTextField.text = name

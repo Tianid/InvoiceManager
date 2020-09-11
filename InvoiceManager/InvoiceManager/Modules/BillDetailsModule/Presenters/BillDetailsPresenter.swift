@@ -8,6 +8,7 @@
 
 class BillDetailsPresenter {
     //MARK: - Properties
+    var billDetailsCreationState: BillDetailsCreationState = .defaultState
     var model: Bill?
     weak var view: IBillDetailsVC?
     weak var superPresenter: IHomePresenter?
@@ -25,9 +26,18 @@ class BillDetailsPresenter {
     //MARK: - Func
 }
 
-extension BillDetailsPresenter: IBillDetailsPresenter {
+extension BillDetailsPresenter: IBillDetailsPresenter {    
     func saveButtonTapped(name: String, value: Double, billState: BillState, description: String?) {
-        guard let category = category else { return }
+        
+        var category: Category!
+        
+        if billDetailsCreationState == .editing {
+            category = model?.category
+        } else if billDetailsCreationState == .creating {
+            category = self.category
+        }
+        
+        
         let value = billState == .expense ? value * -1 : value
         
         let bill = Bill(value: value,
@@ -36,8 +46,9 @@ extension BillDetailsPresenter: IBillDetailsPresenter {
                         billDescription: description ?? "",
                         category: category)
         
-        superPresenter?.transferNewBill(bill: bill)
-        view?.dismissDetail()
+        view?.dismissDetail(complition: { [unowned self] in
+            self.superPresenter?.transferNewBill(bill: bill, billDetailsCreationState: self.billDetailsCreationState)
+        })
     }
     
     func categorySelectedWithData(category: Category) {
@@ -46,6 +57,8 @@ extension BillDetailsPresenter: IBillDetailsPresenter {
     }
     
     func categoryFieldTapped(transition: PanelTransition) {
+        
+//        router.showBillCategoryModule(transition: transition, superPresenter: self)
         guard let v = router.initBillCategoryModule(transition: transition, superPresenter: self) else { return  }
         view?.showBillCategoryModule(view: v)
     }

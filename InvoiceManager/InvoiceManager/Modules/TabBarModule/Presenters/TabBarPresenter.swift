@@ -24,9 +24,4 @@ class TabBarPresenter {
 }
 
 extension TabBarPresenter: ITabBarPresenter {
-    func newBillItemTapped() {
-        guard let vc = router.assemblyBuilder?.createNewBillModule(router: router) else { return }
-        vc.modalPresentationStyle = .fullScreen
-        view?.present(vc, animated: true)
-    }
 }
