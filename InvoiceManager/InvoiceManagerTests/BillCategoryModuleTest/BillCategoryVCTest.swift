@@ -30,9 +30,20 @@ class BillCategoryVCTest: XCTestCase {
     }
     
     func testBillCategoryVC() {
-        let view = assembly.createBillCategoryModule(router: router, transition: transition, superPresenter: nil)
+        let view = assembly.createBillCategoryModule(router: router, transition: transition, superPresenter: nil) as! BillCategoryVC
+        view.viewDidLoad()
+        view.dismissBillCategory(complition: nil)
         XCTAssertNotNil(view)
         
+    }
+    
+    func testBillCategoryPresenter() {
+        let view = assembly.createBillCategoryModule(router: router, transition: transition, superPresenter: nil)
+        
+        
+        let billCategoryPresenter = BillCategoryPresenter(view: view as! IBillCategoryVC, router: router, model: [testSingleCategory], superPresenter: nil)
+        XCTAssertNotNil(billCategoryPresenter)
+        XCTAssertNoThrow(billCategoryPresenter.categorySelected(index: 0))
     }
 
 }

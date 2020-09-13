@@ -26,14 +26,4 @@ struct Bill {
     let modifiedDate: Date
     //MARK: - Init
     //MARK: - Func
-    
-    func initWith(category: Category) -> Bill {
-        let bill = Bill(value: self.value,
-                        currency: self.currency,
-                        billName: self.billName,
-                        billDescription: self.billDescription,
-                        category: category,
-                        modifiedDate: self.modifiedDate)
-        return bill
-    }
 }
