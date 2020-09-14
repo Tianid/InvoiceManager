@@ -49,10 +49,10 @@ extension HomePresenter: IHomePresenter {
         transefBillIndex = billIndex ?? -1
         let currency = model.invoices[billInvoiceIndex].currency
         
-        //        router.showBillDetailModule(superPresenter: self, model: bill, currency: currency)
+        router.showBillDetailModule(superPresenter: self, model: bill, currency: currency)
         
-        guard let v = router.initBillDetailModule(superPresenter: self, model: bill, currency: currency) else { return }
-        view?.showBillDetail(view: v)
+//        guard let v = router.initBillDetailModule(superPresenter: self, model: bill, currency: currency) else { return }
+//        view?.showBillDetail(view: v)
     }
     
     
@@ -66,4 +66,14 @@ extension HomePresenter: IHomePresenter {
     //        guard let detail = router.initBillDetailModule(superPresenter: self, model: bill, currency: currency) else { return }
     //        view?.showBillDetail(view: detail)
     //    }
+    
+    func deleteBillInModel(bill: Bill) {
+        let index = model.invoices[billInvoiceIndex].bills.firstIndex { (model) -> Bool in
+            model == bill
+        }
+        
+        guard let billIndex = index else { return }
+        model.invoices[billInvoiceIndex].bills.removeAll { $0 == bill }
+        view?.deleteRowInTableView(invoiceIndex: billInvoiceIndex, billIndex: billIndex)
+    }
 }

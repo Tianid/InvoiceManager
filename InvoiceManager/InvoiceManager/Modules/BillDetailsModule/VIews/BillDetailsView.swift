@@ -90,7 +90,7 @@ class BillDetailsView: UIView {
     private var saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("save", for: .normal)
-        button.addTarget(self, action: #selector(saveButtonTapped(_:)), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(saveButtonTapped(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -127,6 +127,17 @@ class BillDetailsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     //MARK: - Func
+    
+    func saveButtonTapped() {
+        guard let name = nameTextField.text else { return }
+        guard let value = valueTextField.text else { return }
+        guard let dValue = Double(value) else { return }
+        let state = segmentedControl.selectedSegmentIndex
+        let description = descriptionTextField.text
+        let billState = state == BillState.income.rawValue ? BillState.income : BillState.expense
+        
+        presenter?.saveButtonTapped(name: name, value: dValue, billState: billState, description: description)
+    }
     
     func updateDetailFields() {
         guard let bill = presenter?.model else {
@@ -266,19 +277,6 @@ class BillDetailsView: UIView {
     @objc private func showCategoryActionSheet(_ sender: UIButton) {
         presenter?.categoryFieldTapped(transition: transition)
     }
-    
-    
-    @objc private func saveButtonTapped(_ sender: UIButton) {
-        guard let name = nameTextField.text else { return }
-        guard let value = valueTextField.text else { return }
-        guard let dValue = Double(value) else { return }
-        let state = segmentedControl.selectedSegmentIndex
-        let description = descriptionTextField.text
-        let billState = state == BillState.income.rawValue ? BillState.income : BillState.expense
-        
-        presenter?.saveButtonTapped(name: name, value: dValue, billState: billState, description: description)
-    }
-    
 }
 
 extension BillDetailsView: UITextViewDelegate {

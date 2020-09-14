@@ -26,6 +26,7 @@
 		123E7E70250BAF4B00C7284B /* BillDetailVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E6F250BAF4B00C7284B /* BillDetailVCTest.swift */; };
 		123E7E72250BB01600C7284B /* BillCategoryVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E71250BB01600C7284B /* BillCategoryVCTest.swift */; };
 		123E7E76250BE3F900C7284B /* CATransition+FromBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E75250BE3F900C7284B /* CATransition+FromBottom.swift */; };
+		124033CD250FB808008D2BA3 /* UINavigationController+popViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124033CC250FB808008D2BA3 /* UINavigationController+popViewController.swift */; };
 		129BC17A24FFD4D9004BD17A /* HomeViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BC17924FFD4D9004BD17A /* HomeViewCollectionViewCell.swift */; };
 		129BC17D24FFE648004BD17A /* HomeViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BC17B24FFE648004BD17A /* HomeViewTableViewCell.swift */; };
 		129BC17E24FFE648004BD17A /* HomeViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 129BC17C24FFE648004BD17A /* HomeViewTableViewCell.xib */; };
@@ -115,6 +116,7 @@
 		123E7E6F250BAF4B00C7284B /* BillDetailVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailVCTest.swift; sourceTree = "<group>"; };
 		123E7E71250BB01600C7284B /* BillCategoryVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCategoryVCTest.swift; sourceTree = "<group>"; };
 		123E7E75250BE3F900C7284B /* CATransition+FromBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransition+FromBottom.swift"; sourceTree = "<group>"; };
+		124033CC250FB808008D2BA3 /* UINavigationController+popViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+popViewController.swift"; sourceTree = "<group>"; };
 		129BC17924FFD4D9004BD17A /* HomeViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		129BC17B24FFE648004BD17A /* HomeViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewTableViewCell.swift; sourceTree = "<group>"; };
 		129BC17C24FFE648004BD17A /* HomeViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewTableViewCell.xib; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				12D1D5BD24FD1C9E0077FEF6 /* UIView+anchorConstraints.swift */,
 				12B0EB6E2509323600A67B79 /* CGPoint+Velocity.swift */,
 				123E7E75250BE3F900C7284B /* CATransition+FromBottom.swift */,
+				124033CC250FB808008D2BA3 /* UINavigationController+popViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -765,6 +768,7 @@
 				121AC3DB250A5DA90099319D /* BillCategoryVC.swift in Sources */,
 				121AC3E1250A5E8B0099319D /* IBillCategoryVC.swift in Sources */,
 				129BC17A24FFD4D9004BD17A /* HomeViewCollectionViewCell.swift in Sources */,
+				124033CD250FB808008D2BA3 /* UINavigationController+popViewController.swift in Sources */,
 				121AC3EA250A77D10099319D /* BillCategoryTableViewCell.swift in Sources */,
 				12B0EB6B25091F4400A67B79 /* DismissAnimation.swift in Sources */,
 				12F976A8250672AE008DD07C /* SPHomeViewCell.swift in Sources */,

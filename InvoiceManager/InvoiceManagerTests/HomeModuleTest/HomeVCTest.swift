@@ -89,7 +89,8 @@ class HomeVCTest: XCTestCase {
         let spHomeView = SPHomeView(superPresenter: presenter, model: invoiceContainer, view: homeView)
         
         cell.presenter = SPHomeViewCell(superPresenter: spHomeView, invoiceIndex: 0)
-        XCTAssertNoThrow(cell.insertNewRow())
+        
+        cell.presenter?.model?.append(testBills3[0])
         XCTAssertNoThrow(cell.refreshTableViewByBillIndex(billIndex: 0))
     }
 }

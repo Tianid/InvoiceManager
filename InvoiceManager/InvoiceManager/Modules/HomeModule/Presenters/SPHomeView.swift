@@ -35,7 +35,6 @@ extension SPHomeView: ISPHomeView {
     
     func generateSPHomeViewCell(index: Int) -> ISPHomeViewCell {
         let presenter = SPHomeViewCell(superPresenter: self, invoiceIndex: index)
-        print("invoice index generated for cell - \(index)")
         return presenter
     }
     

@@ -26,7 +26,15 @@ class BillDetailsPresenter {
     //MARK: - Func
 }
 
-extension BillDetailsPresenter: IBillDetailsPresenter {    
+extension BillDetailsPresenter: IBillDetailsPresenter {
+    func deleteTapped() {
+        guard let model = model, billDetailsCreationState == .editing else { return }
+        
+        router.dismissBillDetailModule { [unowned self] in
+            self.superPresenter?.deleteBillInModel(bill: model)
+        }
+    }
+    
     func saveButtonTapped(name: String, value: Double, billState: BillState, description: String?) {
         
         var category: Category!
@@ -46,7 +54,7 @@ extension BillDetailsPresenter: IBillDetailsPresenter {
                         billDescription: description ?? "",
                         category: category)
         
-        view?.dismissDetail(complition: { [unowned self] in
+        router.dismissBillDetailModule(complition: { [unowned self] in
             self.superPresenter?.transferNewBill(bill: bill, billDetailsCreationState: self.billDetailsCreationState)
         })
     }
@@ -57,9 +65,6 @@ extension BillDetailsPresenter: IBillDetailsPresenter {
     }
     
     func categoryFieldTapped(transition: PanelTransition) {
-        
-//        router.showBillCategoryModule(transition: transition, superPresenter: self)
-        guard let v = router.initBillCategoryModule(transition: transition, superPresenter: self) else { return  }
-        view?.showBillCategoryModule(view: v)
+        router.showBillCategoryModule(transition: transition, superPresenter: self)
     }
 }

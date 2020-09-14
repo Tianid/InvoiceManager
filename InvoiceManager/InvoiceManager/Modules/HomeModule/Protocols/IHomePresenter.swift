@@ -12,4 +12,5 @@ protocol IHomePresenter: class {
     func showBillDetail(bill: Bill?, billIndex: Int?)
     func transferNewBill(bill: Bill, billDetailsCreationState: BillDetailsCreationState)
     func setInvoiceInex(invoiceIndex: Int)
+    func deleteBillInModel(bill: Bill)
 }

@@ -12,4 +12,5 @@ protocol IHomeVC: class {
     func showBillDetail(view: UIViewController)
     func insertNewData(index: Int)
     func refreshTableViewRow(invoiceIndex: Int, billIndex: Int)
+    func deleteRowInTableView(invoiceIndex: Int, billIndex: Int)
 }

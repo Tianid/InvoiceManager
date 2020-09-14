@@ -21,7 +21,6 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orange
-        navigationController?.navigationBar.isHidden = true
     }
     
     override func loadView() {
@@ -37,13 +36,23 @@ class HomeVC: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-//        myCollection.collectionViewLayout.invalidateLayout()
+        //                myCollection.collectionViewLayout.invalidateLayout()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
     }
     
 }
 
 extension HomeVC: IHomeVC {
+    
+    func deleteRowInTableView(invoiceIndex: Int, billIndex: Int) {
+        homeView?.deleteRowInTableView(invoiceIndex: invoiceIndex, billIndex: billIndex)
+    }
+    
     func refreshTableViewRow(invoiceIndex: Int, billIndex: Int) {
         homeView?.refreshTableViewByIndex(invoiceIndex: invoiceIndex, billIndex: billIndex)
     }

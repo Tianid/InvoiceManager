@@ -20,6 +20,7 @@ protocol IRouter: IRouterMain {
     func initBillDetailModule(superPresenter: IHomePresenter, model: Bill?, currency: Currency) -> UIViewController?
     func showBillDetailModule(superPresenter: IHomePresenter, model: Bill?, currency: Currency)
     func showBillCategoryModule(transition: PanelTransition, superPresenter: IBillDetailsPresenter)
+    func dismissBillDetailModule(complition: (() -> ())?)
 }
 
 class Router: IRouter {
@@ -79,13 +80,17 @@ class Router: IRouter {
     
     func showBillDetailModule(superPresenter: IHomePresenter, model: Bill?, currency: Currency) {
         guard let view = assemblyBuilder?.createBillDetailsModule(router: self, superPresenter: superPresenter, model: model, currency: currency) else { return }
-        homeNavigationController?.view.layer.add(CATransition().segueFromBottom(), forKey: nil)
-        homeNavigationController?.pushViewController(view, animated: false)
+        
+        homeNavigationController?.pushViewController(view, animated: true)
     }
     
     func showBillCategoryModule(transition: PanelTransition, superPresenter: IBillDetailsPresenter) {
         guard let view = assemblyBuilder?.createBillCategoryModule(router: self, transition: transition, superPresenter: superPresenter) else { return }
         homeNavigationController?.present(view, animated: true)
         
+    }
+    
+    func dismissBillDetailModule(complition: (() -> ())? = nil) {
+        homeNavigationController?.popViewController(completion: complition)
     }
 }

@@ -148,6 +148,11 @@ class HomeView: UIView {
     
     //MARK: - Func
     
+    func deleteRowInTableView(invoiceIndex: Int, billIndex: Int) {
+        let cell = collectionView.cellForItem(at: IndexPath(row: invoiceIndex, section: 0)) as? HomeViewCollectionViewCell
+        cell?.deleteRowInTableView(billIndex: billIndex)
+    }
+    
     func refreshTableViewByIndex(invoiceIndex: Int, billIndex: Int) {
         let cell = collectionView.cellForItem(at: IndexPath(row: invoiceIndex, section: 0)) as? HomeViewCollectionViewCell
         cell?.refreshTableViewByBillIndex(billIndex: billIndex)

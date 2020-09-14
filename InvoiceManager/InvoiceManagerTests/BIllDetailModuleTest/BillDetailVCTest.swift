@@ -71,8 +71,6 @@ class BillDetailVCTest: XCTestCase {
         let billDetailView = BillDetailsView()
         billDetailView.presenter = presenter
         XCTAssertNoThrow(view.setCategory(name: "foo"))
-        XCTAssertNoThrow(view.showBillCategoryModule(view: UIViewController()))
-        XCTAssertNoThrow(view.dismissDetail(complition: nil))
         
         XCTAssertNoThrow(billDetailView.updateDetailFields())
         XCTAssertNoThrow(billDetailView.setCategory(name: "foo"))

@@ -9,7 +9,5 @@
 import UIKit
 
 protocol IBillDetailsVC: class {
-    func showBillCategoryModule(view: UIViewController)
     func setCategory(name: String)
-    func dismissDetail(complition: (() -> ())?)
 }

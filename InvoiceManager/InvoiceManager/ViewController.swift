@@ -70,7 +70,9 @@ class ViewController: UIViewController {
     }
     
     @objc private func dismissView() {
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
+        testData?.append(testBills3[0])
+        tableView.insertRows(at: [IndexPath(row: testData!.count - 1, section: 0)], with: .automatic)
     }
 }
 

@@ -10,7 +10,11 @@ import UIKit
 
 class HomeViewCollectionViewCell: UICollectionViewCell {
     //MARK: - Properties
-    var presenter: ISPHomeViewCell?
+    var presenter: ISPHomeViewCell? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     private let tableIdentifier = "tableViewCell"
     private var tableView: UITableView = {
         let table = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .plain)
@@ -34,6 +38,10 @@ class HomeViewCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Func
+    
+    func deleteRowInTableView(billIndex: Int) {
+        tableView.deleteRows(at: [IndexPath(row: billIndex, section: 0)], with: .automatic)
+    }
     
     func refreshTableViewByBillIndex(billIndex: Int) {
         tableView.reloadRows(at: [IndexPath(row: billIndex, section: 0)], with: .automatic)

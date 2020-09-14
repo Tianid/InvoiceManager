@@ -7,16 +7,7 @@
 //
 import Foundation
 
-struct Bill {
-    internal init(value: Double, currency: Currency, billName: String, billDescription: String, category: Category, modifiedDate: Date = Date()) {
-        self.value = value
-        self.currency = currency
-        self.billName = billName
-        self.billDescription = billDescription
-        self.category = category
-        self.modifiedDate = modifiedDate
-    }
-    
+struct Bill: Equatable {
     //MARK: - Properties
     let value: Double
     let currency: Currency
@@ -25,5 +16,23 @@ struct Bill {
     let category: Category
     let modifiedDate: Date
     //MARK: - Init
+    
+    internal init(value: Double, currency: Currency, billName: String, billDescription: String, category: Category, modifiedDate: Date = Date()) {
+        self.value = value
+        self.currency = currency
+        self.billName = billName
+        self.billDescription = billDescription
+        self.category = category
+        self.modifiedDate = modifiedDate
+    }
     //MARK: - Func
+    
+    static func == (lhs: Bill, rhs: Bill) -> Bool {
+        return lhs.value == rhs.value &&
+            lhs.currency == rhs.currency &&
+            lhs.billName == rhs.billName &&
+            lhs.billDescription == rhs.billDescription &&
+            lhs.category == rhs.category &&
+            lhs.modifiedDate == rhs.modifiedDate
+    }
 }

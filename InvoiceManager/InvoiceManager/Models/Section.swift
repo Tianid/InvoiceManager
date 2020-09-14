@@ -6,7 +6,7 @@
 //  Copyright © 2020 Tianid. All rights reserved.
 //
 
-struct Section {
+struct Section: Equatable {
     //MARK: - Properties
     let name: String
     //MARK: - Init

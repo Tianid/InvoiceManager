@@ -20,8 +20,7 @@ class BillDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        billDetailsView?.updateDetailFields()
+        configureViewController()
     }
     
     override func loadView() {
@@ -30,19 +29,51 @@ class BillDetailsVC: UIViewController {
         self.view = view
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
+    
+    @objc private func saveButtonTapped(_ sender: UIBarButtonItem) {
+        billDetailsView?.saveButtonTapped()
+    }
+    
+    @objc private func deleteButtonTapped(_ sender: UIBarButtonItem) {
+        
+        let alert = UIAlertController(title: nil, message: "You definitely want to delete the bill", preferredStyle: .alert)
+        
+        let yesAction = UIAlertAction(title: "Yes", style: .destructive) { [weak self] (_) in
+            self?.presenter?.deleteTapped()
+        }
+        
+        let noAction = UIAlertAction(title: "No", style: .cancel) { (_) in }
+        
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        present(alert, animated: true)
+    }
+    
+    private func configureViewController() {
+        view.backgroundColor = .white
+        hidesBottomBarWhenPushed = true
+        
+
+        self.navigationItem.setRightBarButton(UIBarButtonItem(title: "SAVE", style: .plain, target: self, action: #selector(saveButtonTapped(_:))), animated: true)
+        
+        if presenter?.model != nil {
+            if #available(iOS 13.0, *) {
+                self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteButtonTapped(_:))))
+            } else {
+                // Fallback on earlier versions
+            }
+        }
+        
+        billDetailsView?.updateDetailFields()
+    }
 }
 
-extension BillDetailsVC: IBillDetailsVC {
-    
-    func dismissDetail(complition: (() -> ())?) {
-        dismiss(animated: true, completion: complition)
-    }
-    
+extension BillDetailsVC: IBillDetailsVC {    
     func setCategory(name: String) {
         billDetailsView?.setCategory(name: name)
-    }
-    
-    func showBillCategoryModule(view: UIViewController) {
-        present(view, animated: true)
     }
 }
