@@ -12,10 +12,13 @@ class HomeView: UIView {
     //MARK: - Properties
     var presenter: ISPHomeView?
     private let identifier = "collectionViewIdentifier"
+    private let newInvoiceIdentifier = "NewInvoiceCellIdentifier"
     
     private var curentPage: CGFloat = 0 {
         didSet {
-            setupInvoiceData()
+            if Int(curentPage) <= (presenter?.model.invoices.count)! - 1 {
+                setupInvoiceData()
+            }
         }
     }
     private let headerViewHeightConst = 200
@@ -264,6 +267,7 @@ class HomeView: UIView {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(HomeViewCollectionViewCell.self, forCellWithReuseIdentifier: identifier)
+        collectionView.register(NewInvoiceCollectionViewCell.self, forCellWithReuseIdentifier: newInvoiceIdentifier)
         
         
     }
@@ -291,10 +295,17 @@ class HomeView: UIView {
 //MARK: - UICollectionViewDataSource
 extension HomeView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter?.model.invoices.count ?? 0
+        guard let count = presenter?.model.invoices.count else { return 1}
+        return count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if indexPath.row > (presenter?.model.invoices.count)! - 1 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: newInvoiceIdentifier, for: indexPath) as? NewInvoiceCollectionViewCell
+            return cell!
+        }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? HomeViewCollectionViewCell
         cell?.presenter = presenter?.generateSPHomeViewCell(index: indexPath.row)
         //        cell?.testData = presenter?.model[indexPath.row].bills
@@ -333,7 +344,9 @@ extension HomeView: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageWidth = collectionView.frame.size.width
         curentPage = collectionView.contentOffset.x / pageWidth
-        presenter?.setInvoiceIndex(invoiceIndex: Int(curentPage))
+        if (presenter?.model.invoices.count)! - 1 <= Int(curentPage){
+            presenter?.setInvoiceIndex(invoiceIndex: Int(curentPage))
+        }
     }
 }
 

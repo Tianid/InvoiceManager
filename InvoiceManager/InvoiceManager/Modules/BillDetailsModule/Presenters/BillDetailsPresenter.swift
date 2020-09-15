@@ -45,6 +45,7 @@ extension BillDetailsPresenter: IBillDetailsPresenter {
             category = self.category
         }
         
+        guard let _ = category else { return }
         
         let value = billState == .expense ? value * -1 : value
         
