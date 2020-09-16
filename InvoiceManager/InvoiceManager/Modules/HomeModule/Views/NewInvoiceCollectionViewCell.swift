@@ -10,11 +10,12 @@ import UIKit
 
 class NewInvoiceCollectionViewCell: UICollectionViewCell {
     //MARK: - Properties
+    var presenter: ISPHomeView?
     private var addInvoiceButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("+", for: .normal)
+        button.setImage(UIImage(named: "plus"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .blue
+        button.backgroundColor = .clear
         return button
     }()
     
@@ -23,6 +24,7 @@ class NewInvoiceCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureConstraint()
+        configureButton()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -38,6 +40,14 @@ class NewInvoiceCollectionViewCell: UICollectionViewCell {
                                 leading: safeAreaLayoutGuide.leadingAnchor,
                                 bottom: safeAreaLayoutGuide.bottomAnchor,
                                 trailing: safeAreaLayoutGuide.trailingAnchor)
+    }
+    
+    private func configureButton() {
+        addInvoiceButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+    }
+    
+    @objc private func buttonTapped(_ sender: UIButton) {
+        presenter?.newInvoiceButtonTapped()
     }
     
 }

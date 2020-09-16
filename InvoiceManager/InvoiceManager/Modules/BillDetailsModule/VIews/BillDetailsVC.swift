@@ -11,6 +11,16 @@ import UIKit
 class BillDetailsVC: UIViewController {
     //MARK: - Properties
     var presenter: IBillDetailsPresenter?
+    
+    override var hidesBottomBarWhenPushed: Bool {
+        get {
+            return navigationController?.topViewController == self
+        }
+        set {
+            super.hidesBottomBarWhenPushed = newValue
+        }
+    }
+    
     private var billDetailsView: BillDetailsView? {
         guard isViewLoaded else { return nil }
         return (self.view as! BillDetailsView)
@@ -55,9 +65,7 @@ class BillDetailsVC: UIViewController {
     
     private func configureViewController() {
         view.backgroundColor = .white
-        hidesBottomBarWhenPushed = true
         
-
         self.navigationItem.setRightBarButton(UIBarButtonItem(title: "SAVE", style: .plain, target: self, action: #selector(saveButtonTapped(_:))), animated: true)
         
         if presenter?.model != nil {

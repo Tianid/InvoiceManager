@@ -6,7 +6,7 @@
 //  Copyright © 2020 Tianid. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class HomePresenter {
     //MARK: - Properties
@@ -27,6 +27,19 @@ class HomePresenter {
 }
 
 extension HomePresenter: IHomePresenter {
+    func addNewInvoice(data: (String, Currency)) {
+        model.invoices.append(Invoice(data: data))
+        view?.insertNewInvoice()
+    }
+    
+    func showNewInvoice() {
+        router.showNewInvoiceModule(superPresenter: self)
+    }
+    
+    func presentAlert(alert: UIAlertController) {
+        view?.showViewController(view: alert)
+    }
+    
     func setInvoiceInex(invoiceIndex: Int) {
         self.billInvoiceIndex = invoiceIndex
     }

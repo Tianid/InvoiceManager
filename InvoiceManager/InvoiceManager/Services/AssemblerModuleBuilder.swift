@@ -17,6 +17,7 @@ protocol IAssembleBuilder {
     func createProfileModule(router: IRouter) -> UIViewController
     func createBillDetailsModule(router: IRouter, superPresenter: IHomePresenter?, model: Bill?, currency: Currency) -> UIViewController
     func createBillCategoryModule(router: IRouter, transition: PanelTransition, superPresenter: IBillDetailsPresenter?) -> UIViewController
+    func createNewInvoiceModule(router: IRouter, superPresenter: IHomePresenter?) -> UIViewController
 }
 
 class AssemblerModuleBuilder: IAssembleBuilder {
@@ -73,6 +74,14 @@ class AssemblerModuleBuilder: IAssembleBuilder {
         view.presenter = presenter
         return view
     }
+    
+    func createNewInvoiceModule(router: IRouter, superPresenter: IHomePresenter?) -> UIViewController {
+        let view = NewInvoiceVC()
+        let presenter = NewInvoicePresenter(view: view, router: router, superPresenter: superPresenter)
+        view.presenter = presenter
+        return view
+    }
+
 
 
 }

@@ -14,6 +14,8 @@ class HomeView: UIView {
     private let identifier = "collectionViewIdentifier"
     private let newInvoiceIdentifier = "NewInvoiceCellIdentifier"
     
+    private var moreTransition = PanelTransition()
+    
     private var curentPage: CGFloat = 0 {
         didSet {
             if Int(curentPage) <= (presenter?.model.invoices.count)! - 1 {
@@ -135,6 +137,18 @@ class HomeView: UIView {
         return button
     }()
     
+    private var moreButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(openMoreMenu(_:)), for: .touchUpInside)
+        if #available(iOS 13.0, *) {
+            button.setImage(UIImage(systemName: "slider.horizontal.3"), for: .normal)
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        return button
+    }()
     
     
     //MARK: - Init
@@ -142,7 +156,6 @@ class HomeView: UIView {
         super.init(frame: frame)
         configureViewsConstraint()
         configureCollectionView()
-        setupInvoiceData()
     }
     
     required init?(coder: NSCoder) {
@@ -150,6 +163,16 @@ class HomeView: UIView {
     }
     
     //MARK: - Func
+    
+    func insertNewInvoice() {
+        let indexPath = IndexPath(row: (presenter?.model.invoices.count)! - 1, section: 0)
+        collectionView.insertItems(at: [indexPath])
+        refreshUIData()
+    }
+    
+    func refreshUIData() {
+        setupInvoiceData()
+    }
     
     func deleteRowInTableView(invoiceIndex: Int, billIndex: Int) {
         let cell = collectionView.cellForItem(at: IndexPath(row: invoiceIndex, section: 0)) as? HomeViewCollectionViewCell
@@ -180,7 +203,9 @@ class HomeView: UIView {
         headerView.addSubview(invoiceNameLabel)
         headerView.addSubview(invoiceBalanceLabel)
         headerView.addSubview(incomeExpenseContainer)
-
+        headerView.addSubview(moreButton)
+        
+        
         incomeExpenseContainer.addSubview(invoiceIncomeImageView)
         incomeExpenseContainer.addSubview(invoiceIncomeWordLabel)
         incomeExpenseContainer.addSubview(invoiceIncomeCounterLabel)
@@ -193,44 +218,47 @@ class HomeView: UIView {
         
         
         
+        
         headerView.anchor(top: safeAreaLayoutGuide.topAnchor,
                           leading: safeAreaLayoutGuide.leadingAnchor,
                           trailing: safeAreaLayoutGuide.trailingAnchor,
                           size: CGSize(width: 0, height: headerViewHeightConst))
-
+        
         invoiceNameLabel.anchor(top: headerView.topAnchor,
                                 padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0),
                                 centerX: headerView.centerXAnchor
         )
-
+        
         invoiceBalanceLabel.anchor(top: invoiceNameLabel.bottomAnchor,
                                    centerX: invoiceNameLabel.centerXAnchor)
-
-
-
+        
+        
+        
         incomeExpenseContainer.anchor(top: invoiceBalanceLabel.bottomAnchor,
                                       leading: headerView.leadingAnchor,
                                       trailing: headerView.trailingAnchor,
                                       padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8),
                                       size: CGSize(width: headerView.frame.size.width, height: 100))
-
-
-
-
+        
+        moreButton.anchor(top: invoiceNameLabel.topAnchor,
+                          bottom: invoiceNameLabel.bottomAnchor,
+                          trailing: incomeExpenseContainer.trailingAnchor)
+        
+        
         //MARK: 6 items in incomeExpenseContainer
         invoiceIncomeImageView.anchor(top: incomeExpenseContainer.topAnchor,
                                       leading: incomeExpenseContainer.leadingAnchor,
                                       padding: UIEdgeInsets(top: 4, left: 4, bottom: 0, right: 0),
                                       size: CGSize(width: 25, height: 25))
-
+        
         invoiceIncomeWordLabel.anchor(top: invoiceIncomeImageView.topAnchor,
                                       leading: invoiceIncomeImageView.trailingAnchor,
                                       padding: UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 0),
                                       centerY: invoiceIncomeImageView.centerYAnchor)
-
+        
         invoiceIncomeCounterLabel.anchor(top: invoiceIncomeWordLabel.bottomAnchor,
                                          leading: invoiceIncomeWordLabel.leadingAnchor)
-
+        
         invoiceExpenseImageView.anchor(top: invoiceIncomeImageView.topAnchor,
                                        leading: invoiceIncomeWordLabel.trailingAnchor,
                                        size: CGSize(width: 25, height: 25))
@@ -239,17 +267,18 @@ class HomeView: UIView {
                                        trailing: incomeExpenseContainer.trailingAnchor,
                                        padding: UIEdgeInsets(top: 4, left: 4, bottom: 0, right: 2),
                                        centerY: invoiceExpenseImageView.centerYAnchor)
-
+        
         invoiceExpenseCounterLabel.anchor(top: invoiceIncomeWordLabel.bottomAnchor,
                                           leading: invoiceExpenseWordLabel.leadingAnchor,
                                           trailing: incomeExpenseContainer.trailingAnchor)
-
+        
+        
         collectionPanel.anchor(top: incomeExpenseContainer.bottomAnchor,
                                leading: incomeExpenseContainer.leadingAnchor,
                                bottom: headerView.bottomAnchor,
                                trailing: incomeExpenseContainer.trailingAnchor
-                               )
-
+        )
+        
         addButton.anchor(top: collectionPanel.safeAreaLayoutGuide.topAnchor,
                          leading: collectionPanel.leadingAnchor,
                          trailing: collectionPanel.trailingAnchor)
@@ -273,8 +302,9 @@ class HomeView: UIView {
     }
     
     private func setupInvoiceData() {
-        guard curentPage <= CGFloat(testInvoices.count) else { return }
-        let data = testInvoices[Int(curentPage)]
+        guard let count = presenter?.model.invoices.count else { return }
+        guard curentPage <= CGFloat(count) else { return }
+        guard let data = presenter?.model.invoices[Int(curentPage)] else { return }
         invoiceNameLabel.text = data.name
         invoiceBalanceLabel.text = String(data.balance)
         
@@ -282,6 +312,49 @@ class HomeView: UIView {
     
     @objc private func addNewBill(_ sender: UIButton) {
         presenter?.showBillDetail(bill: nil, billIndex: nil)
+    }
+    
+    @objc private func openMoreMenu(_ sender: UIButton) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let renameAction = UIAlertAction(title: "Rename invoice", style: .default) { (_) in
+            self.showRenameAlert()
+        }
+        
+        let deleteAction = UIAlertAction(title: "Delete invoice", style: .default) { (_) in
+            self.presenter?.deleteInvoice(invoiceIndex: Int(self.curentPage), complition: { [weak self] in
+                self?.collectionView.deleteItems(at: [IndexPath(row: Int(self!.curentPage), section: 0)])
+                if self!.curentPage != 0 {
+                    self!.curentPage -= 1
+                }
+                self?.setupInvoiceData()
+            })
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(renameAction)
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        
+        presenter?.presentAlert(alert: alert)
+    }
+    
+    private func showRenameAlert() {
+        let alert = UIAlertController(title: "Rename invoice", message: nil, preferredStyle: .alert)
+        alert.addTextField { [unowned self] (textField) in
+            textField.text = self.presenter?.model.invoices[Int(self.curentPage)].name
+        }
+        
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let text = alert?.textFields![0].text
+            self.presenter?.setNewName(name: text!, invoiceIndex: Int(self.curentPage), complition: { [weak self] in
+                self?.setupInvoiceData()
+            })            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        presenter?.presentAlert(alert: alert)
     }
     
     
@@ -303,6 +376,7 @@ extension HomeView: UICollectionViewDataSource {
         
         if indexPath.row > (presenter?.model.invoices.count)! - 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: newInvoiceIdentifier, for: indexPath) as? NewInvoiceCollectionViewCell
+            cell?.presenter = presenter
             return cell!
         }
         

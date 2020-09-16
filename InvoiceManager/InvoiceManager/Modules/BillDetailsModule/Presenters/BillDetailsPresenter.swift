@@ -30,7 +30,7 @@ extension BillDetailsPresenter: IBillDetailsPresenter {
     func deleteTapped() {
         guard let model = model, billDetailsCreationState == .editing else { return }
         
-        router.dismissBillDetailModule { [unowned self] in
+        router.dismissModuleFromHomeNavigation { [unowned self] in
             self.superPresenter?.deleteBillInModel(bill: model)
         }
     }
@@ -55,7 +55,7 @@ extension BillDetailsPresenter: IBillDetailsPresenter {
                         billDescription: description ?? "",
                         category: category)
         
-        router.dismissBillDetailModule(complition: { [unowned self] in
+        router.dismissModuleFromHomeNavigation(complition: { [unowned self] in
             self.superPresenter?.transferNewBill(bill: bill, billDetailsCreationState: self.billDetailsCreationState)
         })
     }

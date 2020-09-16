@@ -72,3 +72,6 @@ var testInvoices = [
     Invoice(name: "TEST INVOICE #5", balance: 0, bills: testBills5, income: 0, expense: 0, currency: .RUB),
     Invoice(name: "TEST INVOICE #6", balance: 0, bills: testBills6, income: 0, expense: 0, currency: .RUB)
 ]
+
+
+var testCurrency: [Currency] = [.EUR, .GBP, .RUB, .USD]

@@ -33,32 +33,48 @@ class ViewController: UIViewController {
         return button
     }()
     
+    private var dropMenu: DropDownMenu = {
+       return DropDownMenu()
+    }()
+    
      var testData: [Bill]? = testBills1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .orange
-        view.addSubview(tableView)
-        view.addSubview(someView)
-        someView.addSubview(dismissButton)
+        view.addSubview(dropMenu)
+        dropMenu.dataSourse = [.EUR, .GBP, .RUB, .USD]
         
-        someView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
-                        leading: view.safeAreaLayoutGuide.leadingAnchor,
-                        trailing: view.safeAreaLayoutGuide.trailingAnchor,
-                        size: CGSize(width: 0, height: 300))
-
-        tableView.anchor(top: someView.safeAreaLayoutGuide.bottomAnchor,
-                         leading: view.safeAreaLayoutGuide.leadingAnchor,
-                         bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                         trailing: view.safeAreaLayoutGuide.trailingAnchor,
-                         padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8))
-
-        dismissButton.anchor(top: someView.topAnchor,
-                             leading: someView.leadingAnchor,
-                             trailing: someView.trailingAnchor,
-                             size: CGSize(width: 0, height: 50))
-
-        configureTableVIew()
+//        dropMenu.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+//                        leading: view.safeAreaLayoutGuide.leadingAnchor,
+//                        trailing: view.safeAreaLayoutGuide.trailingAnchor)
+        
+        dropMenu.anchor(size: CGSize(width: 100, height: 0), centerX: view.centerXAnchor)
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideDropMenu)))
+        
+        
+//        view.addSubview(tableView)
+//        view.addSubview(someView)
+//        someView.addSubview(dismissButton)
+//
+//        someView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+//                        leading: view.safeAreaLayoutGuide.leadingAnchor,
+//                        trailing: view.safeAreaLayoutGuide.trailingAnchor,
+//                        size: CGSize(width: 0, height: 300))
+//
+//        tableView.anchor(top: someView.safeAreaLayoutGuide.bottomAnchor,
+//                         leading: view.safeAreaLayoutGuide.leadingAnchor,
+//                         bottom: view.safeAreaLayoutGuide.bottomAnchor,
+//                         trailing: view.safeAreaLayoutGuide.trailingAnchor,
+//                         padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8))
+//
+//        dismissButton.anchor(top: someView.topAnchor,
+//                             leading: someView.leadingAnchor,
+//                             trailing: someView.trailingAnchor,
+//                             size: CGSize(width: 0, height: 50))
+//
+//        configureTableVIew()
         
     }
     
@@ -68,7 +84,9 @@ class ViewController: UIViewController {
         tableView.register(UINib(nibName: "\(HomeViewTableViewCell.self)", bundle: nil ), forCellReuseIdentifier: tableIdentifier)
         tableView.backgroundColor = .red
     }
-    
+    @objc private func hideDropMenu() {
+//        let _ = dropMenu.endEditing(true)
+    }
     @objc private func dismissView() {
 //        self.dismiss(animated: true, completion: nil)
         testData?.append(testBills3[0])

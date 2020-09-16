@@ -26,7 +26,15 @@ struct Invoice {
         self.expense = expense
         self.currency = currency
     }
-    //MARK: - Func
     
+    init(data: (String, Currency)) {
+        self.name = data.0
+        self.balance = 0
+        self.bills = []
+        self.income = 0
+        self.expense = 0
+        self.currency = data.1
+    }
+    //MARK: - Func
     
 }

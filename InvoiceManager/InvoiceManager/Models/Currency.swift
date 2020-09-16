@@ -8,6 +8,6 @@
 
 
 
-enum Currency {
+enum Currency: String {
     case EUR, RUB, USD, GBP
 }

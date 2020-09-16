@@ -21,6 +21,7 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orange
+        homeView?.refreshUIData()
     }
     
     override func loadView() {
@@ -48,6 +49,9 @@ class HomeVC: UIViewController {
 }
 
 extension HomeVC: IHomeVC {
+    func insertNewInvoice() {
+        homeView?.insertNewInvoice()
+    }
     
     func deleteRowInTableView(invoiceIndex: Int, billIndex: Int) {
         homeView?.deleteRowInTableView(invoiceIndex: invoiceIndex, billIndex: billIndex)
@@ -61,7 +65,7 @@ extension HomeVC: IHomeVC {
         homeView?.insertNewDataInTable(index: index)
     }
     
-    func showBillDetail(view: UIViewController) {
+    func showViewController(view: UIViewController) {
         self.present(view, animated: true)
     }
 }
