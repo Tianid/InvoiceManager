@@ -167,6 +167,7 @@ class HomeView: UIView {
     func insertNewInvoice() {
         let indexPath = IndexPath(row: (presenter?.model.invoices.count)! - 1, section: 0)
         collectionView.insertItems(at: [indexPath])
+        presenter?.setInvoiceIndex(invoiceIndex: Int(curentPage))
         refreshUIData()
     }
     
@@ -177,16 +178,19 @@ class HomeView: UIView {
     func deleteRowInTableView(invoiceIndex: Int, billIndex: Int) {
         let cell = collectionView.cellForItem(at: IndexPath(row: invoiceIndex, section: 0)) as? HomeViewCollectionViewCell
         cell?.deleteRowInTableView(billIndex: billIndex)
+        refreshUIData()
     }
     
     func refreshTableViewByIndex(invoiceIndex: Int, billIndex: Int) {
         let cell = collectionView.cellForItem(at: IndexPath(row: invoiceIndex, section: 0)) as? HomeViewCollectionViewCell
         cell?.refreshTableViewByBillIndex(billIndex: billIndex)
+        refreshUIData()
     }
     
     func insertNewDataInTable(index: Int) {
         let cell = collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? HomeViewCollectionViewCell
         cell?.insertNewRow()
+        refreshUIData()
     }
     
     func viewWillTransition() {
@@ -307,6 +311,8 @@ class HomeView: UIView {
         guard let data = presenter?.model.invoices[Int(curentPage)] else { return }
         invoiceNameLabel.text = data.name
         invoiceBalanceLabel.text = String(data.balance)
+        invoiceIncomeCounterLabel.text = String(data.income)
+        invoiceExpenseCounterLabel.text = String(data.expense)
         
     }
     
@@ -418,7 +424,7 @@ extension HomeView: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageWidth = collectionView.frame.size.width
         curentPage = collectionView.contentOffset.x / pageWidth
-        if (presenter?.model.invoices.count)! - 1 <= Int(curentPage){
+        if Int(curentPage) <= (presenter?.model.invoices.count)! - 1 {
             presenter?.setInvoiceIndex(invoiceIndex: Int(curentPage))
         }
     }

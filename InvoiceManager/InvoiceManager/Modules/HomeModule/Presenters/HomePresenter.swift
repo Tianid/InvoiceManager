@@ -49,11 +49,11 @@ extension HomePresenter: IHomePresenter {
         
         
         if billDetailsCreationState == .editing {
-            model.invoices[billInvoiceIndex].bills[transefBillIndex] = bill
+            model.invoices[billInvoiceIndex].setupNewData(index: transefBillIndex, newValue: bill)
             view?.refreshTableViewRow(invoiceIndex: billInvoiceIndex, billIndex: transefBillIndex)
             
         } else if billDetailsCreationState == .creating {
-            model.invoices[billInvoiceIndex].bills.append(bill)
+            model.invoices[billInvoiceIndex].setupNewData(newValue: bill)
             view?.insertNewData(index: billInvoiceIndex)
         }
     }
@@ -86,7 +86,7 @@ extension HomePresenter: IHomePresenter {
         }
         
         guard let billIndex = index else { return }
-        model.invoices[billInvoiceIndex].bills.removeAll { $0 == bill }
+        model.invoices[billInvoiceIndex].deleteDataByIndex(index: billIndex)
         view?.deleteRowInTableView(invoiceIndex: billInvoiceIndex, billIndex: billIndex)
     }
 }
