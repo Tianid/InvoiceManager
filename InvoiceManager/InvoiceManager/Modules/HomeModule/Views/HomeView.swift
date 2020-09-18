@@ -30,7 +30,7 @@ class HomeView: UIView {
         let view = UIView()
         view.layer.borderWidth = 1
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .brown
+        view.backgroundColor = .white
         
         return view
     }()
@@ -53,8 +53,14 @@ class HomeView: UIView {
     private var invoiceIncomeImageView: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .red
-        imageView.layer.borderWidth = 2
+        if #available(iOS 13.0, *) {
+            imageView.image = UIImage(systemName: "arrow.down.left.circle")
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = .green
         
         return imageView
     }()
@@ -77,8 +83,15 @@ class HomeView: UIView {
     private var invoiceExpenseImageView: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .red
-        imageView.layer.borderWidth = 2
+        if #available(iOS 13.0, *) {
+            imageView.image = UIImage(systemName: "arrow.up.right.circle")
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = .red
+        
         return imageView
     }()
     
@@ -99,7 +112,7 @@ class HomeView: UIView {
     private var incomeExpenseContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.borderWidth = 2
+        //        view.layer.borderWidth = 2
         view.backgroundColor = .clear
         return view
     }()
@@ -119,8 +132,8 @@ class HomeView: UIView {
     private var collectionPanel: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.borderWidth = 1
-        view.backgroundColor = .red
+        //        view.layer.borderWidth = 1
+        //        view.backgroundColor = .red
         return view
     }()
     
@@ -133,7 +146,7 @@ class HomeView: UIView {
         } else {
             // Fallback on earlier versions
         }
-        button.backgroundColor = .green
+        //        button.backgroundColor = .green
         return button
     }()
     
@@ -150,12 +163,18 @@ class HomeView: UIView {
         return button
     }()
     
+    private var mockView: UIView? = {
+        let view = generateMockView()
+        return view
+    }()
+    
     
     //MARK: - Init
     override init(frame: CGRect = CGRect()) {
         super.init(frame: frame)
         configureViewsConstraint()
         configureCollectionView()
+        configureUI()
     }
     
     required init?(coder: NSCoder) {
@@ -226,7 +245,8 @@ class HomeView: UIView {
         headerView.anchor(top: safeAreaLayoutGuide.topAnchor,
                           leading: safeAreaLayoutGuide.leadingAnchor,
                           trailing: safeAreaLayoutGuide.trailingAnchor,
-                          size: CGSize(width: 0, height: headerViewHeightConst))
+                          padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8),
+                          size: CGSize(width: 0, height: 0))
         
         invoiceNameLabel.anchor(top: headerView.topAnchor,
                                 padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0),
@@ -242,7 +262,7 @@ class HomeView: UIView {
                                       leading: headerView.leadingAnchor,
                                       trailing: headerView.trailingAnchor,
                                       padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8),
-                                      size: CGSize(width: headerView.frame.size.width, height: 100))
+                                      size: CGSize(width: headerView.frame.size.width, height: 0))
         
         moreButton.anchor(top: invoiceNameLabel.topAnchor,
                           bottom: invoiceNameLabel.bottomAnchor,
@@ -261,7 +281,8 @@ class HomeView: UIView {
                                       centerY: invoiceIncomeImageView.centerYAnchor)
         
         invoiceIncomeCounterLabel.anchor(top: invoiceIncomeWordLabel.bottomAnchor,
-                                         leading: invoiceIncomeWordLabel.leadingAnchor)
+                                         leading: invoiceIncomeWordLabel.leadingAnchor,
+                                         bottom: incomeExpenseContainer.bottomAnchor)
         
         invoiceExpenseImageView.anchor(top: invoiceIncomeImageView.topAnchor,
                                        leading: invoiceIncomeWordLabel.trailingAnchor,
@@ -280,20 +301,22 @@ class HomeView: UIView {
         collectionPanel.anchor(top: incomeExpenseContainer.bottomAnchor,
                                leading: incomeExpenseContainer.leadingAnchor,
                                bottom: headerView.bottomAnchor,
-                               trailing: incomeExpenseContainer.trailingAnchor
+                               trailing: incomeExpenseContainer.trailingAnchor,
+                               padding: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)
         )
         
-        addButton.anchor(top: collectionPanel.safeAreaLayoutGuide.topAnchor,
+        addButton.anchor(top: collectionPanel.topAnchor,
                          leading: collectionPanel.leadingAnchor,
+                         bottom:  collectionPanel.bottomAnchor,
                          trailing: collectionPanel.trailingAnchor)
         
         //MARK: collectionView constraints
         
         collectionView.anchor(top: headerView.safeAreaLayoutGuide.bottomAnchor,
-                              leading: safeAreaLayoutGuide.leadingAnchor,
+                              leading: headerView.leadingAnchor,
                               bottom: bottomAnchor,
-                              trailing: safeAreaLayoutGuide.trailingAnchor,
-                              padding: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0))
+                              trailing: headerView.trailingAnchor,
+                              padding: UIEdgeInsets(top: -13, left: 0, bottom: 20, right: 0))
     }
     
     private func configureCollectionView() {
@@ -303,6 +326,10 @@ class HomeView: UIView {
         collectionView.register(NewInvoiceCollectionViewCell.self, forCellWithReuseIdentifier: newInvoiceIdentifier)
         
         
+    }
+    
+    private func configureUI() {
+        headerView.layer.cornerRadius = CGFloat(headerViewHeightConst / 10)
     }
     
     private func setupInvoiceData() {
@@ -363,6 +390,21 @@ class HomeView: UIView {
         presenter?.presentAlert(alert: alert)
     }
     
+    private func isNeedToInitMockView(_ value: Bool) {
+        if value && mockView == nil {
+            let view = HomeView.generateMockView()
+            headerView.addSubview(view)
+            view.anchor(top: headerView.topAnchor,
+                        leading: headerView.leadingAnchor,
+                        bottom: headerView.bottomAnchor,
+                        trailing: headerView.trailingAnchor)
+            view.layer.cornerRadius = CGFloat(headerViewHeightConst / 10)
+            mockView = view
+        } else {
+            mockView?.removeFromSuperview()
+            mockView = nil
+        }
+    }
     
     override func layoutSubviews() {
         
@@ -426,6 +468,9 @@ extension HomeView: UIScrollViewDelegate {
         curentPage = collectionView.contentOffset.x / pageWidth
         if Int(curentPage) <= (presenter?.model.invoices.count)! - 1 {
             presenter?.setInvoiceIndex(invoiceIndex: Int(curentPage))
+            isNeedToInitMockView(false)
+        } else {
+            isNeedToInitMockView(true)
         }
     }
 }
@@ -435,5 +480,16 @@ extension HomeView: IHomeView {
         guard let cell = collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? IHomeViewCollectionViewCell else { return }
         cell.insertNewRow()
         
+    }
+    
+    fileprivate static func generateMockView() -> UIView {
+        let view = UIView()
+        let label = UILabel()
+        label.text = "Create new Invoice"
+        view.addSubview(label)
+        label.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        return view
     }
 }

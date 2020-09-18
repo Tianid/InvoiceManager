@@ -16,6 +16,8 @@ class NewInvoiceCollectionViewCell: UICollectionViewCell {
         button.setImage(UIImage(named: "plus"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .clear
+        button.layer.borderWidth = 3
+        button.layer.borderColor  = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
         return button
     }()
     
@@ -25,6 +27,7 @@ class NewInvoiceCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         configureConstraint()
         configureButton()
+        configureUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,10 +39,18 @@ class NewInvoiceCollectionViewCell: UICollectionViewCell {
     private func configureConstraint() {
         contentView.addSubview(addInvoiceButton)
         
-        addInvoiceButton.anchor(top: safeAreaLayoutGuide.topAnchor,
-                                leading: safeAreaLayoutGuide.leadingAnchor,
-                                bottom: safeAreaLayoutGuide.bottomAnchor,
-                                trailing: safeAreaLayoutGuide.trailingAnchor)
+//        addInvoiceButton.anchor(top: safeAreaLayoutGuide.topAnchor,
+//                                leading: safeAreaLayoutGuide.leadingAnchor,
+//                                bottom: safeAreaLayoutGuide.bottomAnchor,
+//                                trailing: safeAreaLayoutGuide.trailingAnchor)
+        
+        addInvoiceButton.anchor(size: CGSize(width: 100, height: 100),
+                                centerX: centerXAnchor,
+                                centerY: centerYAnchor)
+    }
+    
+    private func configureUI() {
+        addInvoiceButton.layer.cornerRadius = 50 / 4
     }
     
     private func configureButton() {
