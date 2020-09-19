@@ -37,21 +37,80 @@ class ViewController: UIViewController {
        return DropDownMenu()
     }()
     
+    private var nameTextField: DTTextField = {
+        let text = DTTextField()
+        text.translatesAutoresizingMaskIntoConstraints = false
+        text.placeholder = "Category"
+        text.isEnabled = true
+        //        text.addTarget(self, action: #selector(showCategoryActionSheet(_:)), for: .touchDown)
+        return text
+    }()
+    
+    private var valueTextField: DTTextField = {
+        let text = DTTextField()
+        text.translatesAutoresizingMaskIntoConstraints = false
+        text.placeholder = "Category"
+        text.isEnabled = true
+        //        text.addTarget(self, action: #selector(showCategoryActionSheet(_:)), for: .touchDown)
+        return text
+    }()
+    
+    private var categoryTextField: DTTextField = {
+        let text = DTTextField()
+        text.translatesAutoresizingMaskIntoConstraints = false
+        text.placeholder = "Category"
+        text.isEnabled = true
+        //        text.addTarget(self, action: #selector(showCategoryActionSheet(_:)), for: .touchDown)
+        return text
+    }()
      var testData: [Bill]? = testBills1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .orange
-        view.addSubview(dropMenu)
+//        view.addSubview(dropMenu)
+        view.addSubview(nameTextField)
+//        view.addSubview(valueTextField)
+//        view.addSubview(categoryTextField)
         dropMenu.dataSourse = [.EUR, .GBP, .RUB, .USD]
+        nameTextField.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(test), name: UIResponder.keyboardWillShowNotification, object: nil)
         
 //        dropMenu.anchor(top: view.safeAreaLayoutGuide.topAnchor,
 //                        leading: view.safeAreaLayoutGuide.leadingAnchor,
 //                        trailing: view.safeAreaLayoutGuide.trailingAnchor)
         
-        dropMenu.anchor(size: CGSize(width: 100, height: 0), centerX: view.centerXAnchor)
+//        dropMenu.anchor(size: CGSize(width: 100, height: 0), centerX: view.centerXAnchor)
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideDropMenu)))
+        
+        
+//        nameTextField.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+//                             leading: view.safeAreaLayoutGuide.leadingAnchor,
+//                             trailing: view.safeAreaLayoutGuide.trailingAnchor,
+//                             padding: UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0))
+        
+
+        
+        nameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant:  50).isActive = true
+        nameTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant:  8).isActive = true
+        nameTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant:  -8).isActive = true
+        nameTextField.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+
+
+        
+
+//        valueTextField.anchor(top: nameTextField.bottomAnchor,
+//                              leading: view.safeAreaLayoutGuide.leadingAnchor,
+//                              trailing: view.safeAreaLayoutGuide.trailingAnchor,
+//                              padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right:8))
+//
+//        categoryTextField.anchor(top: valueTextField.bottomAnchor,
+//                                 leading: valueTextField.leadingAnchor,
+//                                 trailing: valueTextField.trailingAnchor,
+//                                 padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        
         
         
 //        view.addSubview(tableView)
@@ -76,6 +135,10 @@ class ViewController: UIViewController {
 //
 //        configureTableVIew()
         
+    }
+    
+    @objc func test(notification: NSNotification) {
+        print("test")
     }
     
     private func configureTableVIew() {
@@ -110,6 +173,12 @@ extension ViewController: UITableViewDataSource {
         cell?.billValueLabel.text = String(data.value)
         //        cell.textLabel?.text = String(indexPath.row)
         return cell!
+    }
+}
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print(#function)
     }
 }
 

@@ -27,6 +27,7 @@
 		123E7E72250BB01600C7284B /* BillCategoryVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E71250BB01600C7284B /* BillCategoryVCTest.swift */; };
 		123E7E76250BE3F900C7284B /* CATransition+FromBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E75250BE3F900C7284B /* CATransition+FromBottom.swift */; };
 		124033CD250FB808008D2BA3 /* UINavigationController+popViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124033CC250FB808008D2BA3 /* UINavigationController+popViewController.swift */; };
+		12504A81251631E300B58923 /* DTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12504A80251631E300B58923 /* DTTextField.swift */; };
 		129BC17A24FFD4D9004BD17A /* HomeViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BC17924FFD4D9004BD17A /* HomeViewCollectionViewCell.swift */; };
 		129BC17D24FFE648004BD17A /* HomeViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BC17B24FFE648004BD17A /* HomeViewTableViewCell.swift */; };
 		129BC17E24FFE648004BD17A /* HomeViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 129BC17C24FFE648004BD17A /* HomeViewTableViewCell.xib */; };
@@ -124,6 +125,7 @@
 		123E7E71250BB01600C7284B /* BillCategoryVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCategoryVCTest.swift; sourceTree = "<group>"; };
 		123E7E75250BE3F900C7284B /* CATransition+FromBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransition+FromBottom.swift"; sourceTree = "<group>"; };
 		124033CC250FB808008D2BA3 /* UINavigationController+popViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+popViewController.swift"; sourceTree = "<group>"; };
+		12504A80251631E300B58923 /* DTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTTextField.swift; sourceTree = "<group>"; };
 		129BC17924FFD4D9004BD17A /* HomeViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		129BC17B24FFE648004BD17A /* HomeViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewTableViewCell.swift; sourceTree = "<group>"; };
 		129BC17C24FFE648004BD17A /* HomeViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewTableViewCell.xib; sourceTree = "<group>"; };
@@ -564,6 +566,7 @@
 				129BC17C24FFE648004BD17A /* HomeViewTableViewCell.xib */,
 				129BC17F24FFE76E004BD17A /* CardView.swift */,
 				12CDE57C2511068B00502A25 /* NewInvoiceCollectionViewCell.swift */,
+				12504A80251631E300B58923 /* DTTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -872,6 +875,7 @@
 				129BC18024FFE76E004BD17A /* CardView.swift in Sources */,
 				12AB499E25126CC40069B713 /* INewInvoicePresenter.swift.swift in Sources */,
 				12AB7B9624FD50BD00E2986D /* Category.swift in Sources */,
+				12504A81251631E300B58923 /* DTTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

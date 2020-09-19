@@ -112,7 +112,6 @@ class HomeView: UIView {
     private var incomeExpenseContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        //        view.layer.borderWidth = 2
         view.backgroundColor = .clear
         return view
     }()
@@ -132,8 +131,6 @@ class HomeView: UIView {
     private var collectionPanel: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        //        view.layer.borderWidth = 1
-        //        view.backgroundColor = .red
         return view
     }()
     

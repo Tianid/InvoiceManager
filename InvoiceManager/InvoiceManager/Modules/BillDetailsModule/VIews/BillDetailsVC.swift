@@ -66,7 +66,7 @@ class BillDetailsVC: UIViewController {
     private func configureViewController() {
         view.backgroundColor = .white
         
-        self.navigationItem.setRightBarButton(UIBarButtonItem(title: "SAVE", style: .plain, target: self, action: #selector(saveButtonTapped(_:))), animated: true)
+        self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonTapped(_:))), animated: true)
         
         if presenter?.model != nil {
             if #available(iOS 13.0, *) {

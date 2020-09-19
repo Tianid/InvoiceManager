@@ -39,11 +39,6 @@ class NewInvoiceCollectionViewCell: UICollectionViewCell {
     private func configureConstraint() {
         contentView.addSubview(addInvoiceButton)
         
-//        addInvoiceButton.anchor(top: safeAreaLayoutGuide.topAnchor,
-//                                leading: safeAreaLayoutGuide.leadingAnchor,
-//                                bottom: safeAreaLayoutGuide.bottomAnchor,
-//                                trailing: safeAreaLayoutGuide.trailingAnchor)
-        
         addInvoiceButton.anchor(size: CGSize(width: 100, height: 100),
                                 centerX: centerXAnchor,
                                 centerY: centerYAnchor)
