@@ -80,7 +80,7 @@ class BillDetailsView: UIView {
         return label
     }()
     
-    private var descriptionTextField: UITextView = {
+    private var descriptionTextView: UITextView = {
         let text = UITextView()
         text.translatesAutoresizingMaskIntoConstraints = false
         text.isScrollEnabled = true
@@ -124,7 +124,7 @@ class BillDetailsView: UIView {
         guard let value = valueTextField.text else { return }
         guard let dValue = Double(value) else { return }
         let state = segmentedControl.selectedSegmentIndex
-        let description = descriptionTextField.text
+        let description = descriptionTextView.text
         let billState = state == BillState.income.rawValue ? BillState.income : BillState.expense
         
         presenter?.saveButtonTapped(name: name, value: dValue, billState: billState, description: description)
@@ -154,8 +154,8 @@ class BillDetailsView: UIView {
         nameTextField.text = name
         valueTextField.text = String(value)
         categoryTextField.text = category
-        descriptionTextField.text = description
-        descriptionTextField.textColor = .black
+        descriptionTextView.text = description
+        descriptionTextView.textColor = .black
         
     }
     
@@ -171,61 +171,56 @@ class BillDetailsView: UIView {
         viewContainer.addSubview(segmentedControl)
         viewContainer.addSubview(categoryTextField)
         viewContainer.addSubview(descriptionWordLabel)
-        viewContainer.addSubview(descriptionTextField)
+        viewContainer.addSubview(descriptionTextView)
         viewContainer.addSubview(selectCategoryButton)
         
         viewContainer.anchor(top: safeAreaLayoutGuide.topAnchor,
                              leading: safeAreaLayoutGuide.leadingAnchor,
                              bottom: safeAreaLayoutGuide.bottomAnchor,
                              trailing: safeAreaLayoutGuide.trailingAnchor)
-
+        
         segmentedControl.anchor(top: viewContainer.topAnchor,
                                 leading: viewContainer.leadingAnchor,
                                 trailing: viewContainer.trailingAnchor,
                                 padding: UIEdgeInsets(top: 8, left: 8, bottom: 0, right: 8))
-
+        
         nameTextField.anchor(top: segmentedControl.bottomAnchor,
                              leading: segmentedControl.leadingAnchor,
                              trailing: segmentedControl.trailingAnchor,
                              padding: UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0))
-
+        
         valueTextField.anchor(top: nameTextField.bottomAnchor,
                               leading: nameTextField.leadingAnchor,
                               trailing: nameTextField.trailingAnchor,
                               padding: UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0))
-
+        
         categoryTextField.anchor(top: valueTextField.bottomAnchor,
                                  leading: valueTextField.leadingAnchor,
                                  padding: UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0))
-
+        
         selectCategoryButton.anchor(
             leading: categoryTextField.trailingAnchor,
             trailing: valueTextField.trailingAnchor,
             size: CGSize(width: 60, height: 0),
             centerY: categoryTextField.centerYAnchor)
-
+        
         descriptionWordLabel.anchor(top: categoryTextField.bottomAnchor,
                                     leading: categoryTextField.leadingAnchor,
                                     trailing: selectCategoryButton.trailingAnchor,
                                     padding: UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0))
-
-        descriptionTextField.anchor(top: descriptionWordLabel.bottomAnchor,
-                                    leading: descriptionWordLabel.leadingAnchor,
-                                    trailing: descriptionWordLabel.trailingAnchor,
-                                    padding: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0),
-                                    size: CGSize(width: 0, height: 150)
-        )
-//
         
+        descriptionTextView.anchor(top: descriptionWordLabel.bottomAnchor,
+                                   leading: descriptionWordLabel.leadingAnchor,
+                                   trailing: descriptionWordLabel.trailingAnchor,
+                                   padding: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0),
+                                   size: CGSize(width: 0, height: 150)
+        )
     }
     
     private func configureViews() {
-        descriptionTextField.text = descriptionPlaceholdeer //Placeholder
-        descriptionTextField.textColor = UIColor.lightGray
-        descriptionTextField.delegate = self
-        
-        descriptionTextField.becomeFirstResponder()
-        descriptionTextField.resignFirstResponder()
+        descriptionTextView.text = descriptionPlaceholdeer //Placeholder
+        descriptionTextView.textColor = UIColor.lightGray
+        descriptionTextView.delegate = self
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -272,22 +267,34 @@ class BillDetailsView: UIView {
         return result
     }
     
+    private func moveViewUp() {
+        let keyboardViewEndFrame = self.convert(self.keyboardHeight, from: self.window)
+        if descriptionTextView.frame.maxY + 44 > keyboardViewEndFrame.origin.y {
+            let freeSpaceSize = self.frame.maxY - descriptionTextView.frame.maxY
+            let value = keyboardViewEndFrame.height - freeSpaceSize + self.safeAreaInsets.top + 6
+            UIView.animate(withDuration: 0.47) {
+                self.frame.origin.y -= value < 0 ? value * -1: value
+            }
+        }
+    }
+    
+    private func validateField(textView: UITextField, text: String?) {
+        if text != "" {
+            let countdots = ((text?.components(separatedBy: ".").count)!) - 1
+            if countdots > 1 {
+                textView.text?.removeLast()
+                return
+            }
+        }
+    }
+    
     @objc private func doneButtonAction(_ sender: UIBarButtonItem){
         self.viewContainer.endEditing(true)
     }
     
     @objc private func textFieldDidChange(_ sender: UITextField) {
-        guard var text = sender.text else { return }
-        let result = text.reduce(into: 0) { (result, value) in
-            if value == "." {
-                result += 1
-            }
-        }
-        
-        if result > 1 {
-            text.removeLast()
-            sender.text = String(text)
-        }
+        guard let text = sender.text else { return  }
+        validateField(textView: sender, text: text)
     }
     
     @objc private func showCategoryActionSheet(_ sender: UIButton) {
@@ -295,7 +302,6 @@ class BillDetailsView: UIView {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        print(#function)
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             self.keyboardHeight = keyboardSize
         }
@@ -310,34 +316,19 @@ class BillDetailsView: UIView {
 
 extension BillDetailsView: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        print(#function)
+        moveViewUp()
         
-        //        if textView === descriptionTextField {
-        //            if keyboardHeight.minY < descriptionTextField.frame.maxY {
-        ////                let new = descriptionTextField.frame.height - keyboardHeight.height
-        //                UIView.animate(withDuration: 0.5) {
-        //                    self.frame.origin.y -= self.keyboardHeight.height - (self.descriptionTextField.frame.height - 20)
-        //                }
-        //            }
-        //            else if keyboardHeight.minY > descriptionTextField.frame.maxY {
-        //
-        //            }
-        //            UIView.animate(withDuration: 0.5) {
-        //                self.frame.origin.y -= self.keyboardHeight.height - self.descriptionTextField.frame.size.height
-        //            }
-        //        }
-        
-        if descriptionTextField.textColor == UIColor.lightGray {
-            descriptionTextField.text = ""
-            descriptionTextField.textColor = UIColor.black
+        if descriptionTextView.textColor == UIColor.lightGray {
+            descriptionTextView.text = ""
+            descriptionTextView.textColor = UIColor.black
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         
-        if descriptionTextField.text == "" {
-            descriptionTextField.text = descriptionPlaceholdeer
-            descriptionTextField.textColor = UIColor.lightGray
+        if descriptionTextView.text == "" {
+            descriptionTextView.text = descriptionPlaceholdeer
+            descriptionTextView.textColor = UIColor.lightGray
         }
     }
 }
