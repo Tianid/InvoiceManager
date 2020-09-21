@@ -143,7 +143,6 @@ class HomeView: UIView {
         } else {
             // Fallback on earlier versions
         }
-        //        button.backgroundColor = .green
         return button
     }()
     
@@ -160,10 +159,7 @@ class HomeView: UIView {
         return button
     }()
     
-    private var mockView: UIView? = {
-        let view = generateMockView()
-        return view
-    }()
+    private var mockView: UIView?
     
     
     //MARK: - Init
@@ -189,6 +185,7 @@ class HomeView: UIView {
     
     func refreshUIData() {
         setupInvoiceData()
+        configureMockViewIfNeeded()
     }
     
     func deleteRowInTableView(invoiceIndex: Int, billIndex: Int) {
@@ -331,13 +328,26 @@ class HomeView: UIView {
     
     private func setupInvoiceData() {
         guard let count = presenter?.model.invoices.count else { return }
-        guard curentPage <= CGFloat(count) else { return }
+        guard curentPage < CGFloat(count) && count > 0 else { return }
         guard let data = presenter?.model.invoices[Int(curentPage)] else { return }
         invoiceNameLabel.text = data.name
         invoiceBalanceLabel.text = String(data.balance)
         invoiceIncomeCounterLabel.text = String(data.income)
         invoiceExpenseCounterLabel.text = String(data.expense)
         
+    }
+    
+    private func configureMockViewIfNeeded() {
+        guard let count = presenter?.model.invoices.count else { return }
+        if count <= 0 {
+            isNeedToInitMockView(true)
+            
+        } else if Int(curentPage) == count {
+            isNeedToInitMockView(true)
+            
+        } else {
+            isNeedToInitMockView(false)
+        }
     }
     
     @objc private func addNewBill(_ sender: UIButton) {
@@ -353,10 +363,7 @@ class HomeView: UIView {
         let deleteAction = UIAlertAction(title: "Delete invoice", style: .default) { (_) in
             self.presenter?.deleteInvoice(invoiceIndex: Int(self.curentPage), complition: { [weak self] in
                 self?.collectionView.deleteItems(at: [IndexPath(row: Int(self!.curentPage), section: 0)])
-                if self!.curentPage != 0 {
-                    self!.curentPage -= 1
-                }
-                self?.setupInvoiceData()
+                self?.refreshUIData()
             })
         }
         
@@ -397,7 +404,7 @@ class HomeView: UIView {
                         trailing: headerView.trailingAnchor)
             view.layer.cornerRadius = CGFloat(headerViewHeightConst / 10)
             mockView = view
-        } else {
+        } else if !value && mockView != nil {
             mockView?.removeFromSuperview()
             mockView = nil
         }

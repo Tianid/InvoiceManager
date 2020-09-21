@@ -76,13 +76,21 @@ struct Invoice {
         let newBalance = balance - oldValue.value
         
         
-        if oldValue.value < 0 {
-            income += newValue.value
+        if oldValue.value < 0 && newValue.value < 0 {
             expense -= oldValue.value
+            expense += newValue.value
             
-        } else {
+        } else if oldValue.value < 0 && newValue.value >= 0 {
+            expense -= oldValue.value
+            income += newValue.value
+            
+        } else if oldValue.value >= 0 && newValue.value < 0 {
             income -= oldValue.value
             expense += newValue.value
+            
+        } else if oldValue.value >= 0 && newValue.value >= 0 {
+            income -= oldValue.value
+            income += newValue.value
             
         }
         

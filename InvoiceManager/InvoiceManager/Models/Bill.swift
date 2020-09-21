@@ -18,7 +18,7 @@ struct Bill: Equatable {
     //MARK: - Init
     
     internal init(value: Double, currency: Currency, billName: String, billDescription: String, category: Category, modifiedDate: Date = Date()) {
-        self.value = value
+        self.value = value == 0 && value.sign == .minus ? value * -1 : value
         self.currency = currency
         self.billName = billName
         self.billDescription = billDescription
