@@ -23,7 +23,7 @@ class NewInvoicePresenter {
 }
 
 extension NewInvoicePresenter: INewInvoicePresenter {
-    func saveNewInvoice(data: (String, Currency)) {
+    func saveNewInvoice(data: (String, Currency, String?)) {
         router.dismissModuleFromHomeNavigation(complition: { [weak self] in
             self?.superPresenter?.addNewInvoice(data: data)
         })

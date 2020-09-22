@@ -9,12 +9,14 @@
 import UIKit
 
 class NewInvoiceView: UIView {
-
-    //MARK: - Properties
     
-    private var invoiceTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Enter invice namey"
+    //MARK: - Properties
+    private let invoiceMessage = "Invoice name is required."
+    private let currencyMessage = "is required."
+    
+    private var invoiceTextField: DTTextField = {
+        let textField = DTTextField()
+        textField.placeholder = "Invoice name"
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -26,12 +28,22 @@ class NewInvoiceView: UIView {
         return menu
     }()
     
+    private var starterBalance: DTTextField = {
+        let textField = DTTextField()
+        textField.placeholder = "Starter balance (Optional)"
+        textField.inputView = NumericKeyboard(target: textField, useDecimalSeparator: true)
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+
+        return textField
+    }()
+    
     //MARK: - Init
     
     override init(frame: CGRect = CGRect()) {
         super.init(frame: frame)
         configureViewsConstraint()
-        
+        configureView()
     }
     
     required init?(coder: NSCoder) {
@@ -40,16 +52,19 @@ class NewInvoiceView: UIView {
     
     //MARK: - Func
     
-    func getUIData() -> (String, Currency)? {
+    func getUIData() -> (String, Currency, String?)? {
+        guard validateMainFields() else { return nil }
+        
         guard let text = invoiceTextField.text else { return nil }
         guard text.count > 0 else { return nil }
         guard let currency = dropMenu.curentCurrency else { return nil }
-        return (text, currency)
+        return (text, currency, starterBalance.text)
     }
     
     private func configureViewsConstraint() {
         addSubview(invoiceTextField)
         addSubview(dropMenu)
+        addSubview(starterBalance)
         
         invoiceTextField.anchor(top: safeAreaLayoutGuide.topAnchor,
                                 leading: safeAreaLayoutGuide.leadingAnchor,
@@ -58,6 +73,50 @@ class NewInvoiceView: UIView {
         
         dropMenu.anchor(top: invoiceTextField.bottomAnchor,
                         leading: invoiceTextField.leadingAnchor,
-                        trailing: invoiceTextField.trailingAnchor)
+                        trailing: invoiceTextField.trailingAnchor,
+                        padding: UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0))
+        
+        starterBalance.anchor(top: dropMenu.bottomAnchor,
+                              leading: dropMenu.leadingAnchor,
+                              trailing: dropMenu.trailingAnchor,
+                              padding: UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0))
+    }
+    
+    private func configureView() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        self.addGestureRecognizer(tap)
+    }
+    
+    private func validateMainFields() -> Bool {
+        
+        var result = true
+        
+        if invoiceTextField.text!.isEmptyStr {
+            invoiceTextField.showError(message: invoiceMessage)
+            result = false
+        }
+        
+        if dropMenu.curentCurrency == nil {
+            dropMenu.showError(message: currencyMessage)
+            result = false
+        }
+        
+        return result
+    }
+    
+    private func validateField(textView: UITextField, text: String?) {
+        if text != "" {
+            let countdots = ((text?.components(separatedBy: ".").count)!) - 1
+            if countdots > 1 {
+                textView.text?.removeLast()
+                return
+            }
+        }
+    }
+    
+    @objc private func textFieldDidChange(_ sender: UITextField) {
+        guard let text = sender.text else { return  }
+        validateField(textView: sender, text: text)
     }
 }

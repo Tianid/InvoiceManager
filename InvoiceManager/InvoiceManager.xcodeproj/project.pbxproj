@@ -15,6 +15,7 @@
 		1212F6CB2507D0810016693B /* BillDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212F6CA2507D0810016693B /* BillDetailsVC.swift */; };
 		1212F6CD2507D9FE0016693B /* BillDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212F6CC2507D9FE0016693B /* BillDetailsView.swift */; };
 		1212F6CF2507E3290016693B /* NumericKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212F6CE2507E3290016693B /* NumericKeyboard.swift */; };
+		121302C4251A398100807E61 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121302C3251A398100807E61 /* TestView.swift */; };
 		121AC3DB250A5DA90099319D /* BillCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121AC3DA250A5DA90099319D /* BillCategoryVC.swift */; };
 		121AC3DD250A5E600099319D /* BillCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121AC3DC250A5E600099319D /* BillCategoryPresenter.swift */; };
 		121AC3DF250A5E710099319D /* IBillCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121AC3DE250A5E710099319D /* IBillCategoryPresenter.swift */; };
@@ -113,6 +114,7 @@
 		1212F6CA2507D0810016693B /* BillDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailsVC.swift; sourceTree = "<group>"; };
 		1212F6CC2507D9FE0016693B /* BillDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailsView.swift; sourceTree = "<group>"; };
 		1212F6CE2507E3290016693B /* NumericKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericKeyboard.swift; sourceTree = "<group>"; };
+		121302C3251A398100807E61 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		121AC3DA250A5DA90099319D /* BillCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCategoryVC.swift; sourceTree = "<group>"; };
 		121AC3DC250A5E600099319D /* BillCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCategoryPresenter.swift; sourceTree = "<group>"; };
 		121AC3DE250A5E710099319D /* IBillCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBillCategoryPresenter.swift; sourceTree = "<group>"; };
@@ -279,9 +281,10 @@
 		12AB499625126C6A0069B713 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				12AB499325124B710069B713 /* DropDownMenu.swift */,
 				12AB499925126C9C0069B713 /* NewInvoiceVC.swift */,
 				12AB49A125126D160069B713 /* NewInvoiceView.swift */,
+				12AB499325124B710069B713 /* DropDownMenu.swift */,
+				121302C3251A398100807E61 /* TestView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -851,6 +854,7 @@
 				12B0EB6625091ACD00A67B79 /* DimmPresentationController.swift in Sources */,
 				12CDE57D2511068B00502A25 /* NewInvoiceCollectionViewCell.swift in Sources */,
 				12AB49A025126CDB0069B713 /* NewInvoicePresenter.swift in Sources */,
+				121302C4251A398100807E61 /* TestView.swift in Sources */,
 				1212F6BD2507B6C00016693B /* IHomeView.swift in Sources */,
 				12B0EB6925091D8000A67B79 /* PresentAnimation.swift in Sources */,
 				12D1D5F224FD29330077FEF6 /* ICategoryPresenter.swift in Sources */,

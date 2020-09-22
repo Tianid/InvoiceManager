@@ -31,8 +31,8 @@ class NewInvoiceVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
-        self.navigationItem.setRightBarButton(UIBarButtonItem(title: "SAVE", style: .plain, target: self, action: #selector(saveButtonTapped(_:))), animated: true)
+        newInvoiceView?.layoutSubviews()
+        self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonTapped(_:))), animated: true)
     }
     
     override func loadView() {

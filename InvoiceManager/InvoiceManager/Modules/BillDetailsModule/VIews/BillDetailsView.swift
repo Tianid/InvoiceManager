@@ -76,7 +76,7 @@ class BillDetailsView: UIView {
     private var descriptionWordLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Description"
+        label.text = "Description (Optional)"
         return label
     }()
     
@@ -293,7 +293,7 @@ class BillDetailsView: UIView {
     }
     
     @objc private func textFieldDidChange(_ sender: UITextField) {
-        guard let text = sender.text else { return  }
+        guard let text = sender.text else { return }
         validateField(textView: sender, text: text)
     }
     

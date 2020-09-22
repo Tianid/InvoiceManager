@@ -25,6 +25,10 @@ class BillCategoryPresenter {
 }
 
 extension BillCategoryPresenter: IBillCategoryPresenter {
+    func dismissCategory() {
+        view?.dismissBillCategory(complition: nil)
+    }
+    
     func categorySelected(index: Int) {
         let category = model[index]
         view?.dismissBillCategory(complition: { [weak self] in

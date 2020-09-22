@@ -16,5 +16,5 @@ protocol IHomePresenter: class {
     func deleteBillInModel(bill: Bill)
     func presentAlert(alert: UIAlertController)
     func showNewInvoice()
-    func addNewInvoice(data: (String, Currency))
+    func addNewInvoice(data: (String, Currency, String?))
 }

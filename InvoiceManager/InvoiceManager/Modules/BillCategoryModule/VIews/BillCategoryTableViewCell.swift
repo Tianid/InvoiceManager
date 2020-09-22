@@ -11,6 +11,7 @@ import UIKit
 class BillCategoryTableViewCell: UITableViewCell {
     //MARK: - Properties
     
+    @IBOutlet weak var categoryImageView: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
     
     //MARK: - Init
@@ -19,7 +20,7 @@ class BillCategoryTableViewCell: UITableViewCell {
     private func configureCell() {
         selectionStyle = .none
         backgroundColor = .clear
-        
+        categoryImageView.layer.cornerRadius = categoryImageView.frame.size.height / 2
     }
     
     override func awakeFromNib() {

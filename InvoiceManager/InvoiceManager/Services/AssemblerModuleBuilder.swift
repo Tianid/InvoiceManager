@@ -70,7 +70,7 @@ class AssemblerModuleBuilder: IAssembleBuilder {
         view.transitioningDelegate = transition
         view.modalPresentationStyle = .custom
         
-        let presenter = BillCategoryPresenter(view: view, router: router, model: [testSingleCategory], superPresenter: superPresenter)
+        let presenter = BillCategoryPresenter(view: view, router: router, model: testCategorys, superPresenter: superPresenter)
         view.presenter = presenter
         return view
     }

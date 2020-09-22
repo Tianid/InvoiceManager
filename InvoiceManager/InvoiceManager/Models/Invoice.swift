@@ -27,9 +27,9 @@ struct Invoice {
         self.currency = currency
     }
     
-    init(data: (String, Currency)) {
+    init(data: (String, Currency, String?)) {
         self.name = data.0
-        self.balance = 0
+        self.balance = Double(data.2 ?? "0") ?? 0.0
         self.bills = []
         self.income = 0
         self.expense = 0

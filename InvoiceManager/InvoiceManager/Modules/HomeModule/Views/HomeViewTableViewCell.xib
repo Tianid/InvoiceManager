@@ -34,7 +34,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bW-Ql-RgK">
-                                <rect key="frame" x="188" y="24" width="112" height="21"/>
+                                <rect key="frame" x="188" y="24" width="112" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="112" id="UWD-nv-4x6"/>
                                 </constraints>
@@ -73,7 +73,6 @@
                             <constraint firstItem="WDv-BS-m1R" firstAttribute="leading" secondItem="Cam-Gd-k9d" secondAttribute="trailing" constant="8" id="ghM-8T-RJ6"/>
                             <constraint firstItem="WDv-BS-m1R" firstAttribute="top" secondItem="YTr-HA-ztP" secondAttribute="bottom" constant="-2" id="jfQ-qd-F5D"/>
                             <constraint firstAttribute="trailing" secondItem="YTr-HA-ztP" secondAttribute="trailing" constant="8" id="ksg-jE-CYo"/>
-                            <constraint firstAttribute="bottom" secondItem="2bW-Ql-RgK" secondAttribute="bottom" constant="24" id="nkF-Xo-iwg"/>
                             <constraint firstAttribute="bottom" secondItem="Cam-Gd-k9d" secondAttribute="bottom" constant="10" id="tUt-88-smV"/>
                             <constraint firstAttribute="trailing" secondItem="2bW-Ql-RgK" secondAttribute="trailing" constant="8" id="tqh-q8-Yzu"/>
                             <constraint firstItem="Cam-Gd-k9d" firstAttribute="leading" secondItem="YE1-ca-2Ca" secondAttribute="leading" constant="8" id="zkX-4y-aSe"/>

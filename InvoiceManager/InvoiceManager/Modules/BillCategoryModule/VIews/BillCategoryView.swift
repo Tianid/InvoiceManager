@@ -23,6 +23,8 @@ class BillCategoryView: UIView {
         } else {
             // Fallback on earlier versions
         }
+        
+        button.addTarget(self, action: #selector(dismissCategory), for: .touchUpInside)
         return button
     }()
     
@@ -70,6 +72,10 @@ class BillCategoryView: UIView {
         tableView.register(UINib(nibName: "\(BillCategoryTableViewCell.self)", bundle: nil), forCellReuseIdentifier: tableIdentifier)
     }
     
+    @objc private func dismissCategory() {
+        presenter?.dismissCategory()
+    }
+    
     
 }
 
@@ -86,8 +92,7 @@ extension BillCategoryView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableIdentifier, for: indexPath) as? BillCategoryTableViewCell
-        //        cell?.categoryLabel.text = presenter?.model[indexPath.row].name
-        cell?.categoryLabel.text = "TEST \(indexPath.row)"
+        cell?.categoryLabel.text = presenter?.model[indexPath.row].name
         return cell!
     }
 }

@@ -10,6 +10,20 @@ import Foundation
 
 
 var testSingleCategory = Category(name: "TEST CATEGORY", iconImage: "NO IMAGE", section: .init(name: "TEST SECTION"))
+
+var testCategorys = [Category(name: "TEST CATEGORY №1", iconImage: "NO IMAGE", section: .init(name: "TEST SECTION")),
+                     Category(name: "TEST CATEGORY №2", iconImage: "NO IMAGE", section: .init(name: "TEST SECTION")),
+                     Category(name: "TEST CATEGORY №3", iconImage: "NO IMAGE", section: .init(name: "TEST SECTION")),
+                     Category(name: "TEST CATEGORY №4", iconImage: "NO IMAGE", section: .init(name: "TEST SECTION")),
+                     Category(name: "TEST CATEGORY №5", iconImage: "NO IMAGE", section: .init(name: "TEST SECTION")),
+                     Category(name: "TEST CATEGORY №6", iconImage: "NO IMAGE", section: .init(name: "TEST SECTION")),
+                     Category(name: "TEST CATEGORY №7", iconImage: "NO IMAGE", section: .init(name: "TEST SECTION")),
+                     Category(name: "TEST CATEGORY №8", iconImage: "NO IMAGE", section: .init(name: "TEST SECTION")),
+                     Category(name: "TEST CATEGORY №9", iconImage: "NO IMAGE", section: .init(name: "TEST SECTION")),
+]
+
+
+
 var testBills1 = [
     Bill(value: 100, currency: .RUB, billName: "SOME NAME", billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),
     Bill(value: -100, currency: .RUB, billName: "SOME NAME", billDescription: "SOME DESCRIPTION", category: testSingleCategory , modifiedDate: Date()),

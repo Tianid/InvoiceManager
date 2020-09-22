@@ -7,5 +7,5 @@
 //
 
 protocol INewInvoicePresenter {
-    func saveNewInvoice(data: (String, Currency))
+    func saveNewInvoice(data: (String, Currency, String?))
 }

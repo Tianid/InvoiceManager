@@ -27,7 +27,7 @@ class HomePresenter {
 }
 
 extension HomePresenter: IHomePresenter {
-    func addNewInvoice(data: (String, Currency)) {
+    func addNewInvoice(data: (String, Currency, String?)) {
         model.invoices.append(Invoice(data: data))
         view?.insertNewInvoice()
     }

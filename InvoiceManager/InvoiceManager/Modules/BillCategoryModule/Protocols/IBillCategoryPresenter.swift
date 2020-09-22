@@ -9,4 +9,5 @@
 protocol IBillCategoryPresenter {
     var model: [Category] { get set }
     func categorySelected(index: Int)
+    func dismissCategory()
 }
