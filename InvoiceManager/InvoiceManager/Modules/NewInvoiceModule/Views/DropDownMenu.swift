@@ -18,7 +18,7 @@ class DropDownMenu: UIView {
     private var tableViewHeightConstraint: NSLayoutConstraint!
     private let tableViewIndentifier = "tableViewIdentifier"
     
-    private var dataLabel: DTTextField = {
+    private var invoiceNameTextField: DTTextField = {
         let text = DTTextField()
         text.placeholder = "Select currency"
         text.dtborderStyle = .none
@@ -34,7 +34,7 @@ class DropDownMenu: UIView {
         return imageView
     }()
     
-    private var labelContainer: UIView = {
+    private var invoiceNameContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -70,14 +70,14 @@ class DropDownMenu: UIView {
     //MARK: - Func
     
     func showError(message: String) {
-        dataLabel.showError(message: message)
+        invoiceNameTextField.showError(message: message)
     }
     
     private func configureConstraints() {
         addSubview(containerView)
-        containerView.addSubview(labelContainer)
-        labelContainer.addSubview(dataLabel)
-        labelContainer.addSubview(imageView)
+        containerView.addSubview(invoiceNameContainer)
+        invoiceNameContainer.addSubview(invoiceNameTextField)
+        invoiceNameContainer.addSubview(imageView)
         containerView.addSubview(tableView)
         
         containerView.anchor(top: safeAreaLayoutGuide.topAnchor,
@@ -86,24 +86,24 @@ class DropDownMenu: UIView {
                              trailing: safeAreaLayoutGuide.trailingAnchor
         )
         
-        labelContainer.anchor(top: containerView.topAnchor,
+        invoiceNameContainer.anchor(top: containerView.topAnchor,
                               leading: containerView.leadingAnchor,
                               trailing: containerView.trailingAnchor)
         
-        dataLabel.anchor(top: labelContainer.topAnchor,
-                         leading: labelContainer.leadingAnchor,
-                         bottom: labelContainer.bottomAnchor)
+        invoiceNameTextField.anchor(top: invoiceNameContainer.topAnchor,
+                         leading: invoiceNameContainer.leadingAnchor,
+                         bottom: invoiceNameContainer.bottomAnchor)
+        
         imageView.anchor(
-            trailing: labelContainer.trailingAnchor,
+            trailing: invoiceNameContainer.trailingAnchor,
             padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8),
             size: CGSize(width: 15, height: 15),
-            centerY: dataLabel.centerYAnchor)
+            centerY: invoiceNameTextField.centerYAnchor)
         
-        tableView.anchor(top: labelContainer.bottomAnchor,
+        tableView.anchor(top: invoiceNameContainer.bottomAnchor,
                          leading: containerView.leadingAnchor,
                          bottom: containerView.bottomAnchor,
                          trailing: containerView.trailingAnchor)
-        
         
         tableViewHeightConstraint = tableView.heightAnchor.constraint(equalToConstant: 0)
         
@@ -121,7 +121,7 @@ class DropDownMenu: UIView {
     private func configureGestures() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(showHideTableView))
         tap.cancelsTouchesInView = false
-        labelContainer.addGestureRecognizer(tap)
+        invoiceNameContainer.addGestureRecognizer(tap)
     }
     
     @objc private func showHideTableView(_ sender: UITapGestureRecognizer) {
@@ -153,7 +153,7 @@ class DropDownMenu: UIView {
 extension DropDownMenu: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         curentCurrency = dataSourse?[indexPath.row]
-        dataLabel.text = curentCurrency?.rawValue
+        invoiceNameTextField.text = curentCurrency?.rawValue
         hideTableView()
     }
 }

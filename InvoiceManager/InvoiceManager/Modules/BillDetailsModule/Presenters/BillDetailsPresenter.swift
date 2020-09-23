@@ -38,14 +38,6 @@ extension BillDetailsPresenter: IBillDetailsPresenter {
     
     func saveButtonTapped(name: String, value: Double, billState: BillState, description: String?) {
         
-//        var category: Category!
-        
-//        if billDetailsCreationState == .editing {
-//            category = model?.category
-//        } else if billDetailsCreationState == .creating {
-//            category = self.category
-//        }
-        
         guard let category = category else { return }
         
         let value = billState == .expense ? value * -1 : value

@@ -31,7 +31,7 @@ class NewInvoiceView: UIView {
     private var starterBalance: DTTextField = {
         let textField = DTTextField()
         textField.placeholder = "Starter balance (Optional)"
-        textField.inputView = NumericKeyboard(target: textField, useDecimalSeparator: true)
+        textField.inputView = NumericKeyboard(target: textField, useDecimalSeparator: false)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
 
@@ -105,18 +105,14 @@ class NewInvoiceView: UIView {
         return result
     }
     
-    private func validateField(textView: UITextField, text: String?) {
-        if text != "" {
-            let countdots = ((text?.components(separatedBy: ".").count)!) - 1
-            if countdots > 1 {
-                textView.text?.removeLast()
-                return
-            }
+    private func validateField(textField: UITextField, text: String?) {
+        if let text = textField.text?.currencyInputFormatting() {
+            textField.text = text
         }
     }
     
     @objc private func textFieldDidChange(_ sender: UITextField) {
         guard let text = sender.text else { return  }
-        validateField(textView: sender, text: text)
+        validateField(textField: sender, text: text)
     }
 }

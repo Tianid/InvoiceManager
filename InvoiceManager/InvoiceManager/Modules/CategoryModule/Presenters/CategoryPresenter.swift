@@ -8,6 +8,7 @@
 
 class CategoryPresenter {
     //MARK: - Properties
+    var model: [Category]?
     private weak var view: ICategoryVC?
     private var router: IRouter
     

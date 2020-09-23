@@ -45,7 +45,7 @@ class BillDetailsView: UIView {
         let text = DTTextField()
         text.translatesAutoresizingMaskIntoConstraints = false
         text.placeholder = "Value"
-        text.inputView = NumericKeyboard(target: text, useDecimalSeparator: true)
+        text.inputView = NumericKeyboard(target: text, useDecimalSeparator: false)
         text.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return text
     }()
@@ -278,13 +278,9 @@ class BillDetailsView: UIView {
         }
     }
     
-    private func validateField(textView: UITextField, text: String?) {
-        if text != "" {
-            let countdots = ((text?.components(separatedBy: ".").count)!) - 1
-            if countdots > 1 {
-                textView.text?.removeLast()
-                return
-            }
+    private func validateField(textField: UITextField, text: String?) {
+        if let text = textField.text?.currencyInputFormatting() {
+            textField.text = text
         }
     }
     
@@ -294,7 +290,7 @@ class BillDetailsView: UIView {
     
     @objc private func textFieldDidChange(_ sender: UITextField) {
         guard let text = sender.text else { return }
-        validateField(textView: sender, text: text)
+        validateField(textField: sender, text: text)
     }
     
     @objc private func showCategoryActionSheet(_ sender: UIButton) {

@@ -15,7 +15,6 @@
 		1212F6CB2507D0810016693B /* BillDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212F6CA2507D0810016693B /* BillDetailsVC.swift */; };
 		1212F6CD2507D9FE0016693B /* BillDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212F6CC2507D9FE0016693B /* BillDetailsView.swift */; };
 		1212F6CF2507E3290016693B /* NumericKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212F6CE2507E3290016693B /* NumericKeyboard.swift */; };
-		121302C4251A398100807E61 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121302C3251A398100807E61 /* TestView.swift */; };
 		121AC3DB250A5DA90099319D /* BillCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121AC3DA250A5DA90099319D /* BillCategoryVC.swift */; };
 		121AC3DD250A5E600099319D /* BillCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121AC3DC250A5E600099319D /* BillCategoryPresenter.swift */; };
 		121AC3DF250A5E710099319D /* IBillCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121AC3DE250A5E710099319D /* IBillCategoryPresenter.swift */; };
@@ -57,6 +56,8 @@
 		12B0EB6F2509323600A67B79 /* CGPoint+Velocity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB6E2509323600A67B79 /* CGPoint+Velocity.swift */; };
 		12B0EB712509341E00A67B79 /* TransitionDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB702509341E00A67B79 /* TransitionDirection.swift */; };
 		12C3740224FE780F005262F6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C3740124FE780F005262F6 /* HomeView.swift */; };
+		12CBF7ED251B87300027A5C1 /* String+currensyFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CBF7EC251B87300027A5C1 /* String+currensyFormatting.swift */; };
+		12CBF7EF251B9B2C0027A5C1 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CBF7EE251B9B2C0027A5C1 /* CategoryView.swift */; };
 		12CDE57D2511068B00502A25 /* NewInvoiceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CDE57C2511068B00502A25 /* NewInvoiceCollectionViewCell.swift */; };
 		12D1D59B24FD1B4D0077FEF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D59A24FD1B4D0077FEF6 /* AppDelegate.swift */; };
 		12D1D59F24FD1B4D0077FEF6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D59E24FD1B4D0077FEF6 /* ViewController.swift */; };
@@ -114,7 +115,6 @@
 		1212F6CA2507D0810016693B /* BillDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailsVC.swift; sourceTree = "<group>"; };
 		1212F6CC2507D9FE0016693B /* BillDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailsView.swift; sourceTree = "<group>"; };
 		1212F6CE2507E3290016693B /* NumericKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericKeyboard.swift; sourceTree = "<group>"; };
-		121302C3251A398100807E61 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		121AC3DA250A5DA90099319D /* BillCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCategoryVC.swift; sourceTree = "<group>"; };
 		121AC3DC250A5E600099319D /* BillCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCategoryPresenter.swift; sourceTree = "<group>"; };
 		121AC3DE250A5E710099319D /* IBillCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBillCategoryPresenter.swift; sourceTree = "<group>"; };
@@ -156,6 +156,8 @@
 		12B0EB6E2509323600A67B79 /* CGPoint+Velocity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Velocity.swift"; sourceTree = "<group>"; };
 		12B0EB702509341E00A67B79 /* TransitionDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionDirection.swift; sourceTree = "<group>"; };
 		12C3740124FE780F005262F6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		12CBF7EC251B87300027A5C1 /* String+currensyFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+currensyFormatting.swift"; sourceTree = "<group>"; };
+		12CBF7EE251B9B2C0027A5C1 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		12CDE57C2511068B00502A25 /* NewInvoiceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInvoiceCollectionViewCell.swift; sourceTree = "<group>"; };
 		12D1D59724FD1B4D0077FEF6 /* InvoiceManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvoiceManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12D1D59A24FD1B4D0077FEF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -284,7 +286,6 @@
 				12AB499925126C9C0069B713 /* NewInvoiceVC.swift */,
 				12AB49A125126D160069B713 /* NewInvoiceView.swift */,
 				12AB499325124B710069B713 /* DropDownMenu.swift */,
-				121302C3251A398100807E61 /* TestView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -455,6 +456,7 @@
 				12B0EB6E2509323600A67B79 /* CGPoint+Velocity.swift */,
 				123E7E75250BE3F900C7284B /* CATransition+FromBottom.swift */,
 				124033CC250FB808008D2BA3 /* UINavigationController+popViewController.swift */,
+				12CBF7EC251B87300027A5C1 /* String+currensyFormatting.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -601,6 +603,7 @@
 			isa = PBXGroup;
 			children = (
 				12D1D5E324FD26D80077FEF6 /* CategoryVC.swift */,
+				12CBF7EE251B9B2C0027A5C1 /* CategoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -831,6 +834,7 @@
 				121AC3E1250A5E8B0099319D /* IBillCategoryVC.swift in Sources */,
 				129BC17A24FFD4D9004BD17A /* HomeViewCollectionViewCell.swift in Sources */,
 				124033CD250FB808008D2BA3 /* UINavigationController+popViewController.swift in Sources */,
+				12CBF7ED251B87300027A5C1 /* String+currensyFormatting.swift in Sources */,
 				121AC3EA250A77D10099319D /* BillCategoryTableViewCell.swift in Sources */,
 				12B0EB6B25091F4400A67B79 /* DismissAnimation.swift in Sources */,
 				12F976A8250672AE008DD07C /* SPHomeViewCell.swift in Sources */,
@@ -854,7 +858,6 @@
 				12B0EB6625091ACD00A67B79 /* DimmPresentationController.swift in Sources */,
 				12CDE57D2511068B00502A25 /* NewInvoiceCollectionViewCell.swift in Sources */,
 				12AB49A025126CDB0069B713 /* NewInvoicePresenter.swift in Sources */,
-				121302C4251A398100807E61 /* TestView.swift in Sources */,
 				1212F6BD2507B6C00016693B /* IHomeView.swift in Sources */,
 				12B0EB6925091D8000A67B79 /* PresentAnimation.swift in Sources */,
 				12D1D5F224FD29330077FEF6 /* ICategoryPresenter.swift in Sources */,
@@ -873,6 +876,7 @@
 				12F976A225066D5C008DD07C /* SPHomeView.swift in Sources */,
 				1212F6CB2507D0810016693B /* BillDetailsVC.swift in Sources */,
 				129BC17D24FFE648004BD17A /* HomeViewTableViewCell.swift in Sources */,
+				12CBF7EF251B9B2C0027A5C1 /* CategoryView.swift in Sources */,
 				12D1D5BE24FD1C9E0077FEF6 /* UIView+anchorConstraints.swift in Sources */,
 				12B0EB712509341E00A67B79 /* TransitionDirection.swift in Sources */,
 				12D1D5EE24FD28BE0077FEF6 /* HomePresenter.swift in Sources */,
