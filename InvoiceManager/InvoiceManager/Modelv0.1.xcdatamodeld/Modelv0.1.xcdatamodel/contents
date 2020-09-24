@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CDCategory" representedClassName="CDCategory" syncable="YES" codeGenerationType="class">
+        <attribute name="iconImageName" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="section" maxCount="1" deletionRule="Nullify" destinationEntity="CDSection" inverseName="category" inverseEntity="CDSection"/>
+    </entity>
+    <entity name="CDSection" representedClassName="CDSection" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String"/>
+        <relationship name="category" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDCategory" inverseName="section" inverseEntity="CDCategory"/>
+    </entity>
+    <elements>
+        <element name="CDCategory" positionX="160.14453125" positionY="-68.90234375" width="128" height="88"/>
+        <element name="CDSection" positionX="-63" positionY="-18" width="128" height="73"/>
+    </elements>
+</model>
