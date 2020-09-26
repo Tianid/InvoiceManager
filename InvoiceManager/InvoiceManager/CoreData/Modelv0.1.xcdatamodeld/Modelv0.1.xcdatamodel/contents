@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CDBill" representedClassName="CDBill" syncable="YES" codeGenerationType="class">
+        <attribute name="billDescription" attributeType="String"/>
+        <attribute name="billName" attributeType="String"/>
+        <attribute name="modifiedDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="value" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDCategory" inverseName="bills" inverseEntity="CDCategory"/>
+        <relationship name="invoice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDInvoice" inverseName="bills" inverseEntity="CDInvoice"/>
+    </entity>
+    <entity name="CDCategory" representedClassName="CDCategory" syncable="YES" codeGenerationType="class">
+        <attribute name="iconImageName" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="bills" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDBill" inverseName="category" inverseEntity="CDBill"/>
+        <relationship name="section" maxCount="1" deletionRule="Nullify" destinationEntity="CDSection" inverseName="category" inverseEntity="CDSection"/>
+    </entity>
+    <entity name="CDInvoice" representedClassName="CDInvoice" syncable="YES" codeGenerationType="class">
+        <attribute name="balance" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="currency" attributeType="String"/>
+        <attribute name="expense" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="income" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="modifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="bills" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDBill" inverseName="invoice" inverseEntity="CDBill"/>
+    </entity>
+    <entity name="CDSection" representedClassName="CDSection" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String"/>
+        <relationship name="category" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDCategory" inverseName="section" inverseEntity="CDCategory"/>
+    </entity>
+    <elements>
+        <element name="CDBill" positionX="45" positionY="-9" width="128" height="133"/>
+        <element name="CDCategory" positionX="160.14453125" positionY="-68.90234375" width="128" height="103"/>
+        <element name="CDInvoice" positionX="45" positionY="-18" width="128" height="163"/>
+        <element name="CDSection" positionX="-63" positionY="-18" width="128" height="73"/>
+    </elements>
+</model>

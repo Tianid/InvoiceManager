@@ -6,6 +6,7 @@
 //  Copyright © 2020 Tianid. All rights reserved.
 //
 
+import Foundation
 
 struct Invoice {
     //MARK: - Properties
@@ -15,16 +16,18 @@ struct Invoice {
     var income: Double
     var expense: Double
     let currency: Currency
+    let uuid: String
     
     //MARK: - Init
     
-    internal init(name: String, balance: Double, bills: [Bill], income: Double, expense: Double, currency: Currency) {
+    internal init(name: String, balance: Double, bills: [Bill], income: Double, expense: Double, currency: Currency, uuid: String = UUID().uuidString ) {
         self.name = name
         self.balance = balance
         self.bills = bills
         self.income = income
         self.expense = expense
         self.currency = currency
+        self.uuid = uuid
     }
     
     init(data: (String, Currency, String?)) {
@@ -34,6 +37,7 @@ struct Invoice {
         self.income = 0
         self.expense = 0
         self.currency = data.1
+        self.uuid = UUID().uuidString 
     }
     //MARK: - Func
     

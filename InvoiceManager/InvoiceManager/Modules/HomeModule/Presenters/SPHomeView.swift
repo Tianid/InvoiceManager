@@ -9,15 +9,13 @@ import UIKit
 
 class SPHomeView {
     //MARK: - Properties
-    var model: InvoiceContainer
+    var model: CDInvoice
     weak var superPresenter: IHomePresenter?
-    private weak var view: IHomeView?
     
     //MARK: - Init
-    init(superPresenter: IHomePresenter, model: InvoiceContainer, view: IHomeView) {
+    init(superPresenter: IHomePresenter, model: CDInvoice) {
         self.superPresenter = superPresenter
         self.model = model
-        self.view = view
     }
     
     //MARK: - Func
@@ -30,20 +28,20 @@ extension SPHomeView: ISPHomeView {
     }
     
     func deleteInvoice(invoiceIndex: Int, complition: (() -> ())?) {
-        model.invoices.remove(at: invoiceIndex)
-        complition?()
+//        model.invoices.remove(at: invoiceIndex)
+//        complition?()
     }
     
     func setNewName(name: String, invoiceIndex: Int, complition: (() -> ())?) {
-        let invoice = model.invoices[invoiceIndex]
-        
-        model.invoices[invoiceIndex] = Invoice(name: name,
-                                               balance: invoice.balance,
-                                               bills: invoice.bills,
-                                               income: invoice.income,
-                                               expense: invoice.expense,
-                                               currency: invoice.currency)
-        complition?()
+//        let invoice = model.invoices[invoiceIndex]
+//        
+//        model.invoices[invoiceIndex] = Invoice(name: name,
+//                                               balance: invoice.balance,
+//                                               bills: invoice.bills,
+//                                               income: invoice.income,
+//                                               expense: invoice.expense,
+//                                               currency: invoice.currency)
+//        complition?()
     }
     
     func presentAlert(alert: UIAlertController) {
@@ -51,7 +49,7 @@ extension SPHomeView: ISPHomeView {
     }
     
     func setInvoiceIndex(invoiceIndex: Int) {
-        superPresenter?.setInvoiceInex(invoiceIndex: invoiceIndex)
+        superPresenter?.setInvoiceIndex(invoiceIndex: invoiceIndex)
     }
     
     func showBillDetail(bill: Bill?, billIndex: Int?) {

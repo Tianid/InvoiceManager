@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ISPHomeView: class {
-    var model: InvoiceContainer { get set }
+    var model: CDInvoice { get set }
     var superPresenter: IHomePresenter? { get set }
     func generateSPHomeViewCell(index: Int) -> ISPHomeViewCell
     func showBillDetail(bill: Bill?, billIndex: Int?)

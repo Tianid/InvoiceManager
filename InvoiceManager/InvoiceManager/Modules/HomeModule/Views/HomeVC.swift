@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 class HomeVC: UIViewController {
     //MARK: - Properties
     var presenter: IHomePresenter?
+    var context: NSManagedObjectContext?
+    
     private var homeView: HomeView? {
         guard isViewLoaded else { return nil }
         return (self.view as! HomeView)
@@ -18,15 +21,20 @@ class HomeVC: UIViewController {
     
     //MARK: - Init
     //MARK: - Func
+    private func setContext(context: NSManagedObjectContext) {
+        homeView?.context = context
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
-        homeView?.refreshUIData()
+//        homeView?.refreshUIData()
+        setContext(context: context!)
     }
     
     override func loadView() {
         let view = HomeView(frame: UIScreen.main.bounds)
-        view.presenter = presenter?.generateSPHomeView(view: view)
+        view.presenter = presenter
         self.view = view
     }
     

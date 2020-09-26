@@ -9,14 +9,15 @@
 class SPHomeViewCell {
     
     //MARK: - Properties
-    var model: [Bill]? {
-        get {
-            superPresenter?.model.invoices[invoiceIndex].bills
-        }
-        set {
-            superPresenter?.model.invoices[invoiceIndex].bills = newValue!
-        }
-    }
+    var model: [Bill]?
+//    {
+//        get {
+//            superPresenter?.model.invoices[invoiceIndex].bills
+//        }
+//        set {
+//            superPresenter?.model.invoices[invoiceIndex].bills = newValue!
+//        }
+//    }
     weak var superPresenter: ISPHomeView?
     private var invoiceIndex: Int
     

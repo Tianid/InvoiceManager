@@ -10,14 +10,22 @@ import UIKit
 
 class HomePresenter {
     //MARK: - Properties
-    var model: InvoiceContainer
+    //    var model: InvoiceContainer
+    var model: [CDInvoice]
+    private(set) var currentInvoice: CDInvoice?
     private weak var view: IHomeVC?
     private var router: IRouter
     private var billInvoiceIndex = 0
     private var transefBillIndex = -1
     
     //MARK: - Init
-    init(view: IHomeVC, router: IRouter, model: InvoiceContainer) {
+    //    init(view: IHomeVC, router: IRouter, model: InvoiceContainer) {
+    //        self.view = view
+    //        self.router = router
+    //        self.model = model
+    //    }
+    
+    init(view: IHomeVC, router: IRouter, model: [CDInvoice]) {
         self.view = view
         self.router = router
         self.model = model
@@ -27,8 +35,15 @@ class HomePresenter {
 }
 
 extension HomePresenter: IHomePresenter {
+    func showBillDetail(invoice: CDInvoice, bill: CDBill?) {
+        currentInvoice = invoice
+        let modelCurrency = Currency(rawValue: currentInvoice!.currency!)!
+        router.showBillDetailModule(superPresenter: self, model: bill, currency: modelCurrency)
+        
+    }
+    
     func addNewInvoice(data: (String, Currency, String?)) {
-        model.invoices.append(Invoice(data: data))
+        //        model.invoices.append(Invoice(data: data))
         view?.insertNewInvoice()
     }
     
@@ -40,37 +55,50 @@ extension HomePresenter: IHomePresenter {
         view?.showViewController(view: alert)
     }
     
-    func setInvoiceInex(invoiceIndex: Int) {
+    func setInvoiceIndex(invoiceIndex: Int) {
         self.billInvoiceIndex = invoiceIndex
     }
+    
+    func insertNewDataIntoUI(billDetailsCreationState: BillDetailsCreationState) {
+        if billDetailsCreationState == .editing {
+        } else if billDetailsCreationState == .creating {
+            view?.insertNewData(index: billInvoiceIndex)
+        }
+    }
+    
     
     func transferNewBill(bill: Bill, billDetailsCreationState: BillDetailsCreationState) {
         guard billInvoiceIndex != -1 else { return }
         
         
         if billDetailsCreationState == .editing {
-            model.invoices[billInvoiceIndex].setupNewData(index: transefBillIndex, newValue: bill)
+            //            model.invoices[billInvoiceIndex].setupNewData(index: transefBillIndex, newValue: bill)
             view?.refreshTableViewRow(invoiceIndex: billInvoiceIndex, billIndex: transefBillIndex)
             
         } else if billDetailsCreationState == .creating {
-            model.invoices[billInvoiceIndex].setupNewData(newValue: bill)
+            //            model.invoices[billInvoiceIndex].setupNewData(newValue: bill)
             view?.insertNewData(index: billInvoiceIndex)
         }
     }
     
+    //    func showBillDetail(index: Int) {
+    //        let invoice = model[billInvoiceIndex]
+    //        let modelCurrency = Currency(rawValue: invoice.currency!)!
+    //        router.showBillDetailModule(superPresenter: self, model: <#T##Bill?#>, currency: modelCurrency)
+    //    }
+    
     func showBillDetail(bill: Bill?, billIndex: Int?) {
         transefBillIndex = billIndex ?? -1
-        let currency = model.invoices[billInvoiceIndex].currency
+        //        let currency = model.invoices[billInvoiceIndex].currency
+        //        router.showBillDetailModule(superPresenter: self, model: bill, currency: currency)
         
-        router.showBillDetailModule(superPresenter: self, model: bill, currency: currency)
-        
-//        guard let v = router.initBillDetailModule(superPresenter: self, model: bill, currency: currency) else { return }
-//        view?.showBillDetail(view: v)
+        //        guard let v = router.initBillDetailModule(superPresenter: self, model: bill, currency: currency) else { return }
+        //        view?.showBillDetail(view: v)
     }
     
     
-    func generateSPHomeView(view: IHomeView) -> ISPHomeView {
-        let presener = SPHomeView(superPresenter: self, model: model, view: view)
+    func generateSPHomeView(invoice: CDInvoice) -> ISPHomeView {
+        let presener = SPHomeView(superPresenter: self, model: invoice)
         return presener
     }
     
@@ -81,12 +109,17 @@ extension HomePresenter: IHomePresenter {
     //    }
     
     func deleteBillInModel(bill: Bill) {
-        let index = model.invoices[billInvoiceIndex].bills.firstIndex { (model) -> Bool in
-            model == bill
-        }
-        
-        guard let billIndex = index else { return }
-        model.invoices[billInvoiceIndex].deleteDataByIndex(index: billIndex)
-        view?.deleteRowInTableView(invoiceIndex: billInvoiceIndex, billIndex: billIndex)
+        //        let index = model.invoices[billInvoiceIndex].bills.firstIndex { (model) -> Bool in
+        //            model == bill
+        //        }
+        //
+        //        guard let billIndex = index else { return }
+        //        model.invoices[billInvoiceIndex].deleteDataByIndex(index: billIndex)
+        //        view?.deleteRowInTableView(invoiceIndex: billInvoiceIndex, billIndex: billIndex)
+    }
+    
+    func generateCellPresenter(invoice: CDInvoice) -> IPHomeCollectionViewCell {
+        let presenter = PHomeCollectionViewCell(invoice: invoice)
+        return presenter
     }
 }

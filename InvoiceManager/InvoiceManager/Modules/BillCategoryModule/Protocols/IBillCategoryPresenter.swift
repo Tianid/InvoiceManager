@@ -7,7 +7,7 @@
 //
 
 protocol IBillCategoryPresenter {
-    var model: [Category] { get set }
+    var model: [CDCategory] { get set }
     func categorySelected(index: Int)
     func dismissCategory()
 }

@@ -56,6 +56,7 @@
 		12B0EB6D25092D9800A67B79 /* TransitionDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB6C25092D9800A67B79 /* TransitionDriver.swift */; };
 		12B0EB6F2509323600A67B79 /* CGPoint+Velocity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB6E2509323600A67B79 /* CGPoint+Velocity.swift */; };
 		12B0EB712509341E00A67B79 /* TransitionDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB702509341E00A67B79 /* TransitionDirection.swift */; };
+		12C1878A251E6ECC00F8B009 /* PHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C18789251E6ECC00F8B009 /* PHomeCollectionViewCell.swift */; };
 		12C3740224FE780F005262F6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C3740124FE780F005262F6 /* HomeView.swift */; };
 		12C433DA251CCCCB000E48E0 /* Modelv0.1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 12C433D8251CCCCB000E48E0 /* Modelv0.1.xcdatamodeld */; };
 		12CBF7ED251B87300027A5C1 /* String+currensyFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CBF7EC251B87300027A5C1 /* String+currensyFormatting.swift */; };
@@ -91,6 +92,7 @@
 		12D1D5FE24FD29EF0077FEF6 /* IProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5FD24FD29EF0077FEF6 /* IProfilePresenter.swift */; };
 		12D1D60024FD2A020077FEF6 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5FF24FD2A020077FEF6 /* ProfilePresenter.swift */; };
 		12D1D60224FD3A390077FEF6 /* ProfileVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D60124FD3A390077FEF6 /* ProfileVCTest.swift */; };
+		12F212D7251E0D0B00E29D7A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F212D6251E0D0B00E29D7A /* CoreDataManager.swift */; };
 		12F976A225066D5C008DD07C /* SPHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F976A125066D5C008DD07C /* SPHomeView.swift */; };
 		12F976A425066EE4008DD07C /* ISPHomeVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F976A325066EE4008DD07C /* ISPHomeVIew.swift */; };
 		12F976A62506728F008DD07C /* ISPHomeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F976A52506728F008DD07C /* ISPHomeViewCell.swift */; };
@@ -158,6 +160,7 @@
 		12B0EB6C25092D9800A67B79 /* TransitionDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionDriver.swift; sourceTree = "<group>"; };
 		12B0EB6E2509323600A67B79 /* CGPoint+Velocity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Velocity.swift"; sourceTree = "<group>"; };
 		12B0EB702509341E00A67B79 /* TransitionDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionDirection.swift; sourceTree = "<group>"; };
+		12C18789251E6ECC00F8B009 /* PHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		12C3740124FE780F005262F6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		12C433D9251CCCCB000E48E0 /* Modelv0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Modelv0.1.xcdatamodel; sourceTree = "<group>"; };
 		12CBF7EC251B87300027A5C1 /* String+currensyFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+currensyFormatting.swift"; sourceTree = "<group>"; };
@@ -197,6 +200,7 @@
 		12D1D5FD24FD29EF0077FEF6 /* IProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProfilePresenter.swift; sourceTree = "<group>"; };
 		12D1D5FF24FD2A020077FEF6 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		12D1D60124FD3A390077FEF6 /* ProfileVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCTest.swift; sourceTree = "<group>"; };
+		12F212D6251E0D0B00E29D7A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		12F976A125066D5C008DD07C /* SPHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPHomeView.swift; sourceTree = "<group>"; };
 		12F976A325066EE4008DD07C /* ISPHomeVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISPHomeVIew.swift; sourceTree = "<group>"; };
 		12F976A52506728F008DD07C /* ISPHomeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISPHomeViewCell.swift; sourceTree = "<group>"; };
@@ -272,6 +276,16 @@
 				123E7E71250BB01600C7284B /* BillCategoryVCTest.swift */,
 			);
 			path = BillCategoryModuleTest;
+			sourceTree = "<group>";
+		};
+		127E1493251D137300AD7C49 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				127E1491251CF39800AD7C49 /* PreloadedData.plist */,
+				12C433D8251CCCCB000E48E0 /* Modelv0.1.xcdatamodeld */,
+				12F212D6251E0D0B00E29D7A /* CoreDataManager.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		12AB499525126C570069B713 /* NewInvoiceModule */ = {
@@ -426,11 +440,10 @@
 				12D1D5BC24FD1C8D0077FEF6 /* Extensions */,
 				12B0EB5F2509159200A67B79 /* Transitions */,
 				12D1D5BF24FD1CB90077FEF6 /* Modules */,
+				127E1493251D137300AD7C49 /* CoreData */,
 				12D1D59A24FD1B4D0077FEF6 /* AppDelegate.swift */,
 				12D1D59E24FD1B4D0077FEF6 /* ViewController.swift */,
 				1228B74425013AE9003822A4 /* TestData.swift */,
-				127E1491251CF39800AD7C49 /* PreloadedData.plist */,
-				12C433D8251CCCCB000E48E0 /* Modelv0.1.xcdatamodeld */,
 				12D1D5A024FD1B4D0077FEF6 /* Main.storyboard */,
 				12D1D5A324FD1B4E0077FEF6 /* Assets.xcassets */,
 				12D1D5A524FD1B4E0077FEF6 /* LaunchScreen.storyboard */,
@@ -601,6 +614,7 @@
 				12D1D5ED24FD28BE0077FEF6 /* HomePresenter.swift */,
 				12F976A125066D5C008DD07C /* SPHomeView.swift */,
 				12F976A7250672AE008DD07C /* SPHomeViewCell.swift */,
+				12C18789251E6ECC00F8B009 /* PHomeCollectionViewCell.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -839,6 +853,7 @@
 				12D1D5CC24FD1F150077FEF6 /* ITabBarPresenter.swift in Sources */,
 				121AC3DB250A5DA90099319D /* BillCategoryVC.swift in Sources */,
 				121AC3E1250A5E8B0099319D /* IBillCategoryVC.swift in Sources */,
+				12F212D7251E0D0B00E29D7A /* CoreDataManager.swift in Sources */,
 				129BC17A24FFD4D9004BD17A /* HomeViewCollectionViewCell.swift in Sources */,
 				124033CD250FB808008D2BA3 /* UINavigationController+popViewController.swift in Sources */,
 				12CBF7ED251B87300027A5C1 /* String+currensyFormatting.swift in Sources */,
@@ -890,6 +905,7 @@
 				12D1D5EE24FD28BE0077FEF6 /* HomePresenter.swift in Sources */,
 				129BC18024FFE76E004BD17A /* CardView.swift in Sources */,
 				12AB499E25126CC40069B713 /* INewInvoicePresenter.swift.swift in Sources */,
+				12C1878A251E6ECC00F8B009 /* PHomeCollectionViewCell.swift in Sources */,
 				12AB7B9624FD50BD00E2986D /* Category.swift in Sources */,
 				12504A81251631E300B58923 /* DTTextField.swift in Sources */,
 			);

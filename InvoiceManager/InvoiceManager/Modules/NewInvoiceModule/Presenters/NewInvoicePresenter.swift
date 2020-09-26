@@ -11,12 +11,14 @@ class NewInvoicePresenter {
     weak var view: INewInvoiceVC?
     private weak var superPresenter: IHomePresenter?
     private var router: IRouter
+    private var coreDataManager: ICoreDataManager
     //MARK: - Init
     
-    init(view: INewInvoiceVC, router: IRouter, superPresenter: IHomePresenter? = nil) {
+    init(view: INewInvoiceVC, router: IRouter, superPresenter: IHomePresenter? = nil, coreDataManager: ICoreDataManager) {
         self.view = view
         self.router = router
         self.superPresenter = superPresenter
+        self.coreDataManager = coreDataManager
     }
     //MARK: - Func
     
@@ -25,7 +27,14 @@ class NewInvoicePresenter {
 extension NewInvoicePresenter: INewInvoicePresenter {
     func saveNewInvoice(data: (String, Currency, String?)) {
         router.dismissModuleFromHomeNavigation(complition: { [weak self] in
-            self?.superPresenter?.addNewInvoice(data: data)
+            guard let result = self?.coreDataManager.createNewInvoice(data: data) else { return }
+            
+            switch result {
+            case .success(_):
+                self?.superPresenter?.addNewInvoice(data: data)
+            case .failure(_):
+                break
+            }
         })
     }
 }

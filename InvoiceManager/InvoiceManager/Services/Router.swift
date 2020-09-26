@@ -16,9 +16,9 @@ protocol IRouterMain {
 
 protocol IRouter: IRouterMain {
     func initiateTabBar()
-    func initBillCategoryModule(transition: PanelTransition, superPresenter: IBillDetailsPresenter) -> UIViewController?
-    func initBillDetailModule(superPresenter: IHomePresenter, model: Bill?, currency: Currency) -> UIViewController?
-    func showBillDetailModule(superPresenter: IHomePresenter, model: Bill?, currency: Currency)
+//    func initBillCategoryModule(transition: PanelTransition, superPresenter: IBillDetailsPresenter) -> UIViewController?
+//    func initBillDetailModule(superPresenter: IHomePresenter, model: Bill?, currency: Currency) -> UIViewController?
+    func showBillDetailModule(superPresenter: IHomePresenter, model: CDBill?, currency: Currency)
     func showBillCategoryModule(transition: PanelTransition, superPresenter: IBillDetailsPresenter)
     func dismissModuleFromHomeNavigation(complition: (() -> ())?)
     func showNewInvoiceModule(superPresenter: IHomePresenter)
@@ -70,16 +70,16 @@ class Router: IRouter {
         }
     }
     
-    func initBillCategoryModule(transition: PanelTransition, superPresenter: IBillDetailsPresenter) -> UIViewController? {
-        return assemblyBuilder?.createBillCategoryModule(router: self, transition: transition, superPresenter: superPresenter)
-    }
+//    func initBillCategoryModule(transition: PanelTransition, superPresenter: IBillDetailsPresenter) -> UIViewController? {
+//        return assemblyBuilder?.createBillCategoryModule(router: self, transition: transition, superPresenter: superPresenter)
+//    }
+//
+//    func initBillDetailModule(superPresenter: IHomePresenter, model: Bill?, currency: Currency) -> UIViewController? {
+//        return assemblyBuilder?.createBillDetailsModule(router: self, superPresenter: superPresenter, model: model, currency: currency)
+//
+//    }
     
-    func initBillDetailModule(superPresenter: IHomePresenter, model: Bill?, currency: Currency) -> UIViewController? {
-        return assemblyBuilder?.createBillDetailsModule(router: self, superPresenter: superPresenter, model: model, currency: currency)
-        
-    }
-    
-    func showBillDetailModule(superPresenter: IHomePresenter, model: Bill?, currency: Currency) {
+    func showBillDetailModule(superPresenter: IHomePresenter, model: CDBill?, currency: Currency) {
         guard let view = assemblyBuilder?.createBillDetailsModule(router: self, superPresenter: superPresenter, model: model, currency: currency) else { return }
         
         homeNavigationController?.pushViewController(view, animated: true)

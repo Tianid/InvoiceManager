@@ -7,10 +7,22 @@
 //
 
 import UIKit
+import CoreData
 
 class HomeView: UIView {
     //MARK: - Properties
-    var presenter: ISPHomeView?
+//    var presenter: ISPHomeView?
+    var presenter: IHomePresenter?
+    var context: NSManagedObjectContext! {
+        didSet {
+            setupFetchResultsController(for: context)
+            fetchData()
+            refreshUIData()
+        }
+    }
+    
+    private var fetchedResultsController: NSFetchedResultsController<CDInvoice>?
+
     private let identifier = "collectionViewIdentifier"
     private let newInvoiceIdentifier = "NewInvoiceCellIdentifier"
     
@@ -18,9 +30,14 @@ class HomeView: UIView {
     
     private var curentPage: CGFloat = 0 {
         didSet {
-            if Int(curentPage) <= (presenter?.model.invoices.count)! - 1 {
+            
+            if Int(curentPage) <= (presenter?.model.count)! - 1 {
                 setupInvoiceData()
             }
+            
+//            if Int(curentPage) <= (presenter?.model.invoices.count)! - 1 {
+//                setupInvoiceData()
+//            }
         }
     }
     private let headerViewHeightConst = 200
@@ -177,9 +194,14 @@ class HomeView: UIView {
     //MARK: - Func
     
     func insertNewInvoice() {
-        let indexPath = IndexPath(row: (presenter?.model.invoices.count)! - 1, section: 0)
-        collectionView.insertItems(at: [indexPath])
-        presenter?.setInvoiceIndex(invoiceIndex: Int(curentPage))
+//        guard let sections = fetchedResultsController?.sections else { return }
+//        let count = sections[0].numberOfObjects
+//        let indexPath = IndexPath(row: count, section: 0)
+
+        
+//        collectionView.insertItems(at: [indexPath])
+//        collectionView.reloadData()
+//        presenter?.setInvoiceIndex(invoiceIndex: Int(curentPage))
         refreshUIData()
     }
     
@@ -213,6 +235,23 @@ class HomeView: UIView {
             return
         }
         flowLayout.invalidateLayout()
+    }
+    
+    private func fetchData() {
+        try! fetchedResultsController?.performFetch()
+        collectionView.reloadData()
+    }
+    
+    private func setupFetchResultsController(for context: NSManagedObjectContext) {
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
+        let request = NSFetchRequest<CDInvoice>(entityName: "\(CDInvoice.self)")
+        request.sortDescriptors = [sortDescriptor]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
+                                                              managedObjectContext: context,
+                                                              sectionNameKeyPath: nil,
+                                                              cacheName: nil)
+        fetchedResultsController?.delegate = self
     }
     
     private func configureViewsConstraint() {
@@ -327,9 +366,10 @@ class HomeView: UIView {
     }
     
     private func setupInvoiceData() {
-        guard let count = presenter?.model.invoices.count else { return }
+        guard let count = presenter?.model.count else { return }
         guard curentPage < CGFloat(count) && count > 0 else { return }
-        guard let data = presenter?.model.invoices[Int(curentPage)] else { return }
+        guard let data = presenter?.model[Int(curentPage)] else { return }
+        print(data.name)
         invoiceNameLabel.text = data.name
         invoiceBalanceLabel.text = String(data.balance)
         invoiceIncomeCounterLabel.text = String(data.income)
@@ -338,7 +378,7 @@ class HomeView: UIView {
     }
     
     private func configureMockViewIfNeeded() {
-        guard let count = presenter?.model.invoices.count else { return }
+        let count = collectionView.numberOfItems(inSection: 0)
         if count <= 0 {
             isNeedToInitMockView(true)
             
@@ -351,7 +391,10 @@ class HomeView: UIView {
     }
     
     @objc private func addNewBill(_ sender: UIButton) {
-        presenter?.showBillDetail(bill: nil, billIndex: nil)
+        let indexPath = IndexPath(row: Int(curentPage), section: 0)
+        guard let invoice = fetchedResultsController?.object(at: indexPath) else { return }
+
+        presenter?.showBillDetail(invoice: invoice, bill: nil)
     }
     
     @objc private func openMoreMenu(_ sender: UIButton) {
@@ -361,10 +404,10 @@ class HomeView: UIView {
         }
         
         let deleteAction = UIAlertAction(title: "Delete invoice", style: .default) { (_) in
-            self.presenter?.deleteInvoice(invoiceIndex: Int(self.curentPage), complition: { [weak self] in
-                self?.collectionView.deleteItems(at: [IndexPath(row: Int(self!.curentPage), section: 0)])
-                self?.refreshUIData()
-            })
+//            self.presenter?.deleteInvoice(invoiceIndex: Int(self.curentPage), complition: { [weak self] in
+//                self?.collectionView.deleteItems(at: [IndexPath(row: Int(self!.curentPage), section: 0)])
+//                self?.refreshUIData()
+//            })
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -379,15 +422,15 @@ class HomeView: UIView {
     private func showRenameAlert() {
         let alert = UIAlertController(title: "Rename invoice", message: nil, preferredStyle: .alert)
         alert.addTextField { [unowned self] (textField) in
-            textField.text = self.presenter?.model.invoices[Int(self.curentPage)].name
+            textField.text = self.presenter?.model[Int(self.curentPage)].name
         }
         
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let text = alert?.textFields![0].text
-            self.presenter?.setNewName(name: text!, invoiceIndex: Int(self.curentPage), complition: { [weak self] in
-                self?.setupInvoiceData()
-            })            
+//            self.presenter?.setNewName(name: text!, invoiceIndex: Int(self.curentPage), complition: { [weak self] in
+//                self?.setupInvoiceData()
+//            })
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -420,20 +463,27 @@ class HomeView: UIView {
 //MARK: - UICollectionViewDataSource
 extension HomeView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let count = presenter?.model.invoices.count else { return 1}
-        return count + 1
+        guard let sections = fetchedResultsController?.sections else { return 0 }
+        return sections[section].numberOfObjects + 1
+//        guard let count = presenter?.model.count else { return 1 }
+//        return count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if indexPath.row > (presenter?.model.invoices.count)! - 1 {
+        let value = collectionView.numberOfItems(inSection: indexPath.section)
+        if indexPath.row == value - 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: newInvoiceIdentifier, for: indexPath) as? NewInvoiceCollectionViewCell
             cell?.presenter = presenter
             return cell!
         }
         
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? HomeViewCollectionViewCell
-        cell?.presenter = presenter?.generateSPHomeViewCell(index: indexPath.row)
+        guard let invoice = fetchedResultsController?.object(at: indexPath) else { return cell!}
+        cell?.presenter = presenter?.generateCellPresenter(invoice: invoice)
+        cell?.context = context
+//        cell?.presenter =
         //        cell?.testData = presenter?.model[indexPath.row].bills
         return cell!
     }
@@ -470,7 +520,7 @@ extension HomeView: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageWidth = collectionView.frame.size.width
         curentPage = collectionView.contentOffset.x / pageWidth
-        if Int(curentPage) <= (presenter?.model.invoices.count)! - 1 {
+        if Int(curentPage) < collectionView.numberOfItems(inSection: 0) - 1 {
             presenter?.setInvoiceIndex(invoiceIndex: Int(curentPage))
             isNeedToInitMockView(false)
         } else {
@@ -495,5 +545,25 @@ extension HomeView: IHomeView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
         return view
+    }
+}
+
+
+extension HomeView: NSFetchedResultsControllerDelegate {
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            collectionView.insertItems(at: [newIndexPath!])
+        case .update:
+            collectionView.reloadItems(at: [indexPath!])
+        case .move:
+            collectionView.deleteItems(at: [indexPath!])
+            collectionView.insertItems(at: [newIndexPath!])
+        case .delete:
+            collectionView.deleteItems(at: [indexPath!])
+        @unknown default:
+            break
+        }
     }
 }

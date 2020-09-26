@@ -10,7 +10,7 @@ import UIKit
 
 class NewInvoiceCollectionViewCell: UICollectionViewCell {
     //MARK: - Properties
-    var presenter: ISPHomeView?
+    var presenter: IHomePresenter?
     private var addInvoiceButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "plus"), for: .normal)
@@ -53,7 +53,7 @@ class NewInvoiceCollectionViewCell: UICollectionViewCell {
     }
     
     @objc private func buttonTapped(_ sender: UIButton) {
-        presenter?.newInvoiceButtonTapped()
+        presenter?.showNewInvoice()
     }
     
 }

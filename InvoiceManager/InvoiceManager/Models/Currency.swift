@@ -9,5 +9,5 @@
 
 
 enum Currency: String {
-    case EUR, RUB, USD, GBP
+    case EUR, RUB, USD, GBP, none
 }

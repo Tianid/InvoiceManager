@@ -148,7 +148,7 @@ class BillDetailsView: UIView {
             segmentedControl.selectedSegmentIndex = 0
         }
         
-        let category = bill.category.name
+        let category = bill.category?.name
         let description = bill.billDescription
         
         nameTextField.text = name

@@ -8,6 +8,7 @@
 
 
 import UIKit
+import CoreData
 
 protocol IAssembleBuilder {
     func createTabBarModule(router: IRouter) -> UITabBarController
@@ -15,12 +16,19 @@ protocol IAssembleBuilder {
     func createCategoryModule(router: IRouter) -> UIViewController
     func createChartModule(router: IRouter) -> UIViewController
     func createProfileModule(router: IRouter) -> UIViewController
-    func createBillDetailsModule(router: IRouter, superPresenter: IHomePresenter?, model: Bill?, currency: Currency) -> UIViewController
+    func createBillDetailsModule(router: IRouter, superPresenter: IHomePresenter?, model: CDBill?, currency: Currency) -> UIViewController
     func createBillCategoryModule(router: IRouter, transition: PanelTransition, superPresenter: IBillDetailsPresenter?) -> UIViewController
     func createNewInvoiceModule(router: IRouter, superPresenter: IHomePresenter?) -> UIViewController
 }
 
 class AssemblerModuleBuilder: IAssembleBuilder {
+    private var context: NSManagedObjectContext
+    private var coreDataManager: ICoreDataManager
+    
+    init(context: NSManagedObjectContext) {
+        self.context = context
+        self.coreDataManager = CoreDataManager(context: context)
+    }
     
     func createTabBarModule(router: IRouter) -> UITabBarController {
         let view = TabBarVC()
@@ -31,8 +39,10 @@ class AssemblerModuleBuilder: IAssembleBuilder {
     
     func createHomeModule(router: IRouter) -> UIViewController {
         let view = HomeVC()
-        let invoiceContainer = InvoiceContainer(model: testInvoices)
-        let presenter = HomePresenter(view: view, router: router, model: invoiceContainer)
+        view.context = context
+        let invoices = coreDataManager.fetchAllInvoices()
+//        let invoiceContainer = InvoiceContainer(model: data)
+        let presenter = HomePresenter(view: view, router: router, model: invoices)
         view.presenter = presenter
         return view
     }
@@ -58,9 +68,9 @@ class AssemblerModuleBuilder: IAssembleBuilder {
         return view
     }
     
-    func createBillDetailsModule(router: IRouter, superPresenter: IHomePresenter?, model: Bill?, currency: Currency) -> UIViewController {
+    func createBillDetailsModule(router: IRouter, superPresenter: IHomePresenter?, model: CDBill?, currency: Currency) -> UIViewController {
         let view = BillDetailsVC()
-        let presenter = BillDetailsPresenter(view: view, router: router, model: model, superPresenter: superPresenter, currency: currency)
+        let presenter = BillDetailsPresenter(view: view, router: router, model: model, superPresenter: superPresenter, currency: currency, coreDataManager: coreDataManager)
         view.presenter = presenter
         return view
     }
@@ -69,15 +79,16 @@ class AssemblerModuleBuilder: IAssembleBuilder {
         let view = BillCategoryVC()
         view.transitioningDelegate = transition
         view.modalPresentationStyle = .custom
-        
-        let presenter = BillCategoryPresenter(view: view, router: router, model: testCategorys, superPresenter: superPresenter)
+        let categorys = coreDataManager.fetchAllCategorys()
+
+        let presenter = BillCategoryPresenter(view: view, router: router, model: categorys, superPresenter: superPresenter)
         view.presenter = presenter
         return view
     }
     
     func createNewInvoiceModule(router: IRouter, superPresenter: IHomePresenter?) -> UIViewController {
         let view = NewInvoiceVC()
-        let presenter = NewInvoicePresenter(view: view, router: router, superPresenter: superPresenter)
+        let presenter = NewInvoicePresenter(view: view, router: router, superPresenter: superPresenter, coreDataManager: coreDataManager)
         view.presenter = presenter
         return view
     }

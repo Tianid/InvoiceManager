@@ -14,17 +14,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var container: NSPersistentContainer!
+    var context: NSManagedObjectContext!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        setupRoot()
         setupCoreDataStack()
+        setupRoot()
+        preloadData()
 
         return true
     }
     
     private func initiate() -> UIViewController {
-        let assembler = AssemblerModuleBuilder()
+        let assembler = AssemblerModuleBuilder(context: container.viewContext)
         let tabBar = TabBarVC()
         let router = Router(tabBar: tabBar, assembler: assembler)
         
@@ -43,17 +45,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         testView.testData = testBills1
         let tets = UITabBarController()
         tets.viewControllers = [testView]
-        window?.rootViewController = ViewController()
+        window?.rootViewController = tabBar
         window?.makeKeyAndVisible()
     }
     
     private func setupCoreDataStack() {
         self.container = createContainer()
-        let context = container.viewContext
-        let root = self.window?.rootViewController
-        let vRoot = root as? ViewController
-        vRoot?.context = context
-        self.preloadData()
+        self.context = container.viewContext
+//        let context = container.viewContext
+//        let root = self.window?.rootViewController
+//        let vRoot = root as? ViewController
+//        vRoot?.context = context
+//        self.preloadData()
+//        self.getAllCategorys()
     }
     
     private func createContainer() -> NSPersistentContainer? {

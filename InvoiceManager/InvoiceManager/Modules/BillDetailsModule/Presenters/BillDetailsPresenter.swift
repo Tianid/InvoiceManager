@@ -9,20 +9,22 @@
 class BillDetailsPresenter {
     //MARK: - Properties
     var billDetailsCreationState: BillDetailsCreationState = .defaultState
-    var model: Bill?
+    var model: CDBill?
     weak var view: IBillDetailsVC?
     weak var superPresenter: IHomePresenter?
+    private var coreDataManager: ICoreDataManager
     private var router: IRouter
-    private var category: Category?
+    private var category: CDCategory?
     private var currency: Currency
     //MARK: - Init
-    init(view: IBillDetailsVC, router: IRouter, model: Bill? = nil, superPresenter: IHomePresenter? = nil, currency: Currency) {
+    init(view: IBillDetailsVC, router: IRouter, model: CDBill? = nil, superPresenter: IHomePresenter? = nil, currency: Currency, coreDataManager: ICoreDataManager) {
         self.view = view
         self.router = router
         self.model = model
         self.category = model?.category
         self.superPresenter = superPresenter
         self.currency = currency
+        self.coreDataManager = coreDataManager 
     }
     //MARK: - Func
 }
@@ -31,31 +33,58 @@ extension BillDetailsPresenter: IBillDetailsPresenter {
     func deleteTapped() {
         guard let model = model, billDetailsCreationState == .editing else { return }
         
-        router.dismissModuleFromHomeNavigation { [unowned self] in
-            self.superPresenter?.deleteBillInModel(bill: model)
-        }
+//        router.dismissModuleFromHomeNavigation { [unowned self] in
+//            self.superPresenter?.deleteBillInModel(bill: model)
+//        }
     }
     
     func saveButtonTapped(name: String, value: Double, billState: BillState, description: String?) {
         
         guard let category = category else { return }
-        
+        guard let invoice = superPresenter?.currentInvoice else { return }
         let value = billState == .expense ? value * -1 : value
+
         
-        let bill = Bill(value: value,
-                        currency: currency,
-                        billName: name,
-                        billDescription: description ?? "",
-                        category: category)
+//        let result = coreDataManager.createNewBill(value: value,
+//                                      billName: name,
+//                                      billDescription: description ?? "",
+//                                      category: category,
+//                                      invoice: invoice)
         
         router.dismissModuleFromHomeNavigation(complition: { [unowned self] in
-            self.superPresenter?.transferNewBill(bill: bill, billDetailsCreationState: self.billDetailsCreationState)
+            
+            let result = self.coreDataManager.createNewBill(value: value,
+            billName: name,
+            billDescription: description ?? "",
+            category: category,
+            invoice: invoice)
+//            self.superPresenter?.insertNewDataIntoUI(billDetailsCreationState: self.billDetailsCreationState)
         })
+           
+        
+//        switch result {
+//        case .success(_):
+//            router.dismissModuleFromHomeNavigation(complition: { [unowned self] in
+//                self.superPresenter?.insertNewDataIntoUI(billDetailsCreationState: self.billDetailsCreationState)
+//            })
+//        case .failure(_):
+//            router.dismissModuleFromHomeNavigation(complition: nil)
+//        }
+//
+//        let bill = Bill(value: value,
+//                        currency: currency,
+//                        billName: name,
+//                        billDescription: description ?? "",
+//                        category: category)
+//
+//        router.dismissModuleFromHomeNavigation(complition: { [unowned self] in
+//            self.superPresenter?.transferNewBill(bill: bill, billDetailsCreationState: self.billDetailsCreationState)
+//        })
     }
     
-    func categorySelectedWithData(category: Category) {
+    func categorySelectedWithData(category: CDCategory) {
         self.category = category
-        view?.setCategory(name: category.name)
+        view?.setCategory(name: category.name!)
     }
     
     func categoryFieldTapped(transition: PanelTransition) {
