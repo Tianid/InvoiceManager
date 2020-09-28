@@ -8,46 +8,42 @@
 
 import Foundation
 import UIKit
-import CoreData
 
 
 class PHomeCollectionViewCell {
-    var invoice: CDInvoice
-    var model: [CDBill]
+    var invoice: Invoice
+    var model: [Bill]
+    
     weak var superPresenter: IHomePresenter?
     
-    init(invoice: CDInvoice) {
+    init(invoice: Invoice, superPresenter: IHomePresenter) {
         self.invoice = invoice
-        self.model = []
-        self.model = loadBills() ?? []
+        self.model = invoice.bills
+        self.superPresenter = superPresenter
     }
-    
-    private func loadBills() -> [CDBill]? {
-        let delegate = UIApplication.shared.delegate as? AppDelegate
-        if let context = delegate?.context {
-            let request = NSFetchRequest<CDBill>(entityName: "\(CDBill.self)")
-            request.sortDescriptors = [NSSortDescriptor(key: "modifiedDate", ascending: false)]
-            request.predicate = NSPredicate(format: "invoice.name == %@", invoice.name!)
-            
-            do {
-                let bills = try context.fetch(request)
-                return bills
-            } catch {
-                print(error.localizedDescription)
-                return nil
-            }
-            
-        }
-        return nil
-    }
-    
 }
 
 
 extension PHomeCollectionViewCell: IPHomeCollectionViewCell {
-    
-    func reloadBills() {
-        model = loadBills() ?? []
+    func prepareTableViewCell(cell: HomeViewTableViewCell, index: Int) -> HomeViewTableViewCell {
+        let count = model.count
+        let bill = model[count - 1 - index]
+
+        cell.billNameLabel.text = bill.billName
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMM yyyy HH:mm"
+        cell.billDateLabel.text = dateFormatter.string(from: bill.modifiedDate)
+        cell.billCategoryLabel.text = bill.category.name
+        cell.billValueLabel.text = String(bill.value)
+        return cell
     }
     
+    func billTapped(billIndex: Int) {
+        superPresenter?.showBillDetail(billIndex: billIndex)
+    }
+    
+    func reloadBills() {
+        guard let bills = superPresenter?.currentInvoice?.bills else { return }
+        model = bills
+    }
 }

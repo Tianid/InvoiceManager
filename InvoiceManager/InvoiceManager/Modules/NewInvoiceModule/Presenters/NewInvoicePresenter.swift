@@ -30,8 +30,8 @@ extension NewInvoicePresenter: INewInvoicePresenter {
             guard let result = self?.coreDataManager.createNewInvoice(data: data) else { return }
             
             switch result {
-            case .success(_):
-                self?.superPresenter?.addNewInvoice(data: data)
+            case .success(let invoice):
+                self?.superPresenter?.addNewInvoice(invoice: invoice)
             case .failure(_):
                 break
             }

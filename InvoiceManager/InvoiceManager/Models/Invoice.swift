@@ -16,17 +16,21 @@ struct Invoice {
     var income: Double
     var expense: Double
     let currency: Currency
+    let modifiedDate: Date
+    let creationDate: Date
     let uuid: String
     
     //MARK: - Init
     
-    internal init(name: String, balance: Double, bills: [Bill], income: Double, expense: Double, currency: Currency, uuid: String = UUID().uuidString ) {
+    internal init(name: String, balance: Double, bills: [Bill], income: Double, expense: Double, currency: Currency, modifiedDate: Date = Date(), creationDate: Date = Date(), uuid: String = UUID().uuidString ) {
         self.name = name
         self.balance = balance
         self.bills = bills
         self.income = income
         self.expense = expense
         self.currency = currency
+        self.modifiedDate = modifiedDate
+        self.creationDate = creationDate
         self.uuid = uuid
     }
     
@@ -37,6 +41,8 @@ struct Invoice {
         self.income = 0
         self.expense = 0
         self.currency = data.1
+        self.modifiedDate = Date()
+        self.creationDate = Date()
         self.uuid = UUID().uuidString 
     }
     //MARK: - Func

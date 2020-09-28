@@ -10,40 +10,57 @@ import UIKit
 
 class HomePresenter {
     //MARK: - Properties
-    //    var model: InvoiceContainer
-    var model: [CDInvoice]
-    private(set) var currentInvoice: CDInvoice?
+    var model: [Invoice] {
+        get {
+            return invoiceContainer.invoices
+        }
+        
+        set {
+            invoiceContainer.invoices = newValue
+        }
+    }
+    
+    var currentInvoice: Invoice? {
+        get {
+            model[invoiceIndex]
+        }
+        
+        set {
+            guard let value = newValue else { return }
+            model[invoiceIndex] = value
+        }
+    }
+    private var invoiceContainer: InvoiceContainer
     private weak var view: IHomeVC?
     private var router: IRouter
-    private var billInvoiceIndex = 0
-    private var transefBillIndex = -1
+    private var invoiceIndex = 0
+    private var billIndex = -1
     
     //MARK: - Init
-    //    init(view: IHomeVC, router: IRouter, model: InvoiceContainer) {
-    //        self.view = view
-    //        self.router = router
-    //        self.model = model
-    //    }
     
-    init(view: IHomeVC, router: IRouter, model: [CDInvoice]) {
+    init(view: IHomeVC, router: IRouter, model: InvoiceContainer) {
         self.view = view
         self.router = router
-        self.model = model
+        self.invoiceContainer = model
     }
     
     //MARK: - Func
 }
 
 extension HomePresenter: IHomePresenter {
-    func showBillDetail(invoice: CDInvoice, bill: CDBill?) {
-        currentInvoice = invoice
-        let modelCurrency = Currency(rawValue: currentInvoice!.currency!)!
-        router.showBillDetailModule(superPresenter: self, model: bill, currency: modelCurrency)
+    
+    func showBillDetail(billIndex: Int?) {
+        if billIndex == nil {
+            router.showBillDetailModule(superPresenter: self, model: nil )
+        } else {
+            self.billIndex = billIndex!
+            router.showBillDetailModule(superPresenter: self, model: model[invoiceIndex].bills[billIndex!] )
+        }
         
     }
     
-    func addNewInvoice(data: (String, Currency, String?)) {
-        //        model.invoices.append(Invoice(data: data))
+    func addNewInvoice(invoice: Invoice) {
+        model.append(invoice)
         view?.insertNewInvoice()
     }
     
@@ -56,57 +73,29 @@ extension HomePresenter: IHomePresenter {
     }
     
     func setInvoiceIndex(invoiceIndex: Int) {
-        self.billInvoiceIndex = invoiceIndex
+        self.invoiceIndex = invoiceIndex
     }
     
-    func insertNewDataIntoUI(billDetailsCreationState: BillDetailsCreationState) {
-        if billDetailsCreationState == .editing {
-        } else if billDetailsCreationState == .creating {
-            view?.insertNewData(index: billInvoiceIndex)
-        }
-    }
+//    func insertNewDataIntoUI(billDetailsCreationState: BillDetailsCreationState) {
+//        if billDetailsCreationState == .editing {
+//        } else if billDetailsCreationState == .creating {
+//            view?.insertNewData(index: invoiceIndex)
+//        }
+//    }
     
-    
-    func transferNewBill(bill: Bill, billDetailsCreationState: BillDetailsCreationState) {
-        guard billInvoiceIndex != -1 else { return }
+    func presentBillInotUI(bill: Bill, billDetailsCreationState: BillDetailsCreationState) {
+        guard invoiceIndex != -1 else { return }
         
         
         if billDetailsCreationState == .editing {
-            //            model.invoices[billInvoiceIndex].setupNewData(index: transefBillIndex, newValue: bill)
-            view?.refreshTableViewRow(invoiceIndex: billInvoiceIndex, billIndex: transefBillIndex)
+            currentInvoice?.setupNewData(index: billIndex, newValue: bill)
+            view?.refreshTableViewRow(invoiceIndex: invoiceIndex, billIndex: billIndex)
             
         } else if billDetailsCreationState == .creating {
-            //            model.invoices[billInvoiceIndex].setupNewData(newValue: bill)
-            view?.insertNewData(index: billInvoiceIndex)
+            currentInvoice?.setupNewData(newValue: bill)
+            view?.insertNewData(index: invoiceIndex)
         }
     }
-    
-    //    func showBillDetail(index: Int) {
-    //        let invoice = model[billInvoiceIndex]
-    //        let modelCurrency = Currency(rawValue: invoice.currency!)!
-    //        router.showBillDetailModule(superPresenter: self, model: <#T##Bill?#>, currency: modelCurrency)
-    //    }
-    
-    func showBillDetail(bill: Bill?, billIndex: Int?) {
-        transefBillIndex = billIndex ?? -1
-        //        let currency = model.invoices[billInvoiceIndex].currency
-        //        router.showBillDetailModule(superPresenter: self, model: bill, currency: currency)
-        
-        //        guard let v = router.initBillDetailModule(superPresenter: self, model: bill, currency: currency) else { return }
-        //        view?.showBillDetail(view: v)
-    }
-    
-    
-    func generateSPHomeView(invoice: CDInvoice) -> ISPHomeView {
-        let presener = SPHomeView(superPresenter: self, model: invoice)
-        return presener
-    }
-    
-    //    func showEditBillDetail(bill: Bill, invoiceIndex: Int) {
-    //        let currency = model.invoices[invoiceIndex].currency
-    //        guard let detail = router.initBillDetailModule(superPresenter: self, model: bill, currency: currency) else { return }
-    //        view?.showBillDetail(view: detail)
-    //    }
     
     func deleteBillInModel(bill: Bill) {
         //        let index = model.invoices[billInvoiceIndex].bills.firstIndex { (model) -> Bool in
@@ -118,8 +107,8 @@ extension HomePresenter: IHomePresenter {
         //        view?.deleteRowInTableView(invoiceIndex: billInvoiceIndex, billIndex: billIndex)
     }
     
-    func generateCellPresenter(invoice: CDInvoice) -> IPHomeCollectionViewCell {
-        let presenter = PHomeCollectionViewCell(invoice: invoice)
+    func generateCellPresenter(invoice: Invoice) -> IPHomeCollectionViewCell {
+        let presenter = PHomeCollectionViewCell(invoice: invoice, superPresenter: self)
         return presenter
     }
 }

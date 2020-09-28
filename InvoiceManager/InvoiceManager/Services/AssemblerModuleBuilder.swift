@@ -16,7 +16,7 @@ protocol IAssembleBuilder {
     func createCategoryModule(router: IRouter) -> UIViewController
     func createChartModule(router: IRouter) -> UIViewController
     func createProfileModule(router: IRouter) -> UIViewController
-    func createBillDetailsModule(router: IRouter, superPresenter: IHomePresenter?, model: CDBill?, currency: Currency) -> UIViewController
+    func createBillDetailsModule(router: IRouter, superPresenter: IHomePresenter?, model: Bill?) -> UIViewController
     func createBillCategoryModule(router: IRouter, transition: PanelTransition, superPresenter: IBillDetailsPresenter?) -> UIViewController
     func createNewInvoiceModule(router: IRouter, superPresenter: IHomePresenter?) -> UIViewController
 }
@@ -40,9 +40,9 @@ class AssemblerModuleBuilder: IAssembleBuilder {
     func createHomeModule(router: IRouter) -> UIViewController {
         let view = HomeVC()
         view.context = context
-        let invoices = coreDataManager.fetchAllInvoices()
-//        let invoiceContainer = InvoiceContainer(model: data)
-        let presenter = HomePresenter(view: view, router: router, model: invoices)
+        let invoices = coreDataManager.fetchAllInvoicesWithAllBills()
+        let invoiceContainer = InvoiceContainer(model: invoices)
+        let presenter = HomePresenter(view: view, router: router, model: invoiceContainer)
         view.presenter = presenter
         return view
     }
@@ -68,9 +68,9 @@ class AssemblerModuleBuilder: IAssembleBuilder {
         return view
     }
     
-    func createBillDetailsModule(router: IRouter, superPresenter: IHomePresenter?, model: CDBill?, currency: Currency) -> UIViewController {
+    func createBillDetailsModule(router: IRouter, superPresenter: IHomePresenter?, model: Bill?) -> UIViewController {
         let view = BillDetailsVC()
-        let presenter = BillDetailsPresenter(view: view, router: router, model: model, superPresenter: superPresenter, currency: currency, coreDataManager: coreDataManager)
+        let presenter = BillDetailsPresenter(view: view, router: router, model: model, superPresenter: superPresenter, coreDataManager: coreDataManager)
         view.presenter = presenter
         return view
     }

@@ -8,13 +8,13 @@
 
 class BillCategoryPresenter {
     //MARK: - Properties
-    var model: [CDCategory]
+    var model: [Category]
     weak var view: IBillCategoryVC?
     weak var superPresenter: IBillDetailsPresenter?
     private var router: IRouter
     
     //MARK: - Init
-    init(view: IBillCategoryVC, router: IRouter, model: [CDCategory], superPresenter: IBillDetailsPresenter? = nil) {
+    init(view: IBillCategoryVC, router: IRouter, model: [Category], superPresenter: IBillDetailsPresenter? = nil) {
         self.view = view
         self.router = router
         self.model = model

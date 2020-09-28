@@ -11,12 +11,9 @@ import CoreData
 
 class HomeView: UIView {
     //MARK: - Properties
-//    var presenter: ISPHomeView?
     var presenter: IHomePresenter?
     var context: NSManagedObjectContext! {
         didSet {
-            setupFetchResultsController(for: context)
-            fetchData()
             refreshUIData()
         }
     }
@@ -30,14 +27,9 @@ class HomeView: UIView {
     
     private var curentPage: CGFloat = 0 {
         didSet {
-            
             if Int(curentPage) <= (presenter?.model.count)! - 1 {
                 setupInvoiceData()
             }
-            
-//            if Int(curentPage) <= (presenter?.model.invoices.count)! - 1 {
-//                setupInvoiceData()
-//            }
         }
     }
     private let headerViewHeightConst = 200
@@ -194,14 +186,10 @@ class HomeView: UIView {
     //MARK: - Func
     
     func insertNewInvoice() {
-//        guard let sections = fetchedResultsController?.sections else { return }
-//        let count = sections[0].numberOfObjects
-//        let indexPath = IndexPath(row: count, section: 0)
-
-        
-//        collectionView.insertItems(at: [indexPath])
-//        collectionView.reloadData()
-//        presenter?.setInvoiceIndex(invoiceIndex: Int(curentPage))
+        let indexPath = IndexPath(row: (presenter?.model.count)! - 1, section: 0)
+        collectionView.insertItems(at: [indexPath])
+        collectionView.reloadData()
+        presenter?.setInvoiceIndex(invoiceIndex: Int(curentPage))
         refreshUIData()
     }
     
@@ -237,23 +225,6 @@ class HomeView: UIView {
         flowLayout.invalidateLayout()
     }
     
-    private func fetchData() {
-        try! fetchedResultsController?.performFetch()
-        collectionView.reloadData()
-    }
-    
-    private func setupFetchResultsController(for context: NSManagedObjectContext) {
-        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
-        let request = NSFetchRequest<CDInvoice>(entityName: "\(CDInvoice.self)")
-        request.sortDescriptors = [sortDescriptor]
-        
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: request,
-                                                              managedObjectContext: context,
-                                                              sectionNameKeyPath: nil,
-                                                              cacheName: nil)
-        fetchedResultsController?.delegate = self
-    }
-    
     private func configureViewsConstraint() {
         self.addSubview(headerView)
         headerView.addSubview(invoiceNameLabel)
@@ -271,9 +242,6 @@ class HomeView: UIView {
         self.addSubview(collectionView)
         headerView.addSubview(collectionPanel)
         collectionPanel.addSubview(addButton)
-        
-        
-        
         
         headerView.anchor(top: safeAreaLayoutGuide.topAnchor,
                           leading: safeAreaLayoutGuide.leadingAnchor,
@@ -357,8 +325,6 @@ class HomeView: UIView {
         collectionView.dataSource = self
         collectionView.register(HomeViewCollectionViewCell.self, forCellWithReuseIdentifier: identifier)
         collectionView.register(NewInvoiceCollectionViewCell.self, forCellWithReuseIdentifier: newInvoiceIdentifier)
-        
-        
     }
     
     private func configureUI() {
@@ -369,12 +335,10 @@ class HomeView: UIView {
         guard let count = presenter?.model.count else { return }
         guard curentPage < CGFloat(count) && count > 0 else { return }
         guard let data = presenter?.model[Int(curentPage)] else { return }
-        print(data.name)
         invoiceNameLabel.text = data.name
         invoiceBalanceLabel.text = String(data.balance)
         invoiceIncomeCounterLabel.text = String(data.income)
         invoiceExpenseCounterLabel.text = String(data.expense)
-        
     }
     
     private func configureMockViewIfNeeded() {
@@ -391,10 +355,7 @@ class HomeView: UIView {
     }
     
     @objc private func addNewBill(_ sender: UIButton) {
-        let indexPath = IndexPath(row: Int(curentPage), section: 0)
-        guard let invoice = fetchedResultsController?.object(at: indexPath) else { return }
-
-        presenter?.showBillDetail(invoice: invoice, bill: nil)
+        presenter?.showBillDetail(billIndex: nil)
     }
     
     @objc private func openMoreMenu(_ sender: UIButton) {
@@ -463,10 +424,8 @@ class HomeView: UIView {
 //MARK: - UICollectionViewDataSource
 extension HomeView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let sections = fetchedResultsController?.sections else { return 0 }
-        return sections[section].numberOfObjects + 1
-//        guard let count = presenter?.model.count else { return 1 }
-//        return count + 1
+        guard let count = presenter?.model.count else { return 1 }
+        return count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -480,11 +439,8 @@ extension HomeView: UICollectionViewDataSource {
         
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? HomeViewCollectionViewCell
-        guard let invoice = fetchedResultsController?.object(at: indexPath) else { return cell!}
-        cell?.presenter = presenter?.generateCellPresenter(invoice: invoice)
-        cell?.context = context
-//        cell?.presenter =
-        //        cell?.testData = presenter?.model[indexPath.row].bills
+
+        cell?.presenter = presenter?.generateCellPresenter(invoice: (presenter?.model[indexPath.row])!)
         return cell!
     }
     
@@ -545,25 +501,5 @@ extension HomeView: IHomeView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
         return view
-    }
-}
-
-
-extension HomeView: NSFetchedResultsControllerDelegate {
-
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        switch type {
-        case .insert:
-            collectionView.insertItems(at: [newIndexPath!])
-        case .update:
-            collectionView.reloadItems(at: [indexPath!])
-        case .move:
-            collectionView.deleteItems(at: [indexPath!])
-            collectionView.insertItems(at: [newIndexPath!])
-        case .delete:
-            collectionView.deleteItems(at: [indexPath!])
-        @unknown default:
-            break
-        }
     }
 }

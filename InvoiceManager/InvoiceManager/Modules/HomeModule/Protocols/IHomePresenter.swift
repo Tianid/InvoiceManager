@@ -9,27 +9,29 @@ import UIKit
 
 protocol IHomePresenter: class {
 //    var model: InvoiceContainer { get set }
-    var model: [CDInvoice] { get set }
-    var currentInvoice: CDInvoice? { get }
+    var model: [Invoice] { get set }
+    var currentInvoice: Invoice? { get set }
 
-    func generateCellPresenter(invoice: CDInvoice) -> IPHomeCollectionViewCell
+    func generateCellPresenter(invoice: Invoice) -> IPHomeCollectionViewCell
 
-    func showBillDetail(bill: Bill?, billIndex: Int?)
-    func showBillDetail(invoice: CDInvoice, bill: CDBill?)
+    func showBillDetail(billIndex: Int?)
     
-    func insertNewDataIntoUI(billDetailsCreationState: BillDetailsCreationState)
+    //    func showBillDetail(invoiceIndex: Int)
+    //    func insertNewDataIntoUI(billDetailsCreationState: BillDetailsCreationState)
     
-    func transferNewBill(bill: Bill, billDetailsCreationState: BillDetailsCreationState)
+    func presentBillInotUI(bill: Bill, billDetailsCreationState: BillDetailsCreationState)
     func setInvoiceIndex(invoiceIndex: Int)
     func deleteBillInModel(bill: Bill)
     func presentAlert(alert: UIAlertController)
     func showNewInvoice()
-    func addNewInvoice(data: (String, Currency, String?))
+    func addNewInvoice(invoice: Invoice)
 }
 
 protocol IPHomeCollectionViewCell {
-    var invoice: CDInvoice { get }
-    var model: [CDBill] { get set }
+    var invoice: Invoice { get }
+    var model: [Bill] { get set }
     
-    func reloadBills() 
+    func reloadBills()
+    func billTapped(billIndex: Int)
+    func prepareTableViewCell(cell: HomeViewTableViewCell, index: Int) -> HomeViewTableViewCell
 }

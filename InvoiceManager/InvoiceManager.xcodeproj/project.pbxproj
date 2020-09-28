@@ -93,10 +93,6 @@
 		12D1D60024FD2A020077FEF6 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5FF24FD2A020077FEF6 /* ProfilePresenter.swift */; };
 		12D1D60224FD3A390077FEF6 /* ProfileVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D60124FD3A390077FEF6 /* ProfileVCTest.swift */; };
 		12F212D7251E0D0B00E29D7A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F212D6251E0D0B00E29D7A /* CoreDataManager.swift */; };
-		12F976A225066D5C008DD07C /* SPHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F976A125066D5C008DD07C /* SPHomeView.swift */; };
-		12F976A425066EE4008DD07C /* ISPHomeVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F976A325066EE4008DD07C /* ISPHomeVIew.swift */; };
-		12F976A62506728F008DD07C /* ISPHomeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F976A52506728F008DD07C /* ISPHomeViewCell.swift */; };
-		12F976A8250672AE008DD07C /* SPHomeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F976A7250672AE008DD07C /* SPHomeViewCell.swift */; };
 		12F976AA25069647008DD07C /* InvoiceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F976A925069647008DD07C /* InvoiceContainer.swift */; };
 /* End PBXBuildFile section */
 
@@ -201,10 +197,6 @@
 		12D1D5FF24FD2A020077FEF6 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		12D1D60124FD3A390077FEF6 /* ProfileVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCTest.swift; sourceTree = "<group>"; };
 		12F212D6251E0D0B00E29D7A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		12F976A125066D5C008DD07C /* SPHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPHomeView.swift; sourceTree = "<group>"; };
-		12F976A325066EE4008DD07C /* ISPHomeVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISPHomeVIew.swift; sourceTree = "<group>"; };
-		12F976A52506728F008DD07C /* ISPHomeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISPHomeViewCell.swift; sourceTree = "<group>"; };
-		12F976A7250672AE008DD07C /* SPHomeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPHomeViewCell.swift; sourceTree = "<group>"; };
 		12F976A925069647008DD07C /* InvoiceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -600,8 +592,6 @@
 			children = (
 				12D1D5E924FD28A50077FEF6 /* IHomeVC.swift */,
 				12D1D5EB24FD28B00077FEF6 /* IHomePresenter.swift */,
-				12F976A325066EE4008DD07C /* ISPHomeVIew.swift */,
-				12F976A52506728F008DD07C /* ISPHomeViewCell.swift */,
 				1212F6BC2507B6C00016693B /* IHomeView.swift */,
 				1212F6BE2507B9C10016693B /* IHomeCollectionViewCell.swift */,
 			);
@@ -612,8 +602,6 @@
 			isa = PBXGroup;
 			children = (
 				12D1D5ED24FD28BE0077FEF6 /* HomePresenter.swift */,
-				12F976A125066D5C008DD07C /* SPHomeView.swift */,
-				12F976A7250672AE008DD07C /* SPHomeViewCell.swift */,
 				12C18789251E6ECC00F8B009 /* PHomeCollectionViewCell.swift */,
 			);
 			path = Presenters;
@@ -859,7 +847,6 @@
 				12CBF7ED251B87300027A5C1 /* String+currensyFormatting.swift in Sources */,
 				121AC3EA250A77D10099319D /* BillCategoryTableViewCell.swift in Sources */,
 				12B0EB6B25091F4400A67B79 /* DismissAnimation.swift in Sources */,
-				12F976A8250672AE008DD07C /* SPHomeViewCell.swift in Sources */,
 				1212F6C72507D0560016693B /* IBillDetailsPresenter.swift in Sources */,
 				12D1D5E824FD27260077FEF6 /* ProfleVC.swift in Sources */,
 				121AC3DD250A5E600099319D /* BillCategoryPresenter.swift in Sources */,
@@ -891,11 +878,8 @@
 				1228B74525013AE9003822A4 /* TestData.swift in Sources */,
 				12D1D59B24FD1B4D0077FEF6 /* AppDelegate.swift in Sources */,
 				12D1D5EA24FD28A50077FEF6 /* IHomeVC.swift in Sources */,
-				12F976A425066EE4008DD07C /* ISPHomeVIew.swift in Sources */,
-				12F976A62506728F008DD07C /* ISPHomeViewCell.swift in Sources */,
 				12D1D5C424FD1D2A0077FEF6 /* AssemblerModuleBuilder.swift in Sources */,
 				12F976AA25069647008DD07C /* InvoiceContainer.swift in Sources */,
-				12F976A225066D5C008DD07C /* SPHomeView.swift in Sources */,
 				1212F6CB2507D0810016693B /* BillDetailsVC.swift in Sources */,
 				129BC17D24FFE648004BD17A /* HomeViewTableViewCell.swift in Sources */,
 				12CBF7EF251B9B2C0027A5C1 /* CategoryView.swift in Sources */,
