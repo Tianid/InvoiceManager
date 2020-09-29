@@ -49,7 +49,6 @@ class NewInvoiceVC: UIViewController {
         guard let data = newInvoiceView?.getUIData() else { return }
         presenter?.saveNewInvoice(data: data)
     }
-    
 }
 
 extension NewInvoiceVC: INewInvoiceVC {

@@ -83,8 +83,7 @@ class DropDownMenu: UIView {
         containerView.anchor(top: safeAreaLayoutGuide.topAnchor,
                              leading: safeAreaLayoutGuide.leadingAnchor,
                              bottom: safeAreaLayoutGuide.bottomAnchor,
-                             trailing: safeAreaLayoutGuide.trailingAnchor
-        )
+                             trailing: safeAreaLayoutGuide.trailingAnchor)
         
         invoiceNameContainer.anchor(top: containerView.topAnchor,
                               leading: containerView.leadingAnchor,

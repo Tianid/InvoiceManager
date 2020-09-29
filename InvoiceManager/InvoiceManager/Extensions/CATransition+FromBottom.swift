@@ -23,6 +23,4 @@ extension CATransition {
         self.subtype = CATransitionSubtype.fromBottom
         return self
     }
-    
-    
 }

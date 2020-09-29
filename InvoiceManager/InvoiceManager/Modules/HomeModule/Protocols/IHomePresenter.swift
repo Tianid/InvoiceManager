@@ -8,23 +8,22 @@
 import UIKit
 
 protocol IHomePresenter: class {
-//    var model: InvoiceContainer { get set }
     var model: [Invoice] { get set }
     var currentInvoice: Invoice? { get set }
 
     func generateCellPresenter(invoice: Invoice) -> IPHomeCollectionViewCell
 
     func showBillDetail(billIndex: Int?)
-    
-    //    func showBillDetail(invoiceIndex: Int)
-    //    func insertNewDataIntoUI(billDetailsCreationState: BillDetailsCreationState)
-    
-    func presentBillInotUI(bill: Bill, billDetailsCreationState: BillDetailsCreationState)
-    func setInvoiceIndex(invoiceIndex: Int)
-    func deleteBillInModel(bill: Bill)
-    func presentAlert(alert: UIAlertController)
     func showNewInvoice()
+    func presentAlert(alert: UIAlertController)
+    func presentBillIntoUI(bill: Bill, billDetailsCreationState: BillDetailsCreationState)
     func addNewInvoice(invoice: Invoice)
+    func updateInvoiceName(name: String, complition: (() -> ())?)
+    
+    func setInvoiceIndex(invoiceIndex: Int)
+    
+    func deleteBillInModel(bill: Bill)
+    func deleteInvoice(complition: (() -> ())?)
 }
 
 protocol IPHomeCollectionViewCell {

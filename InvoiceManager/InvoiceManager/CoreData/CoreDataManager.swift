@@ -19,10 +19,13 @@ protocol ICoreDataManager {
     func createNewBill(bill: Bill, invoice: Invoice) -> Result<Void, CoreDataSaveError>
     
     func updateBill(bill: Bill) -> Result<Void, CoreDataSaveError>
+    func updateInvoice(invoice: Invoice) -> Result<Void, CoreDataSaveError>
 
-    
     func fetchAllCategorys() -> [Category]
     func fetchAllInvoicesWithAllBills() -> [Invoice]
+    
+    func deleteInvoice(invoice: Invoice) -> Result<Void, CoreDataSaveError>
+    func deleteBill(bill: Bill) -> Result<Void, CoreDataSaveError>
 }
 
 
@@ -150,7 +153,14 @@ class CoreDataManager {
     
     //MARK: - Update entities
     
-    private func updateInvoiceByNewBill(cdInvoice: CDInvoice, by bill: CDBill) {
+    private func makeUpdateInvoiceName(invoice: Invoice) {
+        guard let cdInvoices = fetchInvoice(with: NSPredicate(format: "creationDate == %@", invoice.creationDate as NSDate)), cdInvoices.count > 0 else { return }
+        let cdInvoice = cdInvoices[0]
+        cdInvoice.name = invoice.name
+        cdInvoice.modifiedDate = Date()
+    }
+    
+    private func makeUpdateInvoiceByNewBill(cdInvoice: CDInvoice, by bill: CDBill) {
         
         let value = bill.value
         if value < 0.0 {
@@ -160,9 +170,10 @@ class CoreDataManager {
         }
         
         cdInvoice.balance += value
+        cdInvoice.modifiedDate = Date()
     }
     
-    private func updateInvoiceByChangedBill(invoice: CDInvoice, oldBill: CDBill, newBill: Bill) {
+    private func makeUpdateInvoiceByChangedBill(invoice: CDInvoice, oldBill: CDBill, newBill: Bill) {
         let oldValue = oldBill
         let newValue = newBill
         let newBalance = invoice.balance - oldBill.value
@@ -187,6 +198,20 @@ class CoreDataManager {
         }
         
         invoice.balance = newBalance + newValue.value
+        invoice.modifiedDate = Date()
+    }
+    
+    private func makeUpdateInvoiceByDeletingBill(cdInvoice: CDInvoice, cdBill: CDBill) {
+        let oldValue = cdBill
+        
+        if oldValue.value < 0 {
+            cdInvoice.expense -= oldValue.value
+        } else {
+            cdInvoice.income -= oldValue.value
+        }
+        
+        cdInvoice.balance -= oldValue.value
+        cdInvoice.modifiedDate = Date()
     }
 }
 
@@ -211,14 +236,13 @@ extension CoreDataManager: ICoreDataManager {
             print(error.localizedDescription)
             return .failure(error)
         }
-        
     }
     
     func createNewBill(bill: Bill, invoice: Invoice) -> Result<Void, CoreDataSaveError> {
         guard let cdInvoices = fetchInvoice(with: NSPredicate(format: "creationDate == %@", invoice.creationDate as NSDate)), !cdInvoices.isEmpty else { return .failure(.notGetAllData)}
         guard let cdBill = transformAppBillModelToCDBillModel(bill: bill) else { return .failure(.notGetAllData)}
         let cdInvoice = cdInvoices[0]
-        updateInvoiceByNewBill(cdInvoice: cdInvoice, by: cdBill)
+        makeUpdateInvoiceByNewBill(cdInvoice: cdInvoice, by: cdBill)
         cdInvoice.addToBills(cdBill)
         
         do {
@@ -228,14 +252,14 @@ extension CoreDataManager: ICoreDataManager {
             print(error)
             return .failure(.saveError)
         }
-
     }
-    
+    //MARK: - Update entitys
+
     func updateBill(bill: Bill) -> Result<Void, CoreDataSaveError> {
         guard let cdBills = fetchBill(with: NSPredicate(format: "creationDate == %@", bill.creationDate as NSDate)), cdBills.count > 0 else { return .failure(.notGetAllData)}
         guard let invoice = cdBills[0].invoice else { return .failure(.notGetAllData)}
         let cdBill = cdBills[0]
-        updateInvoiceByChangedBill(invoice: invoice, oldBill: cdBill, newBill: bill)
+        makeUpdateInvoiceByChangedBill(invoice: invoice, oldBill: cdBill, newBill: bill)
         let _ = transformAppBillModelToCDBillModel(bill: bill, updatableBill: cdBill)
         
         do {
@@ -245,7 +269,17 @@ extension CoreDataManager: ICoreDataManager {
             print(error.localizedDescription)
             return .failure(.saveError)
         }
-        
+    }
+    
+    func updateInvoice(invoice: Invoice) -> Result<Void, CoreDataSaveError> {
+        makeUpdateInvoiceName(invoice: invoice)
+        do {
+            try context.save()
+            return .success(())
+        } catch {
+            print(error.localizedDescription)
+            return .failure(.saveError)
+        }
     }
     
     //MARK: - Fetch entitys
@@ -255,19 +289,17 @@ extension CoreDataManager: ICoreDataManager {
         do {
             let cdCategorys = try context.fetch(request)
             var categorys: [Category] = []
-            
+
             for cdCategory in cdCategorys {
                 let category = transformCDCategoryModelToAppCategoryModel(cdCategory: cdCategory)
                 categorys.append(category)
             }
             return categorys
-            
-            
+
         } catch {
             print(error.localizedDescription)
             return []
         }
-        
     }
 
     
@@ -295,6 +327,38 @@ extension CoreDataManager: ICoreDataManager {
         } catch {
             print(error.localizedDescription)
             return []
+        }
+    }
+    
+    //MARK: - Delete entitys
+
+    func deleteInvoice(invoice: Invoice) -> Result<Void, CoreDataSaveError> {
+        guard let cdInvoices = fetchInvoice(with: NSPredicate(format: "creationDate == %@", invoice.creationDate as NSDate)), cdInvoices.count > 0 else { return .failure(.notGetAllData)}
+        let cdInvoice = cdInvoices[0]
+        context.delete(cdInvoice)
+        
+        do {
+            try context.save()
+            return .success(())
+        } catch {
+            print(error.localizedDescription)
+            return .failure(.saveError)
+        }
+    }
+    
+    func deleteBill(bill: Bill) -> Result<Void, CoreDataSaveError> {
+        guard let cdBills = fetchBill(with: NSPredicate(format: "creationDate == %@", bill.creationDate as NSDate)), cdBills.count > 0 else { return .failure(.notGetAllData) }
+        let cdBill = cdBills[0]
+        guard let cdInvoice = cdBill.invoice else { return .failure(.notGetAllData)}
+        makeUpdateInvoiceByDeletingBill(cdInvoice: cdInvoice, cdBill: cdBill)
+        context.delete(cdBill)
+        
+        do {
+            try context.save()
+            return .success(())
+        } catch {
+            print(error.localizedDescription)
+            return .failure(.saveError)
         }
     }
 }

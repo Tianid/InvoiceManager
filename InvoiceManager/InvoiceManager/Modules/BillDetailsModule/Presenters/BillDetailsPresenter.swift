@@ -35,7 +35,7 @@ class BillDetailsPresenter {
         switch result {
         case .success(_):
             router.dismissModuleFromHomeNavigation(complition: { [unowned self] in
-                self.superPresenter?.presentBillInotUI(bill: newBill, billDetailsCreationState: self.billDetailsCreationState)
+                self.superPresenter?.presentBillIntoUI(bill: newBill, billDetailsCreationState: self.billDetailsCreationState)
             })
         case .failure(let errro):
             print(errro)
@@ -48,7 +48,7 @@ class BillDetailsPresenter {
         switch result {
         case .success(_):
             router.dismissModuleFromHomeNavigation { [unowned self] in
-                self.superPresenter?.presentBillInotUI(bill: newBill, billDetailsCreationState: self.billDetailsCreationState)
+                self.superPresenter?.presentBillIntoUI(bill: newBill, billDetailsCreationState: self.billDetailsCreationState)
             }
         case .failure(let error):
             print(error)
@@ -59,10 +59,9 @@ class BillDetailsPresenter {
 extension BillDetailsPresenter: IBillDetailsPresenter {
     func deleteTapped() {
         guard let model = model, billDetailsCreationState == .editing else { return }
-        
-        //        router.dismissModuleFromHomeNavigation { [unowned self] in
-        //            self.superPresenter?.deleteBillInModel(bill: model)
-        //        }
+        router.dismissModuleFromHomeNavigation { [unowned self] in
+            self.superPresenter?.deleteBillInModel(bill: model)
+        }
     }
     
     func saveButtonTapped(name: String, value: Double, billState: BillState, description: String?) {

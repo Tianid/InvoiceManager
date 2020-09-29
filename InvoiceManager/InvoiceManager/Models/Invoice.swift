@@ -107,5 +107,4 @@ struct Invoice {
         balance = newBalance + newValue.value
         bills[index] = newValue
     }
-    
 }

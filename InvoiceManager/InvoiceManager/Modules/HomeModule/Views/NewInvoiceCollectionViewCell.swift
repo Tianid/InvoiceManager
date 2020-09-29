@@ -55,5 +55,4 @@ class NewInvoiceCollectionViewCell: UICollectionViewCell {
     @objc private func buttonTapped(_ sender: UIButton) {
         presenter?.showNewInvoice()
     }
-    
 }

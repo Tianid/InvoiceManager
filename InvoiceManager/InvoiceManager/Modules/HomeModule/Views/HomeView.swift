@@ -19,7 +19,7 @@ class HomeView: UIView {
     }
     
     private var fetchedResultsController: NSFetchedResultsController<CDInvoice>?
-
+    
     private let identifier = "collectionViewIdentifier"
     private let newInvoiceIdentifier = "NewInvoiceCellIdentifier"
     
@@ -219,9 +219,7 @@ class HomeView: UIView {
     func viewWillTransition() {
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
-            return
-        }
+        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         flowLayout.invalidateLayout()
     }
     
@@ -342,13 +340,9 @@ class HomeView: UIView {
     }
     
     private func configureMockViewIfNeeded() {
-        let count = collectionView.numberOfItems(inSection: 0)
-        if count <= 0 {
+        let count = collectionView.numberOfItems(inSection: 0) - 1
+        if count <= 0 || Int(curentPage) == count {
             isNeedToInitMockView(true)
-            
-        } else if Int(curentPage) == count {
-            isNeedToInitMockView(true)
-            
         } else {
             isNeedToInitMockView(false)
         }
@@ -365,10 +359,10 @@ class HomeView: UIView {
         }
         
         let deleteAction = UIAlertAction(title: "Delete invoice", style: .default) { (_) in
-//            self.presenter?.deleteInvoice(invoiceIndex: Int(self.curentPage), complition: { [weak self] in
-//                self?.collectionView.deleteItems(at: [IndexPath(row: Int(self!.curentPage), section: 0)])
-//                self?.refreshUIData()
-//            })
+            self.presenter?.deleteInvoice(complition: { [weak self] in
+                self?.collectionView.deleteItems(at: [IndexPath(row: Int(self!.curentPage), section: 0)])
+                self?.refreshUIData()
+            })
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -389,9 +383,9 @@ class HomeView: UIView {
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let text = alert?.textFields![0].text
-//            self.presenter?.setNewName(name: text!, invoiceIndex: Int(self.curentPage), complition: { [weak self] in
-//                self?.setupInvoiceData()
-//            })
+            self.presenter?.updateInvoiceName(name: text ?? "", complition: { [weak self] in
+                self?.setupInvoiceData()
+            })
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -418,9 +412,8 @@ class HomeView: UIView {
         
         super.layoutSubviews()
     }
-    
-    
 }
+
 //MARK: - UICollectionViewDataSource
 extension HomeView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -439,12 +432,10 @@ extension HomeView: UICollectionViewDataSource {
         
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? HomeViewCollectionViewCell
-
+        
         cell?.presenter = presenter?.generateCellPresenter(invoice: (presenter?.model[indexPath.row])!)
         return cell!
     }
-    
-    
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
@@ -489,7 +480,6 @@ extension HomeView: IHomeView {
     func insertNewBill(index: Int) {
         guard let cell = collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? IHomeViewCollectionViewCell else { return }
         cell.insertNewRow()
-        
     }
     
     fileprivate static func generateMockView() -> UIView {

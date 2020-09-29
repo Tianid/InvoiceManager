@@ -32,7 +32,6 @@ class BillCategoryVC: UIViewController {
          view.presenter = presenter
          self.view = view
      }
-
 }
 
 extension BillCategoryVC: IBillCategoryVC {

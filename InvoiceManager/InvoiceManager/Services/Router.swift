@@ -90,5 +90,4 @@ class Router: IRouter {
         guard let view = assemblyBuilder?.createNewInvoiceModule(router: self, superPresenter: superPresenter) else { return }
         homeNavigationController?.pushViewController(view, animated: true)
     }
-
 }

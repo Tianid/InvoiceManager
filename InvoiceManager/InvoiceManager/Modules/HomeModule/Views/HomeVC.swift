@@ -50,7 +50,6 @@ class HomeVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
     }
-    
 }
 
 extension HomeVC: IHomeVC {

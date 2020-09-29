@@ -46,6 +46,7 @@ class HomeViewCollectionViewCell: UICollectionViewCell {
     //MARK: - Func
     
     func deleteRowInTableView(billIndex: Int) {
+        presenter?.reloadBills()
         tableView.deleteRows(at: [IndexPath(row: billIndex, section: 0)], with: .automatic)
     }
     

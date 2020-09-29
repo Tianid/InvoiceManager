@@ -21,7 +21,6 @@ class BillCategoryPresenter {
         self.superPresenter = superPresenter
     }
     //MARK: - Func
-    
 }
 
 extension BillCategoryPresenter: IBillCategoryPresenter {

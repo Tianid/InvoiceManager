@@ -42,7 +42,7 @@ class AssemblerModuleBuilder: IAssembleBuilder {
         view.context = context
         let invoices = coreDataManager.fetchAllInvoicesWithAllBills()
         let invoiceContainer = InvoiceContainer(model: invoices)
-        let presenter = HomePresenter(view: view, router: router, model: invoiceContainer)
+        let presenter = HomePresenter(view: view, router: router, model: invoiceContainer, coreDataManager: coreDataManager)
         view.presenter = presenter
         return view
     }
@@ -92,7 +92,4 @@ class AssemblerModuleBuilder: IAssembleBuilder {
         view.presenter = presenter
         return view
     }
-
-
-
 }
