@@ -16,8 +16,6 @@ protocol IRouterMain {
 
 protocol IRouter: IRouterMain {
     func initiateTabBar()
-//    func initBillCategoryModule(transition: PanelTransition, superPresenter: IBillDetailsPresenter) -> UIViewController?
-//    func initBillDetailModule(superPresenter: IHomePresenter, model: Bill?, currency: Currency) -> UIViewController?
     func showBillDetailModule(superPresenter: IHomePresenter, model: Bill?)
     func showBillCategoryModule(transition: PanelTransition, superPresenter: IBillDetailsPresenter)
     func dismissModuleFromHomeNavigation(complition: (() -> ())?)

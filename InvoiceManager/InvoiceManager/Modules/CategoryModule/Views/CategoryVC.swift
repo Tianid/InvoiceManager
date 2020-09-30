@@ -27,6 +27,7 @@ class CategoryVC: UIViewController {
     
     override func loadView() {
         let view = CategoryView(frame: UIScreen.main.bounds)
+        view.presenter = presenter
         self.view = view
     }
     

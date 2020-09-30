@@ -10,7 +10,9 @@
         <relationship name="invoice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDInvoice" inverseName="bills" inverseEntity="CDInvoice"/>
     </entity>
     <entity name="CDCategory" representedClassName="CDCategory" syncable="YES" codeGenerationType="class">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconImageName" attributeType="String"/>
+        <attribute name="modifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="bills" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDBill" inverseName="category" inverseEntity="CDBill"/>
         <relationship name="section" maxCount="1" deletionRule="Nullify" destinationEntity="CDSection" inverseName="category" inverseEntity="CDSection"/>
@@ -26,13 +28,15 @@
         <relationship name="bills" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDBill" inverseName="invoice" inverseEntity="CDBill"/>
     </entity>
     <entity name="CDSection" representedClassName="CDSection" syncable="YES" codeGenerationType="class">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="modifiedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="category" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDCategory" inverseName="section" inverseEntity="CDCategory"/>
     </entity>
     <elements>
         <element name="CDBill" positionX="45" positionY="-9" width="128" height="148"/>
-        <element name="CDCategory" positionX="160.14453125" positionY="-68.90234375" width="128" height="103"/>
+        <element name="CDCategory" positionX="160.14453125" positionY="-68.90234375" width="128" height="133"/>
         <element name="CDInvoice" positionX="45" positionY="-18" width="128" height="163"/>
-        <element name="CDSection" positionX="-63" positionY="-18" width="128" height="73"/>
+        <element name="CDSection" positionX="-63" positionY="-18" width="128" height="103"/>
     </elements>
 </model>

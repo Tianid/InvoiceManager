@@ -81,18 +81,28 @@ class BillCategoryView: UIView {
 
 extension BillCategoryView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.categorySelected(index: indexPath.row)
+        presenter?.categorySelected(indexPath: indexPath)
     }
 }
 
 extension BillCategoryView: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return presenter?.model.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return presenter?.model[section].section.name
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter?.model[section].categorys.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableIdentifier, for: indexPath) as? BillCategoryTableViewCell
-        cell?.categoryLabel.text = presenter?.model[indexPath.row].name
+        cell?.categoryLabel.text = presenter?.model[indexPath.section].categorys[indexPath.row].name
+
         return cell!
     }
 }

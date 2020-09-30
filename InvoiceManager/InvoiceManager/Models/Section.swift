@@ -6,9 +6,15 @@
 //  Copyright © 2020 Tianid. All rights reserved.
 //
 
+struct SuperSection {
+    let section: Section
+    let categorys: [Category]
+}
+
 struct Section: Equatable {
     //MARK: - Properties
     let name: String
+    let categoryCount: Int
     //MARK: - Init
     //MARK: - Func
 }

@@ -92,11 +92,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let categorys = plist[section]
                     let sectionCD = CDSection(context: backgroundContext)
                     sectionCD.name = section
+                    sectionCD.creationDate = Date()
+                    sectionCD.modifiedDate = sectionCD.creationDate
                     
                     for category in categorys! {
                         let categoryCD = CDCategory(context: backgroundContext)
                         categoryCD.name = category
                         categoryCD.iconImageName = "NO IMAGE"
+                        categoryCD.creationDate = Date()
+                        categoryCD.modifiedDate = categoryCD.creationDate
                         sectionCD.addToCategory(categoryCD)
                     }
                 }

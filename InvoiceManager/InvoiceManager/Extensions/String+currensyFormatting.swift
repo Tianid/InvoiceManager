@@ -20,6 +20,7 @@ extension String {
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
         formatter.usesGroupingSeparator = false
+        formatter.locale = .init(identifier: "en_US")
 
         var amountWithPrefix = self
 
@@ -45,6 +46,7 @@ extension String {
         formatter.numberStyle = .currency
         formatter.currencySymbol = currencySymbol ?? ""
         formatter.usesGroupingSeparator = false
+        formatter.locale = .init(identifier: "en_US")
 
         let result = formatter.string(from: number)
         return result

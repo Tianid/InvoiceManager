@@ -21,8 +21,8 @@ protocol ICoreDataManager {
     func updateBill(bill: Bill) -> Result<Void, CoreDataSaveError>
     func updateInvoice(invoice: Invoice) -> Result<Void, CoreDataSaveError>
 
-    func fetchAllCategorys() -> [Category]
     func fetchAllInvoicesWithAllBills() -> [Invoice]
+    func fetchAllSectionsWitAllCategorys() -> [SuperSection]
     
     func deleteInvoice(invoice: Invoice) -> Result<Void, CoreDataSaveError>
     func deleteBill(bill: Bill) -> Result<Void, CoreDataSaveError>
@@ -62,7 +62,8 @@ class CoreDataManager {
         billDescription: cdBill.billDescription ?? "",
         category: Category(name: (cdBill.category?.name)!,
                            iconImage: (cdBill.category?.iconImageName)!,
-                           section: Section(name: (cdBill.category?.section?.name)!)),
+                           section: Section(name: (cdBill.category?.section?.name)!,
+                                            categoryCount: cdBill.category?.section?.category?.count ?? 0)),
         modifiedDate: cdBill.modifiedDate ?? Date(),
         creationDate: cdBill.creationDate ?? Date())
         return bill
@@ -83,8 +84,15 @@ class CoreDataManager {
     private func transformCDCategoryModelToAppCategoryModel(cdCategory: CDCategory) -> Category {
         let category = Category(name: cdCategory.name!,
                                 iconImage: cdCategory.iconImageName!,
-                                section: Section(name: (cdCategory.section?.name!)!))
+                                section: Section(name: (cdCategory.section?.name!)!,
+                                                 categoryCount: cdCategory.section?.category?.count ?? 0))
         return category
+    }
+    
+    private func transformCDSectionModelToAppSectionModel(cdSection: CDSection) -> Section {
+        let section = Section(name: cdSection.name ?? "",
+                              categoryCount: cdSection.category?.count ?? 0)
+        return section
     }
     
     //MARK: - Transform App entitites to CD entities
@@ -283,26 +291,6 @@ extension CoreDataManager: ICoreDataManager {
     }
     
     //MARK: - Fetch entitys
-    
-    func fetchAllCategorys() -> [Category] {
-        let request = NSFetchRequest<CDCategory>(entityName: "\(CDCategory.self)")
-        do {
-            let cdCategorys = try context.fetch(request)
-            var categorys: [Category] = []
-
-            for cdCategory in cdCategorys {
-                let category = transformCDCategoryModelToAppCategoryModel(cdCategory: cdCategory)
-                categorys.append(category)
-            }
-            return categorys
-
-        } catch {
-            print(error.localizedDescription)
-            return []
-        }
-    }
-
-    
     func fetchAllInvoicesWithAllBills() -> [Invoice] {
         let request = NSFetchRequest<CDInvoice>(entityName: "\(CDInvoice.self)")
         
@@ -329,6 +317,35 @@ extension CoreDataManager: ICoreDataManager {
             return []
         }
     }
+
+    func fetchAllSectionsWitAllCategorys() -> [SuperSection] {
+        let request = NSFetchRequest<CDSection>(entityName: "\(CDSection.self)")
+        
+        do {
+            let cdSections = try context.fetch(request)
+            var superSections: [SuperSection] = []
+            
+            
+            for cdSection in cdSections {
+                var categorys: [Category] = []
+                let soredCDCategorys = cdSection.category?.sortedArray(using: [NSSortDescriptor(key: "name", ascending: true)]) as? [CDCategory]
+                for cdCategory in soredCDCategorys! {
+                    let category = transformCDCategoryModelToAppCategoryModel(cdCategory: cdCategory)
+                    categorys.append(category)
+                }
+                
+                let section = transformCDSectionModelToAppSectionModel(cdSection: cdSection)
+                superSections.append(SuperSection(section: section,
+                                            categorys: categorys))
+            }
+            
+            return superSections
+        } catch {
+            print(error.localizedDescription)
+            return []
+        }
+    }
+
     
     //MARK: - Delete entitys
 

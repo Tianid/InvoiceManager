@@ -49,7 +49,8 @@ class AssemblerModuleBuilder: IAssembleBuilder {
     
     func createCategoryModule(router: IRouter) -> UIViewController {
         let view = CategoryVC()
-        let presenter = CategoryPresenter(view: view, router: router)
+        let model = coreDataManager.fetchAllSectionsWitAllCategorys()
+        let presenter = CategoryPresenter(view: view, router: router, model: model)
         view.presenter = presenter
         return view
     }
@@ -79,9 +80,9 @@ class AssemblerModuleBuilder: IAssembleBuilder {
         let view = BillCategoryVC()
         view.transitioningDelegate = transition
         view.modalPresentationStyle = .custom
-        let categorys = coreDataManager.fetchAllCategorys()
+        let model = coreDataManager.fetchAllSectionsWitAllCategorys()
 
-        let presenter = BillCategoryPresenter(view: view, router: router, model: categorys, superPresenter: superPresenter)
+        let presenter = BillCategoryPresenter(view: view, router: router, model: model, superPresenter: superPresenter)
         view.presenter = presenter
         return view
     }
