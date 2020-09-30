@@ -37,4 +37,16 @@ extension String {
 
         return formatter.string(from: number)!
     }
+    
+    func currencyOutputFormatting(currencySymbol: String?) -> String? {
+        guard let double = Double(self) else { return nil }
+        let number = NSNumber(value: double)
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencySymbol = currencySymbol ?? ""
+        formatter.usesGroupingSeparator = false
+
+        let result = formatter.string(from: number)
+        return result
+    }
 }

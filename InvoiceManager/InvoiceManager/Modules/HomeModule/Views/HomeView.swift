@@ -334,9 +334,9 @@ class HomeView: UIView {
         guard curentPage < CGFloat(count) && count > 0 else { return }
         guard let data = presenter?.model[Int(curentPage)] else { return }
         invoiceNameLabel.text = data.name
-        invoiceBalanceLabel.text = String(data.balance)
-        invoiceIncomeCounterLabel.text = String(data.income)
-        invoiceExpenseCounterLabel.text = String(data.expense)
+        invoiceBalanceLabel.text = String(data.balance).currencyOutputFormatting(currencySymbol: data.currency.symbolRaw)
+        invoiceIncomeCounterLabel.text = String(data.income).currencyOutputFormatting(currencySymbol: data.currency.symbolRaw)
+        invoiceExpenseCounterLabel.text = String(data.expense).currencyOutputFormatting(currencySymbol: data.currency.symbolRaw)
     }
     
     private func configureMockViewIfNeeded() {

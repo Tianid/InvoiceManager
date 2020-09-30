@@ -88,4 +88,4 @@ var testInvoices = [
 ]
 
 
-var testCurrency: [Currency] = [.EUR, .GBP, .RUB, .USD]
+var testCurrency: [Currency] = [.EUR, .GBP, .RUB, .BYN, .UAH, .JPY,.USD]

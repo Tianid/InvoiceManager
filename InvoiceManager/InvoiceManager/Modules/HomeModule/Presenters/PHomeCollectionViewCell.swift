@@ -34,7 +34,7 @@ extension PHomeCollectionViewCell: IPHomeCollectionViewCell {
         dateFormatter.dateFormat = "d MMM yyyy HH:mm"
         cell.billDateLabel.text = dateFormatter.string(from: bill.modifiedDate)
         cell.billCategoryLabel.text = bill.category.name
-        cell.billValueLabel.text = String(bill.value)
+        cell.billValueLabel.text = String(bill.value).currencyOutputFormatting(currencySymbol: bill.currency.symbolRaw)
         return cell
     }
     
