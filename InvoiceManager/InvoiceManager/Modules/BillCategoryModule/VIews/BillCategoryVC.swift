@@ -22,7 +22,7 @@ class BillCategoryVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        view.layer.cornerRadius = view.frame.width / 20
+        view.layer.cornerRadius = 20
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         // Do any additional setup after loading the view.
     }
