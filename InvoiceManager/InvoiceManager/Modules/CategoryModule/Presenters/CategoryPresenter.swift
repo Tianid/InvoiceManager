@@ -26,8 +26,12 @@ class CategoryPresenter {
 }
 
 extension CategoryPresenter: ICategoryTableContainer {
-    func prepareTableViewCell(cell: UITableViewCell, indexPath: IndexPath) -> UITableViewCell {
-        cell.textLabel?.text = model[indexPath.section].categorys[indexPath.row].name
+    func prepareTableViewCell(cell: CategoryTableViewCell, indexPath: IndexPath) -> UITableViewCell {
+        cell.categoryLabel.text = model[indexPath.section].categorys[indexPath.row].name
         return cell
+    }
+    
+    func billTapped() {
+        router.showCategorisedBillsModule()
     }
 }

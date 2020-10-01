@@ -122,7 +122,7 @@ class BillDetailsView: UIView {
         guard validateFields() else { return }
         guard let name = nameTextField.text else { return }
         guard let value = valueTextField.text else { return }
-        guard let dValue = Double(value) else { return }
+        let dValue = value.formattedStringToDouble()
         let state = segmentedControl.selectedSegmentIndex
         let description = descriptionTextView.text
         let billState = state == BillState.income.rawValue ? BillState.income : BillState.expense
@@ -152,7 +152,7 @@ class BillDetailsView: UIView {
         let description = bill.billDescription
         
         nameTextField.text = name
-        valueTextField.text = String(value)
+        valueTextField.text = String(value).currencySetFormatting(currencySymbol: nil)
         categoryTextField.text = category
         descriptionTextView.text = description
         descriptionTextView.textColor = .black

@@ -19,6 +19,7 @@ class CategoryTableContainer: UIView {
         let table = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .plain)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.backgroundColor = .red
+        table.separatorStyle = .none
         return table
     }()
     
@@ -47,12 +48,14 @@ class CategoryTableContainer: UIView {
     private func configureViews() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: categoryTableIdentifier)
+        tableView.register(UINib(nibName: "\(CategoryTableViewCell.self)", bundle: nil), forCellReuseIdentifier: categoryTableIdentifier)
     }
 }
 
 extension CategoryTableContainer: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.billTapped()
+    }
 }
 
 extension CategoryTableContainer: UITableViewDataSource {
@@ -69,7 +72,7 @@ extension CategoryTableContainer: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: categoryTableIdentifier, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: categoryTableIdentifier, for: indexPath) as? CategoryTableViewCell else { return UITableViewCell() }
         guard let preparedCell = presenter?.prepareTableViewCell(cell: cell, indexPath: indexPath) else { return cell }
         return preparedCell
     }

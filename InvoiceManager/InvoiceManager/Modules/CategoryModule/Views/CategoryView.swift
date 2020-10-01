@@ -64,9 +64,9 @@ class CategoryView: UIView {
                                   padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8))
         
         tableViewContainer.anchor(top: panelView.bottomAnchor,
-                                leading: safeAreaLayoutGuide.leadingAnchor,
-                                bottom: safeAreaLayoutGuide.bottomAnchor,
-                                trailing: safeAreaLayoutGuide.trailingAnchor,
-                                padding: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
+                                  leading: safeAreaLayoutGuide.leadingAnchor,
+                                  bottom: safeAreaLayoutGuide.bottomAnchor,
+                                  trailing: safeAreaLayoutGuide.trailingAnchor,
+                                  padding: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8))
     }
 }

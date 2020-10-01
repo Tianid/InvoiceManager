@@ -77,8 +77,9 @@ extension HomePresenter: IHomePresenter {
         
         
         if billDetailsCreationState == .editing {
+            let count = (currentInvoice?.bills.count)! - 1
             currentInvoice?.setupNewData(index: billIndex, newValue: bill)
-            view?.refreshTableViewRow(invoiceIndex: invoiceIndex, billIndex: billIndex)
+            view?.refreshTableViewRow(invoiceIndex: invoiceIndex, billIndex: count - billIndex)
             
         } else if billDetailsCreationState == .creating {
             currentInvoice?.setupNewData(newValue: bill)
@@ -114,8 +115,9 @@ extension HomePresenter: IHomePresenter {
         
         switch result {
         case .success(_):
+            let count = (currentInvoice?.bills.count)! - 1
             currentInvoice?.deleteDataByIndex(index: billIndex)
-            view?.deleteRowInTableView(invoiceIndex: invoiceIndex, billIndex: billIndex)
+            view?.deleteRowInTableView(invoiceIndex: invoiceIndex, billIndex: count - billIndex)
         case .failure(_):
             break
         }

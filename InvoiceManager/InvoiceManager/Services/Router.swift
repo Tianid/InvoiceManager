@@ -20,6 +20,7 @@ protocol IRouter: IRouterMain {
     func showBillCategoryModule(transition: PanelTransition, superPresenter: IBillDetailsPresenter)
     func dismissModuleFromHomeNavigation(complition: (() -> ())?)
     func showNewInvoiceModule(superPresenter: IHomePresenter)
+    func showCategorisedBillsModule()
 }
 
 class Router: IRouter {
@@ -87,5 +88,10 @@ class Router: IRouter {
     func showNewInvoiceModule(superPresenter: IHomePresenter) {
         guard let view = assemblyBuilder?.createNewInvoiceModule(router: self, superPresenter: superPresenter) else { return }
         homeNavigationController?.pushViewController(view, animated: true)
+    }
+    
+    func showCategorisedBillsModule() {
+        guard let view = assemblyBuilder?.createCategorisedBillsModule(router: self) else { return }
+        categoryNavigationController?.pushViewController(view, animated: true)
     }
 }

@@ -32,9 +32,9 @@ extension PHomeCollectionViewCell: IPHomeCollectionViewCell {
         cell.billNameLabel.text = bill.billName
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d MMM yyyy HH:mm"
-        cell.billDateLabel.text = dateFormatter.string(from: bill.modifiedDate)
+        cell.billDateLabel.text = dateFormatter.string(from: bill.creationDate)
         cell.billCategoryLabel.text = bill.category.name
-        cell.billValueLabel.text = String(bill.value).currencyOutputFormatting(currencySymbol: bill.currency.symbolRaw)
+        cell.billValueLabel.text = String(bill.value).currencySetFormatting(currencySymbol: bill.currency.symbolRaw)
         return cell
     }
     

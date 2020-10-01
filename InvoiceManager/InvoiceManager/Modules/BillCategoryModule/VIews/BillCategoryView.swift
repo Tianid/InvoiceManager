@@ -69,7 +69,7 @@ class BillCategoryView: UIView {
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: "\(BillCategoryTableViewCell.self)", bundle: nil), forCellReuseIdentifier: tableIdentifier)
+        tableView.register(UINib(nibName: "\(CategoryTableViewCell.self)", bundle: nil), forCellReuseIdentifier: tableIdentifier)
     }
     
     @objc private func dismissCategory() {
@@ -100,7 +100,7 @@ extension BillCategoryView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: tableIdentifier, for: indexPath) as? BillCategoryTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: tableIdentifier, for: indexPath) as? CategoryTableViewCell
         cell?.categoryLabel.text = presenter?.model[indexPath.section].categorys[indexPath.row].name
 
         return cell!
