@@ -12,7 +12,6 @@ class CategoryPresenter {
     var model: [SuperSection]
     private weak var view: ICategoryVC?
     private var router: IRouter
-    private var indexOfCategorysInSections: [[Int]] = []
 
     
     //MARK: - Init
@@ -31,7 +30,7 @@ extension CategoryPresenter: ICategoryTableContainer {
         return cell
     }
     
-    func billTapped() {
-        router.showCategorisedBillsModule()
+    func billTapped(indexPath: IndexPath) {
+        router.showCategorisedBillsModule(category: model[indexPath.section].categorys[indexPath.row])
     }
 }

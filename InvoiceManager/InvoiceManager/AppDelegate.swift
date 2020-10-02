@@ -19,9 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         setupCoreDataStack()
-        setupRoot()
         preloadData()
-
+        setupRoot()
+        
+        
         return true
     }
     
@@ -40,24 +41,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupRoot() {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        let tabBar = initiate()
+        let tabBar = self.initiate()
         let testView = ViewController()
         testView.testData = testBills1
         let tets = UITabBarController()
         tets.viewControllers = [testView]
-        window?.rootViewController = tabBar
-        window?.makeKeyAndVisible()
+        self.window?.rootViewController = tabBar
+        self.window?.makeKeyAndVisible()
     }
     
     private func setupCoreDataStack() {
         self.container = createContainer()
         self.context = container.viewContext
-//        let context = container.viewContext
-//        let root = self.window?.rootViewController
-//        let vRoot = root as? ViewController
-//        vRoot?.context = context
-//        self.preloadData()
-//        self.getAllCategorys()
+        //        let context = container.viewContext
+        //        let root = self.window?.rootViewController
+        //        let vRoot = root as? ViewController
+        //        vRoot?.context = context
+        //        self.preloadData()
+        //        self.getAllCategorys()
     }
     
     private func createContainer() -> NSPersistentContainer? {
@@ -81,36 +82,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             guard let plist = try! PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [String: [String]] else { return }
             
-            let backgroundContext = container.newBackgroundContext()
+            let backgroundContext = container.viewContext
             container.viewContext.automaticallyMergesChangesFromParent = true
             
             var keys = Array(plist.keys)
             keys.sort()
             
-            backgroundContext.perform {
-                for section in keys {
-                    let categorys = plist[section]
-                    let sectionCD = CDSection(context: backgroundContext)
-                    sectionCD.name = section
-                    sectionCD.creationDate = Date()
-                    sectionCD.modifiedDate = sectionCD.creationDate
-                    
-                    for category in categorys! {
-                        let categoryCD = CDCategory(context: backgroundContext)
-                        categoryCD.name = category
-                        categoryCD.iconImageName = "NO IMAGE"
-                        categoryCD.creationDate = Date()
-                        categoryCD.modifiedDate = categoryCD.creationDate
-                        sectionCD.addToCategory(categoryCD)
-                    }
-                }
+            for section in keys {
+                let categorys = plist[section]
+                let sectionCD = CDSection(context: backgroundContext)
+                sectionCD.name = section
+                sectionCD.creationDate = Date()
+                sectionCD.modifiedDate = sectionCD.creationDate
                 
-                do {
-                    try backgroundContext.save()
-                    userDefaults.set(true, forKey: preloadedDataKey)
-                } catch {
-                    print(error.localizedDescription)
+                for category in categorys! {
+                    let categoryCD = CDCategory(context: backgroundContext)
+                    categoryCD.name = category
+                    categoryCD.iconImageName = "NO IMAGE"
+                    categoryCD.creationDate = Date()
+                    categoryCD.modifiedDate = categoryCD.creationDate
+                    sectionCD.addToCategory(categoryCD)
                 }
+            }
+            
+            do {
+                try backgroundContext.save()
+                userDefaults.set(true, forKey: preloadedDataKey)
+            } catch {
+                print(error.localizedDescription)
             }
         }
     }

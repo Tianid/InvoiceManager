@@ -16,6 +16,16 @@ class CategorisedBillsVC: UIViewController {
         guard isViewLoaded else { return nil }
         return (self.view as! CategorisedBillsView)
     }
+    
+    override var hidesBottomBarWhenPushed: Bool {
+        get {
+            return navigationController?.topViewController == self
+        }
+        set {
+            super.hidesBottomBarWhenPushed = newValue
+        }
+    }
+    
     //MARK: - Init
     //MARK: - Func
     
@@ -28,6 +38,7 @@ class CategorisedBillsVC: UIViewController {
     
     override func loadView() {
         let view = CategorisedBillsView(frame: UIScreen.main.bounds)
+        view.presenter = presenter
         self.view = view
     }
     

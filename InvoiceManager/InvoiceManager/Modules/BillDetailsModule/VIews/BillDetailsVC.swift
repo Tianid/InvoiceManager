@@ -21,11 +21,21 @@ class BillDetailsVC: UIViewController {
         }
     }
     
+    private let billDetailsPresentingType: DetailsVCPresentingType
     private var billDetailsView: BillDetailsView? {
         guard isViewLoaded else { return nil }
         return (self.view as! BillDetailsView)
     }
     //MARK: - Init
+    
+    init(billDetailsPresentingType: DetailsVCPresentingType) {
+        self.billDetailsPresentingType = billDetailsPresentingType
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     //MARK: - Func
     
     override func viewDidLoad() {
@@ -66,17 +76,20 @@ class BillDetailsVC: UIViewController {
     private func configureViewController() {
         view.backgroundColor = .white
         
-        self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonTapped(_:))), animated: true)
-        
-        if presenter?.model != nil {
-            if #available(iOS 13.0, *) {
-                self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteButtonTapped(_:))))
-            } else {
-                // Fallback on earlier versions
+        if billDetailsPresentingType == .edit {
+            self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonTapped(_:))), animated: true)
+            
+            if presenter?.model != nil {
+                if #available(iOS 13.0, *) {
+                    self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteButtonTapped(_:))))
+                } else {
+                    // Fallback on earlier versions
+                }
             }
         }
         
         billDetailsView?.updateDetailFields()
+        billDetailsView?.setupBillDetailsPresentingType(type: billDetailsPresentingType)
     }
 }
 

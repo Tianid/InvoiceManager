@@ -54,7 +54,7 @@ class CategoryTableContainer: UIView {
 
 extension CategoryTableContainer: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.billTapped()
+        presenter?.billTapped(indexPath: indexPath)
     }
 }
 

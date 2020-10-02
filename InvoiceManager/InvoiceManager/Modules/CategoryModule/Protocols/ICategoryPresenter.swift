@@ -13,5 +13,5 @@ protocol ICategoryPresenter: class {
 
 protocol ICategoryTableContainer: ICategoryPresenter {
     func prepareTableViewCell(cell: CategoryTableViewCell, indexPath: IndexPath) -> UITableViewCell
-    func billTapped()
+    func billTapped(indexPath: IndexPath)
 }

@@ -23,12 +23,11 @@ class BillDetailsView: UIView {
     //MARK: - Properties
     
     var presenter: IBillDetailsPresenter?
-    
     private var keyboardHeight: CGRect = CGRect()
     private let nameMessage = "Name is required."
     private let valueMessage = "Value is required."
     private let categoryMessage = "Category is required."
-    private let descriptionPlaceholdeer = "Enter description"
+    private let descriptionPlaceholder = "Enter description"
     
     private let transition = PanelTransition()
     
@@ -110,7 +109,6 @@ class BillDetailsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -118,13 +116,32 @@ class BillDetailsView: UIView {
     
     //MARK: - Func
     
+    func setupBillDetailsPresentingType(type: DetailsVCPresentingType) {
+        switch type {
+        case .edit:
+            break
+        case .readOnly:
+            nameTextField.isEnabled = false
+            valueTextField.isEnabled = false
+            segmentedControl.isEnabled = false
+            categoryTextField.isEnabled = false
+            selectCategoryButton.isEnabled = false
+            descriptionTextView.isEditable = false
+            
+            selectCategoryButton.removeFromSuperview()
+            categoryTextField.anchor(trailing: valueTextField.trailingAnchor)
+            
+            self.layoutIfNeeded()
+        }
+    }
+    
     func saveButtonTapped() {
         guard validateFields() else { return }
         guard let name = nameTextField.text else { return }
         guard let value = valueTextField.text else { return }
         let dValue = value.formattedStringToDouble()
         let state = segmentedControl.selectedSegmentIndex
-        let description = descriptionTextView.text
+        let description = validateDescriptionTextView(description: descriptionTextView.text)
         let billState = state == BillState.income.rawValue ? BillState.income : BillState.expense
         
         presenter?.saveButtonTapped(name: name, value: dValue, billState: billState, description: description)
@@ -154,8 +171,7 @@ class BillDetailsView: UIView {
         nameTextField.text = name
         valueTextField.text = String(value).currencySetFormatting(currencySymbol: nil)
         categoryTextField.text = category
-        descriptionTextView.text = description
-        descriptionTextView.textColor = .black
+        validateDescriptionPlaceholder(description: description) // set description if pass validation
         
     }
     
@@ -206,7 +222,7 @@ class BillDetailsView: UIView {
         
         descriptionWordLabel.anchor(top: categoryTextField.bottomAnchor,
                                     leading: categoryTextField.leadingAnchor,
-                                    trailing: selectCategoryButton.trailingAnchor,
+                                    trailing: valueTextField.trailingAnchor,
                                     padding: UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0))
         
         descriptionTextView.anchor(top: descriptionWordLabel.bottomAnchor,
@@ -218,7 +234,7 @@ class BillDetailsView: UIView {
     }
     
     private func configureViews() {
-        descriptionTextView.text = descriptionPlaceholdeer //Placeholder
+        descriptionTextView.text = descriptionPlaceholder //Placeholder
         descriptionTextView.textColor = UIColor.lightGray
         descriptionTextView.delegate = self
         
@@ -284,6 +300,24 @@ class BillDetailsView: UIView {
         }
     }
     
+    private func validateDescriptionPlaceholder(description: String) {
+        if description.isEmpty || description.lowercased() == descriptionPlaceholder.lowercased() {
+            descriptionTextView.text = descriptionPlaceholder //Placeholder
+            descriptionTextView.textColor = UIColor.lightGray
+        } else {
+            descriptionTextView.text = description
+            descriptionTextView.textColor = .black
+        }
+    }
+    
+    private func validateDescriptionTextView(description: String) -> String {
+        let des = description.trimmingCharacters(in: .whitespaces)
+        if des.lowercased() == descriptionPlaceholder.lowercased() {
+            return ""
+        }
+        return des
+    }
+    
     @objc private func doneButtonAction(_ sender: UIBarButtonItem){
         self.viewContainer.endEditing(true)
     }
@@ -323,7 +357,7 @@ extension BillDetailsView: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         
         if descriptionTextView.text == "" {
-            descriptionTextView.text = descriptionPlaceholdeer
+            descriptionTextView.text = descriptionPlaceholder
             descriptionTextView.textColor = UIColor.lightGray
         }
     }

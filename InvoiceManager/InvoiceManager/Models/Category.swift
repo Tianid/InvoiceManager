@@ -13,6 +13,7 @@ struct Category: Equatable {
     let name: String
     let iconImage: String
     let section: Section
+    let creationDate: Date
     //MARK: - Init
     //MARK: - Func
     

@@ -1,5 +1,5 @@
 //
-//  BillCategoryTableViewCell.swift
+//  CategoryTableViewCell.swift
 //  InvoiceManager
 //
 //  Created by Tianid on 10.09.2020.

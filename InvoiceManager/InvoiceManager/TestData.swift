@@ -9,22 +9,22 @@
 import Foundation
 
 
-var testSingleCategory = Category(name: "TEST CATEGORY", iconImage: "NO IMAGE", section: .init(name: "TEST SECTION", categoryCount: 0))
+var testSingleCategory = Category(name: "TEST CATEGORY", iconImage: "NO IMAGE", section: .init(name: "TEST SECTION", categoryCount: 0), creationDate: Date())
 
 var testSections = [Section(name: "Section 1", categoryCount: 4),
                     Section(name: "Section 2", categoryCount: 2),
                     Section(name: "Section 3", categoryCount: 3)
 ]
 
-var testCategorys = [Category(name: "TEST CATEGORY №1", iconImage: "NO IMAGE", section: testSections[0]),
-                     Category(name: "TEST CATEGORY №2", iconImage: "NO IMAGE", section: testSections[0]),
-                     Category(name: "TEST CATEGORY №3", iconImage: "NO IMAGE", section: testSections[0]),
-                     Category(name: "TEST CATEGORY №4", iconImage: "NO IMAGE", section: testSections[0]),
-                     Category(name: "TEST CATEGORY №5", iconImage: "NO IMAGE", section: testSections[1]),
-                     Category(name: "TEST CATEGORY №6", iconImage: "NO IMAGE", section: testSections[1]),
-                     Category(name: "TEST CATEGORY №7", iconImage: "NO IMAGE", section: testSections[2]),
-                     Category(name: "TEST CATEGORY №8", iconImage: "NO IMAGE", section: testSections[2]),
-                     Category(name: "TEST CATEGORY №9", iconImage: "NO IMAGE", section: testSections[2]),
+var testCategorys = [Category(name: "TEST CATEGORY №1", iconImage: "NO IMAGE", section: testSections[0], creationDate: Date()),
+                     Category(name: "TEST CATEGORY №2", iconImage: "NO IMAGE", section: testSections[0], creationDate: Date()),
+                     Category(name: "TEST CATEGORY №3", iconImage: "NO IMAGE", section: testSections[0], creationDate: Date()),
+                     Category(name: "TEST CATEGORY №4", iconImage: "NO IMAGE", section: testSections[0], creationDate: Date()),
+                     Category(name: "TEST CATEGORY №5", iconImage: "NO IMAGE", section: testSections[1], creationDate: Date()),
+                     Category(name: "TEST CATEGORY №6", iconImage: "NO IMAGE", section: testSections[1], creationDate: Date()),
+                     Category(name: "TEST CATEGORY №7", iconImage: "NO IMAGE", section: testSections[2], creationDate: Date()),
+                     Category(name: "TEST CATEGORY №8", iconImage: "NO IMAGE", section: testSections[2], creationDate: Date()),
+                     Category(name: "TEST CATEGORY №9", iconImage: "NO IMAGE", section: testSections[2], creationDate: Date()),
 ]
 
 

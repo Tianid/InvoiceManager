@@ -57,10 +57,10 @@ extension HomePresenter: IHomePresenter {
     
     func showBillDetail(billIndex: Int?) {
         if billIndex == nil {
-            router.showBillDetailModule(superPresenter: self, model: nil )
+            router.showBillDetailModule(superPresenter: self, model: nil, billDetailsPresentingType: .edit)
         } else {
             self.billIndex = billIndex!
-            router.showBillDetailModule(superPresenter: self, model: model[invoiceIndex].bills[billIndex!] )
+            router.showBillDetailModule(superPresenter: self, model: model[invoiceIndex].bills[billIndex!], billDetailsPresentingType: .edit)
         }
     }
     
