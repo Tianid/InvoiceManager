@@ -16,6 +16,8 @@ var testSections = [Section(name: "Section 1", categoryCount: 4),
                     Section(name: "Section 3", categoryCount: 3)
 ]
 
+
+
 var testCategorys = [Category(name: "TEST CATEGORY №1", iconImage: "NO IMAGE", section: testSections[0], creationDate: Date()),
                      Category(name: "TEST CATEGORY №2", iconImage: "NO IMAGE", section: testSections[0], creationDate: Date()),
                      Category(name: "TEST CATEGORY №3", iconImage: "NO IMAGE", section: testSections[0], creationDate: Date()),
@@ -27,6 +29,7 @@ var testCategorys = [Category(name: "TEST CATEGORY №1", iconImage: "NO IMAGE",
                      Category(name: "TEST CATEGORY №9", iconImage: "NO IMAGE", section: testSections[2], creationDate: Date()),
 ]
 
+var testSuperSection = SuperSection(section: testSections[0], categorys: testCategorys)
 
 
 var testBills1 = [

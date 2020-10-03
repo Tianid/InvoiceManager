@@ -12,7 +12,6 @@ import CoreData
 class HomeVC: UIViewController {
     //MARK: - Properties
     var presenter: IHomePresenter?
-    var context: NSManagedObjectContext?
     
     private var homeView: HomeView? {
         guard isViewLoaded else { return nil }
@@ -21,14 +20,9 @@ class HomeVC: UIViewController {
     
     //MARK: - Init
     //MARK: - Func
-    private func setContext(context: NSManagedObjectContext) {
-        homeView?.context = context
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
-        setContext(context: context!)
     }
     
     override func loadView() {

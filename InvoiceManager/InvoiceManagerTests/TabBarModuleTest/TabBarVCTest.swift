@@ -15,7 +15,8 @@ class TabBarVCTest: XCTestCase {
     var tabBarVC: ITabBarVC! = TabBarVC()
     
     override func setUpWithError() throws {
-        assmebly = AssemblerModuleBuilder()
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        assmebly = AssemblerModuleBuilder(context: delegate.context)
         router = Router(tabBar: tabBarVC, assembler: assmebly)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }

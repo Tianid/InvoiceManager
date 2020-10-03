@@ -44,7 +44,6 @@ class AssemblerModuleBuilder: IAssembleBuilder {
     
     func createHomeModule(router: IRouter) -> UIViewController {
         let view = HomeVC()
-        view.context = context
         let invoices = coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil)
         let invoiceContainer = InvoiceContainer(model: invoices)
         let presenter = HomePresenter(view: view, router: router, model: invoiceContainer, coreDataManager: coreDataManager)

@@ -76,8 +76,7 @@ class HomeViewCollectionViewCell: UICollectionViewCell {
 //MARK: - UITableViewDataSource
 extension HomeViewCollectionViewCell: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let presenter = presenter else { return 0 }
-        return presenter.model.count
+        return presenter?.model.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

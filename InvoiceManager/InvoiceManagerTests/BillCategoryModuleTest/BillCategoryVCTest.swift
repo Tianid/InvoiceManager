@@ -16,8 +16,8 @@ class BillCategoryVCTest: XCTestCase {
     var transition: PanelTransition! = PanelTransition()
     
     override func setUpWithError() throws {
-        
-        assembly = AssemblerModuleBuilder()
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        assembly = AssemblerModuleBuilder(context: delegate.context)
         router = Router(tabBar: MockTabBar(), assembler: assembly)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -41,9 +41,10 @@ class BillCategoryVCTest: XCTestCase {
         let view = assembly.createBillCategoryModule(router: router, transition: transition, superPresenter: nil)
         
         
-        let billCategoryPresenter = BillCategoryPresenter(view: view as! IBillCategoryVC, router: router, model: [testSingleCategory], superPresenter: nil)
+        let billCategoryPresenter = BillCategoryPresenter(view: view as! IBillCategoryVC, router: router, model: [testSuperSection], superPresenter: nil)
         XCTAssertNotNil(billCategoryPresenter)
-        XCTAssertNoThrow(billCategoryPresenter.categorySelected(index: 0))
+        XCTAssertNoThrow(billCategoryPresenter.categorySelected(indexPath: IndexPath(row: 0, section: 0)))
+        XCTAssertNoThrow(billCategoryPresenter.dismissCategory())
     }
 
 }

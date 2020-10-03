@@ -15,8 +15,8 @@ class ChartVCTest: XCTestCase {
     var router: IRouter!
     
     override func setUpWithError() throws {
-        
-        assembly = AssemblerModuleBuilder()
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        assembly = AssemblerModuleBuilder(context: delegate.context)
         router = Router(tabBar: MockTabBar(), assembler: assembly)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -28,9 +28,9 @@ class ChartVCTest: XCTestCase {
     }
     
     func testChartVC() {
-        let view = assembly.createProfileModule(router: router)
+        let view = assembly.createChartModule(router: router)
+        view.viewDidLoad()
         XCTAssertNotNil(view)
-        
     }
     
 }

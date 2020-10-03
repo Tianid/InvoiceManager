@@ -29,6 +29,8 @@
 		123E7E72250BB01600C7284B /* BillCategoryVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E71250BB01600C7284B /* BillCategoryVCTest.swift */; };
 		123E7E76250BE3F900C7284B /* CATransition+FromBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E75250BE3F900C7284B /* CATransition+FromBottom.swift */; };
 		124033CD250FB808008D2BA3 /* UINavigationController+popViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124033CC250FB808008D2BA3 /* UINavigationController+popViewController.swift */; };
+		1241C5B92528A46C00E4C6AE /* CoreDataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1241C5B82528A46C00E4C6AE /* CoreDataManagerMock.swift */; };
+		1241C5BE2528ABAA00E4C6AE /* NewInvoiceVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1241C5BD2528ABAA00E4C6AE /* NewInvoiceVCTest.swift */; };
 		12504A81251631E300B58923 /* DTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12504A80251631E300B58923 /* DTTextField.swift */; };
 		127E1492251CF39800AD7C49 /* PreloadedData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 127E1491251CF39800AD7C49 /* PreloadedData.plist */; };
 		129BC17A24FFD4D9004BD17A /* HomeViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BC17924FFD4D9004BD17A /* HomeViewCollectionViewCell.swift */; };
@@ -101,6 +103,8 @@
 		12D1D5FE24FD29EF0077FEF6 /* IProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5FD24FD29EF0077FEF6 /* IProfilePresenter.swift */; };
 		12D1D60024FD2A020077FEF6 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5FF24FD2A020077FEF6 /* ProfilePresenter.swift */; };
 		12D1D60224FD3A390077FEF6 /* ProfileVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D60124FD3A390077FEF6 /* ProfileVCTest.swift */; };
+		12E734382528B67E00E0B2DC /* CategorisedBillsVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E734372528B67E00E0B2DC /* CategorisedBillsVCTest.swift */; };
+		12E734402528D01600E0B2DC /* ModelsAndOther.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E7343F2528D01600E0B2DC /* ModelsAndOther.swift */; };
 		12F212D7251E0D0B00E29D7A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F212D6251E0D0B00E29D7A /* CoreDataManager.swift */; };
 		12F976AA25069647008DD07C /* InvoiceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F976A925069647008DD07C /* InvoiceContainer.swift */; };
 /* End PBXBuildFile section */
@@ -138,6 +142,8 @@
 		123E7E71250BB01600C7284B /* BillCategoryVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCategoryVCTest.swift; sourceTree = "<group>"; };
 		123E7E75250BE3F900C7284B /* CATransition+FromBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransition+FromBottom.swift"; sourceTree = "<group>"; };
 		124033CC250FB808008D2BA3 /* UINavigationController+popViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+popViewController.swift"; sourceTree = "<group>"; };
+		1241C5B82528A46C00E4C6AE /* CoreDataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerMock.swift; sourceTree = "<group>"; };
+		1241C5BD2528ABAA00E4C6AE /* NewInvoiceVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInvoiceVCTest.swift; sourceTree = "<group>"; };
 		12504A80251631E300B58923 /* DTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTTextField.swift; sourceTree = "<group>"; };
 		127E1491251CF39800AD7C49 /* PreloadedData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PreloadedData.plist; sourceTree = "<group>"; };
 		129BC17924FFD4D9004BD17A /* HomeViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -214,6 +220,8 @@
 		12D1D5FD24FD29EF0077FEF6 /* IProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProfilePresenter.swift; sourceTree = "<group>"; };
 		12D1D5FF24FD2A020077FEF6 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		12D1D60124FD3A390077FEF6 /* ProfileVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCTest.swift; sourceTree = "<group>"; };
+		12E734372528B67E00E0B2DC /* CategorisedBillsVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorisedBillsVCTest.swift; sourceTree = "<group>"; };
+		12E7343F2528D01600E0B2DC /* ModelsAndOther.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsAndOther.swift; sourceTree = "<group>"; };
 		12F212D6251E0D0B00E29D7A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		12F976A925069647008DD07C /* InvoiceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -294,6 +302,14 @@
 				123E7E71250BB01600C7284B /* BillCategoryVCTest.swift */,
 			);
 			path = BillCategoryModuleTest;
+			sourceTree = "<group>";
+		};
+		1241C5BC2528AB8300E4C6AE /* NewInvoiceModuleTest */ = {
+			isa = PBXGroup;
+			children = (
+				1241C5BD2528ABAA00E4C6AE /* NewInvoiceVCTest.swift */,
+			);
+			path = NewInvoiceModuleTest;
 			sourceTree = "<group>";
 		};
 		127E1493251D137300AD7C49 /* CoreData */ = {
@@ -512,6 +528,9 @@
 		12D1D5B024FD1B4E0077FEF6 /* InvoiceManagerTests */ = {
 			isa = PBXGroup;
 			children = (
+				12E7343A2528CEEA00E0B2DC /* ModelsAndOtherTest */,
+				12E734362528B65F00E0B2DC /* CategorisedBillsModuleTest */,
+				1241C5BC2528AB8300E4C6AE /* NewInvoiceModuleTest */,
 				123E7E6E250BAF1700C7284B /* BillCategoryModuleTest */,
 				123E7E6D250BAF0400C7284B /* BIllDetailModuleTest */,
 				12D1D60424FD3CD80077FEF6 /* HomeModuleTest */,
@@ -520,6 +539,7 @@
 				12D1D60324FD3CCD0077FEF6 /* ProfileModuleTest */,
 				12AB7B8D24FD40EF00E2986D /* TabBarModuleTest */,
 				12D1D5B124FD1B4E0077FEF6 /* InvoiceManagerTests.swift */,
+				1241C5B82528A46C00E4C6AE /* CoreDataManagerMock.swift */,
 				12D1D5B324FD1B4E0077FEF6 /* Info.plist */,
 			);
 			path = InvoiceManagerTests;
@@ -782,6 +802,22 @@
 			path = ChartModuleProfile;
 			sourceTree = "<group>";
 		};
+		12E734362528B65F00E0B2DC /* CategorisedBillsModuleTest */ = {
+			isa = PBXGroup;
+			children = (
+				12E734372528B67E00E0B2DC /* CategorisedBillsVCTest.swift */,
+			);
+			path = CategorisedBillsModuleTest;
+			sourceTree = "<group>";
+		};
+		12E7343A2528CEEA00E0B2DC /* ModelsAndOtherTest */ = {
+			isa = PBXGroup;
+			children = (
+				12E7343F2528D01600E0B2DC /* ModelsAndOther.swift */,
+			);
+			path = ModelsAndOtherTest;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -975,7 +1011,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12E734402528D01600E0B2DC /* ModelsAndOther.swift in Sources */,
 				123E7E70250BAF4B00C7284B /* BillDetailVCTest.swift in Sources */,
+				12E734382528B67E00E0B2DC /* CategorisedBillsVCTest.swift in Sources */,
+				1241C5B92528A46C00E4C6AE /* CoreDataManagerMock.swift in Sources */,
 				123E7E72250BB01600C7284B /* BillCategoryVCTest.swift in Sources */,
 				12D1D60224FD3A390077FEF6 /* ProfileVCTest.swift in Sources */,
 				12AB7B8824FD3FC800E2986D /* ChartVCTest.swift in Sources */,
@@ -983,6 +1022,7 @@
 				12AB7B8A24FD3FDB00E2986D /* CategoryVCTest.swift in Sources */,
 				12AB7B8C24FD3FE900E2986D /* HomeVCTest.swift in Sources */,
 				12D1D5B224FD1B4E0077FEF6 /* InvoiceManagerTests.swift in Sources */,
+				1241C5BE2528ABAA00E4C6AE /* NewInvoiceVCTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

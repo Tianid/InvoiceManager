@@ -15,8 +15,8 @@ class CategoryVCTest: XCTestCase {
     var router: IRouter!
     
     override func setUpWithError() throws {
-        
-        assembly = AssemblerModuleBuilder()
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        assembly = AssemblerModuleBuilder(context: delegate.context)
         router = Router(tabBar: MockTabBar(), assembler: assembly)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -28,9 +28,20 @@ class CategoryVCTest: XCTestCase {
     }
     
     func testCategoryVC() {
-        let view = assembly.createProfileModule(router: router)
+        let view = assembly.createCategoryModule(router: router)
+        view.loadView()
+        view.viewDidLoad()
+        view.viewWillAppear(false)
         XCTAssertNotNil(view)
-        
     }
     
+    func testCategoryPresenter() {
+        let view = assembly.createCategoryModule(router: router)
+
+        let catPres = CategoryPresenter(view: view as! ICategoryVC, router: router, model: [testSuperSection])
+        catPres.billTapped(indexPath: IndexPath(row: 0, section: 0))
+        let nib = UINib(nibName: "\(CategoryTableViewCell.self)", bundle: nil)
+        let cell = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
+        let _ = catPres.prepareTableViewCell(cell: cell as! CategoryTableViewCell, indexPath: IndexPath(row: 0, section: 0))
+    }
 }

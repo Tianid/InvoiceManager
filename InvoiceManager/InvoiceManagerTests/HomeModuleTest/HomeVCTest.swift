@@ -13,10 +13,12 @@ class HomeVCTest: XCTestCase {
     
     var assembly: AssemblerModuleBuilder!
     var router: IRouter!
+    var coreDataManager: ICoreDataManager!
     
     override func setUpWithError() throws {
-        
-        assembly = AssemblerModuleBuilder()
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        coreDataManager = CoreDataManagerMock()
+        assembly = AssemblerModuleBuilder(context: delegate.context)
         router = Router(tabBar: MockTabBar(), assembler: assembly)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -35,62 +37,66 @@ class HomeVCTest: XCTestCase {
     func testHomePresenter() {
         let view = HomeVC()
         let invoiceContainer = InvoiceContainer(model: testInvoices)
-        let presenter = HomePresenter(view: view, router: router, model: invoiceContainer)
+        let presenter = HomePresenter(view: view, router: router, model: invoiceContainer, coreDataManager: coreDataManager)
         
-        XCTAssertNoThrow(presenter.setInvoiceInex(invoiceIndex: 0), "work fine")
-        XCTAssertNoThrow(presenter.transferNewBill(bill: testBills3[0], billDetailsCreationState: .creating))
-        //        XCTAssertNoThrow(presenter.transferNewBill(bill: testBills3[0], billDetailsCreationState: .editing))
-        XCTAssertNoThrow(presenter.showBillDetail(bill: nil, billIndex: nil))
+        XCTAssertNoThrow(presenter.setInvoiceIndex(invoiceIndex: 0), "work fine")
+        XCTAssertNoThrow(presenter.showBillDetail(billIndex: 0))
+
+        XCTAssertNoThrow(presenter.presentBillIntoUI(bill: testBills3[0], billDetailsCreationState: .creating))
+        XCTAssertNoThrow(presenter.presentBillIntoUI(bill: testBills3[0], billDetailsCreationState: .editing))
+        XCTAssertNoThrow(presenter.addNewInvoice(invoice: testInvoices[0]))
+        XCTAssertNoThrow(presenter.setInvoiceIndex(invoiceIndex: 0))
+        XCTAssertNoThrow(presenter.updateInvoiceName(name: "foo", complition: nil))
+        XCTAssertNoThrow(presenter.deleteBillInModel(bill: testBills1[0]))
+        XCTAssertNoThrow(presenter.deleteInvoice(complition: nil))
+        XCTAssertNoThrow(presenter.showNewInvoice())
+        XCTAssertNoThrow(presenter.presentAlert(alert: UIAlertController(title: nil, message: nil, preferredStyle: .alert)))
     }
     
-    func testSPHomeView() {
+    func testHomeView() {
         let view = HomeVC()
         let invoiceContainer = InvoiceContainer(model: testInvoices)
-        let presenter = HomePresenter(view: view, router: router, model: invoiceContainer)
+        let presenter = HomePresenter(view: view, router: router, model: invoiceContainer, coreDataManager: coreDataManager)
         
         let homeView = HomeView()
         
+        homeView.presenter = presenter
         
-        let spHomeView = SPHomeView(superPresenter: presenter, model: invoiceContainer, view: homeView)
-        XCTAssertNoThrow(spHomeView.setInvoiceIndex(invoiceIndex: 0))
-        XCTAssertNoThrow(spHomeView.generateSPHomeViewCell(index: 0))
-        XCTAssertNoThrow(spHomeView.showBillDetail(bill: nil, billIndex: nil))
-        XCTAssertNoThrow(spHomeView.showBillDetail(bill: testBills3[0], billIndex: 0))
-        XCTAssertNoThrow(spHomeView.showBillDetail(bill: testBills3[0], billIndex: nil))
-        XCTAssertNoThrow(spHomeView.showBillDetail(bill: nil, billIndex: 0))
+        presenter.presentBillIntoUI(bill: testBills1[0], billDetailsCreationState: .creating)
+        XCTAssertNoThrow(homeView.insertNewBill(index: 0))
+
+        XCTAssertNoThrow(homeView.insertNewDataInTable(index: 0))
+        XCTAssertNoThrow(homeView.insertNewInvoice())
+        XCTAssertNoThrow(homeView.deleteRowInTableView(invoiceIndex: 0, billIndex: 0))
+        XCTAssertNoThrow(homeView.refreshTableViewByIndex(invoiceIndex: 0, billIndex: 0))
+        XCTAssertNoThrow(homeView.viewWillTransition())
     }
     
     func testSPHomveViewCell() {
         let view = HomeVC()
         let invoiceContainer = InvoiceContainer(model: testInvoices)
-        let presenter = HomePresenter(view: view, router: router, model: invoiceContainer)
+        let presenter = HomePresenter(view: view, router: router, model: invoiceContainer, coreDataManager: coreDataManager)
         
-        let homeView = HomeView()
-        
-        
-        let spHomeView = SPHomeView(superPresenter: presenter, model: invoiceContainer, view: homeView)
-        let spHomeViewCell = SPHomeViewCell(superPresenter: spHomeView, invoiceIndex: 0)
-        XCTAssertNoThrow(SPHomeViewCell(superPresenter: spHomeView, invoiceIndex: 0))
-        XCTAssertNoThrow(spHomeViewCell.setInvoiceInex(invoiceIndex: 0))
-        XCTAssertNoThrow(spHomeViewCell.billTapped(billIndex: 0))
-        XCTAssertNoThrow(spHomeViewCell.model = testBills3)
-        
+        let cellPresenter = PHomeCollectionViewCell(invoice: testInvoices[0], superPresenter: presenter)
+        XCTAssertNoThrow(cellPresenter.billTapped(billIndex: 0))
+        XCTAssertNoThrow(cellPresenter.reloadBills())
     }
     
     func testHomeCollectionViewCell() {
         let cell = HomeViewCollectionViewCell()
         let view = HomeVC()
         let invoiceContainer = InvoiceContainer(model: testInvoices)
-        let presenter = HomePresenter(view: view, router: router, model: invoiceContainer)
-        
-        let homeView = HomeView()
+        let presenter = HomePresenter(view: view, router: router, model: invoiceContainer, coreDataManager: coreDataManager)
         
         
-        let spHomeView = SPHomeView(superPresenter: presenter, model: invoiceContainer, view: homeView)
-        
-        cell.presenter = SPHomeViewCell(superPresenter: spHomeView, invoiceIndex: 0)
-        
-        cell.presenter?.model?.append(testBills3[0])
+        let cellPresenter = PHomeCollectionViewCell(invoice: testInvoices[0], superPresenter: presenter)
+        cell.presenter = cellPresenter
+        presenter.presentBillIntoUI(bill: testBills1[0], billDetailsCreationState: .creating)
+        XCTAssertNoThrow(cell.insertNewRow())
+        XCTAssertNoThrow(presenter.showBillDetail(billIndex: 0))
+        XCTAssertNoThrow(presenter.deleteBillInModel(bill: testBills1[0]))
+        XCTAssertNoThrow(cell.deleteRowInTableView(billIndex: 0))
         XCTAssertNoThrow(cell.refreshTableViewByBillIndex(billIndex: 0))
+
     }
 }

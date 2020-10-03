@@ -12,11 +12,6 @@ import CoreData
 class HomeView: UIView {
     //MARK: - Properties
     var presenter: IHomePresenter?
-    var context: NSManagedObjectContext! {
-        didSet {
-            refreshUIData()
-        }
-    }
     
     private var fetchedResultsController: NSFetchedResultsController<CDInvoice>?
     

@@ -21,8 +21,8 @@ class ProfileVCTest: XCTestCase {
     var router: IRouter!
     
     override func setUpWithError() throws {
-        
-        assembly = AssemblerModuleBuilder()
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        assembly = AssemblerModuleBuilder(context: delegate.context)
         router = Router(tabBar: MockTabBar(), assembler: assembly)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -35,6 +35,8 @@ class ProfileVCTest: XCTestCase {
     
     func testProfileVC() {
         let view = assembly.createProfileModule(router: router)
+        view.loadView()
+        view.viewDidLoad()
         XCTAssertNotNil(view)
         
     }
