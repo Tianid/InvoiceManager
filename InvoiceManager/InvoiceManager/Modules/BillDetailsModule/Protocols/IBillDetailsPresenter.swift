@@ -12,5 +12,4 @@ protocol IBillDetailsPresenter: class {
     func categoryFieldTapped(transition: PanelTransition)
     func categorySelectedWithData(category: Category)
     func saveButtonTapped(name: String, value: Double, billState: BillState, description: String?)
-    func deleteTapped()
 }

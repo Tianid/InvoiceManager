@@ -22,7 +22,9 @@ class CategoryVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
+        view.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
+        definesPresentationContext = true
+        categoryView?.navigationItem = navigationItem
     }
     
     override func loadView() {
@@ -33,7 +35,12 @@ class CategoryVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = false
+        
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.topItem?.title = "Categories"
+        self.navigationItem.largeTitleDisplayMode = .automatic
     }
 }
 

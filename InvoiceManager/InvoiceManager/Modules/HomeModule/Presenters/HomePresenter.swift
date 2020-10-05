@@ -109,15 +109,15 @@ extension HomePresenter: IHomePresenter {
         self.invoiceIndex = invoiceIndex
     }
     
-    func deleteBillInModel(bill: Bill) {
+    func deleteBillInModel(bill: Bill, indexPath: IndexPath) {
         guard let _ = currentInvoice else { return }
         let result = coreDataManage.deleteBill(bill: bill)
         
         switch result {
         case .success(_):
             let count = (currentInvoice?.bills.count)! - 1
-            currentInvoice?.deleteDataByIndex(index: billIndex)
-            view?.deleteRowInTableView(invoiceIndex: invoiceIndex, billIndex: count - billIndex)
+            currentInvoice?.deleteDataByIndex(index: indexPath.row)
+            view?.deleteRowInTableView(invoiceIndex: invoiceIndex, billIndex: count - indexPath.row)
         case .failure(_):
             break
         }

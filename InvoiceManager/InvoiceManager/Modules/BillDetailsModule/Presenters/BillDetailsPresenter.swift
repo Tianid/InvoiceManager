@@ -16,7 +16,7 @@ class BillDetailsPresenter {
     private var coreDataManager: ICoreDataManager
     private var router: IRouter
     private var category: Category?
-
+    
     //MARK: - Init
     init(view: IBillDetailsVC, router: IRouter, model: Bill? = nil, superPresenter: IHomePresenter? = nil, coreDataManager: ICoreDataManager) {
         self.view = view
@@ -29,14 +29,14 @@ class BillDetailsPresenter {
     //MARK: - Func
     
     private func createNewBill(newBill: Bill, invoice: Invoice) {
-
+        
         let result = coreDataManager.createNewBill(bill: newBill, invoice: invoice)
         
         switch result {
         case .success(_):
-            router.dismissModuleFromHomeNavigation(complition: { [unowned self] in
+            dismissModule { [unowned self] in
                 self.superPresenter?.presentBillIntoUI(bill: newBill, billDetailsCreationState: self.billDetailsCreationState)
-            })
+            }
         case .failure(let errro):
             print(errro)
         }
@@ -47,30 +47,33 @@ class BillDetailsPresenter {
         
         switch result {
         case .success(_):
-            router.dismissModuleFromHomeNavigation { [unowned self] in
+            dismissModule { [unowned self] in
                 self.superPresenter?.presentBillIntoUI(bill: newBill, billDetailsCreationState: self.billDetailsCreationState)
             }
+            
         case .failure(let error):
             print(error)
         }
     }
+    
+    private func isNeedToSaveChanges(newBill: Bill) -> Bool {
+        guard let model = model else { return true }
+        guard newBill == model else { return true }
+        return false
+    }
+    
+    private func dismissModule(complition: (() -> ())?) {
+        router.dismissModuleFromHomeNavigation(complition: complition)
+    }
 }
 
 extension BillDetailsPresenter: IBillDetailsPresenter {
-    func deleteTapped() {
-        guard let model = model, billDetailsCreationState == .editing else { return }
-        router.dismissModuleFromHomeNavigation { [unowned self] in
-            self.superPresenter?.deleteBillInModel(bill: model)
-        }
-    }
     
     func saveButtonTapped(name: String, value: Double, billState: BillState, description: String?) {
         
         guard let category = category else { return }
         guard let invoice = superPresenter?.currentInvoice else { return }
         let value = billState == .expense ? value * -1 : value
-        
-
         
         switch billDetailsCreationState {
         case .creating:
@@ -89,7 +92,7 @@ extension BillDetailsPresenter: IBillDetailsPresenter {
                             category: category,
                             modifiedDate: Date(),
                             creationDate: model.creationDate)
-            
+            guard isNeedToSaveChanges(newBill: bill) else { dismissModule(complition: nil); return }
             updateBill(newBill: bill, invoice: invoice)
         case .defaultState:
             break

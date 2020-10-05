@@ -37,7 +37,6 @@ struct Bill: Equatable {
             lhs.billName == rhs.billName &&
             lhs.billDescription == rhs.billDescription &&
             lhs.category == rhs.category &&
-            lhs.modifiedDate == rhs.modifiedDate &&
-            lhs.creationDate == rhs.modifiedDate
+            lhs.creationDate == rhs.creationDate
     }
 }

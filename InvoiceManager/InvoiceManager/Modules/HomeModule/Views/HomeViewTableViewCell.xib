@@ -60,19 +60,33 @@
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bbF-k6-CF1">
+                                <rect key="frame" x="284" y="46" width="16" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="0P0-wv-ohx"/>
+                                    <constraint firstAttribute="height" constant="18" id="zCp-Gb-mdW"/>
+                                </constraints>
+                                <state key="normal" image="trash" catalog="system"/>
+                                <connections>
+                                    <action selector="deleteButtonAction:" destination="C0L-I4-30X" eventType="touchUpInside" id="Bky-ek-wjk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="YTr-HA-ztP" firstAttribute="top" secondItem="YE1-ca-2Ca" secondAttribute="top" constant="9" id="0we-KO-eVD"/>
                             <constraint firstItem="ffL-MG-AgQ" firstAttribute="leading" secondItem="Cam-Gd-k9d" secondAttribute="trailing" constant="8" id="6Ez-39-GeP"/>
                             <constraint firstAttribute="bottom" secondItem="ffL-MG-AgQ" secondAttribute="bottom" constant="12" id="BCU-FF-AVu"/>
+                            <constraint firstItem="bbF-k6-CF1" firstAttribute="top" secondItem="2bW-Ql-RgK" secondAttribute="bottom" constant="4" id="CCr-QO-Jcg"/>
                             <constraint firstItem="Cam-Gd-k9d" firstAttribute="top" secondItem="YE1-ca-2Ca" secondAttribute="top" constant="9" id="GaY-wG-uw3"/>
+                            <constraint firstAttribute="bottom" secondItem="bbF-k6-CF1" secondAttribute="bottom" constant="5" id="Kht-gh-SNJ"/>
                             <constraint firstItem="ffL-MG-AgQ" firstAttribute="top" secondItem="WDv-BS-m1R" secondAttribute="bottom" constant="-1.5" id="QE3-9d-EEx"/>
                             <constraint firstItem="2bW-Ql-RgK" firstAttribute="top" secondItem="YE1-ca-2Ca" secondAttribute="top" constant="24" id="Rbj-BS-Qrq"/>
                             <constraint firstItem="YTr-HA-ztP" firstAttribute="leading" secondItem="Cam-Gd-k9d" secondAttribute="trailing" constant="8" id="Vka-md-eho"/>
                             <constraint firstItem="WDv-BS-m1R" firstAttribute="leading" secondItem="Cam-Gd-k9d" secondAttribute="trailing" constant="8" id="ghM-8T-RJ6"/>
                             <constraint firstItem="WDv-BS-m1R" firstAttribute="top" secondItem="YTr-HA-ztP" secondAttribute="bottom" constant="-2" id="jfQ-qd-F5D"/>
                             <constraint firstAttribute="trailing" secondItem="YTr-HA-ztP" secondAttribute="trailing" constant="8" id="ksg-jE-CYo"/>
+                            <constraint firstAttribute="trailing" secondItem="bbF-k6-CF1" secondAttribute="trailing" constant="8" id="quB-IP-6sO"/>
                             <constraint firstAttribute="bottom" secondItem="Cam-Gd-k9d" secondAttribute="bottom" constant="10" id="tUt-88-smV"/>
                             <constraint firstAttribute="trailing" secondItem="2bW-Ql-RgK" secondAttribute="trailing" constant="8" id="tqh-q8-Yzu"/>
                             <constraint firstItem="Cam-Gd-k9d" firstAttribute="leading" secondItem="YE1-ca-2Ca" secondAttribute="leading" constant="8" id="zkX-4y-aSe"/>
@@ -93,9 +107,13 @@
                 <outlet property="billDateLabel" destination="ffL-MG-AgQ" id="SNH-pq-CqF"/>
                 <outlet property="billNameLabel" destination="YTr-HA-ztP" id="92Y-10-Gua"/>
                 <outlet property="billValueLabel" destination="2bW-Ql-RgK" id="ggQ-pr-dQy"/>
+                <outlet property="deleteButton" destination="bbF-k6-CF1" id="qoL-26-y8c"/>
                 <outlet property="iconImageView" destination="Cam-Gd-k9d" id="kz0-ba-2Fk"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="136.94196428571428"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="trash" catalog="system" width="121" height="128"/>
+    </resources>
 </document>

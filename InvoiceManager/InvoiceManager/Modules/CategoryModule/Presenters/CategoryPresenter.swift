@@ -10,6 +10,7 @@ import UIKit
 class CategoryPresenter {
     //MARK: - Properties
     var model: [SuperSection]
+    var filteredModels: [Category] = []
     private weak var view: ICategoryVC?
     private var router: IRouter
 
@@ -25,12 +26,30 @@ class CategoryPresenter {
 }
 
 extension CategoryPresenter: ICategoryTableContainer {
-    func prepareTableViewCell(cell: CategoryTableViewCell, indexPath: IndexPath) -> UITableViewCell {
-        cell.categoryLabel.text = model[indexPath.section].categorys[indexPath.row].name
+    func filter(searchText: String) {
+        var categorys: [Category] = []
+        model.forEach { (superSection) in
+            categorys += superSection.categorys.filter { (category) -> Bool in
+                return category.name.lowercased().contains(searchText.lowercased())
+            }
+        }
+        filteredModels = categorys
+    }
+    
+    func prepareTableViewCell(cell: CategoryTableViewCell, indexPath: IndexPath, isFiltering: Bool) -> UITableViewCell {
+        if isFiltering {
+            cell.categoryLabel.text = filteredModels[indexPath.row].name
+        } else {
+            cell.categoryLabel.text = model[indexPath.section].categorys[indexPath.row].name
+        }
         return cell
     }
     
-    func billTapped(indexPath: IndexPath) {
-        router.showCategorisedBillsModule(category: model[indexPath.section].categorys[indexPath.row])
+    func billTapped(indexPath: IndexPath, isFiltering: Bool) {
+        if isFiltering {
+            router.showCategorisedBillsModule(category: filteredModels[indexPath.row])
+        } else {
+            router.showCategorisedBillsModule(category: model[indexPath.section].categorys[indexPath.row])
+        }
     }
 }

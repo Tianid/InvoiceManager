@@ -58,34 +58,11 @@ class BillDetailsVC: UIViewController {
         billDetailsView?.saveButtonTapped()
     }
     
-    @objc private func deleteButtonTapped(_ sender: UIBarButtonItem) {
-        
-        let alert = UIAlertController(title: nil, message: "You definitely want to delete the bill", preferredStyle: .alert)
-        
-        let yesAction = UIAlertAction(title: "Yes", style: .destructive) { [weak self] (_) in
-            self?.presenter?.deleteTapped()
-        }
-        
-        let noAction = UIAlertAction(title: "No", style: .cancel) { (_) in }
-        
-        alert.addAction(yesAction)
-        alert.addAction(noAction)
-        present(alert, animated: true)
-    }
-    
     private func configureViewController() {
         view.backgroundColor = .white
         
         if billDetailsPresentingType == .edit {
             self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonTapped(_:))), animated: true)
-            
-            if presenter?.model != nil {
-                if #available(iOS 13.0, *) {
-                    self.navigationItem.rightBarButtonItems?.append(UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteButtonTapped(_:))))
-                } else {
-                    // Fallback on earlier versions
-                }
-            }
         }
         
         billDetailsView?.updateDetailFields()

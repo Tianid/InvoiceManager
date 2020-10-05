@@ -12,6 +12,8 @@ protocol ICategoryPresenter: class {
 }
 
 protocol ICategoryTableContainer: ICategoryPresenter {
-    func prepareTableViewCell(cell: CategoryTableViewCell, indexPath: IndexPath) -> UITableViewCell
-    func billTapped(indexPath: IndexPath)
+    var filteredModels: [Category] { get set }
+    func prepareTableViewCell(cell: CategoryTableViewCell, indexPath: IndexPath, isFiltering: Bool) -> UITableViewCell
+    func billTapped(indexPath: IndexPath, isFiltering: Bool)
+    func filter(searchText: String)
 }

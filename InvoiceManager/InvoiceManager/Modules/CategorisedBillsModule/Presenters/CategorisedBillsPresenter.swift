@@ -41,6 +41,7 @@ extension CategorisedBillsPresenter: ICategorisedBillsPresenter {
         cell.billDateLabel.text = dateFormatter.string(from: bill.creationDate)
         cell.billValueLabel.text = String(bill.value).currencySetFormatting(currencySymbol: bill.currency.symbolRaw)
         cell.iconImageView.backgroundColor = .systemGreen
+        cell.isReadOnly = true
         return cell
     }
     

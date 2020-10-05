@@ -22,7 +22,7 @@ protocol IHomePresenter: class {
     
     func setInvoiceIndex(invoiceIndex: Int)
     
-    func deleteBillInModel(bill: Bill)
+    func deleteBillInModel(bill: Bill, indexPath: IndexPath)
     func deleteInvoice(complition: (() -> ())?)
 }
 
@@ -33,4 +33,8 @@ protocol IPHomeCollectionViewCell {
     func reloadBills()
     func billTapped(billIndex: Int)
     func prepareTableViewCell(cell: HomeViewTableViewCell, index: Int) -> HomeViewTableViewCell
+}
+
+protocol IHomeViewTableViewCell {
+    func deleteButtonTapped(indexPath: IndexPath)
 }
