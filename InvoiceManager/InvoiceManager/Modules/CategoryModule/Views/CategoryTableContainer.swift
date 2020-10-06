@@ -82,21 +82,21 @@ extension CategoryTableContainer: UITableViewDelegate {
 extension CategoryTableContainer: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         if isFiltering {
-            return 1
+            return presenter?.filteredModels.count ?? 0
         }
         return presenter?.model.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if isFiltering {
-            return ""
+            return presenter?.getSectionNameForFilterdSections(section: section)
         }
         return presenter?.model[section].section.name
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
-            return presenter?.filteredModels.count ?? 0
+            return presenter?.filteredModels[section].1.count ?? 0
         }
         return presenter?.model[section].categorys.count ?? 0
     }

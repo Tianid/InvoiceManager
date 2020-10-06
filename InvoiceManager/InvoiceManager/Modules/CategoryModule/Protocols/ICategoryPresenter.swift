@@ -12,8 +12,9 @@ protocol ICategoryPresenter: class {
 }
 
 protocol ICategoryTableContainer: ICategoryPresenter {
-    var filteredModels: [Category] { get set }
+    var filteredModels: [(Int, [Int])] { get set }
     func prepareTableViewCell(cell: CategoryTableViewCell, indexPath: IndexPath, isFiltering: Bool) -> UITableViewCell
     func billTapped(indexPath: IndexPath, isFiltering: Bool)
     func filter(searchText: String)
+    func getSectionNameForFilterdSections(section: Int) -> String
 }

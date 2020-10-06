@@ -39,9 +39,9 @@ class CategoryVCTest: XCTestCase {
         let view = assembly.createCategoryModule(router: router)
 
         let catPres = CategoryPresenter(view: view as! ICategoryVC, router: router, model: [testSuperSection])
-        catPres.billTapped(indexPath: IndexPath(row: 0, section: 0))
+        catPres.billTapped(indexPath: IndexPath(row: 0, section: 0), isFiltering: false)
         let nib = UINib(nibName: "\(CategoryTableViewCell.self)", bundle: nil)
         let cell = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
-        let _ = catPres.prepareTableViewCell(cell: cell as! CategoryTableViewCell, indexPath: IndexPath(row: 0, section: 0))
+        let _ = catPres.prepareTableViewCell(cell: cell as! CategoryTableViewCell, indexPath: IndexPath(row: 0, section: 0), isFiltering: false)
     }
 }

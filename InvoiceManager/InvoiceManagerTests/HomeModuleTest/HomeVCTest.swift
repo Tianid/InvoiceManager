@@ -47,7 +47,7 @@ class HomeVCTest: XCTestCase {
         XCTAssertNoThrow(presenter.addNewInvoice(invoice: testInvoices[0]))
         XCTAssertNoThrow(presenter.setInvoiceIndex(invoiceIndex: 0))
         XCTAssertNoThrow(presenter.updateInvoiceName(name: "foo", complition: nil))
-        XCTAssertNoThrow(presenter.deleteBillInModel(bill: testBills1[0]))
+        XCTAssertNoThrow(presenter.deleteBillInModel(bill: testBills1[0], indexPath: IndexPath(row: 0, section: 0)))
         XCTAssertNoThrow(presenter.deleteInvoice(complition: nil))
         XCTAssertNoThrow(presenter.showNewInvoice())
         XCTAssertNoThrow(presenter.presentAlert(alert: UIAlertController(title: nil, message: nil, preferredStyle: .alert)))
@@ -94,7 +94,7 @@ class HomeVCTest: XCTestCase {
         presenter.presentBillIntoUI(bill: testBills1[0], billDetailsCreationState: .creating)
         XCTAssertNoThrow(cell.insertNewRow())
         XCTAssertNoThrow(presenter.showBillDetail(billIndex: 0))
-        XCTAssertNoThrow(presenter.deleteBillInModel(bill: testBills1[0]))
+        XCTAssertNoThrow(presenter.deleteBillInModel(bill: testBills1[0], indexPath: IndexPath(row: 0, section: 0)))
         XCTAssertNoThrow(cell.deleteRowInTableView(billIndex: 0))
         XCTAssertNoThrow(cell.refreshTableViewByBillIndex(billIndex: 0))
 

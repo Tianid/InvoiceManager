@@ -62,7 +62,6 @@ class BillDetailVCTest: XCTestCase {
         
         XCTAssertNoThrow(presenter.saveButtonTapped(name: "foo", value: 123, billState: .expense, description: ""))
         XCTAssertNoThrow(presenter.categoryFieldTapped(transition: PanelTransition()))
-        XCTAssertNoThrow(presenter.deleteTapped())
         
         
     }
