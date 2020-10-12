@@ -61,7 +61,8 @@ class AssemblerModuleBuilder: IAssembleBuilder {
     
     func createChartModule(router: IRouter) -> UIViewController {
         let view = ChartVC()
-        let presenter = ChartPresenter(view: view, router: router)
+        let model = coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil)
+        let presenter = ChartPresenter(view: view, router: router, model: model)
         view.presenter = presenter
         return view
     }

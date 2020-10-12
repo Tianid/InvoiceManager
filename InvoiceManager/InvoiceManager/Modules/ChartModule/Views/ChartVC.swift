@@ -12,58 +12,31 @@ import Charts
 class ChartVC: UIViewController {
     //MARK: - Properties
     var presenter: IChartPresenter?
-    var pieChart: PieChartView!
     
-    var categoryDataEntry1 = PieChartDataEntry(value: 0)
-    var categoryDataEntry2 = PieChartDataEntry(value: 0)
+    private var categoryView: ChartView? {
+        guard isViewLoaded else { return nil }
+        return (self.view as! ChartView)
+    }
     
-    var numberOfDataEntries: [PieChartDataEntry] = []
+    private var segmentedControll: UISegmentedControl = {
+        let view = UISegmentedControl(items: ["Day", "Month", "Year", "All time"])
+        view.selectedSegmentIndex = 3
+        return view
+    }()
     
     //MARK: - Init
     //MARK: - Func
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGreen
-        configureView()
-        configureChart()
+        view.backgroundColor = .white
+        self.navigationItem.titleView = segmentedControll
     }
     
-    private func configureView() {
-        pieChart = PieChartView()
-        view.addSubview(pieChart)
-        pieChart.backgroundColor = .red
-        pieChart.drawHoleEnabled = false
-        
-        pieChart.anchor(
-                        size: CGSize(width: 300, height: 300),
-                        centerX: view.centerXAnchor,
-                        centerY: view.centerYAnchor)
-    }
-    
-    private func configureChart() {
-        pieChart.chartDescription?.text = nil
-        pieChart.rotationEnabled = false
-        
-        categoryDataEntry1.value = Double(testCategorys.count)
-        categoryDataEntry1.label = "Categorys"
-        
-        categoryDataEntry2.value = Double(testBills1.count)
-        categoryDataEntry2.label = "Bills1"
-        
-        numberOfDataEntries = [categoryDataEntry1, categoryDataEntry2]
-        
-        updateChartData()
-    }
-    
-    private func updateChartData() {
-        let chartDataSet = PieChartDataSet(entries: numberOfDataEntries)
-        let chartData = PieChartData(dataSet: chartDataSet)
-        
-        let colors = [UIColor.orange, UIColor.blue]
-        chartDataSet.colors = colors
-        
-        pieChart.data = chartData
+    override func loadView() {
+        let view = ChartView(frame: UIScreen.main.bounds)
+        view.presenter = presenter
+        self.view = view
     }
 }
 

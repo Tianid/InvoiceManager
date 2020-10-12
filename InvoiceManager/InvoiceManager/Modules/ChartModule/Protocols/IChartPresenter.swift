@@ -7,5 +7,6 @@
 //
 
 protocol IChartPresenter {
-    
+    var model: [Invoice] { get set }
+    func prepareCollectionViewCell(cell: ChartViewCell, index: Int) -> ChartViewCell
 }

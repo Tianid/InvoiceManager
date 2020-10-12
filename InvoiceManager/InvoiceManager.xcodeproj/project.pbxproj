@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -103,6 +103,10 @@
 		12D1D5FE24FD29EF0077FEF6 /* IProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5FD24FD29EF0077FEF6 /* IProfilePresenter.swift */; };
 		12D1D60024FD2A020077FEF6 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5FF24FD2A020077FEF6 /* ProfilePresenter.swift */; };
 		12D1D60224FD3A390077FEF6 /* ProfileVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D60124FD3A390077FEF6 /* ProfileVCTest.swift */; };
+		12DE149025348274004FF6F5 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE148F25348274004FF6F5 /* ChartView.swift */; };
+		12DE1492253486FE004FF6F5 /* ChartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE1491253486FE004FF6F5 /* ChartViewCell.swift */; };
+		12DE149425348C2B004FF6F5 /* PChartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE149325348C2B004FF6F5 /* PChartViewCell.swift */; };
+		12DE149625348C44004FF6F5 /* IPChartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE149525348C44004FF6F5 /* IPChartViewCell.swift */; };
 		12E734382528B67E00E0B2DC /* CategorisedBillsVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E734372528B67E00E0B2DC /* CategorisedBillsVCTest.swift */; };
 		12E734402528D01600E0B2DC /* ModelsAndOther.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E7343F2528D01600E0B2DC /* ModelsAndOther.swift */; };
 		12F212D7251E0D0B00E29D7A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F212D6251E0D0B00E29D7A /* CoreDataManager.swift */; };
@@ -223,6 +227,10 @@
 		12D1D5FD24FD29EF0077FEF6 /* IProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProfilePresenter.swift; sourceTree = "<group>"; };
 		12D1D5FF24FD2A020077FEF6 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		12D1D60124FD3A390077FEF6 /* ProfileVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCTest.swift; sourceTree = "<group>"; };
+		12DE148F25348274004FF6F5 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		12DE1491253486FE004FF6F5 /* ChartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewCell.swift; sourceTree = "<group>"; };
+		12DE149325348C2B004FF6F5 /* PChartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PChartViewCell.swift; sourceTree = "<group>"; };
+		12DE149525348C44004FF6F5 /* IPChartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPChartViewCell.swift; sourceTree = "<group>"; };
 		12E734372528B67E00E0B2DC /* CategorisedBillsVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorisedBillsVCTest.swift; sourceTree = "<group>"; };
 		12E7343F2528D01600E0B2DC /* ModelsAndOther.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsAndOther.swift; sourceTree = "<group>"; };
 		12F212D6251E0D0B00E29D7A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -736,6 +744,8 @@
 			isa = PBXGroup;
 			children = (
 				12D1D5E524FD27060077FEF6 /* ChartVC.swift */,
+				12DE148F25348274004FF6F5 /* ChartView.swift */,
+				12DE1491253486FE004FF6F5 /* ChartViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -745,6 +755,7 @@
 			children = (
 				12D1D5F524FD297A0077FEF6 /* IChartVC.swift */,
 				12D1D5F724FD29980077FEF6 /* IChartPresenter.swift */,
+				12DE149525348C44004FF6F5 /* IPChartViewCell.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -753,6 +764,7 @@
 			isa = PBXGroup;
 			children = (
 				12D1D5F924FD29AD0077FEF6 /* ChartPresenter.swift */,
+				12DE149325348C2B004FF6F5 /* PChartViewCell.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -838,7 +850,6 @@
 				38766B3E982A4E14A4447BEA /* Pods-InvoiceManagerTests.debug.xcconfig */,
 				7F2AA64913C14144A70503D8 /* Pods-InvoiceManagerTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -1024,6 +1035,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12AF06502526497800B44B6B /* CategorisedBillsVC.swift in Sources */,
+				12DE149625348C44004FF6F5 /* IPChartViewCell.swift in Sources */,
 				12D1D5C224FD1CFD0077FEF6 /* Router.swift in Sources */,
 				121AC3DF250A5E710099319D /* IBillCategoryPresenter.swift in Sources */,
 				12D1D5E224FD25B60077FEF6 /* HomeVC.swift in Sources */,
@@ -1057,6 +1069,7 @@
 				12D1D5E824FD27260077FEF6 /* ProfleVC.swift in Sources */,
 				121AC3DD250A5E600099319D /* BillCategoryPresenter.swift in Sources */,
 				12D1D5E424FD26D80077FEF6 /* CategoryVC.swift in Sources */,
+				12DE1492253486FE004FF6F5 /* ChartViewCell.swift in Sources */,
 				120F6C692524D8DF005A36BD /* CategoryTableContainer.swift in Sources */,
 				12AF06542526499B00B44B6B /* ICategorisedBillsVC.swift in Sources */,
 				123E7E76250BE3F900C7284B /* CATransition+FromBottom.swift in Sources */,
@@ -1090,6 +1103,7 @@
 				12D1D59B24FD1B4D0077FEF6 /* AppDelegate.swift in Sources */,
 				12D1D5EA24FD28A50077FEF6 /* IHomeVC.swift in Sources */,
 				12D1D5C424FD1D2A0077FEF6 /* AssemblerModuleBuilder.swift in Sources */,
+				12DE149425348C2B004FF6F5 /* PChartViewCell.swift in Sources */,
 				12F976AA25069647008DD07C /* InvoiceContainer.swift in Sources */,
 				1212F6CB2507D0810016693B /* BillDetailsVC.swift in Sources */,
 				129BC17D24FFE648004BD17A /* HomeViewTableViewCell.swift in Sources */,
@@ -1102,6 +1116,7 @@
 				12AB499E25126CC40069B713 /* INewInvoicePresenter.swift.swift in Sources */,
 				12C1878A251E6ECC00F8B009 /* PHomeCollectionViewCell.swift in Sources */,
 				12AB7B9624FD50BD00E2986D /* Category.swift in Sources */,
+				12DE149025348274004FF6F5 /* ChartView.swift in Sources */,
 				120F6C672524CB8F005A36BD /* ExpandableListViewController.swift in Sources */,
 				12504A81251631E300B58923 /* DTTextField.swift in Sources */,
 			);
