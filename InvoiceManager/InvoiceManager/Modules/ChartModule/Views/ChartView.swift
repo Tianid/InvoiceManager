@@ -11,7 +11,7 @@ import UIKit
 class ChartView: UIView {
     //MARK: - Properties
     var presenter: IChartPresenter?
-    
+    private var chartsFilter: ChartsFilter = .Alltime
     private let cellIdentifier = "cellIdentifier"
     private var collectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -53,7 +53,13 @@ class ChartView: UIView {
         collectionView.dataSource = self
         collectionView.register(ChartViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
     }
-
+    
+    func segmentChanged(filter: ChartsFilter) {
+        guard collectionView.visibleCells.count == 1 else { return }
+        guard let cell = collectionView.visibleCells[0] as? ChartViewCell else { return }
+        chartsFilter = filter
+        cell.updateCharts(filter: filter)
+    }
 }
 
 extension ChartView: UICollectionViewDelegate {
@@ -74,7 +80,7 @@ extension ChartView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let cell = cell as? ChartViewCell else { return }
-        cell.updateCharts()
+        cell.updateCharts(filter: chartsFilter)
     }
 }
 

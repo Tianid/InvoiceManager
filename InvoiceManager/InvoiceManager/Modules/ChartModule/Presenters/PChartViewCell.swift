@@ -12,7 +12,8 @@ import Charts
 class PChartViewCell: IPChartViewCell {
     //MARK: - Properties
     var model: Invoice
-    private var barChartDataSets = [BarChartDataSet]()
+//    private var barChartDataSets = [BarChartDataSet]()
+//    private var pieChartDataSets: PieChartDataSet!
     
     //MARK: - Lines properties
     private let circleRadius: CGFloat = 3
@@ -31,11 +32,12 @@ class PChartViewCell: IPChartViewCell {
         return model.currency.symbolRaw
     }
     
-    func prepareLineChartDataSet() -> [LineChartDataSet] {
+    func prepareLineChartDataSet(filter: ChartsFilter) -> [LineChartDataSet] {
         var incomeLineChartEntry = [ChartDataEntry]()
         var expenseLineChartEntry = [ChartDataEntry]()
+        let preparedModels: [Bill] = prepareChartModels(filter: filter)
         
-        for bill in model.bills {
+        for bill in preparedModels {
             if bill.value.sign == .plus {
                 let chartData = ChartDataEntry(x: Double(incomeLineChartEntry.count), y: bill.value)
                 incomeLineChartEntry.append(chartData)
@@ -70,28 +72,46 @@ class PChartViewCell: IPChartViewCell {
         return [incomeLine, expenseLine]
     }
     
-    func prepareBarChartDataSet() -> [BarChartDataSet] {
-        guard barChartDataSets.count == 0 else { return barChartDataSets }
-        var categorysDict = [String: Int]()
+    func prepareBarChartDataSet(filter: ChartsFilter) -> [BarChartDataSet] {
         
-        for bill in model.bills {
+        var categorysDict = [String: Int]()
+        let preparedModels: [Bill] = prepareChartModels(filter: filter)
+
+        for bill in preparedModels {
             if categorysDict[bill.category.name] == nil {
                 categorysDict[bill.category.name] = 1
             } else {
                 categorysDict[bill.category.name]! += 1
             }
         }
-        
        
-        barChartDataSets = generateBarChartDataSets(categorysDict: categorysDict)
+        let barChartDataSets = generateBarChartDataSets(categorysDict: categorysDict)
         
         return barChartDataSets
+    }
+    
+    func preparePieChartDataSet(filter: ChartsFilter) -> PieChartDataSet {
+        
+        var categorysDict = [String: Int]()
+        let preparedModels: [Bill] = prepareChartModels(filter: filter)
+
+        for bill in preparedModels {
+            if categorysDict[bill.category.name] == nil {
+                categorysDict[bill.category.name] = 1
+            } else {
+                categorysDict[bill.category.name]! += 1
+            }
+        }
+       
+        let pieChartDataSets = generatePieChartDataSets(categorysDict: categorysDict)
+        
+        return pieChartDataSets
     }
     
     private func generateBarChartDataSets(categorysDict: [String: Int]) -> [BarChartDataSet] {
         var dataSets = [BarChartDataSet]()
         
-        let sorted = categorysDict.sorted { $0.key > $1.key }
+        let sorted = categorysDict.sorted { $0.value < $1.value }
         var x = 0
         for item in sorted {
             let value = BarChartDataEntry(x: Double(x), y: Double(item.value))
@@ -101,6 +121,47 @@ class PChartViewCell: IPChartViewCell {
         }
         
         return dataSets
+    }
+    
+    private func generatePieChartDataSets(categorysDict: [String: Int]) -> PieChartDataSet {
+        var values: [PieChartDataEntry] = []
+        
+        let sorted = categorysDict.sorted { $0.value < $1.value }
+        for (index, item) in sorted.enumerated() {
+            guard index <= 20 else { break }
+            let value = PieChartDataEntry(value: Double(item.value), label: item.key)
+            value.label = item.key
+            values.append(value)
+        }
+        
+        let pieSet = PieChartDataSet(entries: values, label: nil)
+        pieSet.colors.removeAll()
+        values.forEach {
+            pieSet.colors.append(CategoryColors.colors[$0.label!]!)
+        }
+        return pieSet
+    }
+    
+    private func prepareChartModels(filter: ChartsFilter) -> [Bill] {
+        switch filter {
+        case .Day:
+            return model.bills.filter {
+                let today = Date.today
+                return $0.creationDate >= today.start && $0.creationDate <= today.end
+            }
+        case .Month:
+            return model.bills.filter {
+                  let today = Date.thisMonth
+                return $0.creationDate >= today.start && $0.creationDate <= today.end
+              }
+        case .Year:
+            return model.bills.filter {
+                  let today = Date.thisYear
+                  return $0.creationDate >= today.start && $0.creationDate <= today.end
+              }
+        case .Alltime:
+            return model.bills
+        }
     }
 }
 

@@ -362,6 +362,11 @@ class HomeView: UIView {
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
+        if let popoverController = alert.popoverPresentationController {
+            popoverController.sourceView = sender
+            popoverController.sourceRect = CGRect(x: sender.bounds.midX, y: sender.bounds.midY, width: 0, height: 0)
+        }
+        
         alert.addAction(renameAction)
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)

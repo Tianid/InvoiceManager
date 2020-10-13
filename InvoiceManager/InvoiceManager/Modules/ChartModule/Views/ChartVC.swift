@@ -13,13 +13,14 @@ class ChartVC: UIViewController {
     //MARK: - Properties
     var presenter: IChartPresenter?
     
-    private var categoryView: ChartView? {
+    private var chartView: ChartView? {
         guard isViewLoaded else { return nil }
         return (self.view as! ChartView)
     }
     
     private var segmentedControll: UISegmentedControl = {
-        let view = UISegmentedControl(items: ["Day", "Month", "Year", "All time"])
+        let view = UISegmentedControl(items: [ChartsFilter.Day.rawValue, ChartsFilter.Month.rawValue, ChartsFilter.Year.rawValue, ChartsFilter.Alltime.rawValue])
+
         view.selectedSegmentIndex = 3
         return view
     }()
@@ -29,14 +30,39 @@ class ChartVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        self.navigationItem.titleView = segmentedControll
+        configureController()
     }
     
     override func loadView() {
         let view = ChartView(frame: UIScreen.main.bounds)
         view.presenter = presenter
         self.view = view
+    }
+    
+    private func configureController() {
+        view.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
+        self.navigationItem.titleView = segmentedControll
+        segmentedControll.addTarget(self, action: #selector(segmentChanged(_:)), for: .valueChanged)
+    }
+    
+    @objc private func segmentChanged(_ sender: UISegmentedControl) {
+        var filter: ChartsFilter?
+        
+        switch sender.selectedSegmentIndex {
+        case 0:
+            filter = ChartsFilter.Day
+        case 1:
+            filter = ChartsFilter.Month
+        case 2:
+            filter = ChartsFilter.Year
+        case 3:
+            filter = ChartsFilter.Alltime
+        default:
+            break
+        }
+        
+        guard filter != nil else { return }
+        chartView?.segmentChanged(filter: filter!)
     }
 }
 

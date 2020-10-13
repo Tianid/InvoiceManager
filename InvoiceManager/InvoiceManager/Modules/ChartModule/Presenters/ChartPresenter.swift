@@ -5,6 +5,11 @@
 //  Created by Tianid on 31.08.2020.
 //  Copyright © 2020 Tianid. All rights reserved.
 //
+import Foundation
+
+enum ChartsFilter: String {
+    case Day, Month, Year, Alltime = "All time"
+}
 
 class ChartPresenter {
     
@@ -26,8 +31,13 @@ class ChartPresenter {
 extension ChartPresenter: IChartPresenter {
     func prepareCollectionViewCell(cell: ChartViewCell, index: Int) -> ChartViewCell {
         let lModel = model[index]
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMM yyyy"
+        
         cell.presenter = PChartViewCell(model: lModel)
         cell.invoiceNameLabel.text = lModel.name
+        cell.curentDataLabel.text = dateFormatter.string(from: Date())
+        cell.curentBalanceLabel.text = String(lModel.balance).currencySetFormatting(currencySymbol: lModel.currency.symbolRaw)
         return cell
     }
     

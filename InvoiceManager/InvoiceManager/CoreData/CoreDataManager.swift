@@ -246,7 +246,7 @@ extension CoreDataManager: ICoreDataManager {
     func createNewInvoice(data: (String, Currency, String?)) -> Result<Invoice, Error> {
         let cdInvoice = CDInvoice(context: context)
         cdInvoice.name = data.0
-        cdInvoice.balance = Double(data.2 ?? "0") ?? 0
+        cdInvoice.balance = data.2?.formattedStringToDouble() ?? 0
         cdInvoice.income = 0
         cdInvoice.expense = 0
         cdInvoice.currency = data.1.rawValue

@@ -11,8 +11,9 @@ import Charts
 
 protocol IPChartViewCell {
     var model: Invoice { get set }
-    func prepareLineChartDataSet() -> [LineChartDataSet]
-    func prepareBarChartDataSet() -> [BarChartDataSet]
+    func prepareLineChartDataSet(filter: ChartsFilter) -> [LineChartDataSet]
+    func prepareBarChartDataSet(filter: ChartsFilter) -> [BarChartDataSet]
+    func preparePieChartDataSet(filter: ChartsFilter) -> PieChartDataSet
     func getInvoicePrefix() -> String
 
 }

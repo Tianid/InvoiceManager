@@ -25,6 +25,8 @@
 		121AC3EA250A77D10099319D /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121AC3E8250A77D10099319D /* CategoryTableViewCell.swift */; };
 		121AC3EB250A77D10099319D /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 121AC3E9250A77D10099319D /* CategoryTableViewCell.xib */; };
 		1228B74525013AE9003822A4 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1228B74425013AE9003822A4 /* TestData.swift */; };
+		123326BF2535DFDC00A31BDF /* Date+specialDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123326BE2535DFDC00A31BDF /* Date+specialDate.swift */; };
+		123326C12536208700A31BDF /* IMColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123326C02536208700A31BDF /* IMColors.swift */; };
 		123E7E70250BAF4B00C7284B /* BillDetailVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E6F250BAF4B00C7284B /* BillDetailVCTest.swift */; };
 		123E7E72250BB01600C7284B /* BillCategoryVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E71250BB01600C7284B /* BillCategoryVCTest.swift */; };
 		123E7E76250BE3F900C7284B /* CATransition+FromBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E75250BE3F900C7284B /* CATransition+FromBottom.swift */; };
@@ -145,6 +147,8 @@
 		121AC3E8250A77D10099319D /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		121AC3E9250A77D10099319D /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
 		1228B74425013AE9003822A4 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		123326BE2535DFDC00A31BDF /* Date+specialDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+specialDate.swift"; sourceTree = "<group>"; };
+		123326C02536208700A31BDF /* IMColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMColors.swift; sourceTree = "<group>"; };
 		123E7E6F250BAF4B00C7284B /* BillDetailVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailVCTest.swift; sourceTree = "<group>"; };
 		123E7E71250BB01600C7284B /* BillCategoryVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCategoryVCTest.swift; sourceTree = "<group>"; };
 		123E7E75250BE3F900C7284B /* CATransition+FromBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransition+FromBottom.swift"; sourceTree = "<group>"; };
@@ -573,6 +577,7 @@
 				123E7E75250BE3F900C7284B /* CATransition+FromBottom.swift */,
 				124033CC250FB808008D2BA3 /* UINavigationController+popViewController.swift */,
 				12CBF7EC251B87300027A5C1 /* String+currensyFormatting.swift */,
+				123326BE2535DFDC00A31BDF /* Date+specialDate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -599,6 +604,7 @@
 				12D1D5C124FD1CFD0077FEF6 /* Router.swift */,
 				12D1D5C324FD1D2A0077FEF6 /* AssemblerModuleBuilder.swift */,
 				1212F6CE2507E3290016693B /* NumericKeyboard.swift */,
+				123326C02536208700A31BDF /* IMColors.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1054,6 +1060,7 @@
 				12B0EB61250915C700A67B79 /* PanelTransition.swift in Sources */,
 				12D1D5CE24FD1F220077FEF6 /* TabBarVC.swift in Sources */,
 				12AF0658252649CD00B44B6B /* CategorisedBillsPresenter.swift in Sources */,
+				123326C12536208700A31BDF /* IMColors.swift in Sources */,
 				12D1D5F024FD29110077FEF6 /* ICategoryVC.swift in Sources */,
 				1212F6CD2507D9FE0016693B /* BillDetailsView.swift in Sources */,
 				12D1D5CC24FD1F150077FEF6 /* ITabBarPresenter.swift in Sources */,
@@ -1101,6 +1108,7 @@
 				12D1D5F424FD29430077FEF6 /* CategoryPresenter.swift in Sources */,
 				1228B74525013AE9003822A4 /* TestData.swift in Sources */,
 				12D1D59B24FD1B4D0077FEF6 /* AppDelegate.swift in Sources */,
+				123326BF2535DFDC00A31BDF /* Date+specialDate.swift in Sources */,
 				12D1D5EA24FD28A50077FEF6 /* IHomeVC.swift in Sources */,
 				12D1D5C424FD1D2A0077FEF6 /* AssemblerModuleBuilder.swift in Sources */,
 				12DE149425348C2B004FF6F5 /* PChartViewCell.swift in Sources */,
