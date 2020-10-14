@@ -17,7 +17,14 @@ class ChartViewCell: UICollectionViewCell {
     private var shadowOpacity: Float = 0.2
     
     var presenter: IPChartViewCell?
-        
+    
+    private let lineGraphLabelConst = "Income and expense graph"
+    private let pieGraphLabelConst = "Most common bills number in category graph"
+    private let barGraphLabelConst = "All bills number in category graph"
+    private let mockConst = "(No data)"
+    private let noDataAvailableMessage = "No chart data available"
+    private let labelFontSize: CGFloat = 10
+    
     var invoiceNameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -27,14 +34,12 @@ class ChartViewCell: UICollectionViewCell {
     var curentDataLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.text = "curentDataLabel"
         return label
     }()
     
     var curentBalanceLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.text = "curentBalanceLabel"
         return label
     }()
     
@@ -44,14 +49,14 @@ class ChartViewCell: UICollectionViewCell {
         view.layer.cornerRadius = 6
         return view
     }()
-
-    private var pieChart: PieChartView = {
-        let view = PieChartView()
+    
+    private var lineChart: LineChartView = {
+        let view = LineChartView()
         return view
     }()
     
-    private var lineChart: LineChartView = {
-       let view = LineChartView()
+    private var pieChart: PieChartView = {
+        let view = PieChartView()
         return view
     }()
     
@@ -67,6 +72,13 @@ class ChartViewCell: UICollectionViewCell {
         return view
     }()
     
+    private var pieChartContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 6
+        return view
+    }()
+    
     private var barChartContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -76,18 +88,32 @@ class ChartViewCell: UICollectionViewCell {
     
     private var lineChartLabel: UILabel = {
         let label = UILabel()
-        label.text = "Income and expense graph"
+        return label
+    }()
+    
+    private var pieChartLabel: UILabel = {
+        let label = UILabel()
         return label
     }()
     
     private var barChartLabel: UILabel = {
         let label = UILabel()
-        label.text = "Number of bills in category graph"
         return label
     }()
     
+    private var containerView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    private var scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.showsVerticalScrollIndicator = false
+        return view
+    }()
+    
     //MARK: - Init
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -99,12 +125,20 @@ class ChartViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func didTransition(from oldLayout: UICollectionViewLayout, to newLayout: UICollectionViewLayout) {
+        super.didTransition(from: oldLayout, to: newLayout)
+    }
+    
     //MARK: - Func
-
+    
     private func configureConstraints() {
-        addSubview(invoiceInfoContainer)
-        addSubview(lineChartContainerView)
-        addSubview(barChartContainerView)
+        addSubview(scrollView)
+        scrollView.addSubview(containerView)
+        
+        containerView.addSubview(invoiceInfoContainer)
+        containerView.addSubview(lineChartContainerView)
+        containerView.addSubview(pieChartContainerView)
+        containerView.addSubview(barChartContainerView)
         
         invoiceInfoContainer.addSubview(invoiceNameLabel)
         invoiceInfoContainer.addSubview(curentDataLabel)
@@ -112,14 +146,33 @@ class ChartViewCell: UICollectionViewCell {
         
         lineChartContainerView.addSubview(lineChart)
         lineChartContainerView.addSubview(lineChartLabel)
-//        barChartContainerView.addSubview(barChart)
-        barChartContainerView.addSubview(pieChart)
+        pieChartContainerView.addSubview(pieChart)
+        pieChartContainerView.addSubview(pieChartLabel)
+        barChartContainerView.addSubview(barChart)
         barChartContainerView.addSubview(barChartLabel)
         
+        
         //MARK: -
-        invoiceInfoContainer.anchor(top: safeAreaLayoutGuide.topAnchor,
-                                    leading: safeAreaLayoutGuide.leadingAnchor,
-                                    trailing: safeAreaLayoutGuide.trailingAnchor,
+        scrollView.anchor(
+            top: safeAreaLayoutGuide.topAnchor,
+            leading: safeAreaLayoutGuide.leadingAnchor,
+            bottom: safeAreaLayoutGuide.bottomAnchor,
+            trailing: safeAreaLayoutGuide.trailingAnchor)
+        
+        containerView.anchor(
+            top: scrollView.topAnchor,
+            leading: scrollView.leadingAnchor,
+            bottom: scrollView.bottomAnchor,
+            trailing: scrollView.trailingAnchor)
+        
+        NSLayoutConstraint.activate([
+            containerView.widthAnchor.constraint(equalTo: self.widthAnchor)
+        ])
+        
+        //MARK: -
+        invoiceInfoContainer.anchor(top: containerView.topAnchor,
+                                    leading: containerView.leadingAnchor,
+                                    trailing: containerView.trailingAnchor,
                                     padding: UIEdgeInsets(top: 10, left: 5, bottom: 0, right: 5))
         
         invoiceNameLabel.anchor(top: invoiceInfoContainer.topAnchor,
@@ -140,13 +193,20 @@ class ChartViewCell: UICollectionViewCell {
                                       leading: invoiceInfoContainer.leadingAnchor,
                                       trailing: invoiceInfoContainer.trailingAnchor,
                                       padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0),
-                                      size: CGSize(width: 0, height: 200))
+                                      size: CGSize(width: 0, height: 300))
         
-        barChartContainerView.anchor(top: lineChartContainerView.bottomAnchor,
+        pieChartContainerView.anchor(top: lineChartContainerView.bottomAnchor,
                                      leading: lineChartContainerView.leadingAnchor,
-                                     bottom: safeAreaLayoutGuide.bottomAnchor,
                                      trailing: lineChartContainerView.trailingAnchor,
-                                     padding: UIEdgeInsets(top: 10, left: 0, bottom: 5, right: 0))
+                                     padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0),
+                                     size: CGSize(width: 0, height: 300))
+        
+        barChartContainerView.anchor(top: pieChartContainerView.bottomAnchor,
+                                     leading: pieChartContainerView.leadingAnchor,
+                                     bottom: containerView.bottomAnchor,
+                                     trailing: pieChartContainerView.trailingAnchor,
+                                     padding: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0),
+                                     size: CGSize(width: 0, height: 300))
         
         //MARK: -
         
@@ -161,33 +221,42 @@ class ChartViewCell: UICollectionViewCell {
                          trailing: lineChartContainerView.trailingAnchor,
                          padding: UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0))
         
+        
+        //MARK: -
+        
+        pieChartLabel.anchor(top: pieChartContainerView.topAnchor,
+                             leading: pieChartContainerView.leadingAnchor,
+                             trailing: pieChartContainerView.trailingAnchor,
+                             padding: UIEdgeInsets(top: 5, left: 5, bottom: 0, right: 0))
+        
+        pieChart.anchor(top: pieChartLabel.bottomAnchor,
+                        leading: pieChartContainerView.leadingAnchor,
+                        bottom: pieChartContainerView.bottomAnchor,
+                        trailing: pieChartContainerView.trailingAnchor,
+                        padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        
         //MARK: -
         
         barChartLabel.anchor(top: barChartContainerView.topAnchor,
-                              leading: barChartContainerView.leadingAnchor,
-                              trailing: barChartContainerView.trailingAnchor,
-                              padding: UIEdgeInsets(top: 5, left: 5, bottom: 0, right: 0))
+                             leading: barChartContainerView.leadingAnchor,
+                             trailing: barChartContainerView.trailingAnchor,
+                             padding: UIEdgeInsets(top: 5, left: 5, bottom: 0, right: 0))
         
-        
-//        barChart.anchor(top: barChartLabel.bottomAnchor,
-//                        leading: barChartContainerView.leadingAnchor,
-//                        bottom: barChartContainerView.bottomAnchor,
-//                        trailing: barChartContainerView.trailingAnchor,
-//                        padding: UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0))
-        
-        pieChart.anchor(top: barChartLabel.bottomAnchor,
+        barChart.anchor(top: barChartLabel.bottomAnchor,
                         leading: barChartContainerView.leadingAnchor,
                         bottom: barChartContainerView.bottomAnchor,
                         trailing: barChartContainerView.trailingAnchor,
                         padding: UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0))
-        
     }
     
     private func configureLineChart(filter: ChartsFilter) {
-        guard let lines = presenter?.prepareLineChartDataSet(filter: filter) else { return }
+        guard let lineSets = presenter?.prepareLineChartDataSet(filter: filter), !lineSets[0].entries.isEmpty || !lineSets[1].entries.isEmpty else {
+            lineChart.data = nil
+            return
+        }
         let data = LineChartData()
-        lines.forEach { data.addDataSet($0) }
         
+        lineSets.forEach { data.addDataSet($0) }
         let formatter = getPrefixFormatter()
         
         lineChart.rightAxis.enabled = false
@@ -195,37 +264,26 @@ class ChartViewCell: UICollectionViewCell {
         lineChart.dragEnabled = false
         lineChart.isUserInteractionEnabled = false
         lineChart.leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: formatter)
-//        lineChart.leftAxis.setLabelCount(5, force: false)
+        lineChart.noDataText = noDataAvailableMessage
+        //        lineChart.leftAxis.setLabelCount(5, force: false)
         lineChart.data = data
         lineChart.animate(xAxisDuration: 0.5)
     }
-    
-    private func configureBarChart(filter: ChartsFilter) {
-        guard let bars = presenter?.prepareBarChartDataSet(filter: filter) else { return }
-        let data = BarChartData()
-        bars.forEach { data.addDataSet($0)}
         
-        barChart.rightAxis.enabled = false
-        
-        barChart.xAxis.enabled = false
-        barChart.dragEnabled = false
-        barChart.isUserInteractionEnabled = false
-        barChart.leftAxis.setLabelCount(1, force: false)
-        barChart.data = data
-        barChart.animate(yAxisDuration: 0.5)
-    }
-    
     private func configurePieChart(filter: ChartsFilter) {
-        guard let piece = presenter?.preparePieChartDataSet(filter: filter) else { return }
-        let data = PieChartData(dataSet: piece)
+        guard let pieSet = presenter?.preparePieChartDataSet(filter: filter), !pieSet.isEmpty else {
+            pieChart.data = nil
+            return
+        }
+        let data = PieChartData(dataSet: pieSet)
         
-        piece.valueFont = UIFont.systemFont(ofSize: 10)
-        piece.entryLabelFont = UIFont.systemFont(ofSize: 10)
-        piece.valueTextColor = .black
-        piece.valueFormatter = DefaultValueFormatter(decimals: 0)
-        piece.sliceSpace = 1
-//        piece.xValuePosition = .outsideSlice
-//        piece.yValuePosition = .outsideSlice
+        pieSet.valueFont = UIFont.systemFont(ofSize: 10)
+        pieSet.entryLabelFont = UIFont.systemFont(ofSize: 10)
+        pieSet.valueTextColor = .black
+        pieSet.valueFormatter = DefaultValueFormatter(decimals: 0)
+        pieSet.sliceSpace = 1
+        //        piece.xValuePosition = .outsideSlice
+        //        piece.yValuePosition = .outsideSlice
         
         let l = pieChart.legend
         l.horizontalAlignment = .left
@@ -238,10 +296,31 @@ class ChartViewCell: UICollectionViewCell {
         pieChart.entryLabelColor = .black
         pieChart.isUserInteractionEnabled = false
         pieChart.drawEntryLabelsEnabled = false
+        pieChart.noDataText = noDataAvailableMessage
         pieChart.data = data
         pieChart.notifyDataSetChanged()
         pieChart.animate(yAxisDuration: 0.5)
         
+    }
+    
+    private func configureBarChart(filter: ChartsFilter) {
+        guard let barSets = presenter?.prepareBarChartDataSet(filter: filter), !barSets.isEmpty else {
+            barChart.data = nil
+            return
+        }
+        let data = BarChartData()
+        
+        barSets.forEach { data.addDataSet($0)}
+        
+        barChart.rightAxis.enabled = false
+        
+        barChart.xAxis.enabled = false
+        barChart.dragEnabled = false
+        barChart.isUserInteractionEnabled = false
+        barChart.leftAxis.setLabelCount(1, force: false)
+        barChart.noDataText = noDataAvailableMessage
+        barChart.data = data
+        barChart.animate(yAxisDuration: 0.5)
     }
     
     private func getPrefixFormatter() -> NumberFormatter {
@@ -256,7 +335,16 @@ class ChartViewCell: UICollectionViewCell {
     private func configureViews() {
         setShadowFor(view: invoiceInfoContainer)
         setShadowFor(view: lineChartContainerView)
+        setShadowFor(view: pieChartContainerView)
         setShadowFor(view: barChartContainerView)
+        
+        lineChartLabel.text = lineGraphLabelConst
+        pieChartLabel.text = pieGraphLabelConst
+        barChartLabel.text = barGraphLabelConst
+        
+        lineChartLabel.font = UIFont.systemFont(ofSize: labelFontSize)
+        pieChartLabel.font = UIFont.systemFont(ofSize: labelFontSize)
+        barChartLabel.font = UIFont.systemFont(ofSize: labelFontSize)
     }
     
     private func setShadowFor(view: UIView) {
@@ -264,12 +352,12 @@ class ChartViewCell: UICollectionViewCell {
         view.layer.shadowOffset = .zero
         view.layer.shadowOpacity = shadowOpacity
         layer.shadowOffset = CGSize(width: shadowOffsetWidth, height: shadowOffsetHeight)
-//        view.layer.shadowPath = shadowPath.cgPath
+        //        view.layer.shadowPath = shadowPath.cgPath
     }
     
     func updateCharts(filter: ChartsFilter) {
         configureLineChart(filter: filter)
-//        configureBarChart(filter: filter)
         configurePieChart(filter: filter)
+        configureBarChart(filter: filter)
     }
 }

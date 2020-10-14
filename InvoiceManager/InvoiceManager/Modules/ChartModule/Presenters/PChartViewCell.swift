@@ -14,7 +14,7 @@ class PChartViewCell: IPChartViewCell {
     var model: Invoice
 //    private var barChartDataSets = [BarChartDataSet]()
 //    private var pieChartDataSets: PieChartDataSet!
-    
+    private let limitOfPieChartData = 20
     //MARK: - Lines properties
     private let circleRadius: CGFloat = 3
     private let circleHoleRadius: CGFloat = 1.8
@@ -116,6 +116,8 @@ class PChartViewCell: IPChartViewCell {
         for item in sorted {
             let value = BarChartDataEntry(x: Double(x), y: Double(item.value))
             let set = BarChartDataSet(entries: [value], label: item.key)
+            set.colors.removeAll()
+            set.colors.append(CategoryColors.colors[item.key]!)
             dataSets.append(set)
             x += 1
         }
@@ -128,7 +130,7 @@ class PChartViewCell: IPChartViewCell {
         
         let sorted = categorysDict.sorted { $0.value < $1.value }
         for (index, item) in sorted.enumerated() {
-            guard index <= 20 else { break }
+            guard index <= limitOfPieChartData else { break }
             let value = PieChartDataEntry(value: Double(item.value), label: item.key)
             value.label = item.key
             values.append(value)
