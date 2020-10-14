@@ -35,6 +35,7 @@ class BillDetailsPresenter {
         switch result {
         case .success(_):
             dismissModule { [unowned self] in
+                NotificationCenter.default.post(name: .modelsDidChanged, object: nil)
                 self.superPresenter?.presentBillIntoUI(bill: newBill, billDetailsCreationState: self.billDetailsCreationState)
             }
         case .failure(let errro):
@@ -48,6 +49,7 @@ class BillDetailsPresenter {
         switch result {
         case .success(_):
             dismissModule { [unowned self] in
+                NotificationCenter.default.post(name: .modelsDidChanged, object: nil)
                 self.superPresenter?.presentBillIntoUI(bill: newBill, billDetailsCreationState: self.billDetailsCreationState)
             }
             

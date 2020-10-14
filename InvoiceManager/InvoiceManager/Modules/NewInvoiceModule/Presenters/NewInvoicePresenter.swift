@@ -5,6 +5,7 @@
 //  Created by Tianid on 16.09.2020.
 //  Copyright © 2020 Tianid. All rights reserved.
 //
+import Foundation
 
 class NewInvoicePresenter {
     //MARK: - Properties
@@ -31,6 +32,7 @@ extension NewInvoicePresenter: INewInvoicePresenter {
             
             switch result {
             case .success(let invoice):
+                NotificationCenter.default.post(name: .modelsDidChanged, object: nil)
                 self?.superPresenter?.addNewInvoice(invoice: invoice)
             case .failure(_):
                 break

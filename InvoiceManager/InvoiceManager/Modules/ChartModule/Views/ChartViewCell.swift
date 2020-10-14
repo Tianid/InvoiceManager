@@ -60,8 +60,8 @@ class ChartViewCell: UICollectionViewCell {
         return view
     }()
     
-    private var barChart: HorizontalBarChartView = {
-        let view = HorizontalBarChartView()
+    private var barChart: BarChartView = {
+        let view = BarChartView()
         return view
     }()
     
@@ -282,8 +282,6 @@ class ChartViewCell: UICollectionViewCell {
         pieSet.valueTextColor = .black
         pieSet.valueFormatter = DefaultValueFormatter(decimals: 0)
         pieSet.sliceSpace = 1
-        //        piece.xValuePosition = .outsideSlice
-        //        piece.yValuePosition = .outsideSlice
         
         let l = pieChart.legend
         l.horizontalAlignment = .left
@@ -310,14 +308,13 @@ class ChartViewCell: UICollectionViewCell {
         }
         let data = BarChartData()
         
-        barSets.forEach { data.addDataSet($0)}
+        barSets.forEach { data.addDataSet($0) }
         
         barChart.rightAxis.enabled = false
         
         barChart.xAxis.enabled = false
         barChart.dragEnabled = false
         barChart.isUserInteractionEnabled = false
-        barChart.leftAxis.setLabelCount(1, force: false)
         barChart.noDataText = noDataAvailableMessage
         barChart.data = data
         barChart.animate(yAxisDuration: 0.5)

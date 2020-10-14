@@ -31,6 +31,11 @@ class ChartView: UIView {
         super.init(frame: frame)
         configureConstraints()
         configureCollectionView()
+        configureObservers()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .modelsDidChanged, object: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -54,11 +59,29 @@ class ChartView: UIView {
         collectionView.register(ChartViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
     }
     
+    private func configureObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onModelsDidChanged), name: .modelsDidChanged, object: nil)
+    }
+    
+    private func refreshData(isUseBackground: Bool) {
+        presenter?.refreshChartData(isUseBackground: isUseBackground) { [weak self] in
+            self?.collectionView.reloadData()
+        }
+    }
+    
+    @objc private func onModelsDidChanged() {
+        refreshData(isUseBackground: true)
+    }
+    
     func segmentChanged(filter: ChartsFilter) {
         guard collectionView.visibleCells.count == 1 else { return }
         guard let cell = collectionView.visibleCells[0] as? ChartViewCell else { return }
         chartsFilter = filter
         cell.updateCharts(filter: filter)
+    }
+    
+    func viewDidLoad() {
+        refreshData(isUseBackground: false)
     }
 }
 

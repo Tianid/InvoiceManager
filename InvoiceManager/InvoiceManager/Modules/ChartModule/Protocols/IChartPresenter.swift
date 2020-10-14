@@ -7,6 +7,7 @@
 //
 
 protocol IChartPresenter {
-    var model: [Invoice] { get set }
+    var model: [Invoice]! { get set }
     func prepareCollectionViewCell(cell: ChartViewCell, index: Int) -> ChartViewCell
+    func refreshChartData(isUseBackground: Bool, complition: (() -> ())?)
 }

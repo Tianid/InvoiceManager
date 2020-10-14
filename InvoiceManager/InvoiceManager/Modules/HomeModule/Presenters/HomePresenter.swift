@@ -99,6 +99,7 @@ extension HomePresenter: IHomePresenter {
         
         switch result {
         case .success(_):
+            NotificationCenter.default.post(name: .modelsDidChanged, object: nil)
             complition?()
         case .failure(_):
             break
@@ -115,6 +116,7 @@ extension HomePresenter: IHomePresenter {
         
         switch result {
         case .success(_):
+            NotificationCenter.default.post(name: .modelsDidChanged, object: nil)
             let count = (currentInvoice?.bills.count)! - 1
             currentInvoice?.deleteDataByIndex(index: indexPath.row)
             view?.deleteRowInTableView(invoiceIndex: invoiceIndex, billIndex: count - indexPath.row)
@@ -129,6 +131,7 @@ extension HomePresenter: IHomePresenter {
         
         switch result {
         case .success(_):
+            NotificationCenter.default.post(name: .modelsDidChanged, object: nil)
             model.remove(at: invoiceIndex)
             complition?()
         case .failure(_):

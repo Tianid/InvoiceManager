@@ -30,7 +30,7 @@ class PHomeCollectionViewCell {
         let index = model.count - 1 - indexPath.row
         let newIndexPath = IndexPath(row: index, section: indexPath.section)
         let bill = model[newIndexPath.row]
-        let alert = UIAlertController(title: nil, message: "You definitely want to delete the bill", preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: "You definitely want to delete this bill?", preferredStyle: .alert)
         
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { [weak self] (_) in
             self?.superPresenter?.deleteBillInModel(bill: bill, indexPath: newIndexPath)

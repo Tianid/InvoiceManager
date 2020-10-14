@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func initiate() -> UIViewController {
-        let assembler = AssemblerModuleBuilder(context: container.viewContext)
+        let assembler = AssemblerModuleBuilder(context: container.viewContext, backgroundContext: container.newBackgroundContext())
         let tabBar = TabBarVC()
         let router = Router(tabBar: tabBar, assembler: assembler)
         

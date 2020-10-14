@@ -30,9 +30,9 @@ class AssemblerModuleBuilder: IAssembleBuilder {
     private var context: NSManagedObjectContext
     private var coreDataManager: ICoreDataManager
     
-    init(context: NSManagedObjectContext) {
+    init(context: NSManagedObjectContext, backgroundContext: NSManagedObjectContext) {
         self.context = context
-        self.coreDataManager = CoreDataManager(context: context)
+        self.coreDataManager = CoreDataManager(context: context, backgroundContext: backgroundContext)
     }
     
     func createTabBarModule(router: IRouter) -> UITabBarController {
@@ -44,7 +44,7 @@ class AssemblerModuleBuilder: IAssembleBuilder {
     
     func createHomeModule(router: IRouter) -> UIViewController {
         let view = HomeVC()
-        let invoices = coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil)
+        let invoices = coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil, isUsedBackgroundContext: false)
         let invoiceContainer = InvoiceContainer(model: invoices)
         let presenter = HomePresenter(view: view, router: router, model: invoiceContainer, coreDataManager: coreDataManager)
         view.presenter = presenter
@@ -61,8 +61,7 @@ class AssemblerModuleBuilder: IAssembleBuilder {
     
     func createChartModule(router: IRouter) -> UIViewController {
         let view = ChartVC()
-        let model = coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil)
-        let presenter = ChartPresenter(view: view, router: router, model: model)
+        let presenter = ChartPresenter(view: view, router: router, coreDataManager: coreDataManager)
         view.presenter = presenter
         return view
     }

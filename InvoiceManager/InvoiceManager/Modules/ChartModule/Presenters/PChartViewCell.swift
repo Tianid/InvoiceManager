@@ -111,10 +111,10 @@ class PChartViewCell: IPChartViewCell {
     private func generateBarChartDataSets(categorysDict: [String: Int]) -> [BarChartDataSet] {
         var dataSets = [BarChartDataSet]()
         
-        let sorted = categorysDict.sorted { $0.value < $1.value }
+        let sorted = categorysDict.sorted { $0.value > $1.value }
         var x = 0
         for item in sorted {
-            let value = BarChartDataEntry(x: Double(x), y: Double(item.value))
+            let value = BarChartDataEntry(x: Double(x), y: Double(item.value), data: item.value)
             let set = BarChartDataSet(entries: [value], label: item.key)
             set.colors.removeAll()
             set.colors.append(CategoryColors.colors[item.key]!)

@@ -27,6 +27,9 @@
 		1228B74525013AE9003822A4 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1228B74425013AE9003822A4 /* TestData.swift */; };
 		123326BF2535DFDC00A31BDF /* Date+specialDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123326BE2535DFDC00A31BDF /* Date+specialDate.swift */; };
 		123326C12536208700A31BDF /* IMColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123326C02536208700A31BDF /* IMColors.swift */; };
+		123CDF9D25373A7A00AFEDEC /* Notification+name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123CDF9C25373A7A00AFEDEC /* Notification+name.swift */; };
+		123CDFA0253757E200AFEDEC /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123CDF9F253757E200AFEDEC /* AsyncOperation.swift */; };
+		123CDFA32537580E00AFEDEC /* CDOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123CDFA22537580E00AFEDEC /* CDOperation.swift */; };
 		123E7E70250BAF4B00C7284B /* BillDetailVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E6F250BAF4B00C7284B /* BillDetailVCTest.swift */; };
 		123E7E72250BB01600C7284B /* BillCategoryVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E71250BB01600C7284B /* BillCategoryVCTest.swift */; };
 		123E7E76250BE3F900C7284B /* CATransition+FromBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E75250BE3F900C7284B /* CATransition+FromBottom.swift */; };
@@ -149,6 +152,9 @@
 		1228B74425013AE9003822A4 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		123326BE2535DFDC00A31BDF /* Date+specialDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+specialDate.swift"; sourceTree = "<group>"; };
 		123326C02536208700A31BDF /* IMColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMColors.swift; sourceTree = "<group>"; };
+		123CDF9C25373A7A00AFEDEC /* Notification+name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+name.swift"; sourceTree = "<group>"; };
+		123CDF9F253757E200AFEDEC /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		123CDFA22537580E00AFEDEC /* CDOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDOperation.swift; sourceTree = "<group>"; };
 		123E7E6F250BAF4B00C7284B /* BillDetailVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailVCTest.swift; sourceTree = "<group>"; };
 		123E7E71250BB01600C7284B /* BillCategoryVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCategoryVCTest.swift; sourceTree = "<group>"; };
 		123E7E75250BE3F900C7284B /* CATransition+FromBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransition+FromBottom.swift"; sourceTree = "<group>"; };
@@ -308,6 +314,23 @@
 				1212F6C42507D0400016693B /* BillDetailsPresenter.swift */,
 			);
 			path = Presenters;
+			sourceTree = "<group>";
+		};
+		123CDF9E253757C300AFEDEC /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				123CDFA1253757ED00AFEDEC /* DataBaseOperations */,
+				123CDF9F253757E200AFEDEC /* AsyncOperation.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
+		123CDFA1253757ED00AFEDEC /* DataBaseOperations */ = {
+			isa = PBXGroup;
+			children = (
+				123CDFA22537580E00AFEDEC /* CDOperation.swift */,
+			);
+			path = DataBaseOperations;
 			sourceTree = "<group>";
 		};
 		123E7E6D250BAF0400C7284B /* BIllDetailModuleTest */ = {
@@ -532,6 +555,7 @@
 			isa = PBXGroup;
 			children = (
 				12AB7B9024FD4E4800E2986D /* Models */,
+				123CDF9E253757C300AFEDEC /* Operations */,
 				12D1D5C024FD1CE70077FEF6 /* Services */,
 				12D1D5BC24FD1C8D0077FEF6 /* Extensions */,
 				12B0EB5F2509159200A67B79 /* Transitions */,
@@ -578,6 +602,7 @@
 				124033CC250FB808008D2BA3 /* UINavigationController+popViewController.swift */,
 				12CBF7EC251B87300027A5C1 /* String+currensyFormatting.swift */,
 				123326BE2535DFDC00A31BDF /* Date+specialDate.swift */,
+				123CDF9C25373A7A00AFEDEC /* Notification+name.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1052,6 +1077,7 @@
 				12AB7B9824FD541800E2986D /* Currency.swift in Sources */,
 				121AC3E3250A611A0099319D /* BillCategoryView.swift in Sources */,
 				12D1D5FC24FD29D30077FEF6 /* IProfileVC.swift in Sources */,
+				123CDFA32537580E00AFEDEC /* CDOperation.swift in Sources */,
 				12D1D5E624FD27060077FEF6 /* ChartVC.swift in Sources */,
 				12AB7B9224FD4E6700E2986D /* Invoice.swift in Sources */,
 				12AB499C25126CAE0069B713 /* INewInvoiceVC.swift in Sources */,
@@ -1061,6 +1087,7 @@
 				12D1D5CE24FD1F220077FEF6 /* TabBarVC.swift in Sources */,
 				12AF0658252649CD00B44B6B /* CategorisedBillsPresenter.swift in Sources */,
 				123326C12536208700A31BDF /* IMColors.swift in Sources */,
+				123CDF9D25373A7A00AFEDEC /* Notification+name.swift in Sources */,
 				12D1D5F024FD29110077FEF6 /* ICategoryVC.swift in Sources */,
 				1212F6CD2507D9FE0016693B /* BillDetailsView.swift in Sources */,
 				12D1D5CC24FD1F150077FEF6 /* ITabBarPresenter.swift in Sources */,
@@ -1072,6 +1099,7 @@
 				12CBF7ED251B87300027A5C1 /* String+currensyFormatting.swift in Sources */,
 				121AC3EA250A77D10099319D /* CategoryTableViewCell.swift in Sources */,
 				12B0EB6B25091F4400A67B79 /* DismissAnimation.swift in Sources */,
+				123CDFA0253757E200AFEDEC /* AsyncOperation.swift in Sources */,
 				1212F6C72507D0560016693B /* IBillDetailsPresenter.swift in Sources */,
 				12D1D5E824FD27260077FEF6 /* ProfleVC.swift in Sources */,
 				121AC3DD250A5E600099319D /* BillCategoryPresenter.swift in Sources */,

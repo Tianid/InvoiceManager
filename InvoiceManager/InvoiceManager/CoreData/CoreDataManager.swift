@@ -21,7 +21,7 @@ protocol ICoreDataManager {
     func updateBill(bill: Bill) -> Result<Void, CoreDataSaveError>
     func updateInvoice(invoice: Invoice) -> Result<Void, CoreDataSaveError>
     
-    func fetchAllInvoicesWithAllBills(predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor]?) -> [Invoice]
+    func fetchAllInvoicesWithAllBills(predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor]?, isUsedBackgroundContext: Bool) -> [Invoice]
     func fetchAllSectionsWitAllCategorys() -> [SuperSection]
     func fetchBillsWithInvoices(by category: Category) -> [Invoice]
     
@@ -32,11 +32,22 @@ protocol ICoreDataManager {
 
 class CoreDataManager {
     //MARK: - Properties
-    private var context: NSManagedObjectContext
+    private var isUsedBackgroundContext = false
+    private var _backgroundContext: NSManagedObjectContext
+    private var _context: NSManagedObjectContext
+    private var context: NSManagedObjectContext {
+        if isUsedBackgroundContext {
+            isUsedBackgroundContext = !isUsedBackgroundContext
+            return _backgroundContext
+        }
+        return _context
+    }
+    
     //MARK: - Init
     
-    init(context: NSManagedObjectContext) {
-        self.context = context
+    init(context: NSManagedObjectContext, backgroundContext: NSManagedObjectContext) {
+        self._context = context
+        self._backgroundContext = backgroundContext
     }
     
     //MARK: - Func
@@ -307,7 +318,8 @@ extension CoreDataManager: ICoreDataManager {
     }
     
     //MARK: - Fetch entitys
-    func fetchAllInvoicesWithAllBills(predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor]?) -> [Invoice] {
+    func fetchAllInvoicesWithAllBills(predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor]?, isUsedBackgroundContext: Bool = false) -> [Invoice] {
+        self.isUsedBackgroundContext = isUsedBackgroundContext
         let request = NSFetchRequest<CDInvoice>(entityName: "\(CDInvoice.self)")
         request.predicate = predicate
         request.sortDescriptors = sortDescriptors

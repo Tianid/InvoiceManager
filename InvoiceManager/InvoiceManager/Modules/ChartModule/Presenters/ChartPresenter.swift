@@ -14,15 +14,16 @@ enum ChartsFilter: String {
 class ChartPresenter {
     
     //MARK: - Properties
-    var model: [Invoice]
+    var model: [Invoice]!
     private weak var view: IChartVC?
     private var router: IRouter
+    private var coreDataManager: ICoreDataManager
     
     //MARK: - Init
-    init(view: IChartVC, router: IRouter, model: [Invoice]) {
+    init(view: IChartVC, router: IRouter, coreDataManager: ICoreDataManager) {
         self.view = view
         self.router = router
-        self.model = model
+        self.coreDataManager = coreDataManager
     }
     
     //MARK: - Func
@@ -41,5 +42,18 @@ extension ChartPresenter: IChartPresenter {
         return cell
     }
     
-    
+    func refreshChartData(isUseBackground: Bool = false, complition: (() -> ())?) {
+        let operation = CDOperation<[Invoice]> { [weak self] in
+            let model = self?.coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil, isUsedBackgroundContext: isUseBackground)
+            return model!
+        }
+        
+        operation.completionBlock = { [weak self] in
+            self?.model = operation.result
+            DispatchQueue.main.async {
+                complition?()
+            }
+        }
+        OperationQueue().addOperation(operation)
+    }
 }
