@@ -22,8 +22,9 @@ class HomeVC: UIViewController {
     //MARK: - Func
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
-        homeView?.refreshUIData()
+//        view.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
+        view.backgroundColor = UIColor(named: "CustomBackground")
+        homeView?.viewDidLoad()
     }
     
     override func loadView() {

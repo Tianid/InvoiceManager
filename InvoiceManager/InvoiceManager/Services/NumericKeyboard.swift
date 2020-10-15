@@ -10,12 +10,12 @@ import UIKit
 
 class DigitButton: UIButton {
     var digit: Int = 0
-    var prevColor: UIColor? = .white
+    var prevColor: UIColor? = UIColor(named: "CustomColor")
     
     
     func changeColortoGray() {
         prevColor = backgroundColor
-        backgroundColor = #colorLiteral(red: 0.9347834708, green: 0.9347834708, blue: 0.9347834708, alpha: 1)
+        backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     }
     
     func cahangeColorToDefault() {
@@ -38,13 +38,14 @@ class NumericKeyboard: UIView {
     var useDecimalSeparator: Bool
 
     var numericButtons: [DigitButton] = (0...9).map {
-        let button = DigitButton(type: .system)
+        let button = DigitButton(type: .custom)
         button.digit = $0
         button.setTitle("\($0)", for: .normal)
         button.titleLabel?.font = .preferredFont(forTextStyle: .largeTitle)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(UIColor(named: "CustomFont"), for: .normal)
         button.layer.borderWidth = 0.5
         button.layer.borderColor = UIColor.lightGray.cgColor
+        button.backgroundColor = UIColor(named: "CustomColor")
         button.accessibilityTraits = [.keyboardKey]
         button.addTarget(self, action: #selector(didTapDigitButton(_:)), for: .touchUpInside)
         return button
@@ -54,9 +55,10 @@ class NumericKeyboard: UIView {
         let button = DigitButton(type: .system)
         button.setTitle("⌫", for: .normal)
         button.titleLabel?.font = .preferredFont(forTextStyle: .largeTitle)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(UIColor(named: "CustomFont"), for: .normal)
         button.layer.borderWidth = 0.5
         button.layer.borderColor = UIColor.lightGray.cgColor
+        button.backgroundColor = UIColor(named: "CustomColor")
         button.accessibilityTraits = [.keyboardKey]
         button.accessibilityLabel = "Delete"
         button.addTarget(self, action: #selector(didTapDeleteButton(_:)), for: .touchUpInside)
@@ -68,9 +70,10 @@ class NumericKeyboard: UIView {
         let decimalSeparator = Locale.current.decimalSeparator ?? "."
         button.setTitle(decimalSeparator, for: .normal)
         button.titleLabel?.font = .preferredFont(forTextStyle: .largeTitle)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(UIColor(named: "CustomFont"), for: .normal)
         button.layer.borderWidth = 0.5
         button.layer.borderColor = UIColor.lightGray.cgColor
+        button.backgroundColor = UIColor(named: "CustomColor")
         button.accessibilityTraits = [.keyboardKey]
         button.accessibilityLabel = decimalSeparator
         button.addTarget(self, action: #selector(didTapDecimalButton(_:)), for: .touchUpInside)
@@ -82,7 +85,7 @@ class NumericKeyboard: UIView {
         self.useDecimalSeparator = useDecimalSeparator
         super.init(frame: .zero)
         configure()
-        backgroundColor = .white
+        backgroundColor = UIColor(named: "CustomColor")
     }
 
     required init?(coder: NSCoder) {
@@ -117,6 +120,7 @@ private extension NumericKeyboard {
     func addButtons() {
         let stackView = createStackView(axis: .vertical)
         stackView.frame = bounds
+        stackView.backgroundColor = UIColor(named: "CustomColor")
         stackView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(stackView)
 

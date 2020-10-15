@@ -45,7 +45,7 @@ class ChartViewCell: UICollectionViewCell {
     
     private var invoiceInfoContainer: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "CustomColor")
         view.layer.cornerRadius = 6
         return view
     }()
@@ -67,21 +67,21 @@ class ChartViewCell: UICollectionViewCell {
     
     private var lineChartContainerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "CustomColor")
         view.layer.cornerRadius = 6
         return view
     }()
     
     private var pieChartContainerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "CustomColor")
         view.layer.cornerRadius = 6
         return view
     }()
     
     private var barChartContainerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "CustomColor")
         view.layer.cornerRadius = 6
         return view
     }()
@@ -290,6 +290,7 @@ class ChartViewCell: UICollectionViewCell {
         l.xEntrySpace = 10
         l.yEntrySpace = 0
         
+        pieChart.holeColor = .clear
         pieChart.entryLabelFont = UIFont.systemFont(ofSize: 10)
         pieChart.entryLabelColor = .black
         pieChart.isUserInteractionEnabled = false

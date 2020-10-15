@@ -18,6 +18,7 @@ class NewInvoiceView: UIView {
         let textField = DTTextField()
         textField.placeholder = "Invoice name"
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.dtLayer.backgroundColor = UIColor(named: "CustomColor")?.cgColor
         return textField
     }()
     
@@ -25,6 +26,7 @@ class NewInvoiceView: UIView {
         let menu = DropDownMenu()
         menu.dataSourse = testCurrency
         menu.translatesAutoresizingMaskIntoConstraints = false
+        menu.backgroundColor = UIColor(named: "CustomColor")
         return menu
     }()
     
@@ -34,6 +36,7 @@ class NewInvoiceView: UIView {
         textField.inputView = NumericKeyboard(target: textField, useDecimalSeparator: false)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        textField.dtLayer.backgroundColor = UIColor(named: "CustomColor")?.cgColor
 
         return textField
     }()
@@ -51,6 +54,12 @@ class NewInvoiceView: UIView {
     }
     
     //MARK: - Func
+    
+    override func layoutSubviews() {
+        invoiceTextField.dtLayer.backgroundColor = UIColor(named: "CustomColor")?.cgColor
+        starterBalance.dtLayer.backgroundColor = UIColor(named: "CustomColor")?.cgColor
+        super.layoutSubviews()
+    }
     
     func getUIData() -> (String, Currency, String?)? {
         guard validateMainFields() else { return nil }

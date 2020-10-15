@@ -37,6 +37,7 @@ class BillDetailsView: UIView {
         let text = DTTextField()
         text.translatesAutoresizingMaskIntoConstraints = false
         text.placeholder = "Name"
+        text.dtLayer.backgroundColor = UIColor(named: "CustomColor")?.cgColor
         return text
     }()
     
@@ -46,6 +47,7 @@ class BillDetailsView: UIView {
         text.placeholder = "Value"
         text.inputView = NumericKeyboard(target: text, useDecimalSeparator: false)
         text.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        text.dtLayer.backgroundColor = UIColor(named: "CustomColor")?.cgColor
         return text
     }()
     
@@ -62,6 +64,7 @@ class BillDetailsView: UIView {
         text.placeholder = "Category"
         text.isUserInteractionEnabled = false
         text.isEnabled = true
+        text.dtLayer.backgroundColor = UIColor(named: "CustomColor")?.cgColor
         return text
     }()
     
@@ -83,6 +86,7 @@ class BillDetailsView: UIView {
         let text = UITextView()
         text.translatesAutoresizingMaskIntoConstraints = false
         text.isScrollEnabled = true
+        text.backgroundColor = UIColor(named: "CustomColor")
         
         text.layer.borderColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
         text.layer.borderWidth = 0.5
@@ -115,6 +119,16 @@ class BillDetailsView: UIView {
     }
     
     //MARK: - Func
+    
+    override func layoutSubviews() {
+        nameTextField.dtLayer.backgroundColor = UIColor(named: "CustomColor")?.cgColor
+        valueTextField.dtLayer.backgroundColor = UIColor(named: "CustomColor")?.cgColor
+        categoryTextField.dtLayer.backgroundColor = UIColor(named: "CustomColor")?.cgColor
+//        nameTextField.borderColor = UIColor(named: "CustomBackground")!
+        
+        
+        super.layoutSubviews()
+    }
     
     func setupBillDetailsPresentingType(type: DetailsVCPresentingType) {
         switch type {

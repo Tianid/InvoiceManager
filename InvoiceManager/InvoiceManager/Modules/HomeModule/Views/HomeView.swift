@@ -13,6 +13,7 @@ class HomeView: UIView {
     //MARK: - Properties
     var presenter: IHomePresenter?
     
+    private let deleteAlertConst = "You definitely want to delete this Invoice? (All bills will be deleted too)"
     private var fetchedResultsController: NSFetchedResultsController<CDInvoice>?
     
     private let identifier = "collectionViewIdentifier"
@@ -28,13 +29,11 @@ class HomeView: UIView {
         }
     }
     private let headerViewHeightConst = 200
-    private let invoiceNameLabelYShift: CGFloat = -75
     
     private var headerView: UIView = {
         let view = UIView()
-        view.layer.borderWidth = 1
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "CustomColor")
         
         return view
     }()
@@ -42,14 +41,12 @@ class HomeView: UIView {
     private var invoiceNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "SOME INVOICE"
         return label
     }()
     
     private var invoiceBalanceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "$123456"
         return label
     }()
     
@@ -79,7 +76,6 @@ class HomeView: UIView {
     private var invoiceIncomeCounterLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "$100"
         return label
     }()
     
@@ -109,7 +105,6 @@ class HomeView: UIView {
     private var invoiceExpenseCounterLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "$2000"
         return label
     }()
     
@@ -139,7 +134,7 @@ class HomeView: UIView {
     }()
     
     private var addButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(addNewBill(_:)), for: .touchUpInside)
         if #available(iOS 13.0, *) {
@@ -171,7 +166,6 @@ class HomeView: UIView {
         super.init(frame: frame)
         configureViewsConstraint()
         configureCollectionView()
-        configureUI()
     }
     
     required init?(coder: NSCoder) {
@@ -188,9 +182,8 @@ class HomeView: UIView {
         refreshUIData()
     }
     
-    func refreshUIData() {
-        setupInvoiceData()
-        configureMockViewIfNeeded()
+    func viewDidLoad() {
+        refreshUIData()
     }
     
     func deleteRowInTableView(invoiceIndex: Int, billIndex: Int) {
@@ -218,6 +211,11 @@ class HomeView: UIView {
         flowLayout.invalidateLayout()
     }
     
+    private func refreshUIData() {
+        setupInvoiceData()
+        configureMockViewIfNeeded()
+    }
+    
     private func configureViewsConstraint() {
         self.addSubview(headerView)
         headerView.addSubview(invoiceNameLabel)
@@ -236,13 +234,13 @@ class HomeView: UIView {
         headerView.addSubview(collectionPanel)
         collectionPanel.addSubview(addButton)
         
-        headerView.anchor(top: safeAreaLayoutGuide.topAnchor,
-                          leading: safeAreaLayoutGuide.leadingAnchor,
-                          trailing: safeAreaLayoutGuide.trailingAnchor,
-                          padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8),
+        headerView.anchor(top: topAnchor,
+                          leading: leadingAnchor,
+                          trailing: trailingAnchor,
+                          padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0),
                           size: CGSize(width: 0, height: 0))
         
-        invoiceNameLabel.anchor(top: headerView.topAnchor,
+        invoiceNameLabel.anchor(top: headerView.safeAreaLayoutGuide.topAnchor,
                                 padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0),
                                 centerX: headerView.centerXAnchor
         )
@@ -321,7 +319,18 @@ class HomeView: UIView {
     }
     
     private func configureUI() {
-        headerView.layer.cornerRadius = CGFloat(headerViewHeightConst / 10)
+        let color = UIColor(named: "CustomBorder")?.cgColor
+        let last = headerView.layer.sublayers?.last
+        if last?.backgroundColor == color {
+            return
+        }
+        
+        guard headerView.frame.height != 0 && headerView.frame.width != 0 else { return }
+        let bottomBorder = CALayer()
+        bottomBorder.frame = CGRect(x: 0, y: headerView.frame.height, width: headerView.frame.width, height: 1)
+        bottomBorder.backgroundColor = color
+        
+        headerView.layer.addSublayer(bottomBorder)
     }
     
     private func setupInvoiceData() {
@@ -353,11 +362,8 @@ class HomeView: UIView {
             self.showRenameAlert()
         }
         
-        let deleteAction = UIAlertAction(title: "Delete invoice", style: .default) { (_) in
-            self.presenter?.deleteInvoice(complition: { [weak self] in
-                self?.collectionView.deleteItems(at: [IndexPath(row: Int(self!.curentPage), section: 0)])
-                self?.refreshUIData()
-            })
+        let deleteAction = UIAlertAction(title: "Delete invoice", style: .destructive) { (_) in
+            self.showDeletingAlert()
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -371,6 +377,23 @@ class HomeView: UIView {
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)
         
+        presenter?.presentAlert(alert: alert)
+    }
+    
+    private func showDeletingAlert() {
+        let alert = UIAlertController(title: nil, message: deleteAlertConst, preferredStyle: .alert)
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (_) in
+            self.presenter?.deleteInvoice(complition: { [weak self] in
+                self?.collectionView.deleteItems(at: [IndexPath(row: Int(self!.curentPage), section: 0)])
+                self?.refreshUIData()
+            })
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
         presenter?.presentAlert(alert: alert)
     }
     
@@ -400,7 +423,6 @@ class HomeView: UIView {
                         leading: headerView.leadingAnchor,
                         bottom: headerView.bottomAnchor,
                         trailing: headerView.trailingAnchor)
-            view.layer.cornerRadius = CGFloat(headerViewHeightConst / 10)
             mockView = view
         } else if !value && mockView != nil {
             mockView?.removeFromSuperview()
@@ -409,7 +431,7 @@ class HomeView: UIView {
     }
     
     override func layoutSubviews() {
-        
+        configureUI()
         super.layoutSubviews()
     }
 }
@@ -489,7 +511,7 @@ extension HomeView: IHomeView {
         view.addSubview(label)
         label.anchor(centerX: view.centerXAnchor, centerY: view.centerYAnchor)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "CustomColor")
         return view
     }
 }

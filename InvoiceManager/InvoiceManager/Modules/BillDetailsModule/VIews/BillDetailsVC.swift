@@ -59,7 +59,8 @@ class BillDetailsVC: UIViewController {
     }
     
     private func configureViewController() {
-        view.backgroundColor = .white
+//        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "CustomBackground")
         
         if billDetailsPresentingType == .edit {
             self.navigationItem.setRightBarButton(UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonTapped(_:))), animated: true)

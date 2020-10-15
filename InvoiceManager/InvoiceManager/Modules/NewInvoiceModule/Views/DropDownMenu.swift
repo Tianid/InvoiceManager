@@ -18,13 +18,14 @@ class DropDownMenu: UIView {
     private var tableViewHeightConstraint: NSLayoutConstraint!
     private let tableViewIndentifier = "tableViewIdentifier"
     
-    private var invoiceNameTextField: DTTextField = {
+    private var currencyTextField: DTTextField = {
         let text = DTTextField()
         text.placeholder = "Select currency"
         text.dtborderStyle = .none
         text.isUserInteractionEnabled = false
         text.isEnabled = true
         text.translatesAutoresizingMaskIntoConstraints = false
+        text.dtLayer.backgroundColor = UIColor(named: "CustomColor")?.cgColor
         return text
     }()
     
@@ -52,6 +53,7 @@ class DropDownMenu: UIView {
     private var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = UIColor(named: "CustomColor")
         return tableView
     }()
     
@@ -69,14 +71,19 @@ class DropDownMenu: UIView {
     }
     //MARK: - Func
     
+    override func layoutSubviews() {
+        currencyTextField.dtLayer.backgroundColor = UIColor(named: "CustomColor")?.cgColor
+        super.layoutSubviews()
+    }
+    
     func showError(message: String) {
-        invoiceNameTextField.showError(message: message)
+        currencyTextField.showError(message: message)
     }
     
     private func configureConstraints() {
         addSubview(containerView)
         containerView.addSubview(invoiceNameContainer)
-        invoiceNameContainer.addSubview(invoiceNameTextField)
+        invoiceNameContainer.addSubview(currencyTextField)
         invoiceNameContainer.addSubview(imageView)
         containerView.addSubview(tableView)
         
@@ -89,7 +96,7 @@ class DropDownMenu: UIView {
                               leading: containerView.leadingAnchor,
                               trailing: containerView.trailingAnchor)
         
-        invoiceNameTextField.anchor(top: invoiceNameContainer.topAnchor,
+        currencyTextField.anchor(top: invoiceNameContainer.topAnchor,
                          leading: invoiceNameContainer.leadingAnchor,
                          bottom: invoiceNameContainer.bottomAnchor)
         
@@ -97,7 +104,7 @@ class DropDownMenu: UIView {
             trailing: invoiceNameContainer.trailingAnchor,
             padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8),
             size: CGSize(width: 15, height: 15),
-            centerY: invoiceNameTextField.centerYAnchor)
+            centerY: currencyTextField.centerYAnchor)
         
         tableView.anchor(top: invoiceNameContainer.bottomAnchor,
                          leading: containerView.leadingAnchor,
@@ -152,7 +159,7 @@ class DropDownMenu: UIView {
 extension DropDownMenu: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         curentCurrency = dataSourse?[indexPath.row]
-        invoiceNameTextField.text = curentCurrency?.rawValue
+        currencyTextField.text = curentCurrency?.rawValue
         hideTableView()
     }
 }
@@ -166,6 +173,7 @@ extension DropDownMenu: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableViewIndentifier, for: indexPath)
         cell.textLabel?.text = dataSourse?[indexPath.row].rawValue
         cell.selectionStyle = .none
+        cell.backgroundColor = UIColor(named: "CustomColor")
         return cell
     }
 }

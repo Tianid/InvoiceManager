@@ -40,7 +40,7 @@ class ChartVC: UIViewController {
     }
     
     private func configureController() {
-        view.backgroundColor = #colorLiteral(red: 0.9607843137, green: 0.9568627451, blue: 0.9647058824, alpha: 1)
+        view.backgroundColor = UIColor(named: "CustomBackground")
         self.navigationItem.titleView = segmentedControll
         segmentedControll.addTarget(self, action: #selector(segmentChanged(_:)), for: .valueChanged)
         chartView?.viewDidLoad()
