@@ -7,7 +7,7 @@
 //
 import Foundation
 
-struct Bill: Equatable {
+struct Bill: Equatable, Codable {
     //MARK: - Properties
     let value: Double
     let currency: Currency

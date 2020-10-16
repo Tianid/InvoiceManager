@@ -8,7 +8,7 @@
 
 
 
-enum Currency: String {
+enum Currency: String, Codable {
     case EUR, RUB, BYN, UAH, USD, GBP, JPY, none
     
     var symbolRaw: String {

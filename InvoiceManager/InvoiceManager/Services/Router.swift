@@ -62,7 +62,7 @@ class Router: IRouter {
                 continue
             }
             
-            if item.viewControllers[0] is ProfileVC {
+            if item.viewControllers[0] is SettingsVC {
                 self.profileNavigationsController = item
                 continue
             }

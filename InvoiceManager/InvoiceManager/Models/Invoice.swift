@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Invoice {
+struct Invoice: Codable {
     //MARK: - Properties
     var name: String
     var balance: Double

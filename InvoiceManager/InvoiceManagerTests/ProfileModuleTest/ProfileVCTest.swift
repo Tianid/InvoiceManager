@@ -34,7 +34,7 @@ class ProfileVCTest: XCTestCase {
     }
     
     func testProfileVC() {
-        let view = assembly.createProfileModule(router: router)
+        let view = assembly.createSettingsModule(router: router)
         view.loadView()
         view.viewDidLoad()
         XCTAssertNotNil(view)

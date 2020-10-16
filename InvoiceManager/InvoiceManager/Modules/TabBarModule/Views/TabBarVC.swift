@@ -30,7 +30,7 @@ extension TabBarVC: ITabBarVC {
         let homeController = assembler.createHomeModule(router: router)
         let categoryController = assembler.createCategoryModule(router: router)
         let chartController = assembler.createChartModule(router: router)
-        let profileController = assembler.createProfileModule(router: router)
+        let profileController = assembler.createSettingsModule(router: router)
         
         var homeItem: UITabBarItem!
         var categoryItem: UITabBarItem!
@@ -42,7 +42,7 @@ extension TabBarVC: ITabBarVC {
             homeItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage:  UIImage(systemName: "house.fill"))
             categoryItem = UITabBarItem(title: "Category", image: UIImage(systemName: "tray.2"), selectedImage:  UIImage(systemName: "tray.2.fill"))
             chartItem = UITabBarItem(title: "Chart", image: UIImage(systemName: "chart.pie"), selectedImage:  UIImage(systemName: "chart.pie.fill"))
-            profileItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), selectedImage:  UIImage(systemName: "person.fill"))
+            profileItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), selectedImage:  UIImage(systemName: "gear"))
         } else {
             
             homeItem = UITabBarItem(title: "Home", image: UIImage(named: "house"), selectedImage:  UIImage(named: "house.fill"))

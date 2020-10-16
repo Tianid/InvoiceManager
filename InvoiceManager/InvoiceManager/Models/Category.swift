@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Category: Equatable {
+struct Category: Equatable, Codable {
     //MARK: - Properties
     let name: String
     let iconImage: String

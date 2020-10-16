@@ -37,6 +37,8 @@
 		1241C5B92528A46C00E4C6AE /* CoreDataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1241C5B82528A46C00E4C6AE /* CoreDataManagerMock.swift */; };
 		1241C5BE2528ABAA00E4C6AE /* NewInvoiceVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1241C5BD2528ABAA00E4C6AE /* NewInvoiceVCTest.swift */; };
 		12504A81251631E300B58923 /* DTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12504A80251631E300B58923 /* DTTextField.swift */; };
+		127174332539D25200D9055E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127174322539D25200D9055E /* SettingsView.swift */; };
+		127174352539D7EF00D9055E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127174342539D7EF00D9055E /* Settings.swift */; };
 		127E1492251CF39800AD7C49 /* PreloadedData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 127E1491251CF39800AD7C49 /* PreloadedData.plist */; };
 		129BC17A24FFD4D9004BD17A /* HomeViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BC17924FFD4D9004BD17A /* HomeViewCollectionViewCell.swift */; };
 		129BC17D24FFE648004BD17A /* HomeViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BC17B24FFE648004BD17A /* HomeViewTableViewCell.swift */; };
@@ -75,6 +77,7 @@
 		12C1878A251E6ECC00F8B009 /* PHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C18789251E6ECC00F8B009 /* PHomeCollectionViewCell.swift */; };
 		12C3740224FE780F005262F6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C3740124FE780F005262F6 /* HomeView.swift */; };
 		12C433DA251CCCCB000E48E0 /* Modelv0.1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 12C433D8251CCCCB000E48E0 /* Modelv0.1.xcdatamodeld */; };
+		12C9A97A253A08B700301419 /* SecurityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C9A979253A08B700301419 /* SecurityService.swift */; };
 		12CBF7ED251B87300027A5C1 /* String+currensyFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CBF7EC251B87300027A5C1 /* String+currensyFormatting.swift */; };
 		12CBF7EF251B9B2C0027A5C1 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CBF7EE251B9B2C0027A5C1 /* CategoryView.swift */; };
 		12CDE57D2511068B00502A25 /* NewInvoiceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CDE57C2511068B00502A25 /* NewInvoiceCollectionViewCell.swift */; };
@@ -94,7 +97,7 @@
 		12D1D5E224FD25B60077FEF6 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5E124FD25B60077FEF6 /* HomeVC.swift */; };
 		12D1D5E424FD26D80077FEF6 /* CategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5E324FD26D80077FEF6 /* CategoryVC.swift */; };
 		12D1D5E624FD27060077FEF6 /* ChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5E524FD27060077FEF6 /* ChartVC.swift */; };
-		12D1D5E824FD27260077FEF6 /* ProfleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5E724FD27260077FEF6 /* ProfleVC.swift */; };
+		12D1D5E824FD27260077FEF6 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5E724FD27260077FEF6 /* SettingsVC.swift */; };
 		12D1D5EA24FD28A50077FEF6 /* IHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5E924FD28A50077FEF6 /* IHomeVC.swift */; };
 		12D1D5EC24FD28B00077FEF6 /* IHomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5EB24FD28B00077FEF6 /* IHomePresenter.swift */; };
 		12D1D5EE24FD28BE0077FEF6 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5ED24FD28BE0077FEF6 /* HomePresenter.swift */; };
@@ -104,9 +107,9 @@
 		12D1D5F624FD297A0077FEF6 /* IChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5F524FD297A0077FEF6 /* IChartVC.swift */; };
 		12D1D5F824FD29980077FEF6 /* IChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5F724FD29980077FEF6 /* IChartPresenter.swift */; };
 		12D1D5FA24FD29AD0077FEF6 /* ChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5F924FD29AD0077FEF6 /* ChartPresenter.swift */; };
-		12D1D5FC24FD29D30077FEF6 /* IProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5FB24FD29D30077FEF6 /* IProfileVC.swift */; };
-		12D1D5FE24FD29EF0077FEF6 /* IProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5FD24FD29EF0077FEF6 /* IProfilePresenter.swift */; };
-		12D1D60024FD2A020077FEF6 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5FF24FD2A020077FEF6 /* ProfilePresenter.swift */; };
+		12D1D5FC24FD29D30077FEF6 /* ISettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5FB24FD29D30077FEF6 /* ISettingsVC.swift */; };
+		12D1D5FE24FD29EF0077FEF6 /* ISettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5FD24FD29EF0077FEF6 /* ISettingsPresenter.swift */; };
+		12D1D60024FD2A020077FEF6 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5FF24FD2A020077FEF6 /* SettingsPresenter.swift */; };
 		12D1D60224FD3A390077FEF6 /* ProfileVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D60124FD3A390077FEF6 /* ProfileVCTest.swift */; };
 		12DE149025348274004FF6F5 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE148F25348274004FF6F5 /* ChartView.swift */; };
 		12DE1492253486FE004FF6F5 /* ChartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE1491253486FE004FF6F5 /* ChartViewCell.swift */; };
@@ -162,6 +165,8 @@
 		1241C5B82528A46C00E4C6AE /* CoreDataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerMock.swift; sourceTree = "<group>"; };
 		1241C5BD2528ABAA00E4C6AE /* NewInvoiceVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInvoiceVCTest.swift; sourceTree = "<group>"; };
 		12504A80251631E300B58923 /* DTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTTextField.swift; sourceTree = "<group>"; };
+		127174322539D25200D9055E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		127174342539D7EF00D9055E /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		127E1491251CF39800AD7C49 /* PreloadedData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PreloadedData.plist; sourceTree = "<group>"; };
 		129BC17924FFD4D9004BD17A /* HomeViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		129BC17B24FFE648004BD17A /* HomeViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -200,6 +205,7 @@
 		12C18789251E6ECC00F8B009 /* PHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		12C3740124FE780F005262F6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		12C433D9251CCCCB000E48E0 /* Modelv0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Modelv0.1.xcdatamodel; sourceTree = "<group>"; };
+		12C9A979253A08B700301419 /* SecurityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityService.swift; sourceTree = "<group>"; };
 		12CBF7EC251B87300027A5C1 /* String+currensyFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+currensyFormatting.swift"; sourceTree = "<group>"; };
 		12CBF7EE251B9B2C0027A5C1 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		12CDE57C2511068B00502A25 /* NewInvoiceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInvoiceCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -223,7 +229,7 @@
 		12D1D5E124FD25B60077FEF6 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		12D1D5E324FD26D80077FEF6 /* CategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVC.swift; sourceTree = "<group>"; };
 		12D1D5E524FD27060077FEF6 /* ChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartVC.swift; sourceTree = "<group>"; };
-		12D1D5E724FD27260077FEF6 /* ProfleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfleVC.swift; sourceTree = "<group>"; };
+		12D1D5E724FD27260077FEF6 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		12D1D5E924FD28A50077FEF6 /* IHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IHomeVC.swift; sourceTree = "<group>"; };
 		12D1D5EB24FD28B00077FEF6 /* IHomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IHomePresenter.swift; sourceTree = "<group>"; };
 		12D1D5ED24FD28BE0077FEF6 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
@@ -233,9 +239,9 @@
 		12D1D5F524FD297A0077FEF6 /* IChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IChartVC.swift; sourceTree = "<group>"; };
 		12D1D5F724FD29980077FEF6 /* IChartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IChartPresenter.swift; sourceTree = "<group>"; };
 		12D1D5F924FD29AD0077FEF6 /* ChartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPresenter.swift; sourceTree = "<group>"; };
-		12D1D5FB24FD29D30077FEF6 /* IProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProfileVC.swift; sourceTree = "<group>"; };
-		12D1D5FD24FD29EF0077FEF6 /* IProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProfilePresenter.swift; sourceTree = "<group>"; };
-		12D1D5FF24FD2A020077FEF6 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		12D1D5FB24FD29D30077FEF6 /* ISettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISettingsVC.swift; sourceTree = "<group>"; };
+		12D1D5FD24FD29EF0077FEF6 /* ISettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISettingsPresenter.swift; sourceTree = "<group>"; };
+		12D1D5FF24FD2A020077FEF6 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		12D1D60124FD3A390077FEF6 /* ProfileVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCTest.swift; sourceTree = "<group>"; };
 		12DE148F25348274004FF6F5 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		12DE1491253486FE004FF6F5 /* ChartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewCell.swift; sourceTree = "<group>"; };
@@ -421,6 +427,7 @@
 				129F48C724FD5A6000D9172C /* Section.swift */,
 				12AB7B9724FD541800E2986D /* Currency.swift */,
 				12F976A925069647008DD07C /* InvoiceContainer.swift */,
+				127174342539D7EF00D9055E /* Settings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -614,7 +621,7 @@
 				12AB499525126C570069B713 /* NewInvoiceModule */,
 				12C674A1250A59B400D7FCA4 /* BillCategoryModule */,
 				1212F6C02507CF9E0016693B /* BillDetailsModule */,
-				12D1D5D424FD22A20077FEF6 /* ProfileModule */,
+				12D1D5D424FD22A20077FEF6 /* SettingsModule */,
 				12D1D5D324FD22960077FEF6 /* ChartModule */,
 				12D1D5D224FD22830077FEF6 /* CategoryModule */,
 				12D1D5D124FD227B0077FEF6 /* HomeModule */,
@@ -630,6 +637,7 @@
 				12D1D5C324FD1D2A0077FEF6 /* AssemblerModuleBuilder.swift */,
 				1212F6CE2507E3290016693B /* NumericKeyboard.swift */,
 				123326C02536208700A31BDF /* IMColors.swift */,
+				12C9A979253A08B700301419 /* SecurityService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -699,14 +707,14 @@
 			path = ChartModule;
 			sourceTree = "<group>";
 		};
-		12D1D5D424FD22A20077FEF6 /* ProfileModule */ = {
+		12D1D5D424FD22A20077FEF6 /* SettingsModule */ = {
 			isa = PBXGroup;
 			children = (
 				12D1D5E024FD22F50077FEF6 /* Presenters */,
 				12D1D5DF24FD22F00077FEF6 /* Protocols */,
 				12D1D5DE24FD22EC0077FEF6 /* Views */,
 			);
-			path = ProfileModule;
+			path = SettingsModule;
 			sourceTree = "<group>";
 		};
 		12D1D5D524FD22AC0077FEF6 /* Views */ = {
@@ -803,7 +811,8 @@
 		12D1D5DE24FD22EC0077FEF6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				12D1D5E724FD27260077FEF6 /* ProfleVC.swift */,
+				12D1D5E724FD27260077FEF6 /* SettingsVC.swift */,
+				127174322539D25200D9055E /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -811,8 +820,8 @@
 		12D1D5DF24FD22F00077FEF6 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				12D1D5FB24FD29D30077FEF6 /* IProfileVC.swift */,
-				12D1D5FD24FD29EF0077FEF6 /* IProfilePresenter.swift */,
+				12D1D5FB24FD29D30077FEF6 /* ISettingsVC.swift */,
+				12D1D5FD24FD29EF0077FEF6 /* ISettingsPresenter.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -820,7 +829,7 @@
 		12D1D5E024FD22F50077FEF6 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				12D1D5FF24FD2A020077FEF6 /* ProfilePresenter.swift */,
+				12D1D5FF24FD2A020077FEF6 /* SettingsPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -1076,7 +1085,8 @@
 				12D1D5D024FD1F300077FEF6 /* ITabBarVC.swift in Sources */,
 				12AB7B9824FD541800E2986D /* Currency.swift in Sources */,
 				121AC3E3250A611A0099319D /* BillCategoryView.swift in Sources */,
-				12D1D5FC24FD29D30077FEF6 /* IProfileVC.swift in Sources */,
+				12D1D5FC24FD29D30077FEF6 /* ISettingsVC.swift in Sources */,
+				127174352539D7EF00D9055E /* Settings.swift in Sources */,
 				123CDFA32537580E00AFEDEC /* CDOperation.swift in Sources */,
 				12D1D5E624FD27060077FEF6 /* ChartVC.swift in Sources */,
 				12AB7B9224FD4E6700E2986D /* Invoice.swift in Sources */,
@@ -1091,6 +1101,7 @@
 				12D1D5F024FD29110077FEF6 /* ICategoryVC.swift in Sources */,
 				1212F6CD2507D9FE0016693B /* BillDetailsView.swift in Sources */,
 				12D1D5CC24FD1F150077FEF6 /* ITabBarPresenter.swift in Sources */,
+				12C9A97A253A08B700301419 /* SecurityService.swift in Sources */,
 				121AC3DB250A5DA90099319D /* BillCategoryVC.swift in Sources */,
 				121AC3E1250A5E8B0099319D /* IBillCategoryVC.swift in Sources */,
 				12F212D7251E0D0B00E29D7A /* CoreDataManager.swift in Sources */,
@@ -1101,14 +1112,14 @@
 				12B0EB6B25091F4400A67B79 /* DismissAnimation.swift in Sources */,
 				123CDFA0253757E200AFEDEC /* AsyncOperation.swift in Sources */,
 				1212F6C72507D0560016693B /* IBillDetailsPresenter.swift in Sources */,
-				12D1D5E824FD27260077FEF6 /* ProfleVC.swift in Sources */,
+				12D1D5E824FD27260077FEF6 /* SettingsVC.swift in Sources */,
 				121AC3DD250A5E600099319D /* BillCategoryPresenter.swift in Sources */,
 				12D1D5E424FD26D80077FEF6 /* CategoryVC.swift in Sources */,
 				12DE1492253486FE004FF6F5 /* ChartViewCell.swift in Sources */,
 				120F6C692524D8DF005A36BD /* CategoryTableContainer.swift in Sources */,
 				12AF06542526499B00B44B6B /* ICategorisedBillsVC.swift in Sources */,
 				123E7E76250BE3F900C7284B /* CATransition+FromBottom.swift in Sources */,
-				12D1D5FE24FD29EF0077FEF6 /* IProfilePresenter.swift in Sources */,
+				12D1D5FE24FD29EF0077FEF6 /* ISettingsPresenter.swift in Sources */,
 				129F48C824FD5A6000D9172C /* Section.swift in Sources */,
 				12C3740224FE780F005262F6 /* HomeView.swift in Sources */,
 				1212F6C52507D0400016693B /* BillDetailsPresenter.swift in Sources */,
@@ -1132,7 +1143,7 @@
 				1212F6CF2507E3290016693B /* NumericKeyboard.swift in Sources */,
 				12D1D5F624FD297A0077FEF6 /* IChartVC.swift in Sources */,
 				12D1D5FA24FD29AD0077FEF6 /* ChartPresenter.swift in Sources */,
-				12D1D60024FD2A020077FEF6 /* ProfilePresenter.swift in Sources */,
+				12D1D60024FD2A020077FEF6 /* SettingsPresenter.swift in Sources */,
 				12D1D5F424FD29430077FEF6 /* CategoryPresenter.swift in Sources */,
 				1228B74525013AE9003822A4 /* TestData.swift in Sources */,
 				12D1D59B24FD1B4D0077FEF6 /* AppDelegate.swift in Sources */,
@@ -1142,6 +1153,7 @@
 				12DE149425348C2B004FF6F5 /* PChartViewCell.swift in Sources */,
 				12F976AA25069647008DD07C /* InvoiceContainer.swift in Sources */,
 				1212F6CB2507D0810016693B /* BillDetailsVC.swift in Sources */,
+				127174332539D25200D9055E /* SettingsView.swift in Sources */,
 				129BC17D24FFE648004BD17A /* HomeViewTableViewCell.swift in Sources */,
 				12CBF7EF251B9B2C0027A5C1 /* CategoryView.swift in Sources */,
 				12C433DA251CCCCB000E48E0 /* Modelv0.1.xcdatamodeld in Sources */,

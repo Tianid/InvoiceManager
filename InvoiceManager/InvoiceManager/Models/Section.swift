@@ -11,7 +11,7 @@ struct SuperSection {
     let categorys: [Category]
 }
 
-struct Section: Equatable {
+struct Section: Equatable, Codable {
     //MARK: - Properties
     let name: String
     let categoryCount: Int
