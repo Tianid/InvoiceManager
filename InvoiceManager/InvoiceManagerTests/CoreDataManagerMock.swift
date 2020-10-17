@@ -15,15 +15,15 @@ class CoreDataManagerMock: ICoreDataManager {
         return .success(invoice)
     }
     
-    func createNewBill(bill: Bill, invoice: Invoice) -> Result<Void, CoreDataSaveError> {
+    func createNewBill(bill: Bill, invoice: Invoice) -> Result<Void, CoreDataError> {
         return .success(())
     }
     
-    func updateBill(bill: Bill) -> Result<Void, CoreDataSaveError> {
+    func updateBill(bill: Bill) -> Result<Void, CoreDataError> {
         return .success(())
     }
     
-    func updateInvoice(invoice: Invoice) -> Result<Void, CoreDataSaveError> {
+    func updateInvoice(invoice: Invoice) -> Result<Void, CoreDataError> {
         return .success(())
     }
     
@@ -39,11 +39,11 @@ class CoreDataManagerMock: ICoreDataManager {
         return []
     }
     
-    func deleteInvoice(invoice: Invoice) -> Result<Void, CoreDataSaveError> {
+    func deleteInvoice(invoice: Invoice) -> Result<Void, CoreDataError> {
         return .success(())
     }
     
-    func deleteBill(bill: Bill) -> Result<Void, CoreDataSaveError> {
+    func deleteBill(bill: Bill) -> Result<Void, CoreDataError> {
         return .success(())
     }
     

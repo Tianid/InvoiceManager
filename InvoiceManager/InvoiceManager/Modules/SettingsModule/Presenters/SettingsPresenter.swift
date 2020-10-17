@@ -59,7 +59,9 @@ class SettingsPresenter {
         
         switch result {
         case .success(let _models):
-            print(_models)
+            SecurityService.importBackup(models: _models) {
+                NotificationCenter.default.post(name: .backupDidImported, object: nil)
+            }
         case .failure(let error):
             print(error)
         }
@@ -69,10 +71,8 @@ class SettingsPresenter {
         //TODO: - Encrypt data
         let result = SecurityService.encryptBackup(password: password)
         switch result {
-        case .success(let json):
-            guard let json = json else { return }
-            let data = json.data(using: .utf8)!
-            let activity = fileActivityItem(data: data)
+        case .success(let encrtptedData):
+            let activity = fileActivityItem(data: encrtptedData)
             view?.presentVC(view: activity)
         case .failure(let error):
             print(error)
@@ -84,8 +84,8 @@ class SettingsPresenter {
         alert.addTextField { (field) in
             field.isSecureTextEntry = true
         }
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak self] (alert) in
-            guard let password = alert.title else { return }
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak self] (_) in
+            guard let password = alert.textFields?[0].text else { return }
             switch action {
             case .Import:
                 self?.importBakup(password: password)
@@ -101,7 +101,7 @@ class SettingsPresenter {
     private func dropAlert(message: String) ->  UIAlertController {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Drop", style: .destructive, handler: { (_) in
-            
+            SecurityService.dropCoreData(successor: nil)
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil ))

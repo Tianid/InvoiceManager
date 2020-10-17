@@ -50,6 +50,21 @@ class HomePresenter {
 }
 
 extension HomePresenter: IHomePresenter {
+    func refreshCollectionData(isUseBackground: Bool = false, complition: (() -> ())?) {
+        let operation = CDOperation<[Invoice]> { [weak self] in
+            let _model = self?.coreDataManage.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil, isUsedBackgroundContext: isUseBackground)
+            return _model!
+        }
+        
+        operation.completionBlock = { [weak self] in
+            self?.model = operation.result!
+            DispatchQueue.main.async {
+                complition?()
+            }
+        }
+        OperationQueue().addOperation(operation)
+    }
+    
     func generateCellPresenter(invoice: Invoice) -> IPHomeCollectionViewCell {
         let presenter = PHomeCollectionViewCell(invoice: invoice, superPresenter: self)
         return presenter

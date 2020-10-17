@@ -166,10 +166,15 @@ class HomeView: UIView {
         super.init(frame: frame)
         configureViewsConstraint()
         configureCollectionView()
+        configureObservers()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .backupDidImported, object: nil)
     }
     
     //MARK: - Func
@@ -209,6 +214,10 @@ class HomeView: UIView {
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         flowLayout.invalidateLayout()
+    }
+    
+    private func configureObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onBackupDidImported), name: .backupDidImported, object: nil)
     }
     
     private func refreshUIData() {
@@ -350,6 +359,17 @@ class HomeView: UIView {
         } else {
             isNeedToInitMockView(false)
         }
+    }
+    
+    private func refreshData(isUseBackground: Bool) {
+        presenter?.refreshCollectionData(isUseBackground: isUseBackground) { [weak self] in
+            self?.collectionView.reloadData()
+        }
+    }
+    
+    @objc private func onBackupDidImported() {
+        print(#function)
+        refreshData(isUseBackground: true)
     }
     
     @objc private func addNewBill(_ sender: UIButton) {

@@ -24,6 +24,8 @@ protocol IHomePresenter: class {
     
     func deleteBillInModel(bill: Bill, indexPath: IndexPath)
     func deleteInvoice(complition: (() -> ())?)
+    
+    func refreshCollectionData(isUseBackground: Bool, complition: (() -> ())?)
 }
 
 protocol IPHomeCollectionViewCell {

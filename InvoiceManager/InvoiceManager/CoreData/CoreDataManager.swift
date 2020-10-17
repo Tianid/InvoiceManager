@@ -6,9 +6,11 @@
 //  Copyright © 2020 Tianid. All rights reserved.
 //
 
-enum CoreDataSaveError: Error {
+enum CoreDataError: Error {
     case notGetAllData
     case saveError
+    case dropDataError
+    case importDataError
 }
 
 import Foundation
@@ -16,17 +18,20 @@ import CoreData
 
 protocol ICoreDataManager {
     func createNewInvoice(data: (String, Currency, String?)) -> Result<Invoice, Error>
-    func createNewBill(bill: Bill, invoice: Invoice) -> Result<Void, CoreDataSaveError>
+    func createNewBill(bill: Bill, invoice: Invoice) -> Result<Void, CoreDataError>
     
-    func updateBill(bill: Bill) -> Result<Void, CoreDataSaveError>
-    func updateInvoice(invoice: Invoice) -> Result<Void, CoreDataSaveError>
+    func updateBill(bill: Bill) -> Result<Void, CoreDataError>
+    func updateInvoice(invoice: Invoice) -> Result<Void, CoreDataError>
     
     func fetchAllInvoicesWithAllBills(predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor]?, isUsedBackgroundContext: Bool) -> [Invoice]
     func fetchAllSectionsWitAllCategorys() -> [SuperSection]
     func fetchBillsWithInvoices(by category: Category) -> [Invoice]
     
-    func deleteInvoice(invoice: Invoice) -> Result<Void, CoreDataSaveError>
-    func deleteBill(bill: Bill) -> Result<Void, CoreDataSaveError>
+    func deleteInvoice(invoice: Invoice) -> Result<Void, CoreDataError>
+    func deleteBill(bill: Bill) -> Result<Void, CoreDataError>
+    
+    func dropCoreData() -> Result<Void, CoreDataError>
+    func importData(data: [Invoice]) -> Result<Void, CoreDataError>
 }
 
 
@@ -249,6 +254,18 @@ class CoreDataManager {
                               expense: cdInvoice?.expense ?? 0,
                               currency: Currency(rawValue: cdInvoice?.currency ?? "none") ?? Currency.none)
     }
+    
+    private func initCDInvoice(invoice: Invoice) -> CDInvoice {
+        let cdInvoice = CDInvoice(context: context)
+        cdInvoice.name = invoice.name
+        cdInvoice.balance = invoice.balance
+        cdInvoice.income = invoice.income
+        cdInvoice.expense = invoice.expense
+        cdInvoice.currency = invoice.currency.rawValue
+        cdInvoice.modifiedDate = invoice.modifiedDate
+        cdInvoice.creationDate = invoice.creationDate
+        return cdInvoice
+    }
 }
 
 extension CoreDataManager: ICoreDataManager {
@@ -274,7 +291,7 @@ extension CoreDataManager: ICoreDataManager {
         }
     }
     
-    func createNewBill(bill: Bill, invoice: Invoice) -> Result<Void, CoreDataSaveError> {
+    func createNewBill(bill: Bill, invoice: Invoice) -> Result<Void, CoreDataError> {
         guard let cdInvoices = fetchBy(entity: CDInvoice.self, with: NSPredicate(format: "creationDate == %@", invoice.creationDate as NSDate)), !cdInvoices.isEmpty else { return .failure(.notGetAllData)}
         guard let cdBill = transformAppBillModelToCDBillModel(bill: bill) else { return .failure(.notGetAllData)}
         let cdInvoice = cdInvoices[0]
@@ -290,7 +307,7 @@ extension CoreDataManager: ICoreDataManager {
         }
     }
     //MARK: - Update entitys
-    func updateBill(bill: Bill) -> Result<Void, CoreDataSaveError> {
+    func updateBill(bill: Bill) -> Result<Void, CoreDataError> {
         guard let cdBills = fetchBy(entity: CDBill.self, with: NSPredicate(format: "creationDate == %@", bill.creationDate as NSDate)), cdBills.count > 0 else { return .failure(.notGetAllData)}
         guard let invoice = cdBills[0].invoice else { return .failure(.notGetAllData)}
         let cdBill = cdBills[0]
@@ -306,7 +323,7 @@ extension CoreDataManager: ICoreDataManager {
         }
     }
     
-    func updateInvoice(invoice: Invoice) -> Result<Void, CoreDataSaveError> {
+    func updateInvoice(invoice: Invoice) -> Result<Void, CoreDataError> {
         makeUpdateInvoiceName(invoice: invoice)
         do {
             try context.save()
@@ -387,7 +404,7 @@ extension CoreDataManager: ICoreDataManager {
     
     
     //MARK: - Delete entitys
-    func deleteInvoice(invoice: Invoice) -> Result<Void, CoreDataSaveError> {
+    func deleteInvoice(invoice: Invoice) -> Result<Void, CoreDataError> {
         guard let cdInvoices = fetchBy(entity: CDInvoice.self, with: NSPredicate(format: "creationDate == %@", invoice.creationDate as NSDate)), cdInvoices.count > 0 else { return .failure(.notGetAllData)}
         let cdInvoice = cdInvoices[0]
         context.delete(cdInvoice)
@@ -401,7 +418,7 @@ extension CoreDataManager: ICoreDataManager {
         }
     }
     
-    func deleteBill(bill: Bill) -> Result<Void, CoreDataSaveError> {
+    func deleteBill(bill: Bill) -> Result<Void, CoreDataError> {
         guard let cdBills = fetchBy(entity: CDBill.self, with: NSPredicate(format: "creationDate == %@", bill.creationDate as NSDate)), cdBills.count > 0 else { return .failure(.notGetAllData) }
         let cdBill = cdBills[0]
         guard let cdInvoice = cdBill.invoice else { return .failure(.notGetAllData)}
@@ -414,6 +431,38 @@ extension CoreDataManager: ICoreDataManager {
         } catch {
             print(error.localizedDescription)
             return .failure(.saveError)
+        }
+    }
+    
+    //MARK: - Drop entitys
+    func dropCoreData() -> Result<Void, CoreDataError> {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "\(CDInvoice.self)")
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: request)
+        do {
+            try context.executeAndMergeChanges(using: batchDeleteRequest)
+            return .success(())
+        } catch {
+            print(error)
+            return .failure(.dropDataError)
+        }
+    }
+    
+    //MARK: - import entitys
+    func importData(data: [Invoice]) -> Result<Void, CoreDataError> {
+        for invoice in data {
+            let cdInvoice = initCDInvoice(invoice: invoice)
+            for bill in invoice.bills {
+                let cdBill = transformAppBillModelToCDBillModel(bill: bill)!
+                cdInvoice.addToBills(cdBill)
+            }
+        }
+        
+        do {
+            try context.save()
+            return .success(())
+        } catch {
+            print(error)
+            return .failure(.importDataError)
         }
     }
 }

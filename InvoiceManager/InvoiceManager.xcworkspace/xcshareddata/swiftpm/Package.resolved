@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "AESCryptable",
+        "repositoryURL": "https://github.com/backslash-f/aescryptable",
+        "state": {
+          "branch": null,
+          "revision": "d8014ca981e29f15cabebfeef98c730090f799f9",
+          "version": "2.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

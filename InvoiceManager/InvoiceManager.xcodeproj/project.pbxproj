@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -72,6 +72,8 @@
 		12B0EB6D25092D9800A67B79 /* TransitionDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB6C25092D9800A67B79 /* TransitionDriver.swift */; };
 		12B0EB6F2509323600A67B79 /* CGPoint+Velocity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB6E2509323600A67B79 /* CGPoint+Velocity.swift */; };
 		12B0EB712509341E00A67B79 /* TransitionDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB702509341E00A67B79 /* TransitionDirection.swift */; };
+		12B69DAB253B1B3A00751D63 /* AESCryptable in Frameworks */ = {isa = PBXBuildFile; productRef = 12B69DAA253B1B3A00751D63 /* AESCryptable */; };
+		12B69DAD253B37E800751D63 /* NSManagedObjectContext+mergeChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B69DAC253B37E800751D63 /* NSManagedObjectContext+mergeChanges.swift */; };
 		12B7B4F32527801200BC42C2 /* CategorisedBillsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B7B4F12527801200BC42C2 /* CategorisedBillsTableViewCell.swift */; };
 		12B7B4F42527801200BC42C2 /* CategorisedBillsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12B7B4F22527801200BC42C2 /* CategorisedBillsTableViewCell.xib */; };
 		12C1878A251E6ECC00F8B009 /* PHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C18789251E6ECC00F8B009 /* PHomeCollectionViewCell.swift */; };
@@ -200,6 +202,7 @@
 		12B0EB6C25092D9800A67B79 /* TransitionDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionDriver.swift; sourceTree = "<group>"; };
 		12B0EB6E2509323600A67B79 /* CGPoint+Velocity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Velocity.swift"; sourceTree = "<group>"; };
 		12B0EB702509341E00A67B79 /* TransitionDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionDirection.swift; sourceTree = "<group>"; };
+		12B69DAC253B37E800751D63 /* NSManagedObjectContext+mergeChanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+mergeChanges.swift"; sourceTree = "<group>"; };
 		12B7B4F12527801200BC42C2 /* CategorisedBillsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorisedBillsTableViewCell.swift; sourceTree = "<group>"; };
 		12B7B4F22527801200BC42C2 /* CategorisedBillsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategorisedBillsTableViewCell.xib; sourceTree = "<group>"; };
 		12C18789251E6ECC00F8B009 /* PHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHomeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -264,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				816C8B35E90CEFB4AB3F774A /* Pods_InvoiceManager.framework in Frameworks */,
+				12B69DAB253B1B3A00751D63 /* AESCryptable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,6 +614,7 @@
 				12CBF7EC251B87300027A5C1 /* String+currensyFormatting.swift */,
 				123326BE2535DFDC00A31BDF /* Date+specialDate.swift */,
 				123CDF9C25373A7A00AFEDEC /* Notification+name.swift */,
+				12B69DAC253B37E800751D63 /* NSManagedObjectContext+mergeChanges.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -920,6 +925,9 @@
 			dependencies = (
 			);
 			name = InvoiceManager;
+			packageProductDependencies = (
+				12B69DAA253B1B3A00751D63 /* AESCryptable */,
+			);
 			productName = InvoiceManager;
 			productReference = 12D1D59724FD1B4D0077FEF6 /* InvoiceManager.app */;
 			productType = "com.apple.product-type.application";
@@ -971,6 +979,9 @@
 				Base,
 			);
 			mainGroup = 12D1D58E24FD1B4D0077FEF6;
+			packageReferences = (
+				12B69DA9253B1B3A00751D63 /* XCRemoteSwiftPackageReference "aescryptable" */,
+			);
 			productRefGroup = 12D1D59824FD1B4D0077FEF6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1130,6 +1141,7 @@
 				12B0EB642509171800A67B79 /* PresentationController.swift in Sources */,
 				12D1D5CA24FD1EF80077FEF6 /* TabBarPresenter.swift in Sources */,
 				12AB7B9424FD4F2D00E2986D /* Bill.swift in Sources */,
+				12B69DAD253B37E800751D63 /* NSManagedObjectContext+mergeChanges.swift in Sources */,
 				12AB499A25126C9C0069B713 /* NewInvoiceVC.swift in Sources */,
 				12AF06522526498D00B44B6B /* CategorisedBillsView.swift in Sources */,
 				12B0EB6625091ACD00A67B79 /* DimmPresentationController.swift in Sources */,
@@ -1450,6 +1462,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		12B69DA9253B1B3A00751D63 /* XCRemoteSwiftPackageReference "aescryptable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/backslash-f/aescryptable";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		12B69DAA253B1B3A00751D63 /* AESCryptable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 12B69DA9253B1B3A00751D63 /* XCRemoteSwiftPackageReference "aescryptable" */;
+			productName = AESCryptable;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		12C433D8251CCCCB000E48E0 /* Modelv0.1.xcdatamodeld */ = {
