@@ -36,6 +36,7 @@ class ChartView: UIView {
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: .modelsDidChanged, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didImportOrDrop, object: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -61,6 +62,8 @@ class ChartView: UIView {
     
     private func configureObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(onModelsDidChanged), name: .modelsDidChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onModelsDidChanged), name: .didImportOrDrop, object: nil)
+
     }
     
     private func refreshData(isUseBackground: Bool) {

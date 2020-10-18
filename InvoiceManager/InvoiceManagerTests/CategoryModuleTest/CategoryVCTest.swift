@@ -16,7 +16,8 @@ class CategoryVCTest: XCTestCase {
     
     override func setUpWithError() throws {
         let delegate = UIApplication.shared.delegate as! AppDelegate
-        assembly = AssemblerModuleBuilder(context: delegate.context)
+        let coreDataManagerMock = CoreDataManagerMock()
+        assembly = AssemblerModuleBuilder(coreDataManager: coreDataManagerMock)
         router = Router(tabBar: MockTabBar(), assembler: assembly)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -43,5 +44,8 @@ class CategoryVCTest: XCTestCase {
         let nib = UINib(nibName: "\(CategoryTableViewCell.self)", bundle: nil)
         let cell = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         let _ = catPres.prepareTableViewCell(cell: cell as! CategoryTableViewCell, indexPath: IndexPath(row: 0, section: 0), isFiltering: false)
+        
+        XCTAssertNoThrow(catPres.filter(searchText: "TEST"))
+        XCTAssertNoThrow(catPres.getSectionNameForFilterdSections(section: 0))
     }
 }

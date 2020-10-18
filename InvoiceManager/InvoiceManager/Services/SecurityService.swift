@@ -12,8 +12,8 @@ import var CommonCrypto.CC_MD5_DIGEST_LENGTH
 import func CommonCrypto.CC_MD5
 import typealias CommonCrypto.CC_LONG
 
-enum JSONError: Error {
-    case notGetAllData, JSONEncodeError, JSONDecodeError
+enum JSONError: String, Error {
+    case notGetAllData, JSONEncodeError, JSONDecodeError, PasswordError = "Wrong password"
 }
 
 class SecurityService {
@@ -109,23 +109,23 @@ class SecurityService {
     static func decryptBackup(password: String, data: Data) -> Result<[Invoice], JSONError> {
         let key = MD5Hex(string: password)
         let result = decrypt(key: key, encryptedData: data)
-        guard let decryptedString = result else { return .failure(.notGetAllData)}
+        guard let decryptedString = result else { return .failure(.PasswordError)}
         guard let data = decryptedString.data(using: .utf8) else { return .failure(.notGetAllData)}
         return decodeFromJSON(data: data)
     }
     
-    static func dropCoreData(successor: (() -> ())?) {
+    static func dropCoreData(successor: (() -> ())?, failure: (() -> ())? = nil) {
         guard let result = shared.coreDataManager?.dropCoreData() else { return }
         switch result {
         case .success(_):
             successor?()
         case .failure(_):
-            break
+            failure?()
         }
     }
     
     static func importBackup(models: [Invoice], complition: (() -> ())? ) {
-        dropCoreData {
+        dropCoreData(successor: {
             guard let result = shared.coreDataManager?.importData(data: models) else { return }
             switch result {
             case .success(_):
@@ -133,6 +133,6 @@ class SecurityService {
             case .failure(let error):
                 print(error)
             }
-        }
+        })
     }
 }

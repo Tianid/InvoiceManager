@@ -17,8 +17,9 @@ class HomeVCTest: XCTestCase {
     
     override func setUpWithError() throws {
         let delegate = UIApplication.shared.delegate as! AppDelegate
-        coreDataManager = CoreDataManagerMock()
-        assembly = AssemblerModuleBuilder(context: delegate.context)
+        let coreDataManagerMock = CoreDataManagerMock()
+        coreDataManager = coreDataManagerMock
+        assembly = AssemblerModuleBuilder(coreDataManager: coreDataManagerMock)
         router = Router(tabBar: MockTabBar(), assembler: assembly)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -30,14 +31,15 @@ class HomeVCTest: XCTestCase {
     }
     
     func testHomeVC() {
-        let view = assembly.createHomeModule(router: router)
+        let view = HomeVC()
         XCTAssertNotNil(view)
     }
     
     func testHomePresenter() {
         let view = HomeVC()
         let invoiceContainer = InvoiceContainer(model: testInvoices)
-        let presenter = HomePresenter(view: view, router: router, model: invoiceContainer, coreDataManager: coreDataManager)
+        let coreDataManagerMock = CoreDataManagerMock()
+        let presenter = HomePresenter(view: view, router: router, model: invoiceContainer, coreDataManager: coreDataManagerMock)
         
         XCTAssertNoThrow(presenter.setInvoiceIndex(invoiceIndex: 0), "work fine")
         XCTAssertNoThrow(presenter.showBillDetail(billIndex: 0))
@@ -51,6 +53,8 @@ class HomeVCTest: XCTestCase {
         XCTAssertNoThrow(presenter.deleteInvoice(complition: nil))
         XCTAssertNoThrow(presenter.showNewInvoice())
         XCTAssertNoThrow(presenter.presentAlert(alert: UIAlertController(title: nil, message: nil, preferredStyle: .alert)))
+        XCTAssertNoThrow(presenter.refreshCollectionData(complition: nil))
+        XCTAssertNoThrow(presenter.refreshCollectionData(isUseBackground: true, complition: nil))
     }
     
     func testHomeView() {
@@ -70,6 +74,7 @@ class HomeVCTest: XCTestCase {
         XCTAssertNoThrow(homeView.deleteRowInTableView(invoiceIndex: 0, billIndex: 0))
         XCTAssertNoThrow(homeView.refreshTableViewByIndex(invoiceIndex: 0, billIndex: 0))
         XCTAssertNoThrow(homeView.viewWillTransition())
+//        XCTAssertNoThrow(homeView.scrollViewDidEndDecelerating(UIScrollView()))
     }
     
     func testSPHomveViewCell() {
@@ -80,6 +85,7 @@ class HomeVCTest: XCTestCase {
         let cellPresenter = PHomeCollectionViewCell(invoice: testInvoices[0], superPresenter: presenter)
         XCTAssertNoThrow(cellPresenter.billTapped(billIndex: 0))
         XCTAssertNoThrow(cellPresenter.reloadBills())
+        XCTAssertNoThrow(cellPresenter.deleteButtonTapped(indexPath: IndexPath(row: 0, section: 0)))
     }
     
     func testHomeCollectionViewCell() {

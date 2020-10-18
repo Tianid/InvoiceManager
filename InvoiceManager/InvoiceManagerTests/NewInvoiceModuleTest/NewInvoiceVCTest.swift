@@ -16,9 +16,10 @@ class NewInvoiceVCTest: XCTestCase {
     var coreDataManager: ICoreDataManager!
 
     override func setUpWithError() throws {
-        coreDataManager = CoreDataManagerMock()
         let delegate = UIApplication.shared.delegate as! AppDelegate
-        assembly = AssemblerModuleBuilder(context: delegate.context)
+        let coreDataManagerMock = CoreDataManagerMock()
+        coreDataManager = coreDataManagerMock
+        assembly = AssemblerModuleBuilder(coreDataManager: coreDataManagerMock)
         router = Router(tabBar: MockTabBar(), assembler: assembly)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }

@@ -1,5 +1,5 @@
 //
-//  CDOperation.swift
+//  AIMOperation.swift
 //  InvoiceManager
 //
 //  Created by Tianid on 14.10.2020.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-class CDOperation<T>: AsyncOperation {
+class AIMOperation<T>: AsyncOperation {
     var result: T?
-    private var action: (() -> T)
+    private var action: (() -> T?)
     
-    init(action: @escaping (() -> T)) {
+    init(action: @escaping (() -> T?)) {
         self.action = action
     }
     

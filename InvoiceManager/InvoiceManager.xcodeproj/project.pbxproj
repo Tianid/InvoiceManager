@@ -29,7 +29,7 @@
 		123326C12536208700A31BDF /* IMColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123326C02536208700A31BDF /* IMColors.swift */; };
 		123CDF9D25373A7A00AFEDEC /* Notification+name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123CDF9C25373A7A00AFEDEC /* Notification+name.swift */; };
 		123CDFA0253757E200AFEDEC /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123CDF9F253757E200AFEDEC /* AsyncOperation.swift */; };
-		123CDFA32537580E00AFEDEC /* CDOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123CDFA22537580E00AFEDEC /* CDOperation.swift */; };
+		123CDFA32537580E00AFEDEC /* AIMOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123CDFA22537580E00AFEDEC /* AIMOperation.swift */; };
 		123E7E70250BAF4B00C7284B /* BillDetailVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E6F250BAF4B00C7284B /* BillDetailVCTest.swift */; };
 		123E7E72250BB01600C7284B /* BillCategoryVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E71250BB01600C7284B /* BillCategoryVCTest.swift */; };
 		123E7E76250BE3F900C7284B /* CATransition+FromBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E7E75250BE3F900C7284B /* CATransition+FromBottom.swift */; };
@@ -112,13 +112,14 @@
 		12D1D5FC24FD29D30077FEF6 /* ISettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5FB24FD29D30077FEF6 /* ISettingsVC.swift */; };
 		12D1D5FE24FD29EF0077FEF6 /* ISettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5FD24FD29EF0077FEF6 /* ISettingsPresenter.swift */; };
 		12D1D60024FD2A020077FEF6 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D5FF24FD2A020077FEF6 /* SettingsPresenter.swift */; };
-		12D1D60224FD3A390077FEF6 /* ProfileVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D60124FD3A390077FEF6 /* ProfileVCTest.swift */; };
+		12D1D60224FD3A390077FEF6 /* SettingsVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D1D60124FD3A390077FEF6 /* SettingsVCTest.swift */; };
 		12DE149025348274004FF6F5 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE148F25348274004FF6F5 /* ChartView.swift */; };
 		12DE1492253486FE004FF6F5 /* ChartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE1491253486FE004FF6F5 /* ChartViewCell.swift */; };
 		12DE149425348C2B004FF6F5 /* PChartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE149325348C2B004FF6F5 /* PChartViewCell.swift */; };
 		12DE149625348C44004FF6F5 /* IPChartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DE149525348C44004FF6F5 /* IPChartViewCell.swift */; };
 		12E734382528B67E00E0B2DC /* CategorisedBillsVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E734372528B67E00E0B2DC /* CategorisedBillsVCTest.swift */; };
 		12E734402528D01600E0B2DC /* ModelsAndOther.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E7343F2528D01600E0B2DC /* ModelsAndOther.swift */; };
+		12EFC28E253CA70A00E8275C /* SIMOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EFC28D253CA70A00E8275C /* SIMOperation.swift */; };
 		12F212D7251E0D0B00E29D7A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F212D6251E0D0B00E29D7A /* CoreDataManager.swift */; };
 		12F976AA25069647008DD07C /* InvoiceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F976A925069647008DD07C /* InvoiceContainer.swift */; };
 		1FA387BDDCBADBDFFF283E03 /* Pods_InvoiceManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F1F0CC31E3DD067A1DBEEF6 /* Pods_InvoiceManagerTests.framework */; };
@@ -159,7 +160,7 @@
 		123326C02536208700A31BDF /* IMColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMColors.swift; sourceTree = "<group>"; };
 		123CDF9C25373A7A00AFEDEC /* Notification+name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+name.swift"; sourceTree = "<group>"; };
 		123CDF9F253757E200AFEDEC /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
-		123CDFA22537580E00AFEDEC /* CDOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDOperation.swift; sourceTree = "<group>"; };
+		123CDFA22537580E00AFEDEC /* AIMOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIMOperation.swift; sourceTree = "<group>"; };
 		123E7E6F250BAF4B00C7284B /* BillDetailVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillDetailVCTest.swift; sourceTree = "<group>"; };
 		123E7E71250BB01600C7284B /* BillCategoryVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillCategoryVCTest.swift; sourceTree = "<group>"; };
 		123E7E75250BE3F900C7284B /* CATransition+FromBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransition+FromBottom.swift"; sourceTree = "<group>"; };
@@ -245,13 +246,14 @@
 		12D1D5FB24FD29D30077FEF6 /* ISettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISettingsVC.swift; sourceTree = "<group>"; };
 		12D1D5FD24FD29EF0077FEF6 /* ISettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISettingsPresenter.swift; sourceTree = "<group>"; };
 		12D1D5FF24FD2A020077FEF6 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
-		12D1D60124FD3A390077FEF6 /* ProfileVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVCTest.swift; sourceTree = "<group>"; };
+		12D1D60124FD3A390077FEF6 /* SettingsVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVCTest.swift; sourceTree = "<group>"; };
 		12DE148F25348274004FF6F5 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		12DE1491253486FE004FF6F5 /* ChartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewCell.swift; sourceTree = "<group>"; };
 		12DE149325348C2B004FF6F5 /* PChartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PChartViewCell.swift; sourceTree = "<group>"; };
 		12DE149525348C44004FF6F5 /* IPChartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPChartViewCell.swift; sourceTree = "<group>"; };
 		12E734372528B67E00E0B2DC /* CategorisedBillsVCTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorisedBillsVCTest.swift; sourceTree = "<group>"; };
 		12E7343F2528D01600E0B2DC /* ModelsAndOther.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsAndOther.swift; sourceTree = "<group>"; };
+		12EFC28D253CA70A00E8275C /* SIMOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIMOperation.swift; sourceTree = "<group>"; };
 		12F212D6251E0D0B00E29D7A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		12F976A925069647008DD07C /* InvoiceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceContainer.swift; sourceTree = "<group>"; };
 		38766B3E982A4E14A4447BEA /* Pods-InvoiceManagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InvoiceManagerTests.debug.xcconfig"; path = "Target Support Files/Pods-InvoiceManagerTests/Pods-InvoiceManagerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -338,7 +340,8 @@
 		123CDFA1253757ED00AFEDEC /* DataBaseOperations */ = {
 			isa = PBXGroup;
 			children = (
-				123CDFA22537580E00AFEDEC /* CDOperation.swift */,
+				123CDFA22537580E00AFEDEC /* AIMOperation.swift */,
+				12EFC28D253CA70A00E8275C /* SIMOperation.swift */,
 			);
 			path = DataBaseOperations;
 			sourceTree = "<group>";
@@ -595,7 +598,7 @@
 				12D1D60424FD3CD80077FEF6 /* HomeModuleTest */,
 				12D1D60524FD3CE10077FEF6 /* CategoryModuleTest */,
 				12D1D60624FD3CED0077FEF6 /* ChartModuleProfile */,
-				12D1D60324FD3CCD0077FEF6 /* ProfileModuleTest */,
+				12D1D60324FD3CCD0077FEF6 /* SettingsModuleTest */,
 				12AB7B8D24FD40EF00E2986D /* TabBarModuleTest */,
 				12D1D5B124FD1B4E0077FEF6 /* InvoiceManagerTests.swift */,
 				1241C5B82528A46C00E4C6AE /* CoreDataManagerMock.swift */,
@@ -839,12 +842,12 @@
 			path = Presenters;
 			sourceTree = "<group>";
 		};
-		12D1D60324FD3CCD0077FEF6 /* ProfileModuleTest */ = {
+		12D1D60324FD3CCD0077FEF6 /* SettingsModuleTest */ = {
 			isa = PBXGroup;
 			children = (
-				12D1D60124FD3A390077FEF6 /* ProfileVCTest.swift */,
+				12D1D60124FD3A390077FEF6 /* SettingsVCTest.swift */,
 			);
-			path = ProfileModuleTest;
+			path = SettingsModuleTest;
 			sourceTree = "<group>";
 		};
 		12D1D60424FD3CD80077FEF6 /* HomeModuleTest */ = {
@@ -1098,7 +1101,7 @@
 				121AC3E3250A611A0099319D /* BillCategoryView.swift in Sources */,
 				12D1D5FC24FD29D30077FEF6 /* ISettingsVC.swift in Sources */,
 				127174352539D7EF00D9055E /* Settings.swift in Sources */,
-				123CDFA32537580E00AFEDEC /* CDOperation.swift in Sources */,
+				123CDFA32537580E00AFEDEC /* AIMOperation.swift in Sources */,
 				12D1D5E624FD27060077FEF6 /* ChartVC.swift in Sources */,
 				12AB7B9224FD4E6700E2986D /* Invoice.swift in Sources */,
 				12AB499C25126CAE0069B713 /* INewInvoiceVC.swift in Sources */,
@@ -1166,6 +1169,7 @@
 				12F976AA25069647008DD07C /* InvoiceContainer.swift in Sources */,
 				1212F6CB2507D0810016693B /* BillDetailsVC.swift in Sources */,
 				127174332539D25200D9055E /* SettingsView.swift in Sources */,
+				12EFC28E253CA70A00E8275C /* SIMOperation.swift in Sources */,
 				129BC17D24FFE648004BD17A /* HomeViewTableViewCell.swift in Sources */,
 				12CBF7EF251B9B2C0027A5C1 /* CategoryView.swift in Sources */,
 				12C433DA251CCCCB000E48E0 /* Modelv0.1.xcdatamodeld in Sources */,
@@ -1191,7 +1195,7 @@
 				12E734382528B67E00E0B2DC /* CategorisedBillsVCTest.swift in Sources */,
 				1241C5B92528A46C00E4C6AE /* CoreDataManagerMock.swift in Sources */,
 				123E7E72250BB01600C7284B /* BillCategoryVCTest.swift in Sources */,
-				12D1D60224FD3A390077FEF6 /* ProfileVCTest.swift in Sources */,
+				12D1D60224FD3A390077FEF6 /* SettingsVCTest.swift in Sources */,
 				12AB7B8824FD3FC800E2986D /* ChartVCTest.swift in Sources */,
 				12AB7B8F24FD410600E2986D /* TabBarVCTest.swift in Sources */,
 				12AB7B8A24FD3FDB00E2986D /* CategoryVCTest.swift in Sources */,

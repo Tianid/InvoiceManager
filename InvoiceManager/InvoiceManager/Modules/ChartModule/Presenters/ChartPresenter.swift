@@ -27,6 +27,34 @@ class ChartPresenter {
     }
     
     //MARK: - Func
+    
+    private func createAsyncOperation(isUseBackground: Bool, complition: (() -> ())?) {
+        let operation = AIMOperation<[Invoice]> { [weak self] in
+            let model = self?.coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil, isUsedBackgroundContext: isUseBackground)
+            return model
+        }
+        operation.completionBlock = { [weak self] in
+            self?.model = operation.result
+            DispatchQueue.main.async {
+                complition?()
+            }
+        }
+        OperationQueue().addOperation(operation)
+    }
+    
+    private func createSyncOperation(isUseBackground: Bool, complition: (() -> ())?) {
+        let operation = SIMOperation<[Invoice]> { [weak self] in
+            let model = self?.coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil, isUsedBackgroundContext: isUseBackground)
+            return model
+        }
+        operation.completionBlock = { [weak self] in
+            self?.model = operation.result
+            DispatchQueue.main.async {
+                complition?()
+            }
+        }
+        OperationQueue().addOperation(operation)
+    }
 }
 
 extension ChartPresenter: IChartPresenter {
@@ -43,17 +71,10 @@ extension ChartPresenter: IChartPresenter {
     }
     
     func refreshChartData(isUseBackground: Bool = false, complition: (() -> ())?) {
-        let operation = CDOperation<[Invoice]> { [weak self] in
-            let model = self?.coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil, isUsedBackgroundContext: isUseBackground)
-            return model!
+        if isUseBackground {
+            createAsyncOperation(isUseBackground: isUseBackground, complition: complition)
+        } else {
+            createSyncOperation(isUseBackground: isUseBackground, complition: complition)
         }
-        
-        operation.completionBlock = { [weak self] in
-            self?.model = operation.result
-            DispatchQueue.main.async {
-                complition?()
-            }
-        }
-        OperationQueue().addOperation(operation)
     }
 }

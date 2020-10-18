@@ -9,7 +9,7 @@
 import Foundation
 
 
-var testSingleCategory = Category(name: "TEST CATEGORY", iconImage: "NO IMAGE", section: .init(name: "TEST SECTION", categoryCount: 0), creationDate: Date())
+var testSingleCategory = Category(name: "Bills", iconImage: "NO IMAGE", section: .init(name: "TEST SECTION", categoryCount: 0), creationDate: Date())
 
 var testSections = [Section(name: "Section 1", categoryCount: 4),
                     Section(name: "Section 2", categoryCount: 2),
@@ -18,7 +18,7 @@ var testSections = [Section(name: "Section 1", categoryCount: 4),
 
 
 
-var testCategorys = [Category(name: "TEST CATEGORY №1", iconImage: "NO IMAGE", section: testSections[0], creationDate: Date()),
+var testCategorys = [Category(name: "Bill", iconImage: "NO IMAGE", section: testSections[0], creationDate: Date()),
                      Category(name: "TEST CATEGORY №2", iconImage: "NO IMAGE", section: testSections[0], creationDate: Date()),
                      Category(name: "TEST CATEGORY №3", iconImage: "NO IMAGE", section: testSections[0], creationDate: Date()),
                      Category(name: "TEST CATEGORY №4", iconImage: "NO IMAGE", section: testSections[0], creationDate: Date()),

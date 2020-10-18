@@ -35,7 +35,7 @@ class HomePresenter {
     private var router: IRouter
     private var invoiceIndex = 0
     private var billIndex = -1
-    private var coreDataManage: ICoreDataManager
+    private var coreDataManager: ICoreDataManager
     
     //MARK: - Init
     
@@ -43,19 +43,16 @@ class HomePresenter {
         self.view = view
         self.router = router
         self.invoiceContainer = model
-        self.coreDataManage = coreDataManager
+        self.coreDataManager = coreDataManager
     }
     
     //MARK: - Func
-}
-
-extension HomePresenter: IHomePresenter {
-    func refreshCollectionData(isUseBackground: Bool = false, complition: (() -> ())?) {
-        let operation = CDOperation<[Invoice]> { [weak self] in
-            let _model = self?.coreDataManage.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil, isUsedBackgroundContext: isUseBackground)
-            return _model!
+    
+    private func createAsyncOperation(isUseBackground: Bool, complition: (() -> ())?) {
+        let operation = AIMOperation<[Invoice]> { [weak self] in
+            let model = self?.coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil, isUsedBackgroundContext: isUseBackground)
+            return model
         }
-        
         operation.completionBlock = { [weak self] in
             self?.model = operation.result!
             DispatchQueue.main.async {
@@ -63,6 +60,30 @@ extension HomePresenter: IHomePresenter {
             }
         }
         OperationQueue().addOperation(operation)
+    }
+    
+    private func createSyncOperation(isUseBackground: Bool, complition: (() -> ())?) {
+        let operation = SIMOperation<[Invoice]> { [weak self] in
+            let model = self?.coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil, isUsedBackgroundContext: isUseBackground)
+            return model
+        }
+        operation.completionBlock = { [weak self] in
+            self?.model = operation.result!
+            DispatchQueue.main.async {
+                complition?()
+            }
+        }
+        OperationQueue().addOperation(operation)
+    }
+}
+
+extension HomePresenter: IHomePresenter {
+    func refreshCollectionData(isUseBackground: Bool = false, complition: (() -> ())?) {
+        if isUseBackground {
+            createAsyncOperation(isUseBackground: isUseBackground, complition: complition)
+        } else {
+            createSyncOperation(isUseBackground: isUseBackground, complition: complition)
+        }
     }
     
     func generateCellPresenter(invoice: Invoice) -> IPHomeCollectionViewCell {
@@ -110,7 +131,7 @@ extension HomePresenter: IHomePresenter {
     func updateInvoiceName(name: String, complition: (() -> ())?) {
         currentInvoice?.name = name
         guard let invoice = currentInvoice else { return }
-        let result = coreDataManage.updateInvoice(invoice: invoice)
+        let result = coreDataManager.updateInvoice(invoice: invoice)
         
         switch result {
         case .success(_):
@@ -127,7 +148,7 @@ extension HomePresenter: IHomePresenter {
     
     func deleteBillInModel(bill: Bill, indexPath: IndexPath) {
         guard let _ = currentInvoice else { return }
-        let result = coreDataManage.deleteBill(bill: bill)
+        let result = coreDataManager.deleteBill(bill: bill)
         
         switch result {
         case .success(_):
@@ -142,7 +163,7 @@ extension HomePresenter: IHomePresenter {
     
     func deleteInvoice(complition: (() -> ())?) {
         guard let invoice = currentInvoice else { return }
-        let result = coreDataManage.deleteInvoice(invoice: invoice)
+        let result = coreDataManager.deleteInvoice(invoice: invoice)
         
         switch result {
         case .success(_):

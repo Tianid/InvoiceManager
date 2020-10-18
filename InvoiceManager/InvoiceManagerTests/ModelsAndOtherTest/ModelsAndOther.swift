@@ -81,5 +81,12 @@ class ModelsAndOther: XCTestCase {
             
         })
     }
+    
+    func testDate() {
+        XCTAssertNoThrow(Date.today)
+        XCTAssertNoThrow(Date.thisMonth)
+        XCTAssertNoThrow(Date.thisYear)
+
+    }
 
 }

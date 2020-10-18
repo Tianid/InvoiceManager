@@ -27,12 +27,10 @@ protocol IAssembleBuilder {
 }
 
 class AssemblerModuleBuilder: IAssembleBuilder {
-    private var context: NSManagedObjectContext
     private var coreDataManager: ICoreDataManager
     
-    init(context: NSManagedObjectContext, backgroundContext: NSManagedObjectContext) {
-        self.context = context
-        self.coreDataManager = CoreDataManager(context: context, backgroundContext: backgroundContext)
+    init(coreDataManager: ICoreDataManager) {
+        self.coreDataManager = coreDataManager
         SecurityService.setCoreDataManager(coreDataManager: coreDataManager)
     }
     

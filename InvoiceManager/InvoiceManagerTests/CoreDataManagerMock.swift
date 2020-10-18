@@ -10,6 +10,14 @@ import Foundation
 @testable import InvoiceManager
 
 class CoreDataManagerMock: ICoreDataManager {
+    func dropCoreData() -> Result<Void, CoreDataError> {
+        return .success(())
+    }
+    
+    func importData(data: [Invoice]) -> Result<Void, CoreDataError> {
+        return .success(())
+    }
+    
     func createNewInvoice(data: (String, Currency, String?)) -> Result<Invoice, Error> {
         let invoice = Invoice(data: ("Foo", .BYN, nil))
         return .success(invoice)
@@ -27,7 +35,7 @@ class CoreDataManagerMock: ICoreDataManager {
         return .success(())
     }
     
-    func fetchAllInvoicesWithAllBills(predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor]?) -> [Invoice] {
+    func fetchAllInvoicesWithAllBills(predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor]?, isUsedBackgroundContext: Bool) -> [Invoice] {
         return []
     }
     

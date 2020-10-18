@@ -10,19 +10,20 @@ import XCTest
 @testable import InvoiceManager
 
 class TabBarVCTest: XCTestCase {
-    var assmebly: AssemblerModuleBuilder!
+    var assembly: AssemblerModuleBuilder!
     var router: IRouter!
     var tabBarVC: ITabBarVC! = TabBarVC()
     
     override func setUpWithError() throws {
         let delegate = UIApplication.shared.delegate as! AppDelegate
-        assmebly = AssemblerModuleBuilder(context: delegate.context)
-        router = Router(tabBar: tabBarVC, assembler: assmebly)
+        let coreDataManagerMock = CoreDataManagerMock()
+        assembly = AssemblerModuleBuilder(coreDataManager: coreDataManagerMock)
+        router = Router(tabBar: tabBarVC, assembler: assembly)
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDownWithError() throws {
-        assmebly = nil
+        assembly = nil
         router = nil
         tabBarVC = nil
         // Put teardown code here. This method is called after the invocation of each test method in the class.

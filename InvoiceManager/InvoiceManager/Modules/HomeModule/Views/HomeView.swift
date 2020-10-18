@@ -238,6 +238,11 @@ class HomeView: UIView {
         headerView.layer.addSublayer(bottomBorder)
     }
     
+    override func layoutSubviews() {
+        configureUI()
+        super.layoutSubviews()
+    }
+    
     private func configureObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(onDidImportOrDrop), name: .didImportOrDrop, object: nil)
     }

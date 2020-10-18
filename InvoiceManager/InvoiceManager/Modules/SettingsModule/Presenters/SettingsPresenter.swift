@@ -59,10 +59,12 @@ class SettingsPresenter {
         
         switch result {
         case .success(let _models):
-            SecurityService.importBackup(models: _models) {
+            SecurityService.importBackup(models: _models) { [weak self] in
+                self?.view?.presentVC(view: (self?.messageAlert(message: "Import success"))!)
                 NotificationCenter.default.post(name: .didImportOrDrop, object: nil)
             }
         case .failure(let error):
+            view?.presentVC(view: messageAlert(message: error.rawValue))
             print(error)
         }
     }
@@ -101,12 +103,23 @@ class SettingsPresenter {
     private func dropAlert(message: String) ->  UIAlertController {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Drop", style: .destructive, handler: { (_) in
-            SecurityService.dropCoreData {
-                NotificationCenter.default.post(name: .didImportOrDrop, object: nil)
-            }
+            SecurityService.dropCoreData(
+                successor: { [weak self] in
+                    self?.view?.presentVC(view: (self?.messageAlert(message: "Drop success"))!)
+                    NotificationCenter.default.post(name: .didImportOrDrop, object: nil)
+            },
+                failure: { [weak self] in
+                    self?.view?.presentVC(view: (self?.messageAlert(message: "Drop failure"))!)
+            })
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil ))
+        return alert
+    }
+    
+    private func messageAlert(message: String) -> UIAlertController {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil ))
         return alert
     }
 }
@@ -127,7 +140,7 @@ extension SettingsPresenter: ISettingsPresenter {
         case 2:
             break
         case 3:
-            view?.presentVC(view: dropAlert(message: "You definitely want to drop all data ? (App need to restart)"))
+            view?.presentVC(view: dropAlert(message: "You definitely want to drop all data ?"))
         default:
             break
         }
