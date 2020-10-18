@@ -227,7 +227,7 @@ class HomeView: UIView {
         let color = UIColor(named: "CustomBorder")?.cgColor
         let last = headerView.layer.sublayers?.last
         if last?.backgroundColor == color {
-            return
+            headerView.layer.sublayers?.removeLast()
         }
         
         guard headerView.frame.height != 0 && headerView.frame.width != 0 else { return }

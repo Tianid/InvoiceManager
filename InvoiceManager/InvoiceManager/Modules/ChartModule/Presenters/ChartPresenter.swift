@@ -30,7 +30,7 @@ class ChartPresenter {
     
     private func createAsyncOperation(isUseBackground: Bool, complition: (() -> ())?) {
         let operation = AIMOperation<[Invoice]> { [weak self] in
-            let model = self?.coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil, isUsedBackgroundContext: isUseBackground)
+            let model = self?.coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: [NSSortDescriptor(key: "creationDate", ascending: true)], isUsedBackgroundContext: isUseBackground)
             return model
         }
         operation.completionBlock = { [weak self] in
@@ -44,7 +44,7 @@ class ChartPresenter {
     
     private func createSyncOperation(isUseBackground: Bool, complition: (() -> ())?) {
         let operation = SIMOperation<[Invoice]> { [weak self] in
-            let model = self?.coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil, isUsedBackgroundContext: isUseBackground)
+            let model = self?.coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: [NSSortDescriptor(key: "creationDate", ascending: true)], isUsedBackgroundContext: isUseBackground)
             return model
         }
         operation.completionBlock = { [weak self] in

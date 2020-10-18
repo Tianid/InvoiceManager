@@ -50,11 +50,12 @@ class HomePresenter {
     
     private func createAsyncOperation(isUseBackground: Bool, complition: (() -> ())?) {
         let operation = AIMOperation<[Invoice]> { [weak self] in
-            let model = self?.coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil, isUsedBackgroundContext: isUseBackground)
+            let model = self?.coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: [NSSortDescriptor(key: "creationDate", ascending: true)], isUsedBackgroundContext: isUseBackground)
             return model
         }
         operation.completionBlock = { [weak self] in
-            self?.model = operation.result!
+            guard let result = operation.result else { return }
+            self?.model = result
             DispatchQueue.main.async {
                 complition?()
             }
@@ -64,11 +65,12 @@ class HomePresenter {
     
     private func createSyncOperation(isUseBackground: Bool, complition: (() -> ())?) {
         let operation = SIMOperation<[Invoice]> { [weak self] in
-            let model = self?.coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil, isUsedBackgroundContext: isUseBackground)
+            let model = self?.coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: [NSSortDescriptor(key: "creationDate", ascending: true)], isUsedBackgroundContext: isUseBackground)
             return model
         }
         operation.completionBlock = { [weak self] in
-            self?.model = operation.result!
+            guard let result = operation.result else { return }
+            self?.model = result
             DispatchQueue.main.async {
                 complition?()
             }
