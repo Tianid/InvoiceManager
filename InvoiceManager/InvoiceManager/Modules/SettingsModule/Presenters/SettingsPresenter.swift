@@ -60,7 +60,7 @@ class SettingsPresenter {
         switch result {
         case .success(let _models):
             SecurityService.importBackup(models: _models) {
-                NotificationCenter.default.post(name: .backupDidImported, object: nil)
+                NotificationCenter.default.post(name: .didImportOrDrop, object: nil)
             }
         case .failure(let error):
             print(error)
@@ -101,7 +101,9 @@ class SettingsPresenter {
     private func dropAlert(message: String) ->  UIAlertController {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Drop", style: .destructive, handler: { (_) in
-            SecurityService.dropCoreData(successor: nil)
+            SecurityService.dropCoreData {
+                NotificationCenter.default.post(name: .didImportOrDrop, object: nil)
+            }
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil ))

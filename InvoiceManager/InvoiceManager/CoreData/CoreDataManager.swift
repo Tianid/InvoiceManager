@@ -440,6 +440,7 @@ extension CoreDataManager: ICoreDataManager {
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: request)
         do {
             try context.executeAndMergeChanges(using: batchDeleteRequest)
+            context.reset()
             return .success(())
         } catch {
             print(error)

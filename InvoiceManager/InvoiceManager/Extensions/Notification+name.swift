@@ -10,5 +10,5 @@ import Foundation
 
 extension Notification.Name {
     static let modelsDidChanged = Notification.Name("modelsDidChanged")
-    static let backupDidImported = Notification.Name("backupDidImported")
+    static let didImportOrDrop = Notification.Name("didImportOrDrop")
 }

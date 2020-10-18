@@ -60,13 +60,13 @@
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bbF-k6-CF1">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bbF-k6-CF1">
                                 <rect key="frame" x="284" y="46" width="16" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="0P0-wv-ohx"/>
                                     <constraint firstAttribute="height" constant="18" id="zCp-Gb-mdW"/>
                                 </constraints>
-                                <state key="normal" image="trash" catalog="system"/>
+                                <state key="normal" image="trash"/>
                                 <connections>
                                     <action selector="deleteButtonAction:" destination="C0L-I4-30X" eventType="touchUpInside" id="Bky-ek-wjk"/>
                                 </connections>
@@ -114,6 +114,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="trash" catalog="system" width="121" height="128"/>
+        <image name="trash" width="96" height="109"/>
     </resources>
 </document>

@@ -34,6 +34,11 @@ class SettingsVC: UIViewController {
 
 extension SettingsVC: ISettingsVC {
     func presentVC(view: UIViewController) {
+        if let popoverController = view.popoverPresentationController {
+            popoverController.sourceView = settingsView
+            popoverController.sourceRect = CGRect(x: settingsView!.bounds.midX, y: settingsView!.bounds.midY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+        }
         present(view, animated: true)
     }
     
@@ -41,6 +46,11 @@ extension SettingsVC: ISettingsVC {
         let documentPicker = UIDocumentPickerViewController(documentTypes: [kUTTypeItem as String], in: .import)
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
+        
+        if let popoverController = documentPicker.popoverPresentationController {
+            popoverController.sourceView = settingsView
+            popoverController.sourceRect = CGRect(x: settingsView!.bounds.midX, y: settingsView!.bounds.midY, width: 0, height: 0)
+        }
         self.present(documentPicker, animated: true)
     }
 }

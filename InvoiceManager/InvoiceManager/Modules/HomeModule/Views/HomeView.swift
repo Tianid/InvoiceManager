@@ -58,6 +58,7 @@ class HomeView: UIView {
             imageView.image = UIImage(systemName: "arrow.down.left.circle")
         } else {
             // Fallback on earlier versions
+            imageView.image = UIImage(named: "arrow.down.left.circle.png")
         }
         
         imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
@@ -87,6 +88,7 @@ class HomeView: UIView {
             imageView.image = UIImage(systemName: "arrow.up.right.circle")
         } else {
             // Fallback on earlier versions
+            imageView.image = UIImage(named: "arrow.up.right.circle.png")
         }
         
         imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
@@ -141,6 +143,10 @@ class HomeView: UIView {
             button.setImage(UIImage(systemName: "plus.app"), for: .normal)
         } else {
             // Fallback on earlier versions
+            button.setImage(UIImage(named: "plus.square"), for: .normal)
+            button.imageView?.layer.borderWidth = 2
+            button.imageView?.layer.borderColor = UIColor.systemBlue.cgColor
+            button.imageView?.layer.cornerRadius = 4
         }
         return button
     }()
@@ -153,6 +159,7 @@ class HomeView: UIView {
             button.setImage(UIImage(systemName: "slider.horizontal.3"), for: .normal)
         } else {
             // Fallback on earlier versions
+            button.setImage(UIImage(named: "slider.horizontal.3.png"), for: .normal)
         }
         
         return button
@@ -174,7 +181,7 @@ class HomeView: UIView {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: .backupDidImported, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didImportOrDrop, object: nil)
     }
     
     //MARK: - Func
@@ -216,8 +223,23 @@ class HomeView: UIView {
         flowLayout.invalidateLayout()
     }
     
+    func configureUI() {
+        let color = UIColor(named: "CustomBorder")?.cgColor
+        let last = headerView.layer.sublayers?.last
+        if last?.backgroundColor == color {
+            return
+        }
+        
+        guard headerView.frame.height != 0 && headerView.frame.width != 0 else { return }
+        let bottomBorder = CALayer()
+        bottomBorder.frame = CGRect(x: 0, y: headerView.frame.height, width: headerView.frame.width, height: 1)
+        bottomBorder.backgroundColor = color
+        
+        headerView.layer.addSublayer(bottomBorder)
+    }
+    
     private func configureObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(onBackupDidImported), name: .backupDidImported, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidImportOrDrop), name: .didImportOrDrop, object: nil)
     }
     
     private func refreshUIData() {
@@ -307,9 +329,9 @@ class HomeView: UIView {
         )
         
         addButton.anchor(top: collectionPanel.topAnchor,
-                         leading: collectionPanel.leadingAnchor,
                          bottom:  collectionPanel.bottomAnchor,
-                         trailing: collectionPanel.trailingAnchor)
+                         size: CGSize(width: 30, height: 30),
+                         centerX: collectionPanel.centerXAnchor)
         
         //MARK: collectionView constraints
         
@@ -325,21 +347,6 @@ class HomeView: UIView {
         collectionView.dataSource = self
         collectionView.register(HomeViewCollectionViewCell.self, forCellWithReuseIdentifier: identifier)
         collectionView.register(NewInvoiceCollectionViewCell.self, forCellWithReuseIdentifier: newInvoiceIdentifier)
-    }
-    
-    private func configureUI() {
-        let color = UIColor(named: "CustomBorder")?.cgColor
-        let last = headerView.layer.sublayers?.last
-        if last?.backgroundColor == color {
-            return
-        }
-        
-        guard headerView.frame.height != 0 && headerView.frame.width != 0 else { return }
-        let bottomBorder = CALayer()
-        bottomBorder.frame = CGRect(x: 0, y: headerView.frame.height, width: headerView.frame.width, height: 1)
-        bottomBorder.backgroundColor = color
-        
-        headerView.layer.addSublayer(bottomBorder)
     }
     
     private func setupInvoiceData() {
@@ -364,10 +371,11 @@ class HomeView: UIView {
     private func refreshData(isUseBackground: Bool) {
         presenter?.refreshCollectionData(isUseBackground: isUseBackground) { [weak self] in
             self?.collectionView.reloadData()
+            self?.refreshUIData()
         }
     }
     
-    @objc private func onBackupDidImported() {
+    @objc private func onDidImportOrDrop() {
         print(#function)
         refreshData(isUseBackground: true)
     }
@@ -448,11 +456,6 @@ class HomeView: UIView {
             mockView?.removeFromSuperview()
             mockView = nil
         }
-    }
-    
-    override func layoutSubviews() {
-        configureUI()
-        super.layoutSubviews()
     }
 }
 

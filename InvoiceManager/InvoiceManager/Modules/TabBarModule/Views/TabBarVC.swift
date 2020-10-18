@@ -45,10 +45,10 @@ extension TabBarVC: ITabBarVC {
             profileItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), selectedImage:  UIImage(systemName: "gear"))
         } else {
             
-            homeItem = UITabBarItem(title: "Home", image: UIImage(named: "house"), selectedImage:  UIImage(named: "house.fill"))
-            categoryItem = UITabBarItem(title: "Category", image: UIImage(named: "tray.2"), selectedImage:  UIImage(named: "tray.2.fill"))
-            chartItem = UITabBarItem(title: "Chart", image: UIImage(named: "chart.pie"), selectedImage:  UIImage(named: "chart.pie.fill"))
-            profileItem = UITabBarItem(title: "Profile", image: UIImage(named: "person"), selectedImage:  UIImage(named: "person.fill"))
+            homeItem = UITabBarItem(title: "Home", image: UIImage(named: "house.png"), selectedImage:  UIImage(named: "house.fill.png"))
+            categoryItem = UITabBarItem(title: "Category", image: UIImage(named: "tray.2.png"), selectedImage:  UIImage(named: "tray.2.fill.png"))
+            chartItem = UITabBarItem(title: "Chart", image: UIImage(named: "chart.pie.png"), selectedImage:  UIImage(named: "chart.pie.fill.png"))
+            profileItem = UITabBarItem(title: "Profile", image: UIImage(named: "gear.png"), selectedImage:  UIImage(named: "gear.png"))
         }
         
         homeController.tabBarItem = homeItem

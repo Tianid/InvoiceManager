@@ -22,6 +22,7 @@ class BillCategoryView: UIView {
             button.setImage(UIImage(systemName: "chevron.compact.down"), for: .normal)
         } else {
             // Fallback on earlier versions
+            button.setImage(UIImage(named: "chevron.compact.down"), for: .normal)
         }
         
         button.addTarget(self, action: #selector(dismissCategory), for: .touchUpInside)
@@ -57,6 +58,7 @@ class BillCategoryView: UIView {
         addSubview(tableView)
         
         dismissButton.anchor(top: safeAreaLayoutGuide.topAnchor,
+                             size: CGSize(width: 20, height: 20),
                              centerX: centerXAnchor)
         
         tableView.anchor(top: dismissButton.safeAreaLayoutGuide.bottomAnchor,
@@ -82,6 +84,7 @@ class BillCategoryView: UIView {
 extension BillCategoryView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter?.categorySelected(indexPath: indexPath)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }
 
