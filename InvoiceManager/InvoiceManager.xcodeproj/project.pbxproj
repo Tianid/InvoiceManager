@@ -72,6 +72,7 @@
 		12B0EB6D25092D9800A67B79 /* TransitionDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB6C25092D9800A67B79 /* TransitionDriver.swift */; };
 		12B0EB6F2509323600A67B79 /* CGPoint+Velocity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB6E2509323600A67B79 /* CGPoint+Velocity.swift */; };
 		12B0EB712509341E00A67B79 /* TransitionDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0EB702509341E00A67B79 /* TransitionDirection.swift */; };
+		12B6182F253DDAB20024BC34 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B6182E253DDAB20024BC34 /* HeaderView.swift */; };
 		12B69DAB253B1B3A00751D63 /* AESCryptable in Frameworks */ = {isa = PBXBuildFile; productRef = 12B69DAA253B1B3A00751D63 /* AESCryptable */; };
 		12B69DAD253B37E800751D63 /* NSManagedObjectContext+mergeChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B69DAC253B37E800751D63 /* NSManagedObjectContext+mergeChanges.swift */; };
 		12B7B4F32527801200BC42C2 /* CategorisedBillsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B7B4F12527801200BC42C2 /* CategorisedBillsTableViewCell.swift */; };
@@ -203,6 +204,7 @@
 		12B0EB6C25092D9800A67B79 /* TransitionDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionDriver.swift; sourceTree = "<group>"; };
 		12B0EB6E2509323600A67B79 /* CGPoint+Velocity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Velocity.swift"; sourceTree = "<group>"; };
 		12B0EB702509341E00A67B79 /* TransitionDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionDirection.swift; sourceTree = "<group>"; };
+		12B6182E253DDAB20024BC34 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		12B69DAC253B37E800751D63 /* NSManagedObjectContext+mergeChanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+mergeChanges.swift"; sourceTree = "<group>"; };
 		12B7B4F12527801200BC42C2 /* CategorisedBillsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorisedBillsTableViewCell.swift; sourceTree = "<group>"; };
 		12B7B4F22527801200BC42C2 /* CategorisedBillsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategorisedBillsTableViewCell.xib; sourceTree = "<group>"; };
@@ -736,6 +738,7 @@
 				129BC17F24FFE76E004BD17A /* CardView.swift */,
 				12CDE57C2511068B00502A25 /* NewInvoiceCollectionViewCell.swift */,
 				12504A80251631E300B58923 /* DTTextField.swift */,
+				12B6182E253DDAB20024BC34 /* HeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1167,6 +1170,7 @@
 				12D1D5C424FD1D2A0077FEF6 /* AssemblerModuleBuilder.swift in Sources */,
 				12DE149425348C2B004FF6F5 /* PChartViewCell.swift in Sources */,
 				12F976AA25069647008DD07C /* InvoiceContainer.swift in Sources */,
+				12B6182F253DDAB20024BC34 /* HeaderView.swift in Sources */,
 				1212F6CB2507D0810016693B /* BillDetailsVC.swift in Sources */,
 				127174332539D25200D9055E /* SettingsView.swift in Sources */,
 				12EFC28E253CA70A00E8275C /* SIMOperation.swift in Sources */,

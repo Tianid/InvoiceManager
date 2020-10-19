@@ -10,4 +10,5 @@ protocol IChartPresenter {
     var model: [Invoice]! { get set }
     func prepareCollectionViewCell(cell: ChartViewCell, index: Int) -> ChartViewCell
     func refreshChartData(isUseBackground: Bool, complition: (() -> ())?)
+    func setUserInfo(userInfo: [AnyHashable: Any], complition: (() -> ())?)
 }

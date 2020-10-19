@@ -13,7 +13,11 @@ import func CommonCrypto.CC_MD5
 import typealias CommonCrypto.CC_LONG
 
 enum JSONError: String, Error {
-    case notGetAllData, JSONEncodeError, JSONDecodeError, PasswordError = "Wrong password"
+    case notGetAllData
+    case noDataInStorage = "Storage is empty"
+    case JSONEncodeError
+    case JSONDecodeError
+    case PasswordError = "Wrong password"
 }
 
 class SecurityService {
@@ -27,7 +31,7 @@ class SecurityService {
     }
     
     private static func encodeToJSON() -> Result<String?, JSONError> {
-        guard let invoices = shared.coreDataManager?.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil, isUsedBackgroundContext: false), !invoices.isEmpty else { return .failure(.notGetAllData) }
+        guard let invoices = shared.coreDataManager?.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil, isUsedBackgroundContext: false), !invoices.isEmpty else { return .failure(.noDataInStorage) }
         do {
             let jsonData = try JSONEncoder().encode(invoices)
             let jsonString = String(data: jsonData, encoding: .utf8)
@@ -102,7 +106,7 @@ class SecurityService {
             let key = MD5Hex(string: password)
             return encrypt(key: key, string: json)
         case .failure(let error):
-            return .failure(error as JSONError)
+            return .failure(error)
         }
     }
     

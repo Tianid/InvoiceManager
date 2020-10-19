@@ -58,6 +58,12 @@ class ChartPresenter {
 }
 
 extension ChartPresenter: IChartPresenter {
+    func setUserInfo(userInfo: [AnyHashable : Any], complition: (() -> ())?) {
+        let model = userInfo["IMData"] as? [Invoice]
+        self.model = model ?? []
+        complition?()
+    }
+    
     func prepareCollectionViewCell(cell: ChartViewCell, index: Int) -> ChartViewCell {
         let lModel = model[index]
         let dateFormatter = DateFormatter()

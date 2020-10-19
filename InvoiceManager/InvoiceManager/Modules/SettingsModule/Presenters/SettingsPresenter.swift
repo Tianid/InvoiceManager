@@ -61,7 +61,8 @@ class SettingsPresenter {
         case .success(let _models):
             SecurityService.importBackup(models: _models) { [weak self] in
                 self?.view?.presentVC(view: (self?.messageAlert(message: "Import success"))!)
-                NotificationCenter.default.post(name: .didImportOrDrop, object: nil)
+//                NotificationCenter.default.post(name: .didImportOrDrop, object: nil)
+                NotificationCenter.default.post(name: .didImportOrDrop, object: nil, userInfo: ["IMData": _models])
             }
         case .failure(let error):
             view?.presentVC(view: messageAlert(message: error.rawValue))
@@ -77,7 +78,11 @@ class SettingsPresenter {
             let activity = fileActivityItem(data: encrtptedData)
             view?.presentVC(view: activity)
         case .failure(let error):
-            print(error)
+            if let jSONerror = error as? JSONError {
+                view?.presentVC(view: messageAlert(message: jSONerror.rawValue))
+            } else {
+                view?.presentVC(view: messageAlert(message: "Export error"))
+            }
         }
     }
     
@@ -149,6 +154,7 @@ extension SettingsPresenter: ISettingsPresenter {
     func prepareTableViewCell(cell: UITableViewCell, indexPath: IndexPath) -> UITableViewCell {
         cell.accessoryType = .disclosureIndicator
         cell.textLabel?.text = model[indexPath.row].name
+        cell.textLabel?.textColor = indexPath.row == 3 ? .systemRed : nil
         cell.imageView?.image = UIImage(named: model[indexPath.row].imageName)
         return cell
     }

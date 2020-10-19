@@ -53,8 +53,6 @@ class HomeVCTest: XCTestCase {
         XCTAssertNoThrow(presenter.deleteInvoice(complition: nil))
         XCTAssertNoThrow(presenter.showNewInvoice())
         XCTAssertNoThrow(presenter.presentAlert(alert: UIAlertController(title: nil, message: nil, preferredStyle: .alert)))
-        XCTAssertNoThrow(presenter.refreshCollectionData(complition: nil))
-        XCTAssertNoThrow(presenter.refreshCollectionData(isUseBackground: true, complition: nil))
     }
     
     func testHomeView() {

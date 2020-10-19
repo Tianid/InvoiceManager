@@ -47,45 +47,13 @@ class HomePresenter {
     }
     
     //MARK: - Func
-    
-    private func createAsyncOperation(isUseBackground: Bool, complition: (() -> ())?) {
-        let operation = AIMOperation<[Invoice]> { [weak self] in
-            let model = self?.coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: [NSSortDescriptor(key: "creationDate", ascending: true)], isUsedBackgroundContext: isUseBackground)
-            return model
-        }
-        operation.completionBlock = { [weak self] in
-            guard let result = operation.result else { return }
-            self?.model = result
-            DispatchQueue.main.async {
-                complition?()
-            }
-        }
-        OperationQueue().addOperation(operation)
-    }
-    
-    private func createSyncOperation(isUseBackground: Bool, complition: (() -> ())?) {
-        let operation = SIMOperation<[Invoice]> { [weak self] in
-            let model = self?.coreDataManager.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: [NSSortDescriptor(key: "creationDate", ascending: true)], isUsedBackgroundContext: isUseBackground)
-            return model
-        }
-        operation.completionBlock = { [weak self] in
-            guard let result = operation.result else { return }
-            self?.model = result
-            DispatchQueue.main.async {
-                complition?()
-            }
-        }
-        OperationQueue().addOperation(operation)
-    }
 }
 
 extension HomePresenter: IHomePresenter {
-    func refreshCollectionData(isUseBackground: Bool = false, complition: (() -> ())?) {
-        if isUseBackground {
-            createAsyncOperation(isUseBackground: isUseBackground, complition: complition)
-        } else {
-            createSyncOperation(isUseBackground: isUseBackground, complition: complition)
-        }
+    func setUserInfo(userInfro: [AnyHashable : Any], complition: (() -> ())?) {
+        let model = userInfro["IMData"] as? [Invoice]
+        self.model = model ?? []
+        complition?()
     }
     
     func generateCellPresenter(invoice: Invoice) -> IPHomeCollectionViewCell {

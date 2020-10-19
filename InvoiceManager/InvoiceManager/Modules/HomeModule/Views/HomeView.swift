@@ -30,8 +30,8 @@ class HomeView: UIView {
     }
     private let headerViewHeightConst = 200
     
-    private var headerView: UIView = {
-        let view = UIView()
+    private var headerView: HeaderView = {
+        let view = HeaderView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor(named: "CustomColor")
         
@@ -223,28 +223,8 @@ class HomeView: UIView {
         flowLayout.invalidateLayout()
     }
     
-    func configureUI() {
-        let color = UIColor(named: "CustomBorder")?.cgColor
-        let last = headerView.layer.sublayers?.last
-        if last?.backgroundColor == color {
-            headerView.layer.sublayers?.removeLast()
-        }
-        
-        guard headerView.frame.height != 0 && headerView.frame.width != 0 else { return }
-        let bottomBorder = CALayer()
-        bottomBorder.frame = CGRect(x: 0, y: headerView.frame.height, width: headerView.frame.width, height: 1)
-        bottomBorder.backgroundColor = color
-        
-        headerView.layer.addSublayer(bottomBorder)
-    }
-    
-    override func layoutSubviews() {
-        configureUI()
-        super.layoutSubviews()
-    }
-    
     private func configureObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(onDidImportOrDrop), name: .didImportOrDrop, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidImportOrDrop(_:)), name: .didImportOrDrop, object: nil)
     }
     
     private func refreshUIData() {
@@ -344,7 +324,7 @@ class HomeView: UIView {
                               leading: headerView.leadingAnchor,
                               bottom: bottomAnchor,
                               trailing: headerView.trailingAnchor,
-                              padding: UIEdgeInsets(top: -13, left: 0, bottom: 20, right: 0))
+                              padding: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0))
     }
     
     private func configureCollectionView() {
@@ -373,16 +353,17 @@ class HomeView: UIView {
         }
     }
     
-    private func refreshData(isUseBackground: Bool) {
-        presenter?.refreshCollectionData(isUseBackground: isUseBackground) { [weak self] in
+    private func refreshData(userInfo: [AnyHashable: Any]) {
+        presenter?.setUserInfo(userInfro: userInfo, complition: { [weak self] in
             self?.collectionView.reloadData()
             self?.refreshUIData()
-        }
+        })
     }
     
-    @objc private func onDidImportOrDrop() {
+    @objc private func onDidImportOrDrop(_ notification: Notification) {
+        let userInfo = notification.userInfo
         print(#function)
-        refreshData(isUseBackground: true)
+        refreshData(userInfo: userInfo ?? [:])
     }
     
     @objc private func addNewBill(_ sender: UIButton) {
@@ -455,7 +436,8 @@ class HomeView: UIView {
             view.anchor(top: headerView.topAnchor,
                         leading: headerView.leadingAnchor,
                         bottom: headerView.bottomAnchor,
-                        trailing: headerView.trailingAnchor)
+                        trailing: headerView.trailingAnchor,
+                        padding: UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0))
             mockView = view
         } else if !value && mockView != nil {
             mockView?.removeFromSuperview()
@@ -502,7 +484,7 @@ extension HomeView: UICollectionViewDelegateFlowLayout {
             - collectionView.contentInset.left
             - collectionView.contentInset.right
         
-        let referenceHeight = collectionView.safeAreaLayoutGuide.layoutFrame.height
+        let referenceHeight = collectionView.frame.height
             - sectionInset.top
             - sectionInset.bottom
             - collectionView.contentInset.top

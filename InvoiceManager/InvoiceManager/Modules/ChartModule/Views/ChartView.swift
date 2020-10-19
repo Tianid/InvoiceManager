@@ -16,7 +16,7 @@ class ChartView: UIView {
     private var collectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-//        layout.minimumLineSpacing = 5
+        //        layout.minimumLineSpacing = 5
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         let collection = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
@@ -61,9 +61,9 @@ class ChartView: UIView {
     }
     
     private func configureObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(onModelsDidChanged), name: .modelsDidChanged, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(onModelsDidChanged), name: .didImportOrDrop, object: nil)
-
+        NotificationCenter.default.addObserver(self, selector: #selector(onModelsDidChanged(_:)), name: .modelsDidChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidImportOrDrop(_:)), name: .didImportOrDrop, object: nil)
+        
     }
     
     private func refreshData(isUseBackground: Bool) {
@@ -72,7 +72,20 @@ class ChartView: UIView {
         }
     }
     
-    @objc private func onModelsDidChanged() {
+    private func refreshData(userInfo: [AnyHashable: Any]) {
+        presenter?.setUserInfo(userInfo: userInfo, complition: { [weak self] in
+            self?.collectionView.reloadData()
+        })
+    }
+    
+    @objc private func onDidImportOrDrop(_ notification: NSNotification) {
+        let userInfo = notification.userInfo
+        print(#function)
+        refreshData(userInfo: userInfo ?? [:])
+    }
+    
+    @objc private func onModelsDidChanged(_ notification: NSNotification) {
+        print(#function)
         refreshData(isUseBackground: true)
     }
     
@@ -135,11 +148,11 @@ extension ChartView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 6
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 3)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 6
     }

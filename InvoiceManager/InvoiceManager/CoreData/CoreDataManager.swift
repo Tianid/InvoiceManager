@@ -42,7 +42,6 @@ class CoreDataManager {
     private var _context: NSManagedObjectContext
     private var context: NSManagedObjectContext {
         if isUsedBackgroundContext {
-            isUsedBackgroundContext = !isUsedBackgroundContext
             return _backgroundContext
         }
         return _context
@@ -80,7 +79,11 @@ class CoreDataManager {
                         category: Category(name: (cdBill.category?.name)!,
                                            iconImage: (cdBill.category?.iconImageName)!,
                                            section: Section(name: (cdBill.category?.section?.name)!,
+                                                            
+                                                            
                                                             categoryCount: cdBill.category?.section?.category?.count ?? 0),
+                                           
+                                           
                                            creationDate: cdBill.category?.creationDate ?? Date()),
                         modifiedDate: cdBill.modifiedDate ?? Date(),
                         creationDate: cdBill.creationDate ?? Date())
@@ -357,10 +360,13 @@ extension CoreDataManager: ICoreDataManager {
                 let invoice = transformCDInvoiceModelToAppInvoiceModel(cdInvoice: cdInvoice, billsArray: billsArray)
                 invoices.append(invoice)
             }
+            self.isUsedBackgroundContext = false
+            context.reset()
             return invoices
             
         } catch {
             print(error.localizedDescription)
+            self.isUsedBackgroundContext = false
             return []
         }
     }
