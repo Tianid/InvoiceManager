@@ -61,7 +61,6 @@ class SettingsPresenter {
         case .success(let _models):
             SecurityService.importBackup(models: _models) { [weak self] in
                 self?.view?.presentVC(view: (self?.messageAlert(message: "Import success"))!)
-//                NotificationCenter.default.post(name: .didImportOrDrop, object: nil)
                 NotificationCenter.default.post(name: .didImportOrDrop, object: nil, userInfo: ["IMData": _models])
             }
         case .failure(let error):

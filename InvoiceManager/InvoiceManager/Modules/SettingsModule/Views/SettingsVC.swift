@@ -22,7 +22,10 @@ class SettingsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemRed
+        view.backgroundColor = UIColor(named: "CustomBackground")
+        navigationController?.navigationBar.topItem?.title = "Settings"
+        self.navigationItem.largeTitleDisplayMode = .automatic
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func loadView() {

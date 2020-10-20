@@ -13,8 +13,8 @@ class SettingsView: UIView {
     var presenter: ISettingsPresenter?
     private let tableViewIdentifier = "tableViewIdentifier"
     private var tableView: UITableView = {
-        let table = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .plain)
-        table.backgroundColor = .systemPink
+        let table = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .grouped)
+        table.backgroundColor = .clear
         table.tableFooterView = UIView()
         table.isScrollEnabled = false
         return table
