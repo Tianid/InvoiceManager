@@ -2,17 +2,25 @@ PODS:
   - Charts (3.6.0):
     - Charts/Core (= 3.6.0)
   - Charts/Core (3.6.0)
+  - Locksmith (4.0.0)
+  - TOPasscodeViewController (0.0.2)
 
 DEPENDENCIES:
   - Charts
+  - Locksmith
+  - TOPasscodeViewController
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Charts
+    - Locksmith
+    - TOPasscodeViewController
 
 SPEC CHECKSUMS:
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
+  Locksmith: e9bebbaaa4cee3c511bc358a44f843c3fe00e21f
+  TOPasscodeViewController: 03b5df3762a7be1511102093c644a42275bddf24
 
-PODFILE CHECKSUM: eef319fac9df8acc11194e13dc15642cd00a33aa
+PODFILE CHECKSUM: 9e75110fa9ae52bb20e68a232dc7dd88f2494264
 
 COCOAPODS: 1.7.5

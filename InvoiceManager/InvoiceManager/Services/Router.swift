@@ -21,6 +21,7 @@ protocol IRouter: IRouterMain {
     func dismissModuleFromHomeNavigation(complition: (() -> ())?)
     func showNewInvoiceModule(superPresenter: IHomePresenter)
     func showCategorisedBillsModule(category: Category)
+    func showPasscodeSettingsModule()
 }
 
 class Router: IRouter {
@@ -32,7 +33,7 @@ class Router: IRouter {
     private var homeNavigationController: UINavigationController?
     private var categoryNavigationController: UINavigationController?
     private var chartNavigationsController: UINavigationController?
-    private var profileNavigationsController: UINavigationController?
+    private var settingsNavigationsController: UINavigationController?
     
     //MARK: - Init
     init(tabBar: ITabBarVC, assembler: IAssembleBuilder) {
@@ -63,7 +64,7 @@ class Router: IRouter {
             }
             
             if item.viewControllers[0] is SettingsVC {
-                self.profileNavigationsController = item
+                self.settingsNavigationsController = item
                 continue
             }
         }
@@ -99,4 +100,10 @@ class Router: IRouter {
         guard let view = assemblyBuilder?.createCategorisedBillsModule(router: self, category: category) else { return }
         categoryNavigationController?.pushViewController(view, animated: true)
     }
+    
+    func showPasscodeSettingsModule() {
+        guard let view = assemblyBuilder?.createPasscodeSettingsModule(router: self) else { return }
+        settingsNavigationsController?.pushViewController(view, animated: true)
+    }
+
 }

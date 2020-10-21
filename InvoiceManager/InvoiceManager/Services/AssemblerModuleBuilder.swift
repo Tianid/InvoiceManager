@@ -24,6 +24,7 @@ protocol IAssembleBuilder {
     func createBillCategoryModule(router: IRouter, transition: PanelTransition, superPresenter: IBillDetailsPresenter?) -> UIViewController
     func createNewInvoiceModule(router: IRouter, superPresenter: IHomePresenter?) -> UIViewController
     func createCategorisedBillsModule(router: IRouter, category: Category) -> UIViewController
+    func createPasscodeSettingsModule(router: IRouter) -> UIViewController
 }
 
 class AssemblerModuleBuilder: IAssembleBuilder {
@@ -105,4 +106,25 @@ class AssemblerModuleBuilder: IAssembleBuilder {
         view.presenter = presenter
         return view
     }
+    
+    func createPasscodeSettingsModule(router: IRouter) -> UIViewController {
+        let userDefaults = UserDefaults.standard
+        
+        var type = 0
+        var passcode: String? = nil
+        
+        let isPasscodeSet = userDefaults.bool(forKey: requireCurrentPasscodeConst)
+        if isPasscodeSet {
+            type = userDefaults.integer(forKey: passcodeTypeConst)
+            let dict = SecurityService.selectRecordFromKeychaint(for: keychainAccountConst)
+            passcode = dict?[keychainPasscodeConst] as? String
+        }
+        
+        
+        let view = PasscodeSettingsVC()
+        let presenter = PasscodeSettingsPresenter(router: router, view: view, isPasscodeSet: isPasscodeSet, passcode: passcode, type: type)
+        view.presenter = presenter
+        return view
+    }
+
 }

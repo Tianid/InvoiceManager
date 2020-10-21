@@ -33,6 +33,12 @@ class SettingsVC: UIViewController {
         view.presenter = presenter
         self.view = view
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
 }
 
 extension SettingsVC: ISettingsVC {

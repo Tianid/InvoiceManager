@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Locksmith
 import AESCryptable
 import var CommonCrypto.CC_MD5_DIGEST_LENGTH
 import func CommonCrypto.CC_MD5
@@ -25,11 +26,7 @@ class SecurityService {
     static let shared = SecurityService()
     
     private init() { }
-    
-    static func setCoreDataManager(coreDataManager: ICoreDataManager) {
-        shared.coreDataManager = coreDataManager
-    }
-    
+        
     private static func encodeToJSON() -> Result<String?, JSONError> {
         guard let invoices = shared.coreDataManager?.fetchAllInvoicesWithAllBills(predicate: nil, sortDescriptors: nil, isUsedBackgroundContext: false), !invoices.isEmpty else { return .failure(.noDataInStorage) }
         do {
@@ -97,6 +94,10 @@ class SecurityService {
         return md5Hex
     }
     
+    static func setCoreDataManager(coreDataManager: ICoreDataManager) {
+        shared.coreDataManager = coreDataManager
+    }
+    
     static func encryptBackup(password: String) -> Result<Data, Error> {
         let result = encodeToJSON()
         
@@ -138,5 +139,41 @@ class SecurityService {
                 print(error)
             }
         })
+    }
+    
+    //MARK: - Keychain func
+    static func saveRecordIntoKeychain(data: [String: Any], for userAccount: String) -> Result<Void, Error> {
+        do {
+            try Locksmith.saveData(data: data, forUserAccount: userAccount)
+            return .success(())
+        } catch {
+            print(error)
+            return .failure(error)
+        }
+    }
+    
+    static func updateRecordInKeychain(data: [String: Any], for userAccount: String) -> Result<Void, Error> {
+        do {
+            try Locksmith.updateData(data: data, forUserAccount: userAccount)
+            return .success(())
+        } catch {
+            print(error)
+            return .failure(error)
+        }
+    }
+    
+    static func deleteRecordInKeychain(for userAccount: String) -> Result<Void, Error> {
+        do {
+            try Locksmith.deleteDataForUserAccount(userAccount: userAccount)
+            return .success(())
+        } catch {
+            print(error)
+            return .failure(error)
+        }
+    }
+    
+    static func selectRecordFromKeychaint(for userAccount: String) -> [String: Any]? {
+        let dictionary = Locksmith.loadDataForUserAccount(userAccount: userAccount)
+        return dictionary
     }
 }

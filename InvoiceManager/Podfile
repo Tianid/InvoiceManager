@@ -7,7 +7,8 @@ target 'InvoiceManager' do
 
   # Pods for InvoiceManager
   pod 'Charts'
-
+  pod 'TOPasscodeViewController'
+  pod 'Locksmith'
   target 'InvoiceManagerTests' do
     inherit! :search_paths
     # Pods for testing

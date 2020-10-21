@@ -142,7 +142,7 @@ extension SettingsPresenter: ISettingsPresenter {
         case 1:
             view?.presentVC(view: backupAlert(message: "Enter password", action: .Export))
         case 2:
-            break
+            router.showPasscodeSettingsModule()
         case 3:
             view?.presentVC(view: dropAlert(message: "You definitely want to drop all data ?"))
         default:

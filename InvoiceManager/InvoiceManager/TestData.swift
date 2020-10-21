@@ -101,3 +101,8 @@ let testSettings: [Settings] = [Settings(name: "Import backup", imageName: "plus
                                 Settings(name: "Export backup", imageName: "plus"),
                                 Settings(name: "Passcode", imageName: "plus"),
                                 Settings(name: "Drop data", imageName: "plus")]
+
+let requireCurrentPasscodeConst = "requireCurrentPasscode"
+let passcodeTypeConst = "passcodeType"
+let keychainAccountConst = "keychainAccount"
+let keychainPasscodeConst = "keychainPasscode"
