@@ -27,6 +27,11 @@
 		1228B74525013AE9003822A4 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1228B74425013AE9003822A4 /* TestData.swift */; };
 		123326BF2535DFDC00A31BDF /* Date+specialDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123326BE2535DFDC00A31BDF /* Date+specialDate.swift */; };
 		123326C12536208700A31BDF /* IMColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123326C02536208700A31BDF /* IMColors.swift */; };
+		123708212541A8FE00D2868B /* PasscodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123708202541A8FE00D2868B /* PasscodeVC.swift */; };
+		123708232541ACDD00D2868B /* PasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123708222541ACDD00D2868B /* PasscodeView.swift */; };
+		123708252541AD0D00D2868B /* IPasscodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123708242541AD0D00D2868B /* IPasscodeVC.swift */; };
+		123708272541AD2700D2868B /* IPasscodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123708262541AD2700D2868B /* IPasscodePresenter.swift */; };
+		123708292541AD3A00D2868B /* PasscodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123708282541AD3A00D2868B /* PasscodePresenter.swift */; };
 		123CDF9D25373A7A00AFEDEC /* Notification+name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123CDF9C25373A7A00AFEDEC /* Notification+name.swift */; };
 		123CDFA0253757E200AFEDEC /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123CDF9F253757E200AFEDEC /* AsyncOperation.swift */; };
 		123CDFA32537580E00AFEDEC /* AIMOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123CDFA22537580E00AFEDEC /* AIMOperation.swift */; };
@@ -164,6 +169,11 @@
 		1228B74425013AE9003822A4 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		123326BE2535DFDC00A31BDF /* Date+specialDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+specialDate.swift"; sourceTree = "<group>"; };
 		123326C02536208700A31BDF /* IMColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMColors.swift; sourceTree = "<group>"; };
+		123708202541A8FE00D2868B /* PasscodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeVC.swift; sourceTree = "<group>"; };
+		123708222541ACDD00D2868B /* PasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeView.swift; sourceTree = "<group>"; };
+		123708242541AD0D00D2868B /* IPasscodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPasscodeVC.swift; sourceTree = "<group>"; };
+		123708262541AD2700D2868B /* IPasscodePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPasscodePresenter.swift; sourceTree = "<group>"; };
+		123708282541AD3A00D2868B /* PasscodePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodePresenter.swift; sourceTree = "<group>"; };
 		123CDF9C25373A7A00AFEDEC /* Notification+name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+name.swift"; sourceTree = "<group>"; };
 		123CDF9F253757E200AFEDEC /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		123CDFA22537580E00AFEDEC /* AIMOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIMOperation.swift; sourceTree = "<group>"; };
@@ -340,6 +350,42 @@
 			path = Presenters;
 			sourceTree = "<group>";
 		};
+		1237081B2541A80000D2868B /* PasscodeModule */ = {
+			isa = PBXGroup;
+			children = (
+				1237081E2541A81900D2868B /* Presenters */,
+				1237081D2541A81000D2868B /* Protocols */,
+				1237081C2541A80C00D2868B /* Views */,
+			);
+			path = PasscodeModule;
+			sourceTree = "<group>";
+		};
+		1237081C2541A80C00D2868B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				123708202541A8FE00D2868B /* PasscodeVC.swift */,
+				123708222541ACDD00D2868B /* PasscodeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1237081D2541A81000D2868B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				123708242541AD0D00D2868B /* IPasscodeVC.swift */,
+				123708262541AD2700D2868B /* IPasscodePresenter.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		1237081E2541A81900D2868B /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				123708282541AD3A00D2868B /* PasscodePresenter.swift */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
 		123CDF9E253757C300AFEDEC /* Operations */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,14 +438,14 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		1295B28E253F3AC50006E91B /* PasscodeModule */ = {
+		1295B28E253F3AC50006E91B /* PasscodeSettingsModule */ = {
 			isa = PBXGroup;
 			children = (
 				1295B291253F3AD80006E91B /* Presenters */,
 				1295B290253F3AD20006E91B /* Protocols */,
 				1295B28F253F3ACE0006E91B /* Views */,
 			);
-			path = PasscodeModule;
+			path = PasscodeSettingsModule;
 			sourceTree = "<group>";
 		};
 		1295B28F253F3ACE0006E91B /* Views */ = {
@@ -673,7 +719,8 @@
 		12D1D5BF24FD1CB90077FEF6 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				1295B28E253F3AC50006E91B /* PasscodeModule */,
+				1237081B2541A80000D2868B /* PasscodeModule */,
+				1295B28E253F3AC50006E91B /* PasscodeSettingsModule */,
 				12AF064A2526487800B44B6B /* CategorisedBillsModule */,
 				12AB499525126C570069B713 /* NewInvoiceModule */,
 				12C674A1250A59B400D7FCA4 /* BillCategoryModule */,
@@ -1158,6 +1205,7 @@
 				12AB499425124B710069B713 /* DropDownMenu.swift in Sources */,
 				12B0EB6D25092D9800A67B79 /* TransitionDriver.swift in Sources */,
 				12B0EB61250915C700A67B79 /* PanelTransition.swift in Sources */,
+				123708212541A8FE00D2868B /* PasscodeVC.swift in Sources */,
 				12D1D5CE24FD1F220077FEF6 /* TabBarVC.swift in Sources */,
 				12AF0658252649CD00B44B6B /* CategorisedBillsPresenter.swift in Sources */,
 				1295B299253F3B560006E91B /* IPasscodeSettingsPresenter.swift in Sources */,
@@ -1201,10 +1249,13 @@
 				12AF06522526498D00B44B6B /* CategorisedBillsView.swift in Sources */,
 				12B0EB6625091ACD00A67B79 /* DimmPresentationController.swift in Sources */,
 				12CDE57D2511068B00502A25 /* NewInvoiceCollectionViewCell.swift in Sources */,
+				123708252541AD0D00D2868B /* IPasscodeVC.swift in Sources */,
+				123708232541ACDD00D2868B /* PasscodeView.swift in Sources */,
 				12AB49A025126CDB0069B713 /* NewInvoicePresenter.swift in Sources */,
 				1212F6BD2507B6C00016693B /* IHomeView.swift in Sources */,
 				12B0EB6925091D8000A67B79 /* PresentAnimation.swift in Sources */,
 				12D1D5F224FD29330077FEF6 /* ICategoryPresenter.swift in Sources */,
+				123708292541AD3A00D2868B /* PasscodePresenter.swift in Sources */,
 				12AF0656252649B300B44B6B /* ICategorisedBillsPresenter.swift in Sources */,
 				12B7B4F32527801200BC42C2 /* CategorisedBillsTableViewCell.swift in Sources */,
 				1295B29B253F3B620006E91B /* PasscodeSettingsPresenter.swift in Sources */,
@@ -1237,6 +1288,7 @@
 				12C1878A251E6ECC00F8B009 /* PHomeCollectionViewCell.swift in Sources */,
 				12AB7B9624FD50BD00E2986D /* Category.swift in Sources */,
 				12DE149025348274004FF6F5 /* ChartView.swift in Sources */,
+				123708272541AD2700D2868B /* IPasscodePresenter.swift in Sources */,
 				120F6C672524CB8F005A36BD /* ExpandableListViewController.swift in Sources */,
 				12504A81251631E300B58923 /* DTTextField.swift in Sources */,
 			);

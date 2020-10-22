@@ -22,7 +22,7 @@ class PasscodeSettingsVC: UIViewController {
         }
     }
     
-    private var passcodeView: PasscodeSettingsView? {
+    private var passcodeSettingsView: PasscodeSettingsView? {
         guard isViewLoaded else { return nil }
         return (self.view as! PasscodeSettingsView)
     }
@@ -47,12 +47,12 @@ class PasscodeSettingsVC: UIViewController {
 }
 
 extension PasscodeSettingsVC: IPasscodeSettingsVC {
-    func dissmisToPasscodeSettings(isPasscodeSet: Bool) {
+    func dismissToPasscodeSettings(isPasscodeSet: Bool) {
         for controller in self.navigationController!.viewControllers as Array {
             if controller.isKind(of: PasscodeSettingsVC.self) {
            
                 self.navigationController?.popViewControllerTo(controller: controller, animated: true, completion: {
-                    self.passcodeView?.changeViews(isPasscodeSet: isPasscodeSet)
+                    self.passcodeSettingsView?.changeViews(isPasscodeSet: isPasscodeSet)
                 })
                 break
             }

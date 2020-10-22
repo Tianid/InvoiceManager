@@ -20,14 +20,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YE1-ca-2Ca" customClass="CardView" customModule="InvoiceManager" customModuleProvider="target">
                         <rect key="frame" x="6" y="6" width="308" height="69"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cam-Gd-k9d">
-                                <rect key="frame" x="8" y="9" width="50" height="50"/>
-                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="W6v-SW-rwH"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTr-HA-ztP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="752" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTr-HA-ztP">
                                 <rect key="frame" x="66" y="9" width="234" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -42,19 +35,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDv-BS-m1R">
-                                <rect key="frame" x="66" y="28" width="123" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDv-BS-m1R">
+                                <rect key="frame" x="66" y="28" width="126" height="17"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="123" id="jm5-f4-MrS"/>
+                                    <constraint firstAttribute="width" constant="126" id="jm5-f4-MrS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffL-MG-AgQ">
-                                <rect key="frame" x="66" y="43.5" width="123" height="13.5"/>
+                                <rect key="frame" x="66" y="44" width="126" height="14"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="123" id="9Nk-WT-jMM"/>
+                                    <constraint firstAttribute="width" constant="126" id="9Nk-WT-jMM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -71,33 +64,40 @@
                                     <action selector="deleteButtonAction:" destination="C0L-I4-30X" eventType="touchUpInside" id="Bky-ek-wjk"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cam-Gd-k9d">
+                                <rect key="frame" x="8" y="9.5" width="50" height="50"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="4vm-Y3-8AK"/>
+                                    <constraint firstAttribute="height" constant="50" id="cEc-LK-sjH"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="YTr-HA-ztP" firstAttribute="top" secondItem="YE1-ca-2Ca" secondAttribute="top" constant="9" id="0we-KO-eVD"/>
-                            <constraint firstItem="ffL-MG-AgQ" firstAttribute="leading" secondItem="Cam-Gd-k9d" secondAttribute="trailing" constant="8" id="6Ez-39-GeP"/>
-                            <constraint firstAttribute="bottom" secondItem="ffL-MG-AgQ" secondAttribute="bottom" constant="12" id="BCU-FF-AVu"/>
-                            <constraint firstItem="bbF-k6-CF1" firstAttribute="top" secondItem="2bW-Ql-RgK" secondAttribute="bottom" constant="4" id="CCr-QO-Jcg"/>
-                            <constraint firstItem="Cam-Gd-k9d" firstAttribute="top" secondItem="YE1-ca-2Ca" secondAttribute="top" constant="9" id="GaY-wG-uw3"/>
-                            <constraint firstAttribute="bottom" secondItem="bbF-k6-CF1" secondAttribute="bottom" constant="5" id="Kht-gh-SNJ"/>
-                            <constraint firstItem="ffL-MG-AgQ" firstAttribute="top" secondItem="WDv-BS-m1R" secondAttribute="bottom" constant="-1.5" id="QE3-9d-EEx"/>
-                            <constraint firstItem="2bW-Ql-RgK" firstAttribute="top" secondItem="YE1-ca-2Ca" secondAttribute="top" constant="24" id="Rbj-BS-Qrq"/>
-                            <constraint firstItem="YTr-HA-ztP" firstAttribute="leading" secondItem="Cam-Gd-k9d" secondAttribute="trailing" constant="8" id="Vka-md-eho"/>
-                            <constraint firstItem="WDv-BS-m1R" firstAttribute="leading" secondItem="Cam-Gd-k9d" secondAttribute="trailing" constant="8" id="ghM-8T-RJ6"/>
-                            <constraint firstItem="WDv-BS-m1R" firstAttribute="top" secondItem="YTr-HA-ztP" secondAttribute="bottom" constant="-2" id="jfQ-qd-F5D"/>
-                            <constraint firstAttribute="trailing" secondItem="YTr-HA-ztP" secondAttribute="trailing" constant="8" id="ksg-jE-CYo"/>
-                            <constraint firstAttribute="trailing" secondItem="bbF-k6-CF1" secondAttribute="trailing" constant="8" id="quB-IP-6sO"/>
-                            <constraint firstAttribute="bottom" secondItem="Cam-Gd-k9d" secondAttribute="bottom" constant="10" id="tUt-88-smV"/>
-                            <constraint firstAttribute="trailing" secondItem="2bW-Ql-RgK" secondAttribute="trailing" constant="8" id="tqh-q8-Yzu"/>
-                            <constraint firstItem="Cam-Gd-k9d" firstAttribute="leading" secondItem="YE1-ca-2Ca" secondAttribute="leading" constant="8" id="zkX-4y-aSe"/>
+                            <constraint firstAttribute="trailing" secondItem="2bW-Ql-RgK" secondAttribute="trailing" constant="8" id="3tt-K3-XY1"/>
+                            <constraint firstAttribute="bottom" secondItem="bbF-k6-CF1" secondAttribute="bottom" constant="5" id="6A1-SV-7Tl"/>
+                            <constraint firstAttribute="trailing" secondItem="YTr-HA-ztP" secondAttribute="trailing" constant="8" id="6xq-ZQ-uPH"/>
+                            <constraint firstItem="Cam-Gd-k9d" firstAttribute="leading" secondItem="YE1-ca-2Ca" secondAttribute="leading" constant="8" id="KVK-UA-QWc"/>
+                            <constraint firstItem="WDv-BS-m1R" firstAttribute="top" secondItem="YTr-HA-ztP" secondAttribute="bottom" constant="-2" id="Re2-Fe-mVb"/>
+                            <constraint firstItem="ffL-MG-AgQ" firstAttribute="leading" secondItem="Cam-Gd-k9d" secondAttribute="trailing" constant="8" id="VU8-b5-hvG"/>
+                            <constraint firstItem="Cam-Gd-k9d" firstAttribute="centerY" secondItem="YE1-ca-2Ca" secondAttribute="centerY" id="a15-NY-BZx"/>
+                            <constraint firstItem="YTr-HA-ztP" firstAttribute="top" secondItem="YE1-ca-2Ca" secondAttribute="top" constant="9" id="aCf-vQ-gge"/>
+                            <constraint firstItem="2bW-Ql-RgK" firstAttribute="top" secondItem="YE1-ca-2Ca" secondAttribute="top" constant="24" id="h5e-Ol-a6H"/>
+                            <constraint firstItem="ffL-MG-AgQ" firstAttribute="top" secondItem="WDv-BS-m1R" secondAttribute="bottom" constant="-1" id="mTx-Wo-Rs0"/>
+                            <constraint firstAttribute="trailing" secondItem="bbF-k6-CF1" secondAttribute="trailing" constant="8" id="oEA-Fc-wG9"/>
+                            <constraint firstItem="WDv-BS-m1R" firstAttribute="leading" secondItem="Cam-Gd-k9d" secondAttribute="trailing" constant="8" id="rMA-R7-nNd"/>
+                            <constraint firstAttribute="bottom" secondItem="ffL-MG-AgQ" secondAttribute="bottom" constant="11" id="rNV-x4-20b"/>
+                            <constraint firstItem="ffL-MG-AgQ" firstAttribute="top" secondItem="2bW-Ql-RgK" secondAttribute="bottom" constant="2" id="x2s-7Q-Kev"/>
+                            <constraint firstItem="YTr-HA-ztP" firstAttribute="leading" secondItem="Cam-Gd-k9d" secondAttribute="trailing" constant="8" id="xgL-Sb-M1I"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="YE1-ca-2Ca" firstAttribute="leading" secondItem="uq1-kd-xIA" secondAttribute="leading" constant="6" id="IfO-Uo-ghh"/>
-                    <constraint firstAttribute="bottom" secondItem="YE1-ca-2Ca" secondAttribute="bottom" constant="6" id="ZDR-KT-cWg"/>
-                    <constraint firstItem="YE1-ca-2Ca" firstAttribute="top" secondItem="uq1-kd-xIA" secondAttribute="top" constant="6" id="oyo-By-jsf"/>
-                    <constraint firstAttribute="trailing" secondItem="YE1-ca-2Ca" secondAttribute="trailing" constant="6" id="pc8-jR-XS8"/>
+                    <constraint firstItem="YE1-ca-2Ca" firstAttribute="leading" secondItem="uq1-kd-xIA" secondAttribute="leading" constant="6" id="HEJ-SW-4Gk"/>
+                    <constraint firstAttribute="trailing" secondItem="YE1-ca-2Ca" secondAttribute="trailing" constant="6" id="kUR-nK-ofd"/>
+                    <constraint firstItem="YE1-ca-2Ca" firstAttribute="top" secondItem="uq1-kd-xIA" secondAttribute="top" constant="6" id="xxy-40-6eH"/>
+                    <constraint firstAttribute="bottom" secondItem="YE1-ca-2Ca" secondAttribute="bottom" constant="6" id="xzR-QY-m49"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    private func initiate() -> UIViewController {
+    private func initiate() -> (tabBar: UIViewController, passcodeScreen: UIViewController?) {
         let coreDataManager = CoreDataManager(context: container.viewContext, backgroundContext: container.newBackgroundContext())
         let assembler = AssemblerModuleBuilder(coreDataManager: coreDataManager)
         let tabBar = TabBarVC()
@@ -36,30 +36,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBar.presenter = presenter
         
         router.initiateTabBar()
-        return tabBar
+        
+        var passcodeScreen: UIViewController? = nil
+        
+        let result = SecurityService.isPasscodeSet()
+        if result.isPasscodeSet {
+            passcodeScreen = assembler.createPasscodeModule(router: router,
+                                                            type: result.data!.type,
+                                                            passcode: result.data!.passcode!)
+            
+        }
+        return (tabBar, passcodeScreen)
     }
     
     private func setupRoot() {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        
-        let tabBar = self.initiate()
-        let testView = ViewController()
-        testView.testData = testBills1
-        let tets = UITabBarController()
-        tets.viewControllers = [testView]
-        self.window?.rootViewController = tabBar
+    
+        let result = self.initiate()
+        self.window?.rootViewController = result.tabBar
         self.window?.makeKeyAndVisible()
+
+        if result.passcodeScreen != nil {
+            result.passcodeScreen?.modalPresentationStyle = .fullScreen
+            self.window?.rootViewController?.present(result.passcodeScreen!, animated: false, completion: nil)
+        }
     }
     
     private func setupCoreDataStack() {
         self.container = createContainer()
         self.context = container.viewContext
-        //        let context = container.viewContext
-        //        let root = self.window?.rootViewController
-        //        let vRoot = root as? ViewController
-        //        vRoot?.context = context
-        //        self.preloadData()
-        //        self.getAllCategorys()
     }
     
     private func createContainer() -> NSPersistentContainer? {

@@ -37,7 +37,7 @@ class PasscodeSettingsPresenter {
 
 extension PasscodeSettingsPresenter: IPasscodeSettingsPresenter {
     func forceDismiss() {
-        view?.dissmisToPasscodeSettings(isPasscodeSet: true)
+        view?.dismissToPasscodeSettings(isPasscodeSet: true)
     }
     
     
@@ -57,7 +57,7 @@ extension PasscodeSettingsPresenter: IPasscodeSettingsPresenter {
             let _ = SecurityService.updateRecordInKeychain(data: [keychainPasscodeConst: passcode], for: keychainAccountConst)
         }
         
-        view?.dissmisToPasscodeSettings(isPasscodeSet: isPasscodeSet)
+        view?.dismissToPasscodeSettings(isPasscodeSet: isPasscodeSet)
     }
     
     func turnOnOffPasscodeButtonPressed(view: UIViewController) {

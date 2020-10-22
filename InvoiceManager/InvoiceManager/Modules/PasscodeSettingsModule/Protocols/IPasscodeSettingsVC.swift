@@ -11,5 +11,5 @@ import UIKit
 
 protocol IPasscodeSettingsVC: class {
     func presentPasscodeSettings(view: UIViewController)
-    func dissmisToPasscodeSettings(isPasscodeSet: Bool)
+    func dismissToPasscodeSettings(isPasscodeSet: Bool)
 }

@@ -176,4 +176,19 @@ class SecurityService {
         let dictionary = Locksmith.loadDataForUserAccount(userAccount: userAccount)
         return dictionary
     }
+    
+    static func isPasscodeSet() -> (isPasscodeSet:Bool, data: (type: Int, passcode: String?)?) {
+        let userDefaults = UserDefaults.standard
+        var type = 0
+        var passcode: String? = nil
+        
+        let isPasscodeSet = userDefaults.bool(forKey: requireCurrentPasscodeConst)
+        if isPasscodeSet {
+            type = userDefaults.integer(forKey: passcodeTypeConst)
+            let dict = SecurityService.selectRecordFromKeychaint(for: keychainAccountConst)
+            passcode = dict?[keychainPasscodeConst] as? String
+            return (isPasscodeSet, data: (type: type, passcode: passcode))
+        }
+        return (isPasscodeSet: isPasscodeSet, data: nil)
+    }
 }

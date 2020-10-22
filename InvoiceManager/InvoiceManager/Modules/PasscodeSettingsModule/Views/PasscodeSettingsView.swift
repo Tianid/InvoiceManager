@@ -118,23 +118,6 @@ class PasscodeSettingsView: UIView {
     }
 }
 
-extension PasscodeSettingsView: TOPasscodeViewControllerDelegate {
-    func passcodeViewController(_ passcodeViewController: TOPasscodeViewController, isCorrectCode code: String) -> Bool {
-        print(code)
-        return true
-    }
-    
-    func didTapCancel(in passcodeViewController: TOPasscodeViewController) {
-        print(#function)
-    }
-    
-    func didInputCorrectPasscode(in passcodeViewController: TOPasscodeViewController) {
-        print(#function)
-    }
-    
-    
-}
-
 extension PasscodeSettingsView: TOPasscodeSettingsViewControllerDelegate {
     func passcodeSettingsViewController(_ passcodeSettingsViewController: TOPasscodeSettingsViewController, didAttemptCurrentPasscode passcode: String) -> Bool {
         print(#function)
