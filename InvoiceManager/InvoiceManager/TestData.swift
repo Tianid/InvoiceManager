@@ -97,10 +97,10 @@ var testInvoices = [
 
 
 let testCurrency: [Currency] = [.EUR, .GBP, .RUB, .BYN, .UAH, .JPY,.USD]
-let testSettings: [Settings] = [Settings(name: "Import backup", imageName: "plus"),
-                                Settings(name: "Export backup", imageName: "plus"),
-                                Settings(name: "Passcode", imageName: "plus"),
-                                Settings(name: "Drop data", imageName: "plus")]
+let testSettings: [Settings] = [Settings(name: "Import backup", imageName: "NewPlus"),
+                                Settings(name: "Export backup", imageName: "NewPlus"),
+                                Settings(name: "Passcode", imageName: "NewPlus"),
+                                Settings(name: "Drop data", imageName: "NewPlus")]
 
 let requireCurrentPasscodeConst = "requireCurrentPasscode"
 let passcodeTypeConst = "passcodeType"

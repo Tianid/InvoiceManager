@@ -31,7 +31,7 @@ class BillCategoryView: UIView {
     
     
     private var tableView: UITableView = {
-        let table = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .plain)
+        let table = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .grouped)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.backgroundColor = .clear
         table.separatorStyle = .none

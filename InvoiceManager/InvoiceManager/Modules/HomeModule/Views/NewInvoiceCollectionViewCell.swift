@@ -13,7 +13,7 @@ class NewInvoiceCollectionViewCell: UICollectionViewCell {
     var presenter: IHomePresenter?
     private var addInvoiceButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "plus.app"), for: .normal)
+        button.setImage(UIImage(named: "NewPlus"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .clear
         button.layer.borderWidth = 3

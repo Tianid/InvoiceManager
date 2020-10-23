@@ -46,6 +46,6 @@ class CategoryView: UIView {
                                   leading: safeAreaLayoutGuide.leadingAnchor,
                                   bottom: safeAreaLayoutGuide.bottomAnchor,
                                   trailing: safeAreaLayoutGuide.trailingAnchor,
-                                  padding: UIEdgeInsets(top: 0, left: 8, bottom: 8, right: 8))
+                                  padding: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8))
     }
 }

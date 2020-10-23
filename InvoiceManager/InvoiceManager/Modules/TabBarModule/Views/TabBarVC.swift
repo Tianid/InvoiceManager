@@ -30,38 +30,38 @@ extension TabBarVC: ITabBarVC {
         let homeController = assembler.createHomeModule(router: router)
         let categoryController = assembler.createCategoryModule(router: router)
         let chartController = assembler.createChartModule(router: router)
-        let profileController = assembler.createSettingsModule(router: router)
+        let settingsController = assembler.createSettingsModule(router: router)
         
         var homeItem: UITabBarItem!
         var categoryItem: UITabBarItem!
         var chartItem: UITabBarItem!
-        var profileItem: UITabBarItem!
+        var settingsItem: UITabBarItem!
         
         if #available(iOS 13, *) {
             
             homeItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage:  UIImage(systemName: "house.fill"))
-            categoryItem = UITabBarItem(title: "Category", image: UIImage(systemName: "tray.2"), selectedImage:  UIImage(systemName: "tray.2.fill"))
-            chartItem = UITabBarItem(title: "Chart", image: UIImage(systemName: "chart.pie"), selectedImage:  UIImage(systemName: "chart.pie.fill"))
-            profileItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), selectedImage:  UIImage(systemName: "gear"))
+            categoryItem = UITabBarItem(title: "Categories", image: UIImage(systemName: "tray.2"), selectedImage:  UIImage(systemName: "tray.2.fill"))
+            chartItem = UITabBarItem(title: "Charts", image: UIImage(systemName: "chart.pie"), selectedImage:  UIImage(systemName: "chart.pie.fill"))
+            settingsItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), selectedImage:  UIImage(systemName: "gear"))
         } else {
             
             homeItem = UITabBarItem(title: "Home", image: UIImage(named: "house.png"), selectedImage:  UIImage(named: "house.fill.png"))
-            categoryItem = UITabBarItem(title: "Category", image: UIImage(named: "tray.2.png"), selectedImage:  UIImage(named: "tray.2.fill.png"))
-            chartItem = UITabBarItem(title: "Chart", image: UIImage(named: "chart.pie.png"), selectedImage:  UIImage(named: "chart.pie.fill.png"))
-            profileItem = UITabBarItem(title: "Profile", image: UIImage(named: "gear.png"), selectedImage:  UIImage(named: "gear.png"))
+            categoryItem = UITabBarItem(title: "Categories", image: UIImage(named: "tray.2.png"), selectedImage:  UIImage(named: "tray.2.fill.png"))
+            chartItem = UITabBarItem(title: "Charts", image: UIImage(named: "chart.pie.png"), selectedImage:  UIImage(named: "chart.pie.fill.png"))
+            settingsItem = UITabBarItem(title: "Settings", image: UIImage(named: "gear.png"), selectedImage:  UIImage(named: "gear.png"))
         }
         
         homeController.tabBarItem = homeItem
         categoryController.tabBarItem = categoryItem
         chartController.tabBarItem = chartItem
-        profileController.tabBarItem = profileItem
+        settingsController.tabBarItem = settingsItem
         
         let homeNavigationController = UINavigationController(rootViewController: homeController)
         let categoryNavigationController = UINavigationController(rootViewController: categoryController)
         let chartNavigationController = UINavigationController(rootViewController: chartController)
-        let profileNavigationController = UINavigationController(rootViewController: profileController)
+        let settingsNavigationController = UINavigationController(rootViewController: settingsController)
         
-        let controllers = [homeNavigationController, categoryNavigationController, chartNavigationController, profileNavigationController]
+        let controllers = [homeNavigationController, categoryNavigationController, chartNavigationController, settingsNavigationController]
         
         self.viewControllers = controllers
     }

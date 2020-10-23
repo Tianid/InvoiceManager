@@ -144,9 +144,7 @@ class HomeView: UIView {
         } else {
             // Fallback on earlier versions
             button.setImage(UIImage(named: "plus.square"), for: .normal)
-            button.imageView?.layer.borderWidth = 2
             button.imageView?.layer.borderColor = UIColor.systemBlue.cgColor
-            button.imageView?.layer.cornerRadius = 4
         }
         return button
     }()
@@ -314,9 +312,9 @@ class HomeView: UIView {
         )
         
         addButton.anchor(top: collectionPanel.topAnchor,
+                         leading: collectionPanel.leadingAnchor,
                          bottom:  collectionPanel.bottomAnchor,
-                         size: CGSize(width: 30, height: 30),
-                         centerX: collectionPanel.centerXAnchor)
+                         trailing: collectionPanel.trailingAnchor)
         
         //MARK: collectionView constraints
         

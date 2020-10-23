@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Entertainment</key>
+		<array>
+			<string>Games</string>
+			<string>Books</string>
+			<string>Movies &amp; Series</string>
+			<string>Theater</string>
+			<string>Music</string>
+			<string>Museums</string>
+		</array>
+	</dict>
+	<dict>
+		<key>Home</key>
+		<array>
+			<string>Furniture</string>
+			<string>Repairs</string>
+			<string>Bills</string>
+			<string>Cleaning</string>
+			<string>Household</string>
+		</array>
+	</dict>
+	<dict>
+		<key>Work</key>
+		<array>
+			<string>Salary</string>
+		</array>
+	</dict>
+	<dict>
+		<key>Food &amp; Water</key>
+		<array>
+			<string>Fruits</string>
+			<string>Vegetables</string>
+			<string>Sweets</string>
+			<string>Water</string>
+			<string>Juice</string>
+			<string>Soda</string>
+			<string>Food</string>
+			<string>Meat</string>
+			<string>Fish</string>
+			<string>Chicken</string>
+			<string>Bread</string>
+			<string>Cereals</string>
+			<string>Groats</string>
+		</array>
+	</dict>
+	<dict>
+		<key>Other</key>
+		<array>
+			<string>Gifts</string>
+			<string>Credits</string>
+			<string>Subscriptions</string>
+			<string>Journeys</string>
+			<string>Electronics</string>
+			<string>Car</string>
+			<string>Tickets</string>
+			<string>Clothes</string>
+			<string>Footwear</string>
+			<string>Other</string>
+		</array>
+	</dict>
+</array>
+</plist>

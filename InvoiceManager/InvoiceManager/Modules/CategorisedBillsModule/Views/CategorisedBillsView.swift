@@ -14,7 +14,7 @@ class CategorisedBillsView: UIView {
     
     private let tableIdentifierCell = "tableIdentifierCell"
     private var tableView: UITableView = {
-        let table = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .plain)
+        let table = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .grouped)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.separatorStyle = .none
         return table

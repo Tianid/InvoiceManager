@@ -54,6 +54,7 @@
 		129BC17D24FFE648004BD17A /* HomeViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BC17B24FFE648004BD17A /* HomeViewTableViewCell.swift */; };
 		129BC17E24FFE648004BD17A /* HomeViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 129BC17C24FFE648004BD17A /* HomeViewTableViewCell.xib */; };
 		129BC18024FFE76E004BD17A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129BC17F24FFE76E004BD17A /* CardView.swift */; };
+		129E405B254338B90031F863 /* PreloadedDatav0.2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 129E405A254338B90031F863 /* PreloadedDatav0.2.plist */; };
 		129F48C824FD5A6000D9172C /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129F48C724FD5A6000D9172C /* Section.swift */; };
 		12AB499425124B710069B713 /* DropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AB499325124B710069B713 /* DropDownMenu.swift */; };
 		12AB499A25126C9C0069B713 /* NewInvoiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AB499925126C9C0069B713 /* NewInvoiceVC.swift */; };
@@ -196,6 +197,7 @@
 		129BC17B24FFE648004BD17A /* HomeViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewTableViewCell.swift; sourceTree = "<group>"; };
 		129BC17C24FFE648004BD17A /* HomeViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewTableViewCell.xib; sourceTree = "<group>"; };
 		129BC17F24FFE76E004BD17A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		129E405A254338B90031F863 /* PreloadedDatav0.2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PreloadedDatav0.2.plist; sourceTree = "<group>"; };
 		129F48C724FD5A6000D9172C /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		12AB499325124B710069B713 /* DropDownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMenu.swift; sourceTree = "<group>"; };
 		12AB499925126C9C0069B713 /* NewInvoiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInvoiceVC.swift; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 				127E1491251CF39800AD7C49 /* PreloadedData.plist */,
 				12C433D8251CCCCB000E48E0 /* Modelv0.1.xcdatamodeld */,
 				12F212D6251E0D0B00E29D7A /* CoreDataManager.swift */,
+				129E405A254338B90031F863 /* PreloadedDatav0.2.plist */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -1098,6 +1101,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12D1D5A724FD1B4E0077FEF6 /* LaunchScreen.storyboard in Resources */,
+				129E405B254338B90031F863 /* PreloadedDatav0.2.plist in Resources */,
 				129BC17E24FFE648004BD17A /* HomeViewTableViewCell.xib in Resources */,
 				121AC3EB250A77D10099319D /* CategoryTableViewCell.xib in Resources */,
 				12D1D5A424FD1B4E0077FEF6 /* Assets.xcassets in Resources */,
