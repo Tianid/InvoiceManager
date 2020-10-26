@@ -24,7 +24,7 @@ class NewInvoiceView: UIView {
     
     private var dropMenu: DropDownMenu = {
         let menu = DropDownMenu()
-        menu.dataSourse = testCurrency
+        menu.dataSourse = CurrencyList
         menu.translatesAutoresizingMaskIntoConstraints = false
         menu.backgroundColor = UIColor(named: "CustomColor")
         return menu

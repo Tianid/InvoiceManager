@@ -51,7 +51,7 @@ extension PasscodeVC: IPasscodeVC {
         dismissViewController(animated: animated, complition: nil)
     }
     
-    func dismissPasscodeScreent(animated: Bool) {
+    func dismissPasscodeScreen(animated: Bool) {
         dismissViewController(animated: animated, complition: { [weak self] in
             self?.dismissViewController(animated: animated, complition: nil)
         })

@@ -352,7 +352,7 @@ class HomeView: UIView {
     }
     
     private func refreshData(userInfo: [AnyHashable: Any]) {
-        presenter?.setUserInfo(userInfro: userInfo, complition: { [weak self] in
+        presenter?.setUserInfo(userInfo: userInfo, complition: { [weak self] in
             self?.collectionView.reloadData()
             self?.refreshUIData()
         })

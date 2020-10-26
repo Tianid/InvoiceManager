@@ -8,10 +8,14 @@
 
 import UIKit
 import TOPasscodeViewController
+import LocalAuthentication
 
 class PasscodeView: UIView {
     //MARK: - Properties
     var presenter: IPasscodePresenter?
+    private var authContext: LAContext = .init()
+    private var biometricAvailable: Bool = false
+    private var faceIDAvailable: Bool = false
     
     private var enterPasscodeButton: UIButton = {
         let button = UIButton(type: .system)
@@ -47,8 +51,12 @@ class PasscodeView: UIView {
             passcodeVC = TOPasscodeViewController(style: .translucentLight, passcodeType: presenter.type)
         }
         
+        self.biometricAvailable = authContext.canEvaluatePolicy( .deviceOwnerAuthenticationWithBiometrics, error: nil)
+        self.faceIDAvailable = (self.authContext.biometryType == .faceID)
+        
         passcodeVC.delegate = self
-        passcodeVC.allowBiometricValidation = false
+        passcodeVC.allowBiometricValidation = self.biometricAvailable
+        passcodeVC.biometryType = self.faceIDAvailable ? .faceID : .touchID
         
         presenter.enterPasscodeButtonTapped(view: passcodeVC)
     }
@@ -69,5 +77,55 @@ extension PasscodeView: TOPasscodeViewControllerDelegate {
     func didInputCorrectPasscode(in passcodeViewController: TOPasscodeViewController) {
         print(#function)
         presenter?.didEnterCorrectCode()
+    }
+    
+    func didPerformBiometricValidationRequest(in passcodeViewController: TOPasscodeViewController) {
+        print(#function)
+        
+        let reason = "Touch ID to continue using this app"
+        
+        let reply =  { [weak self] (success: Bool, error: Error?) in
+            if success {
+                // Touch ID validation was successful
+                // (Use this to dismiss the passcode controller and display the protected content)
+                DispatchQueue.main.async {
+                    // Create a new Touch ID context for next time
+                    self?.authContext.invalidate()
+                    self?.authContext = .init()
+                    
+                    // Dismiss the passcode controller
+                    self?.presenter?.didEnterCorrectCode()
+                }
+                return
+            }
+            
+            // Actual UI changes need to be made on the main queue
+            DispatchQueue.main.async {
+                passcodeViewController.setContentHidden(false, animated: true)
+            }
+            
+            if let nsError = error as NSError? {
+                // The user hit 'Enter Password'. This should probably do nothing
+                // but make sure the passcode controller is visible.
+                if (nsError.code == kLAErrorUserFallback ) {
+                    NSLog("User tapped 'Enter Password'");
+                    return
+                }
+                
+                // The user hit the 'Cancel' button in the Touch ID dialog.
+                // At this point, you could either simply return the user to the passcode controller,
+                // or dismiss the protected content and go back to a safer point in your app (Like the login page).
+                if (nsError.code == kLAErrorUserCancel) {
+                    NSLog("User tapped cancel.");
+                    return;
+                }
+                
+                // There shouldn't be any other potential errors, but just in case
+                NSLog("%@", nsError.localizedDescription);
+            }
+            
+        }
+        passcodeViewController.setContentHidden(true, animated: true)
+        authContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: reply)
     }
 }

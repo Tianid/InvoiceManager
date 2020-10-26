@@ -25,7 +25,7 @@ protocol IHomePresenter: class {
     func deleteBillInModel(bill: Bill, indexPath: IndexPath)
     func deleteInvoice(complition: (() -> ())?)
     
-    func setUserInfo(userInfro: [AnyHashable: Any], complition: (() -> ())?)
+    func setUserInfo(userInfo: [AnyHashable: Any], complition: (() -> ())?)
 }
 
 protocol IPHomeCollectionViewCell {

@@ -48,7 +48,7 @@ class PasscodeSettingsVC: UIViewController {
 
 extension PasscodeSettingsVC: IPasscodeSettingsVC {
     func dismissToPasscodeSettings(isPasscodeSet: Bool) {
-        for controller in self.navigationController!.viewControllers as Array {
+        for controller in (self.navigationController?.viewControllers ?? []) as Array {
             if controller.isKind(of: PasscodeSettingsVC.self) {
            
                 self.navigationController?.popViewControllerTo(controller: controller, animated: true, completion: {

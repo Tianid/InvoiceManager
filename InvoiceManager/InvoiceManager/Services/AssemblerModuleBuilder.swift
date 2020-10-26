@@ -69,7 +69,7 @@ class AssemblerModuleBuilder: IAssembleBuilder {
     
     func createSettingsModule(router: IRouter) -> UIViewController {
         let view = SettingsVC()
-        let model = testSettings
+        let model = SettingsList
         let presenter = SettingsPresenter(view: view, router: router, model: model)
         view.presenter = presenter
         return view

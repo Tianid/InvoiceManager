@@ -45,7 +45,7 @@ class SettingsVCTest: XCTestCase {
     
     func testSettingsPresenter() {
         let view = SettingsVC()
-        let presenter = SettingsPresenter(view: view, router: router, model: testSettings)
+        let presenter = SettingsPresenter(view: view, router: router, model: SettingsList)
         
         XCTAssertNoThrow(presenter.prepareTableViewCell(cell: UITableViewCell(), indexPath: IndexPath(row: 0, section: 0)))
         XCTAssertNoThrow(presenter.cryptedItemSelected(data: Data()))

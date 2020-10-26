@@ -42,6 +42,7 @@ class ChartVCTest: XCTestCase {
         XCTAssertNoThrow(presenter.prepareCollectionViewCell(cell: ChartViewCell(), index: 0))
         XCTAssertNoThrow(presenter.refreshChartData(complition: nil))
         XCTAssertNoThrow(presenter.refreshChartData(isUseBackground: true, complition: nil))
+        XCTAssertNoThrow(presenter.setUserInfo(userInfo: [:], complition: nil))
     }
     
     func testChartView() {

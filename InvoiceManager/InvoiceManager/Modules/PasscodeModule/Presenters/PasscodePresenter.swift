@@ -37,6 +37,6 @@ extension PasscodePresenter: IPasscodePresenter {
     }
     
     func didEnterCorrectCode() {
-        self.view?.dismissPasscodeScreent(animated: true)
+        self.view?.dismissPasscodeScreen(animated: true)
     }
 }

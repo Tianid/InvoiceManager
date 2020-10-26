@@ -50,8 +50,8 @@ class HomePresenter {
 }
 
 extension HomePresenter: IHomePresenter {
-    func setUserInfo(userInfro: [AnyHashable : Any], complition: (() -> ())?) {
-        let model = userInfro["IMData"] as? [Invoice]
+    func setUserInfo(userInfo: [AnyHashable : Any], complition: (() -> ())?) {
+        let model = userInfo["IMData"] as? [Invoice]
         self.model = model ?? []
         complition?()
     }

@@ -80,6 +80,7 @@ class ModelsAndOther: XCTestCase {
         nav.popViewController(completion: {
             
         })
+        nav.popViewControllerTo(controller: UIViewController(), animated: false, completion: nil)
     }
     
     func testDate() {
@@ -87,6 +88,11 @@ class ModelsAndOther: XCTestCase {
         XCTAssertNoThrow(Date.thisMonth)
         XCTAssertNoThrow(Date.thisYear)
 
+    }
+    
+    func testIMColors() {
+        XCTAssertNoThrow(CategoryColors.colors)
+        XCTAssertNoThrow(CategoryColors.sortedColors)
     }
 
 }

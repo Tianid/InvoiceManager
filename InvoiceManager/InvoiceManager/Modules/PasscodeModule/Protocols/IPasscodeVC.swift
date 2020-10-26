@@ -11,5 +11,5 @@ import Foundation
 protocol IPasscodeVC: class {
     func presentViewController(view: UIViewController)
     func dismissPasscode(animated: Bool)
-    func dismissPasscodeScreent(animated: Bool)
+    func dismissPasscodeScreen(animated: Bool)
 }
