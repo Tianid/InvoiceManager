@@ -1,7 +1,7 @@
 # InvoiceManager
-Apps for managing your finances. Add bills by categories and track of your finances using charts
-Can import or export backup files with finances data.
-Backups are encrypted.
+Apps for managing your finances. Add bills by categories and track of your finances using charts.
+Can import or export backup files with finances data (Backups are encrypted).
+Login to the application by passcode or via TouchID / FaceID
 
 # Used frameforks/librarys 
 1. CoreData
