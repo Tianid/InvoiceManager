@@ -119,21 +119,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    
-    private func getAllCategorys() {
-        let backgroundContext = container.newBackgroundContext()
-        let request = NSFetchRequest<CDCategory>(entityName: "\(CDCategory.self)")
-        let data = try! backgroundContext.fetch(request)
-        
-        
-        for iten in data {
-            print(iten.name)
-            print(iten.iconImageName)
-            print(iten.section?.name)
-            
-            print()
-            
-        }
-    }
 }
 

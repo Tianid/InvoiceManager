@@ -16,7 +16,6 @@ class BillDetailVCTest: XCTestCase {
     var coreDataManager: ICoreDataManager!
     
     override func setUpWithError() throws {
-        let delegate = UIApplication.shared.delegate as! AppDelegate
         let coreDataManagerMock = CoreDataManagerMock()
         coreDataManager = coreDataManagerMock
         assembly = AssemblerModuleBuilder(coreDataManager: coreDataManagerMock)

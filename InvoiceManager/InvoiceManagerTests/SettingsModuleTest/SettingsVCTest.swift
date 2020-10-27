@@ -21,7 +21,6 @@ class SettingsVCTest: XCTestCase {
     var router: IRouter!
     
     override func setUpWithError() throws {
-        let delegate = UIApplication.shared.delegate as! AppDelegate
         let coreDataManagerMock = CoreDataManagerMock()
         assembly = AssemblerModuleBuilder(coreDataManager: coreDataManagerMock)
         router = Router(tabBar: MockTabBar(), assembler: assembly)
