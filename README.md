@@ -11,8 +11,8 @@ Backups are encrypted.
 5. AESCryptable
 
 # Screenshots
-![](Screenshots/Screenshot#1.png)
-![](Screenshots/Screenshot#2.png)
-![](Screenshots/Screenshot#3.png)
-![](Screenshots/Screenshot#4.png)
+![Screenshots](Screenshots/Screenshot#1.png)
+![Screenshots](Screenshots/Screenshot#2.png)
+![Screenshots](Screenshots/Screenshot#3.png)
+![Screenshots](Screenshots/Screenshot#4.png)
 
