@@ -373,6 +373,7 @@ extension CoreDataManager: ICoreDataManager {
     
     func fetchAllSectionsWitAllCategorys() -> [SuperSection] {
         let request = NSFetchRequest<CDSection>(entityName: "\(CDSection.self)")
+        request.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
         
         do {
             let cdSections = try context.fetch(request)
@@ -381,7 +382,7 @@ extension CoreDataManager: ICoreDataManager {
             
             for cdSection in cdSections {
                 var categorys: [Category] = []
-                let soredCDCategorys = cdSection.category?.sortedArray(using: [NSSortDescriptor(key: "name", ascending: true)]) as? [CDCategory]
+                let soredCDCategorys = cdSection.category?.sortedArray(using: [NSSortDescriptor(key: "creationDate", ascending: true)]) as? [CDCategory]
                 for cdCategory in soredCDCategorys! {
                     let category = transformCDCategoryModelToAppCategoryModel(cdCategory: cdCategory)
                     categorys.append(category)

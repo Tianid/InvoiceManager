@@ -252,7 +252,7 @@ class HomeView: UIView {
                           leading: leadingAnchor,
                           trailing: trailingAnchor,
                           padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0),
-                          size: CGSize(width: 0, height: 0))
+                          size: CGSize(width: 0, height: 175))
         
         invoiceNameLabel.anchor(top: headerView.safeAreaLayoutGuide.topAnchor,
                                 padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0),
@@ -288,7 +288,7 @@ class HomeView: UIView {
         
         invoiceIncomeCounterLabel.anchor(top: invoiceIncomeWordLabel.bottomAnchor,
                                          leading: invoiceIncomeWordLabel.leadingAnchor,
-                                         bottom: incomeExpenseContainer.bottomAnchor)
+                                         trailing: invoiceIncomeWordLabel.trailingAnchor)
         
         invoiceExpenseImageView.anchor(top: invoiceIncomeImageView.topAnchor,
                                        leading: invoiceIncomeWordLabel.trailingAnchor,

@@ -51,9 +51,15 @@ extension CategoryPresenter: ICategoryTableContainer {
         if isFiltering {
             let indexRow = filteredModels[indexPath.section].1[indexPath.row]
             let indexSection = filteredModels[indexPath.section].0
-            cell.categoryLabel.text = model[indexSection].categorys[indexRow].name
+            let name = model[indexSection].categorys[indexRow].name
+            cell.categoryLabel.text = name
+            cell.categoryImageView.image = UIImage(named: name.lowercased())
+            cell.categoryImageView.backgroundColor = CategoryColors.colors[name]
         } else {
-            cell.categoryLabel.text = model[indexPath.section].categorys[indexPath.row].name
+            let name = model[indexPath.section].categorys[indexPath.row].name
+            cell.categoryLabel.text = name
+            cell.categoryImageView.image = UIImage(named: name.lowercased())
+            cell.categoryImageView.backgroundColor = CategoryColors.colors[name]
         }
         return cell
     }

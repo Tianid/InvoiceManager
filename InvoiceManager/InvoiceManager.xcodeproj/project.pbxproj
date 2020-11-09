@@ -1478,6 +1478,7 @@
 			baseConfigurationReference = 5182CDB16A1438022119A9E0 /* Pods-InvoiceManager.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GY259TWT8G;
 				INFOPLIST_FILE = InvoiceManager/Info.plist;
@@ -1498,6 +1499,7 @@
 			baseConfigurationReference = 5B99947068D32ADFA050B215 /* Pods-InvoiceManager.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GY259TWT8G;
 				INFOPLIST_FILE = InvoiceManager/Info.plist;

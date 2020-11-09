@@ -78,33 +78,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }
     
-    
     private func preloadData() {
         let preloadedDataKey = "didPreloadData"
         let userDefaults = UserDefaults.standard
         if userDefaults.bool(forKey: preloadedDataKey) == false {
-            guard let urlPath = Bundle.main.url(forResource: "PreloadedData", withExtension: "plist") else { return }
+            guard let urlPath = Bundle.main.url(forResource: "PreloadedDatav0.2", withExtension: "plist") else { return }
             let data = try! Data(contentsOf: urlPath)
             
-            guard let plist = try! PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [String: [String]] else { return }
+            guard let plist = try! PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [[String: [String]]] else { return }
             
             let backgroundContext = container.viewContext
             container.viewContext.automaticallyMergesChangesFromParent = true
             
-            var keys = Array(plist.keys)
-            keys.sort()
-            
-            for section in keys {
-                let categorys = plist[section]
+            for item in plist {
+                guard let key = item.keys.first else { continue }
+                
+                let categorys = item[key]
                 let sectionCD = CDSection(context: backgroundContext)
-                sectionCD.name = section
+                sectionCD.name = key
                 sectionCD.creationDate = Date()
                 sectionCD.modifiedDate = sectionCD.creationDate
                 
                 for category in categorys! {
                     let categoryCD = CDCategory(context: backgroundContext)
                     categoryCD.name = category
-                    categoryCD.iconImageName = "NO IMAGE"
+                    categoryCD.iconImageName = category.lowercased()
                     categoryCD.creationDate = Date()
                     categoryCD.modifiedDate = categoryCD.creationDate
                     sectionCD.addToCategory(categoryCD)

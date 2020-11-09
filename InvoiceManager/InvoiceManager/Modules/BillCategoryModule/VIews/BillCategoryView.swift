@@ -104,7 +104,10 @@ extension BillCategoryView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableIdentifier, for: indexPath) as? CategoryTableViewCell
-        cell?.categoryLabel.text = presenter?.model[indexPath.section].categorys[indexPath.row].name
+        let name = presenter?.model[indexPath.section].categorys[indexPath.row].name
+        cell?.categoryLabel.text = name
+        cell?.categoryImageView.image = UIImage(named: name?.lowercased() ?? "")
+        cell?.categoryImageView.backgroundColor = CategoryColors.colors[name ?? ""]
 
         return cell!
     }
