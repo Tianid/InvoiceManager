@@ -3,7 +3,7 @@ Apps for managing your finances. Add bills by categories and track of your finan
 Can import or export backup files with finances data (Backups are encrypted).
 Login to the application by passcode or via TouchID / FaceID
 
-# Used frameforks/librarys 
+# Used frameworks/librarys 
 1. CoreData
 2. Locksmith
 3. TOPasscodeViewController
