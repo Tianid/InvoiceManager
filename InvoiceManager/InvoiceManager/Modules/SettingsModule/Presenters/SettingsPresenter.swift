@@ -151,10 +151,12 @@ extension SettingsPresenter: ISettingsPresenter {
     }
     
     func prepareTableViewCell(cell: UITableViewCell, indexPath: IndexPath) -> UITableViewCell {
+        let imageName = model[indexPath.row].imageName
         cell.accessoryType = .disclosureIndicator
         cell.textLabel?.text = model[indexPath.row].name
         cell.textLabel?.textColor = indexPath.row == 3 ? .systemRed : nil
-        cell.imageView?.image = UIImage(named: model[indexPath.row].imageName)
+        cell.imageView?.image = UIImage(named: imageName)
+        cell.imageView?.backgroundColor = CategoryColors.colors[imageName]
         return cell
     }
 }

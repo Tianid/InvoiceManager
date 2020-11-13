@@ -44,7 +44,11 @@ class CategoryColors {
                                             "Other" : CategoryColors.otherColor,
                                             "Salary" : CategoryColors.salaryColor,
                                             "Subscriptions" : CategoryColors.subscriptionsColor,
-                                            "Tickets" : CategoryColors.ticketsColor
+                                            "Tickets" : CategoryColors.ticketsColor,
+                                            "import": CategoryColors.importColor,
+                                            "export" : CategoryColors.exportColor,
+                                            "security" : CategoryColors.securityColor,
+                                            "drop" : CategoryColors.dropColor
                                             
     ]
     
@@ -203,5 +207,21 @@ class CategoryColors {
     
     static var ticketsColor: UIColor {
         #colorLiteral(red: 0.8979814404, green: 0.6914855507, blue: 0.6320968245, alpha: 1)
+    }
+    
+    static var importColor: UIColor {
+        #colorLiteral(red: 0.4368702586, green: 0.5550274964, blue: 0.8979814404, alpha: 1)
+    }
+    
+    static var exportColor: UIColor {
+        #colorLiteral(red: 0.3972629957, green: 0.8979814404, blue: 0.3748951971, alpha: 1)
+    }
+    
+    static var securityColor: UIColor {
+        #colorLiteral(red: 0.1836205259, green: 0.7721165829, blue: 0.8979814404, alpha: 1)
+    }
+    
+    static var dropColor: UIColor {
+        #colorLiteral(red: 0.8979814404, green: 0.2037095064, blue: 0.1676354803, alpha: 1)
     }
 }
